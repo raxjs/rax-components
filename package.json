@@ -5,6 +5,8 @@
     "npm": "6.x"
   },
   "devDependencies": {
+    "conventional-commit-types": "^2.2.0",
+    "semver-regex": "^2.0.0",
     "shelljs": "0.8.3",
     "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",

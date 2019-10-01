@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Miniapp rax view component",
+  "usingComponents": {
+    "rax-view": "../lib/miniapp/index"
+  }
+}

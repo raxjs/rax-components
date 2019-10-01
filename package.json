@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "devEngines": {
+    "node": "8.x || 9.x || 10.x || 11.x",
+    "npm": "6.x"
+  },
+  "devDependencies": {
+    "shelljs": "0.8.3",
+    "@rax-types/rax": "^1.0.5",
+    "@types/ali-app": "^1.0.0",
+    "@types/jest": "^24.0.12",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "csstype": "^2.6.4",
+    "driver-dom": "^1.0.0",
+    "driver-universal": "^1.0.1",
+    "driver-weex": "^1.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-rax": "^0.0.0",
+    "rax": "^1.0.0",
+    "rax-scripts": "^2.0.0",
+    "rax-test-renderer": "^1.0.0",
+    "rax-plugin-component": "0.1.13",
+
+    "classnames": "^2.2.6"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --no-ci",
+    "build": "npm run clean:compile && node ./scripts/compile-packages.js",
+    "clean:compile": "rm -rf ./packages/*/lib"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "./scripts/validate-commit-msg.js"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "name": "rax-components"
+}

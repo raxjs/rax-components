@@ -1,0 +1,14 @@
+<scroll-view 
+    class="rax-scrollview {{className}}" 
+    style="flex-direction:{{horizontal?'row':'column'}};{{style}}"
+    scroll-x="{{horizontal}}"
+    scroll-y="{{!horizontal}}"
+    scroll-top="{{scrollTop||scroll_top}}"
+    scroll-left="{{scrollLeft||scroll_left}}"
+    scroll-into-view="{{scrollIntoView}}"
+    lower-threshold="{{endReachedThreshold}}"
+    onScroll="onScroll"
+    onScrollToLower="onEndReached"
+>
+    <slot/>
+</scroll-view>

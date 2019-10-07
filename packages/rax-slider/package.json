@@ -1,0 +1,75 @@
+{
+  "name": "rax-slider",
+  "version": "1.0.6",
+  "description": "Slider component for Rax.",
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
+    "build": "npm run clean && rax-scripts build --type 'component'",
+    "start": "rax-scripts start --type 'component' -p 8000",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build && rax-scripts test",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix",
+    "miniapp": "rax-scripts start --type 'component-miniapp'"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-slider.git"
+  },
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
+  "bugs": {
+    "url": "https://github.com/alibaba/rax/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-slider#readme",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "rax-clone-element": "^1.0.0",
+    "rax-find-dom-node": "^1.0.0",
+    "rax-view": "^1.0.1-beta.7",
+    "universal-env": "^1.0.0",
+    "universal-panresponder": "^0.6.5"
+  },
+  "peerDependencies": {
+    "rax": "^1.0.0"
+  },
+  "devDependencies": {
+    "@rax-types/rax": "^1.0.5",
+    "@types/ali-app": "^1.0.0",
+    "@types/jest": "^24.0.12",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "csstype": "^2.6.4",
+    "driver-universal": "^1.0.0-beta.5",
+    "eslint": "^5.10.0",
+    "eslint-config-rax": "^0.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "~7.11.1",
+    "jest-localstorage-mock": "^2.3.0",
+    "rax": "^1.0.0",
+    "rax-image": "^1.0.1-beta.0",
+    "rax-scripts": "1.2.1",
+    "rax-test-renderer": "^1.0.0"
+  },
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "tagNameMap": "rax-swiper",
+    "childWrapTag": "swiper-item",
+    "childWrapTagProps": {},
+    "propsMap": {
+      "onEndReachedThreshold": "endReachedThreshold"
+    }
+  }
+}

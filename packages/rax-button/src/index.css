@@ -1,0 +1,9 @@
+.text {
+  color: #0C42FD;
+  textAlign: center;
+  padding: 16;
+  fontSize: 36;
+}
+.textDisabled {
+  color: #cdcdcd;
+}

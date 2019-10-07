@@ -1,0 +1,8 @@
+'use strict';
+
+const EVENT_PAN_VIEW_PAN_START = 'slider:EVENT_PAN_VIEW_PAN_START';
+const FULL_WIDTH = 750;
+export {
+  EVENT_PAN_VIEW_PAN_START,
+  FULL_WIDTH
+};

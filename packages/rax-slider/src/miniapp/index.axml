@@ -1,0 +1,11 @@
+<swiper
+  autoplay="{{autoPlay}}"
+  indicator-dots="{{showsPagination}}"
+  current="{{index}}"
+  interval="{{autoPlayInterval}}"
+  circular="{{loop}}"
+  onChange="onChange">
+  <block>
+    <slot />
+  </block>
+</swiper>

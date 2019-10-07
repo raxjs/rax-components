@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Miniapp textinput component",
+  "usingComponents": {
+    "rax-textinput": "../../src/miniapp/index"
+  }
+}

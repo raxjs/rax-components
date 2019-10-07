@@ -1,0 +1,12 @@
+<scroll-view onScrollToLower="onEndReached" class="waterfall-class" scroll-y="true" lower-threshold="{{endReachedThreshold}}">
+  <slot name="renderHeader"/>
+  <view class="waterfall-wrap" style="margin-left:{{leftGap}}rpx;margin-right:{{rightGap}}rpx;">
+    <view a:for="{{columns}}" a:for-index="index_c" a:for-item="column" style="width:{{columnWidth}}rpx">
+      <block a:for="{{column}}" a:for-index="index" a:for-item="item">
+        <slot name="renderItem" item="{{item}}" index="c_{{index_c}}{{index}}"/>
+      </block>
+    </view>
+  </view>
+  <slot name="renderFooter"/>
+
+</scroll-view>

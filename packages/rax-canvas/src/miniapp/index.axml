@@ -1,0 +1,14 @@
+<canvas class="{{className}}" 
+    style="{{style}}"
+    id="{{id}}"
+    width="{{width}}"
+    height="{{height}}"
+    onTap="onClick" 
+    onLongTap="onLongPress" 
+    onAppear="onAppear"
+    onDisAppear="onDisAppear"
+    onTouchStart="onTouchStart"
+    onTouchMove="onTouchMove"
+    onTouchEnd="onTouchEnd"
+    onTouchCancel="onTouchCancel">
+</canvas>

@@ -1,0 +1,11 @@
+.main {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item {
+  flex-direction: row;
+}
+.background {
+  position: absolute;
+}

@@ -1,0 +1,82 @@
+{
+  "name": "rax-scrollview",
+  "version": "1.1.0",
+  "description": "ScrollView component for Rax.",
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
+    "build": "npm run clean && rax-scripts build",
+    "start": "rax-scripts start",
+    "prepublishOnly": "npm run build",
+    "test": "rax-scripts test",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "propsMap": {
+      "onEndReachedThreshold": "endReachedThreshold"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-scrollview.git"
+  },
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-scrollview/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-scrollview",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "rax-refreshcontrol": "^1.0.0",
+    "rax-view": "^1.1.0-0",
+    "universal-env": "^1.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.0.0"
+  },
+  "devDependencies": {
+    "@rax-types/rax": "^1.0.5",
+    "@types/ali-app": "^1.0.0",
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.12",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "csstype": "^2.6.4",
+    "driver-universal": "^1.0.0",
+    "driver-weex": "^1.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-rax": "^0.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "rax": "^1.0.0",
+    "rax-plugin-component": "^0.1.9",
+    "rax-scripts": "^2.0.0",
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.0.1",
+    "typescript": "^3.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

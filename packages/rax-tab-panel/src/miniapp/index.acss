@@ -1,0 +1,18 @@
+.upper-tabs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.lower-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: #F2F2F2;
+  position: sticky;
+  height: 500rpx;
+  z-index: 998;
+  overflow: hidden;
+}

@@ -1,0 +1,25 @@
+<scroll-view class="upper-tabs" scroll-x="{{true}}" 
+  style="width: 100%;"
+  scroll-into-view="_tab_item_{{currentTabIndex}}"
+  scroll-with-animation="{{true}}">
+  <view a:for="{{dataSource}}"
+    id="_tab_item_{{index}}"
+    data-id="_tab_item_{{index}}"
+    class="{{currentTabIndex === index ? `${tabItemClass} ${tabItemActiveClass}` : tabItemClass}}"
+    data-index="{{index}}"
+    onTap="touchScroll">
+    {{item}}
+  </view>
+</scroll-view>
+
+<view class="lower-tabs"
+    onTouchStart="touchStart"
+    onTouchEnd="touchEnd"
+    disable-scroll="{{true}}">
+    <slot config="{{
+      {
+        slideDistance,
+        duration
+      }
+    }}" />
+</view>

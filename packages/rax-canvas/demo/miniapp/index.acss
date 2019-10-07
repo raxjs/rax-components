@@ -1,0 +1,4 @@
+.testClass{
+    width:500rpx;
+    height:500rpx;
+}

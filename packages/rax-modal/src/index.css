@@ -1,0 +1,19 @@
+.rax-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 3000rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.rax-modal-main {
+  width: 640rpx;
+  height: 340rpx;
+  background-color: #ffffff;
+}

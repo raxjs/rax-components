@@ -1,0 +1,3 @@
+<rax-canvas id="canvas" className="testClass" onClick="onClick" style="background:red" animation="{{animationInfo}}">
+    i am in parent
+</rax-canvas>

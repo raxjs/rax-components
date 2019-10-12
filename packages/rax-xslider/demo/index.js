@@ -48,7 +48,7 @@ const colors = [
 ];
 
 const App = () => {
-  const pagination = useRef(null); 
+  const pagination = useRef(null);
   const bgList = Array.apply(null, {length: colors.length}).map(() => useRef(null));
   const getCardTransitionSpec = () => {
     return {
@@ -65,16 +65,16 @@ const App = () => {
         }
       ]
     };
-  }
+  };
   return (
-      <Slider>
-        {colors.map((color, i) => {
-          return (<Slider.Panel style={{...styles.item, backgroundColor: color}}>
-            <Slider.PanView style={styles.panView}><Text style={styles.txt}>{i}</Text></Slider.PanView>
-          </Slider.Panel>);
-        })}
-      </Slider>
-    );
-} 
+    <Slider>
+      {colors.map((color, i) => {
+        return (<Slider.Panel style={{...styles.item, backgroundColor: color}}>
+          <Slider.PanView style={styles.panView}><Text style={styles.txt}>{i}</Text></Slider.PanView>
+        </Slider.Panel>);
+      })}
+    </Slider>
+  );
+};
 
 render(<App />, document.body, { driver: DU });

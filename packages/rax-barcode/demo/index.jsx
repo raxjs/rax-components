@@ -1,5 +1,5 @@
 import { createElement, render, Component } from 'rax';
-import DU from "driver-universal"
+import DU from 'driver-universal';
 import View from 'rax-view';
 import BarCode from '../src/index';
 

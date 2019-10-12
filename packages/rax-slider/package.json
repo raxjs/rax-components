@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build --type 'component'",
-    "start": "rax-scripts start --type 'component' -p 8000",
+    "build": "npm run clean && rax-scripts build",
+    "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
     "test": "npm run build && rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix",
@@ -60,7 +60,7 @@
     "jest-localstorage-mock": "^2.3.0",
     "rax": "^1.0.0",
     "rax-image": "^1.0.1-beta.0",
-    "rax-scripts": "1.2.1",
+    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0"
   },
   "miniappConfig": {

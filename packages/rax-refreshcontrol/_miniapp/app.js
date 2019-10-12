@@ -4,4 +4,3 @@ App({
   onShow() {},
   onHide() {},
 });
-  

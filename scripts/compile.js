@@ -17,8 +17,6 @@ const spawnSync = require('child_process').spawnSync;
 
 const babel = require('@babel/core');
 const chalk = require('chalk');
-const glob = require('glob');
-const minimatch = require('minimatch');
 const parseArgs = require('minimist');
 const chokidar = require('chokidar');
 
@@ -49,12 +47,12 @@ function buildPackage(packagesDir, filePath) {
   var filename = filePath.split(packagesDir + '/')[1];
 
   if (fs.statSync(filePath).isDirectory() && filename.split('rax-')[1]) {
-
     if (process.argv[2]) {
       // build one package
       if (process.argv[2] == filename) {
         process.stdout.write(chalk.bold.inverse('Build one package\n'));
         shell.cd(path.join(filePath));
+        shell.exec('tnpm install');
         shell.exec('npm run build');
         shell.cd('../');
       }
@@ -62,12 +60,11 @@ function buildPackage(packagesDir, filePath) {
       // build all package
       process.stdout.write(chalk.bold.inverse('Build all packages\n'));
       shell.cd(path.join(filePath));
+      shell.exec('tnpm install');
       shell.exec('npm run build');
       shell.cd('../');
     }
   }
-
-
 }
 
 function getPackages(packagesDir, customPackages) {

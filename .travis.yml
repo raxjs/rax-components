@@ -7,30 +7,8 @@ before_install:
 
 node_js:
   - "8"
-  - "12"
-
-before_script:
-  - npm run setup
+  - "11"
 
 script:
-  - npm run lint:nofix
+  - npm run lint
   - npm run test
-
-jobs: 
-  include:
-    - stage: bench
-      addons:
-        apt:
-          sources: google-chrome
-          packages: google-chrome-stable
-      skip_cleanup: true
-      # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-services-xvfb
-      services:
-        - xvfb
-      script: npm run bench
-
-stages:
-  - test # default stage
-  - name: bench
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: (branch = master AND type != pull_request) OR branch =~ ^bench

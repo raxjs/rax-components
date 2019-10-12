@@ -2,7 +2,7 @@
 import {createElement, Component, render} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
-import DU from "driver-universal"
+import DU from 'driver-universal';
 import RefreshControl from 'rax-refreshcontrol';
 import Waterfall from '../src/index';
 
@@ -24,7 +24,6 @@ let dataSource = [
 ];
 
 class App extends Component {
-
   state = {
     refreshing: false,
     dataSource: dataSource
@@ -46,7 +45,6 @@ class App extends Component {
         dataSource: dataSource
       });
     }, 500);
-
   }
 
   loadMore = () => {
@@ -83,7 +81,7 @@ class App extends Component {
         }}
         renderItem={(item, index) => {
           return (<View style={{height: item.height, backgroundColor: 'red', marginBottom: 20}}>
-          <Text>{index}</Text>
+            <Text>{index}</Text>
             {/* {index} */}
           </View>);
         }}

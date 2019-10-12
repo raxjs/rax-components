@@ -1,6 +1,6 @@
 import { createElement, Component, render, createRef } from 'rax';
 import Canvas from '../src/index';
-import DU from "driver-universal"
+import DU from 'driver-universal';
 
 class CanvasSample extends Component {
   constructor(props) {

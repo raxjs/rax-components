@@ -155,7 +155,7 @@ const RecyclerView = forwardRef((props, ref) => {
   } else {
     if (needRecycler) {
       return (
-          <VirtualizedList {...props} className={className} style={style} ref={scrollview} />
+        <VirtualizedList {...props} className={className} style={style} ref={scrollview} />
       );
     } else {
       return (

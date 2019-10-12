@@ -4,6 +4,6 @@ interface Document {
 
 interface HTMLStyleElement {
   styleSheet?: {
-    cssText: string
-  }
+    cssText: string;
+  };
 }

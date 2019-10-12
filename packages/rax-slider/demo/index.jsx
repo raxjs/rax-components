@@ -3,7 +3,7 @@ import View from 'rax-view';
 import Image from 'rax-image';
 import Slider from '../src/index';
 import DU from 'driver-universal';
-import "./index.css"
+import './index.css';
 
 let styles = {
   slider: {
@@ -39,7 +39,6 @@ let styles = {
 };
 
 class App extends Component {
-
   constructor(props) {
     super(props);
 
@@ -58,13 +57,13 @@ class App extends Component {
     return (
       <View>
         <Slider className="slider" width="750" height="500" style={styles.slider}
-                autoPlay={true}
-                loop={true}
-                showsPagination={true}
-                paginationStyle={styles.paginationStyle}
-                autoplayTimeout={3000}
-                onChange={this.onchange}
-                ref={this.inputRef}>
+          autoPlay={true}
+          loop={true}
+          showsPagination={true}
+          paginationStyle={styles.paginationStyle}
+          autoplayTimeout={3000}
+          onChange={this.onchange}
+          ref={this.inputRef}>
           <View style={styles.itemWrap}>
             <Image style={styles.image} source={{height: 500, width: 375, uri: '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png'}} />
           </View>

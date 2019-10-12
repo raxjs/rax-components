@@ -5,7 +5,7 @@ import DU from 'driver-universal';
 import RecyclerView from 'rax-recyclerview';
 import RefreshControl from '../src/index';
 
-let arrayFrom = function(arrayLike /*, mapFn, thisArg */) {
+let arrayFrom = function(arrayLike /* , mapFn, thisArg */) {
   if (arrayLike == null) {
     throw new TypeError('Object is null or undefined');
   }
@@ -80,7 +80,7 @@ class Row extends Component {
 
   render() {
     return (
-     <View onPress={this.handleClick} >
+      <View onPress={this.handleClick} >
         <View style={styles.row}>
           <Text style={styles.text}>
             {this.props.data.text + ' (' + this.props.data.clicks + ' clicks)'}
@@ -115,11 +115,11 @@ class RefreshControlDemo extends Component {
     setTimeout(() => {
       // prepend 10 items
       const rowData = arrayFrom(new Array(10))
-      .map((val, i) => ({
-        text: 'Loaded row ' + (+this.state.loaded + i),
-        clicks: 0,
-      }))
-      .concat(this.state.rowData);
+        .map((val, i) => ({
+          text: 'Loaded row ' + (+this.state.loaded + i),
+          clicks: 0,
+        }))
+        .concat(this.state.rowData);
 
       this.setState({
         loaded: this.state.loaded + 10,
@@ -127,7 +127,6 @@ class RefreshControlDemo extends Component {
         rowData: rowData,
         refreshText: '↓ Pull To Refresh',
       });
-
     }, 1000);
   };
 
@@ -151,7 +150,7 @@ class RefreshControlDemo extends Component {
           {rows}
         </RecyclerView>
       </View>
-   );
+    );
   }
 }
 

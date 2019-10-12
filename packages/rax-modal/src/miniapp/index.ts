@@ -1,4 +1,4 @@
-declare var Component: any
+declare var Component: any;
 
 let count = 0;
 

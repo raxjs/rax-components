@@ -2,56 +2,21 @@ import {
   forwardRef,
   useRef,
   useImperativeHandle,
-  useEffect,
   createElement,
-  CSSProperties,
-  Ref
+  ForwardRefExoticComponent
 } from 'rax';
-import { isWeex } from 'universal-env';
-
-const keyboardTypeMap = {
-  default: 'text',
-  'ascii-capable': 'text',
-  'numbers-and-punctuation': 'number',
-  url: 'url',
-  'number-pad': 'number',
-  'phone-pad': 'tel',
-  'name-phone-pad': 'text',
-  'email-address': 'email',
-  'decimal-pad': 'number',
-  twitter: 'text',
-  'web-search': 'search',
-  numeric: 'number'
-};
-
-export type TextInputKeyboardType = keyof (typeof keyboardTypeMap);
-
-export type TextInputElement = (HTMLInputElement | HTMLTextAreaElement) & {
-  setAttr: (key: string, value: string, silent: boolean) => void;
-};
-export interface TextInputFocusEvent extends Rax.FocusEvent<TextInputElement> {
-  value: string;
-}
-export interface TextInputChangeEvent
-  extends Rax.ChangeEvent<TextInputElement> {
-  value: string;
-}
-export interface TextInputFormEvent extends Rax.FormEvent<TextInputElement> {
-  value: string;
-  target: TextInputElement;
-}
-interface NativeEvent {
-  text: string;
-}
-interface EventObject {
-  nativeEvent: NativeEvent;
-  originalEvent:
-  | TextInputChangeEvent
-  | TextInputFocusEvent
-  | TextInputFormEvent;
-  value: string;
-  target: HTMLInputElement | HTMLTextAreaElement;
-}
+import { isWeex, isWeb } from 'universal-env';
+import setNativeProps from 'rax-set-native-props';
+import keyboardTypeMap from './keyboardTypeMap';
+import {
+  TextInputProps,
+  EventObject,
+  TextInputElement,
+  FocusEvent,
+  ChangeEvent,
+  InputEvent
+} from './types';
+import './index.css';
 
 function getText(event) {
   let text = '';
@@ -75,172 +40,106 @@ function genEventObject(event): EventObject {
   };
 }
 
-export interface TextInputProps {
-  style?: Rax.CSSProperties;
-  autoFocus?: boolean;
-  editable?: boolean;
-  keyboardType?: TextInputKeyboardType;
-  maxLength?: number;
-  maxlength?: number;
-  placeholder?: string;
-  password?: boolean;
-  secureTextEntry?: boolean;
-  value?: string;
-  defaultValue?: string;
-  accessibilityLabel?: string; // cant`t support miniapp
-  autoComplete?: boolean; // cant`t support miniapp
-  maxNumberOfLines?: number; // cant`t support miniapp
-  multiline?: boolean;
-  numberOfLines?: number;
-  onBlur?: (e: EventObject) => void;
-  onFocus?: (e: EventObject) => void;
-  onChange?: (e: EventObject) => void;
-  onInput?: (e: EventObject) => void;
-  onChangeText?: (text: string) => void;
-}
-
-const styles = {
-  initial: {
-    appearance: 'none',
-    backgroundColor: 'transparent',
-    borderColor: '#000000',
-    borderWidth: 0,
-    boxSizing: 'border-box',
-    color: '#000000',
-    padding: 0,
-    paddingLeft: 24,
-    fontSize: 24,
-    lineHeight: 60,
-    height: 60 // default height
-  }
-};
-const TextInput = forwardRef((props: TextInputProps, ref: Ref<any>) => {
-  const refEl = useRef<TextInputElement | null>(null);
-
-  function setValue(value = '') {
-    if (isWeex) {
-      refEl.current.setAttr('value', value, false); // weex api.
-    } else if (refEl.current.setAttribute) {
-      refEl.current.setAttribute('value', value);
-      refEl.current.value = value;
-    }
-  }
-
-  useEffect(() => {
-    setValue(props.value);
-  });
-
-  const {
-    accessibilityLabel,
-    autoComplete,
-    editable,
-    keyboardType,
-    maxNumberOfLines,
-    maxLength,
-    maxlength,
-    multiline,
-    numberOfLines,
-    onBlur,
-    onFocus,
-    onChange,
-    onChangeText,
-    onInput,
-    password,
-    secureTextEntry,
-    style,
-    value,
-    defaultValue
-  } = props;
-
-  const handleInput = event => {
-    onInput(genEventObject(event));
-  };
-
-  const handleChange = event => {
-    if (onChange) onChange(genEventObject(event));
-    if (onChangeText) onChangeText(getText(event));
-  };
-
-  const handleFocus = (event: TextInputFocusEvent) => {
-    onFocus(genEventObject(event));
-  };
-
-  const handleBlur = (event: TextInputFocusEvent) => {
-    onBlur(genEventObject(event));
-  };
-
-  const focus = () => {
-    refEl.current.focus();
-  };
-
-  const blur = () => {
-    refEl.current.blur();
-  };
-
-  const clear = () => {
-    setValue('');
-  };
-  useImperativeHandle(ref, () => {
-    return {
-      _nativeNode: refEl.current,
-      focus,
-      blur,
-      clear,
+const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
+  (props, ref) => {
+    const refEl = useRef<TextInputElement>(null);
+    const {
+      className,
+      accessibilityLabel,
+      autoComplete,
+      editable,
+      keyboardType,
+      maxNumberOfLines,
+      maxLength,
+      maxlength,
+      multiline,
+      numberOfLines,
+      onBlur,
+      onFocus,
+      onChange,
+      onChangeText,
+      onInput,
+      password,
+      secureTextEntry,
+      style,
+      value,
+      defaultValue
+    } = props;
+    const type =
+      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
+    const setValue = (value = '') => {
+      setNativeProps(refEl.current, { value });
     };
-  });
-  const propsCommon = {
-    ...props,
-    'aria-label': accessibilityLabel,
-    autoComplete: autoComplete && 'on',
-    maxlength: maxlength || maxLength,
-    readOnly: false,
-    onChange: (onChange || onChangeText) && handleChange,
-    onInput: onInput && handleInput,
-    onBlur: onBlur && handleBlur,
-    onFocus: onFocus && handleFocus,
-    style: { ...styles.initial as CSSProperties, ...style },
-    ref: refEl
-  };
-  if (value) {
-    delete propsCommon.defaultValue;
-  } else {
-    propsCommon.value = value || defaultValue;
-  }
+    const handleInput = (event: InputEvent) => {
+      onInput(genEventObject(event));
+    };
 
-  if (typeof editable !== 'undefined' && !editable) {
-    propsCommon.readOnly = true;
-  }
+    const handleChange = (event: ChangeEvent) => {
+      if (onChange) onChange(genEventObject(event));
+      if (onChangeText) onChangeText(getText(event));
+    };
 
-  let type = keyboardTypeMap[keyboardType];
-  if (password || secureTextEntry) {
-    type = 'password';
-  }
+    const handleFocus = (event: FocusEvent) => {
+      onFocus(genEventObject(event));
+    };
 
-  if (isWeex) {
+    const handleBlur = (event: FocusEvent) => {
+      onBlur(genEventObject(event));
+    };
+
+    const propsCommon = {
+      ...props,
+      'aria-label': accessibilityLabel,
+      autoComplete: autoComplete && 'on',
+      maxlength: maxlength || maxLength,
+      readOnly: editable !== undefined && !editable,
+      onChange: (onChange || onChangeText) && handleChange,
+      onInput: onInput && handleInput,
+      onBlur: onBlur && handleBlur,
+      onFocus: onFocus && handleFocus,
+      ref: refEl
+    };
     // Diff with web readonly attr, `disabled` must be boolean value
-    const disabled = Boolean(propsCommon.readOnly);
-    if (multiline) {
-      // https://weex.apache.org/zh/docs/components/textarea.html
-      return <textarea {...propsCommon} row={2} disabled={disabled} />;
-    } else {
-      // https://weex.apache.org/zh/docs/components/input.html
-      return <input {...propsCommon} type={type} disabled={disabled} />;
-    }
-  } else {
-    if (multiline) {
-      const propsMultiline = {
-        maxRows: maxNumberOfLines || numberOfLines,
-        minRows: numberOfLines
+    const disbaled = isWeex ? Boolean(propsCommon.readOnly) : false;
+    const rows = numberOfLines || maxNumberOfLines;
+
+    useImperativeHandle(ref, () => {
+      return {
+        focus() {
+          refEl.current.focus();
+        },
+        blur() {
+          refEl.current.blur();
+        },
+        clear() {
+          setValue('');
+        }
       };
-      // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/textarea
+    });
+    if (multiline) {
       return (
-        <textarea {...propsCommon} rows={numberOfLines} {...propsMultiline}>
-          {propsCommon.value}
-        </textarea>
+        <textarea
+          {...propsCommon}
+          style={style}
+          row={rows}
+          rows={rows}
+          disabled={disbaled}
+          onChange={handleChange}
+          value={value || defaultValue}
+          children={isWeb && propsCommon.value}
+        />
+      );
+    } else {
+      return (
+        <input
+          {...propsCommon}
+          className={['rax-textinput', className || ''].join(' ')}
+          style={style}
+          type={type}
+          disabled={disbaled}
+        />
       );
     }
-    // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input
-    return <input {...propsCommon} type={type} />;
   }
-});
+);
 export default TextInput;

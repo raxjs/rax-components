@@ -1,9 +1,6 @@
-import * as Rax from 'rax';
+import { HTMLAttributes, RefAttributes, MouseEventHandler} from 'rax';
 
-export interface Props extends Rax.Attributes {
-  style?: Rax.CSSProperties;
-  className?: string;
-  children?: (string | undefined)[] | string;
-  numberOfLines?: number;
-  onPress?: (e: MouseEvent) => void;
+export interface TextProps extends RefAttributes<HTMLSpanElement>, HTMLAttributes<HTMLSpanElement> {
+  numberOfLines?: number | string;
+  onPress?: MouseEventHandler<HTMLSpanElement>;
 }

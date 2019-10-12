@@ -4,7 +4,7 @@
 
 import {createElement, Component} from 'rax';
 import Link from 'rax-link';
-import Util from './Util';
+import {Emitter} from './Util';
 import {EVENT_PAN_VIEW_PAN_START} from './Constant';
 import Detection from './Detection';
 import PropTypes from 'rax-proptypes';
@@ -54,7 +54,7 @@ class PanLink extends Component {
   onPan = (e) => {
     if (e.state === 'start') {
       this.isPanning = true;
-      Util.Emitter.emit(EVENT_PAN_VIEW_PAN_START, {
+      Emitter.emit(EVENT_PAN_VIEW_PAN_START, {
         uuid: this.context.uuid,
         element: this
       });

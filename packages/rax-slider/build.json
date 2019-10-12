@@ -1,7 +1,5 @@
 {
   "devWatchLib": true,
-  "devOutputDir": "demo/miniapp/lib/",
-  "plugins": [
-    ["rax-plugin-component", { "targets": ["web", "weex"]}]
-  ]
+  "devOutputDir": "demo/miniapp/lib",
+  "plugins": [["rax-plugin-component", { "targets": ["web", "weex"] }]]
 }

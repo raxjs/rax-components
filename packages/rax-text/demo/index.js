@@ -1,3 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/**
+ * @jsx createElement
+ */
 import {createElement, render, Component} from 'rax';
 import DU from 'driver-universal';
 import View from 'rax-view';

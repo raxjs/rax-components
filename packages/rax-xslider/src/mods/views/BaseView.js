@@ -3,7 +3,7 @@
 'use strict';
 
 import {Component} from 'rax';
-import Util from '../Util';
+import Util, {isLoop, transformExpression, clamp, uuid, getLast} from '../Util';
 import Indicator from '../Indicator';
 import Panel from '../Panel';
 import {FULL_WIDTH} from '../Constant';
@@ -67,10 +67,10 @@ class BaseView extends Component {
     this.props = {
       ...defaultProps,
       ...{
-        loop: Util.isLoop(props.loop)
+        loop: isLoop(props.loop)
       }
     };
-    this.uuid = '__xslider__' + Util.uuid();
+    this.uuid = '__xslider__' + uuid();
     this.isPanning = false;
   }
 
@@ -133,12 +133,12 @@ class BaseView extends Component {
 
   move = (loopIndex) => {
     let {loop} = this.props;
-    loop = Util.isLoop(loop);
+    loop = isLoop(loop);
     if (!loop) return;
     // next
     if (loopIndex > this.loopIndex) {
       let first = this.indexesQueue.shift();
-      let last = Util.getLast(this.indexesQueue);
+      let last = getLast(this.indexesQueue);
       if (last) {
         let posIndex = last.posIndex;
         this.movePanel(first.loopIndex, posIndex + 1);
@@ -168,14 +168,14 @@ class BaseView extends Component {
 
     let {loop, startGap, endGap, cardSize, viewportSize, maxOffset, minOffset} = props;
 
-    loop = Util.isLoop(loop);
+    loop = isLoop(loop);
 
     viewportSize = viewportSize || startGap + cardSize + endGap;
     let panels = this.filterElements(props, Panel);
     let loopIndex = undefined !== options.loopIndex ? options.loopIndex : this.loopIndex;
 
     if (!loop) {
-      loopIndex = Util.clamp(loopIndex, 0, this.itemCount - 1);
+      loopIndex = clamp(loopIndex, 0, this.itemCount - 1);
     }
 
     let itemCount = panels.length || 0;
@@ -204,7 +204,7 @@ class BaseView extends Component {
       minOffset = minOffset !== undefined ? minOffset : startGap;
       maxOffset = maxOffset !== undefined ? - Math.abs(maxOffset) : startGap - (itemCount - 1) * cardSize;
 
-      offset = Util.clamp(startGap - loopIndex * cardSize, maxOffset, minOffset);
+      offset = clamp(startGap - loopIndex * cardSize, maxOffset, minOffset);
     }
 
     return {
@@ -239,15 +239,15 @@ class BaseView extends Component {
         cardTransitionSpec.props.forEach((config) => {
           let expression;
           if (queue.posIndex === this.loopIndex - 1) {
-            expression = Util.transformExpression(config.inputRange[0], config.inputRange[1], config.outputRange[0], config.outputRange[1], `(${x}/${cardSize})`);
+            expression = transformExpression(config.inputRange[0], config.inputRange[1], config.outputRange[0], config.outputRange[1], `(${x}/${cardSize})`);
           }
 
           if (queue.posIndex === this.loopIndex + 1) {
-            expression = Util.transformExpression(config.inputRange[0], -config.inputRange[1], config.outputRange[0], config.outputRange[1], `(${x}/${cardSize})`);
+            expression = transformExpression(config.inputRange[0], -config.inputRange[1], config.outputRange[0], config.outputRange[1], `(${x}/${cardSize})`);
           }
 
           if (queue.posIndex === this.loopIndex) {
-            expression = Util.transformExpression(config.inputRange[1], config.inputRange[0], config.outputRange[0], config.outputRange[1], `(abs(${x})/${cardSize})`);
+            expression = transformExpression(config.inputRange[1], config.inputRange[0], config.outputRange[0], config.outputRange[1], `(abs(${x})/${cardSize})`);
           }
 
           expression && bindingProps.push({
@@ -309,7 +309,7 @@ class BaseView extends Component {
   autoPlay = () => {
     let {interval, loop, autoPlay} = this.props;
 
-    loop = Util.isLoop(loop);
+    loop = isLoop(loop);
     // stop autoplay
     this.stopAutoPlay();
     if (!autoPlay) return;

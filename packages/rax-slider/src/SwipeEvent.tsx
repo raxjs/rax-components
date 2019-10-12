@@ -1,8 +1,9 @@
 import { createElement, Component } from 'rax';
-import PropTypes from 'prop-types';
+import PropTypes from 'rax-proptypes';
 import View from 'rax-view';
-import PanResponder from 'universal-panresponder';
+import * as PanResponder from 'universal-panresponder';
 import isValidSwipe from './isValidSwipe';
+import { SwipeEventProps } from './types';
 
 const directions = {
   SWIPE_UP: 'SWIPE_UP',
@@ -11,8 +12,38 @@ const directions = {
   SWIPE_RIGHT: 'SWIPE_RIGHT'
 };
 
-class SwipeEvent extends Component {
-  constructor(props) {
+class SwipeEvent extends Component<
+SwipeEventProps,
+{
+  swipe: any;
+}
+> {
+  public static propTypes = {
+    onSwipeBegin: PropTypes.func,
+    onSwipe: PropTypes.func,
+    onSwipeEnd: PropTypes.func,
+    swipeDecoratorStyle: PropTypes.object
+  };
+  public static defaultProps = {
+    horizontal: true,
+    vertical: true,
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+    continuous: true,
+    initialVelocityThreshold: 0.2,
+    verticalThreshold: 1,
+    horizontalThreshold: 5,
+    setGestureState: true,
+    handlerStyle: {}
+  };
+  private swipeDetected: boolean;
+  private velocityProp: any;
+  private distanceProp: any;
+  private swipeDirection: string;
+  private panResponder: any;
+  public constructor(props) {
     super(props);
     this.state = {
       swipe: {
@@ -29,20 +60,29 @@ class SwipeEvent extends Component {
     this.distanceProp = null;
     // swipe direction
     this.swipeDirection = null;
-  }
-
-  componentWillMount() {
-    let that = this;
+    // should check the PanResponder type file
     this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (evt) => {
+      onStartShouldSetPanResponder: () => {
         return true;
       },
-      onMoveShouldSetPanResponder: (evt) => {
+      onMoveShouldSetPanResponder: () => {
         return true;
       },
       onPanResponderMove: (evt, gestureState) => {
-        const {dx, dy, vx, vy} = gestureState;
-        const { onSwipeBegin, onSwipe, onSwipeEnd} = this.props;
+        const { dx, dy, vx, vy } = gestureState;
+        const {
+          onSwipeBegin,
+          onSwipe,
+          horizontal,
+          vertical,
+          initialVelocityThreshold,
+          horizontalThreshold,
+          verticalThreshold,
+          left,
+          right,
+          up,
+          down
+        } = this.props;
         // when no swipe
         if (!this.props.continuous && this.swipeDetected) {
           return;
@@ -54,34 +94,39 @@ class SwipeEvent extends Component {
         if (!this.swipeDetected) {
           initialDetection = true;
           // horizontal
-          validHorizontal = that.props.horizontal ? isValidSwipe(
-            vx, dy, that.props.initialVelocityThreshold, that.props.verticalThreshold
-          ) : '';
+          validHorizontal = horizontal
+            ? isValidSwipe(vx, dy, initialVelocityThreshold, verticalThreshold)
+            : false;
 
           // vertical
-          validVertical = that.props.vertical ? isValidSwipe(
-            vy, dx, that.props.initialVelocityThreshold, that.props.horizontalThreshold
-          ) : '';
+          validVertical = vertical
+            ? isValidSwipe(
+              vy,
+              dx,
+              initialVelocityThreshold,
+              horizontalThreshold
+            )
+            : false;
 
           if (validHorizontal) {
             evt.preventDefault && evt.preventDefault();
             this.velocityProp = 'vx';
             this.distanceProp = 'dx';
             // left
-            if ((this.props.horizontal || this.props.left) && dx < 0) {
+            if ((horizontal || left) && dx < 0) {
               this.swipeDirection = directions.SWIPE_LEFT;
               // right
-            } else if ((this.props.horizontal || this.props.right) && dx > 0) {
+            } else if ((horizontal || right) && dx > 0) {
               this.swipeDirection = directions.SWIPE_RIGHT;
             }
           } else if (validVertical) {
             this.velocityProp = 'vy';
             this.distanceProp = 'dy';
             // up
-            if ((this.props.vertical || this.props.up) && dy < 0) {
+            if ((vertical || up) && dy < 0) {
               this.swipeDirection = directions.SWIPE_UP;
               // down
-            } else if ((this.props.vertical || this.props.down) && dy > 0) {
+            } else if ((vertical || down) && dy > 0) {
               this.swipeDirection = directions.SWIPE_DOWN;
             }
           }
@@ -119,18 +164,17 @@ class SwipeEvent extends Component {
       onPanResponderTerminationRequest: () => true,
       onPanResponderTerminate: this.handleTerminationAndRelease.bind(this),
       onPanResponderRelease: this.handleTerminationAndRelease.bind(this)
-    });
+    } as any);
   }
-
-  handleTerminationAndRelease() {
-    let that = this;
+  private handleTerminationAndRelease() {
     if (this.swipeDetected) {
       const { onSwipeEnd } = this.props;
-      onSwipeEnd && onSwipeEnd({
-        direction: this.swipeDirection,
-        distance: that.state.swipe.distance,
-        velocity: that.state.swipe.velocity
-      });
+      onSwipeEnd &&
+        onSwipeEnd({
+          direction: this.swipeDirection,
+          distance: this.state.swipe.distance,
+          velocity: this.state.swipe.velocity
+        });
     }
     this.swipeDetected = false;
     this.velocityProp = null;
@@ -138,40 +182,23 @@ class SwipeEvent extends Component {
     this.swipeDirection = null;
   }
 
-  render() {
-    const { onSwipeBegin, onSwipe, onSwipeEnd, ...props} = this.props;
+  public render() {
+    const { onSwipeBegin, onSwipe, onSwipeEnd, ...props } = this.props;
     const style = {
       alignSelf: 'flex-start'
     };
     const state = this.props.setGestureState ? this.state : null;
     return (
-      <View {...this.panResponder.panHandlers} style={{...style, ...props.handlerStyle}}>
-        <View {...props} {...state}>{this.props.children}</View>
+      <View
+        {...this.panResponder.panHandlers}
+        style={{ ...style, ...props.handlerStyle }}
+      >
+        <View {...props} {...state}>
+          {this.props.children}
+        </View>
       </View>
     );
   }
 }
-
-SwipeEvent.defaultProps = {
-  horizontal: true,
-  vertical: true,
-  left: false,
-  right: false,
-  up: false,
-  down: false,
-  continuous: true,
-  initialVelocityThreshold: 0.2,
-  verticalThreshold: 1,
-  horizontalThreshold: 5,
-  setGestureState: true,
-  handlerStyle: {}
-};
-
-SwipeEvent.propTypes = {
-  onSwipeBegin: PropTypes.func,
-  onSwipe: PropTypes.func,
-  onSwipeEnd: PropTypes.func,
-  swipeDecoratorStyle: PropTypes.object
-};
 
 export default SwipeEvent;

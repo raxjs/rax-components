@@ -163,3 +163,19 @@ export default {
   getLast,
   Emitter
 };
+
+export {
+  find,
+  uuid,
+  forEach,
+  map,
+  findIndex,
+  isLoop,
+  clamp,
+  noop,
+  getEl,
+  transformExpression,
+  transformRangeSpec,
+  getLast,
+  Emitter
+};

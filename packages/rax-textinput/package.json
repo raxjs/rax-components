@@ -1,14 +1,13 @@
 {
   "name": "rax-textinput",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "TextInput component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
-    "miniapp": "rax-scripts start --type 'component-miniapp'",
     "prepublishOnly": "npm run build",
     "test": "rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
@@ -37,7 +36,10 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "rax-set-native-props": "^1.0.0",
     "rax-text": "^1.0.1",
+    "rax-textinput": "^0.6.5",
     "rax-view": "^1.0.1",
     "universal-env": "^1.0.0"
   },
@@ -47,15 +49,30 @@
   "devDependencies": {
     "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
+    "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
-    "eslint": "^5.16.0",
     "driver-universal": "^1.0.0",
+    "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "rax": "^1.0.0",
+    "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

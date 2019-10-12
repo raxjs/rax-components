@@ -1,0 +1,19 @@
+<rax-swiper
+    width="750",
+    height="500"
+    autoPlay="{{true}}"
+    showsPagination="{{true}}"
+    loop="{{true}}"
+    index="{{1}}"
+    autoPlayInterval="{{1000}}"
+    onChange="swiperChange">
+    <swiper-item>
+        <view style="background-color: blue; width: 750rpx; height: 500rpx;"></view>
+    </swiper-item>
+    <swiper-item>
+        <view style="background-color: green; width: 750rpx; height: 500rpx;">1</view>
+    </swiper-item>
+    <swiper-item>
+        <view style="background-color: yellow; width: 750rpx; height: 500rpx;">2</view>
+    </swiper-item>
+</rax-swiper>

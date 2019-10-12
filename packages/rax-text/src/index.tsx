@@ -1,71 +1,60 @@
-import { createElement, forwardRef } from 'rax';
+import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import { isWeex } from 'universal-env';
-import { Props } from './types';
+import { TextProps } from './types';
+import './index.css';
 
-let styles = {
-  text: {
-    border: '0 solid black',
-    boxSizing: 'border-box',
-    display: 'block',
-    flexDirection: 'column',
-    alignContent: 'flex-start',
-    flexShrink: 0,
-    fontSize: 32
-  }
-};
+const prefixCls = 'rax-text';
 
-let Text = (props: Props, ref) => {
-  let { children } = props;
-  if (!Array.isArray(children)) {
-    children = [children];
-  }
-
-  let nativeProps: any = {
-    ...props,
-    ...{
-      style: props.style || {},
-    },
-  };
-
-  let textString = '';
-  if (children != null) {
-    if (!Array.isArray(children)) {
-      textString = children;
-    } else {
-      textString = children.join('');
-    }
-  }
-
-  if (props.onPress) {
-    nativeProps.onClick = props.onPress;
-  }
-
+const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
+  const {
+    className,
+    style,
+    numberOfLines,
+    children,
+    onPress,
+    onClick,
+    ...rest
+  } = props;
+  const handleClick = onClick || onPress;
+  const lines =
+    typeof numberOfLines === 'string'
+      ? parseInt(numberOfLines, 10)
+      : numberOfLines;
   if (isWeex) {
-    if (props.numberOfLines) {
-      nativeProps.style.lines = props.numberOfLines;
-    }
-
-    nativeProps.value = textString;
-
-    return <text ref={ref} {...nativeProps} />;
+    return (
+      <text
+        {...rest}
+        ref={ref}
+        className={className}
+        style={{ ...style, lines }}
+        value={children}
+        onClick={handleClick}
+      >
+        {children}
+      </text>
+    );
   } else {
-    let styleProps = {
-      whiteSpace: 'pre-wrap',
-      ...nativeProps.style
-    };
-    let numberOfLines = props.numberOfLines;
-    if (numberOfLines) {
-      if (numberOfLines === 1) {
-        styleProps.whiteSpace = 'nowrap';
+    const classNames = [prefixCls];
+    if (lines) {
+      classNames.push(`${prefixCls}--overflow-hidden`);
+      if (lines === 1) {
+        classNames.push(`${prefixCls}--singleline`);
       } else {
-        styleProps.display = '-webkit-box';
-        styleProps.webkitBoxOrient = 'vertical';
-        styleProps.webkitLineClamp = numberOfLines;
+        classNames.push(`${prefixCls}--mutiline`);
       }
-      styleProps.overflow = 'hidden';
     }
-    return <span ref={ref} {...nativeProps} style={{ ...styles.text, ...styleProps }}>{textString}</span>;
+    return (
+      <span
+        {...rest}
+        ref={ref}
+        className={classNames.join(' ')}
+        style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
+        onClick={handleClick}
+      >
+        {children}
+      </span>
+    );
   }
-};
-Text = forwardRef(Text);
+});
+
 export default Text;

@@ -1,10 +1,13 @@
 <swiper
+  class="{{className}}"
+  style="width:{{width || 0}}rpx;height:{{height || 0}}rpx;{{style}}"
   autoplay="{{autoPlay}}"
   indicator-dots="{{showsPagination}}"
   current="{{index}}"
   interval="{{autoPlayInterval}}"
   circular="{{loop}}"
-  onChange="onChange">
+  onChange="onChange"
+>
   <block>
     <slot />
   </block>

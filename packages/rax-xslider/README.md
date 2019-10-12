@@ -1,21 +1,16 @@
-# XSlider
-
 [![npm](https://img.shields.io/npm/v/rax-xslider.svg)](https://www.npmjs.com/package/rax-xslider)
-
-
 ## 描述
 轮播增强，仅支持h5和weex
-
 ## 安装
 
 ```bash
-$ tnpm install @ali/rax-xslider --save
+$ npm install rax-xslider --save
 ```
 
 ## 引用
 
 ```jsx
-import Slider from '@ali/rax-xslider';
+import Slider from 'rax-xslider';
 ```
 
 

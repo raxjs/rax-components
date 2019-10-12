@@ -1,24 +1,22 @@
 import fmtEvent from './fmtEvent';
 
 Component({
-  data: {
-  },
+  data: {},
   props: {
     className: '',
     style: '',
-    // miniappHref取值：navigate:abc?a=1 redirect:abc?a=1 switchTab:a/b/c navigateBack:2
-    miniappHref: '',
-    onPress: () => { },
-    onAppear: () => { },
-    onDisAppear: () => { }
+    // mpHref取值：navigate:abc?a=1 redirect:abc?a=1 switchTab:a/b/c navigateBack:2
+    mpHref: '',
+    onPress: () => {},
+    onAppear: () => {},
+    onDisAppear: () => {}
   },
-  didMount() {
-  },
+  didMount() {},
   methods: {
     onTap(e) {
-      let miniappHref = this.props.miniappHref;
-      if (miniappHref) {
-        let splits = miniappHref.split(':');
+      let mpHref = this.props.mpHref;
+      if (mpHref) {
+        let splits = mpHref.split(':');
         let key = splits[0];
         let value = splits[1];
         switch (key) {

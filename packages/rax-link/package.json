@@ -1,18 +1,17 @@
 {
   "name": "rax-link",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
-    "miniapp": "rax-scripts start --type 'component-miniapp'",
     "prepublishOnly": "npm run build",
     "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
   },
   "files": [
     "dist",
@@ -38,8 +37,8 @@
     "main": "lib/miniapp/index"
   },
   "dependencies": {
-    "universal-env": "^1.0.0",
-    "rax-text": "^1.0.1"
+    "rax-text": "^1.0.1",
+    "universal-env": "^1.0.0"
   },
   "peerDependencies": {
     "rax": "^1.0.0"
@@ -56,7 +55,8 @@
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
-    
+    "rax-test-renderer": "^1.0.0",
+    "rax-plugin-component": "^0.1.9-0",
+    "typescript": "^3.6.2"
   }
 }

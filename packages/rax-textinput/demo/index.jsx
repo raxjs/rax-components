@@ -100,14 +100,14 @@ class App extends Component {
             autoCapitalize="none"
             placeholder="Enter text to see events"
             autoCorrect={false}
-            // onFocus={() => this.updateText('onFocus')}
-            // onBlur={() => this.updateText('onBlur')}
+            onFocus={() => this.updateText('onFocus')}
+            onBlur={() => this.updateText('onBlur')}
             onChange={event => {
               this.updateText('onChange text: ' + event.nativeEvent.text);
             }}
-            // onInput={event =>
-            //   this.updateText('onInput text: ' + event.nativeEvent.text)
-            // }
+            onInput={event =>
+              this.updateText('onInput text: ' + event.nativeEvent.text)
+            }
             style={styles.default}
           />
 
@@ -138,24 +138,37 @@ class App extends Component {
               });
             }}
           />
-
-          <View
-            style={{
-              marginTop: 20
-            }}
-            onFocus={e => {
-              this.setState({
-                value: e.nativeEvent.text
-              });
-            }}
-            onClick={() => {
-              this.setState({
-                value: 'I am value'
-              });
-            }}
-          >
-            <Text>Reset</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, }}>
+            <View
+              style={styles.button}
+              onFocus={e => {
+                this.setState({
+                  value: e.nativeEvent.text
+                });
+              }}
+              onClick={() => {
+                this.setState({
+                  value: 'I am value'
+                });
+              }}
+            >
+              <Text style={styles.buttonText}>Reset</Text>
+            </View>
+            <View
+              style={styles.button}
+              onFocus={e => {
+                this.setState({
+                  value: e.nativeEvent.text
+                });
+              }}
+              onClick={() => {
+                this.inputRef.current.clear();
+              }}
+            >
+              <Text style={styles.buttonText}>Clear</Text>
+            </View>
           </View>
+
         </View>
         <TextAreaDemo />
       </View>

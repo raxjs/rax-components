@@ -5,7 +5,7 @@ import BaseView from './BaseView';
 import View from 'rax-view';
 import {FULL_WIDTH} from '../Constant';
 import Panel from '../Panel';
-import Util from '../Util';
+import {clamp, isLoop, noop} from '../Util';
 import findDOMNode from 'rax-find-dom-node';
 
 let DOM = null;
@@ -26,11 +26,11 @@ class ListView extends BaseView {
   }
 
   switchTo(loopIndex, options = {params: {}, ignoreEvent: false}) {
-    let {beforeSwitch = Util.noop, loop} = this.props;
-    loop = Util.isLoop(loop);
+    let {beforeSwitch = noop, loop} = this.props;
+    loop = isLoop(loop);
 
     if (!loop) {
-      loopIndex = Util.clamp(loopIndex, 0, this.itemCount - 1);
+      loopIndex = clamp(loopIndex, 0, this.itemCount - 1);
     }
 
     let {startIndexes} = this.computeSize({loopIndex});
@@ -60,7 +60,7 @@ class ListView extends BaseView {
   }
 
   onScrollEnd = (e) => {
-    let {afterSwitch = Util.noop, vertical, cardSize} = this.props;
+    let {afterSwitch = noop, vertical, cardSize} = this.props;
     let prevIndex = this.curIndex;
     let prevLoopIndex = this.loopIndex;
     let offset = vertical ? e.contentOffset.y : e.contentOffset.x;

@@ -34,6 +34,26 @@ const styles = {
     color: 'blue',
     margin: 10,
     fontWeight: 'bold'
+  },
+  button: {
+    borderRadius: 3,
+    backgroundColor: '#28a745',
+    backgroundImage: 'linear-gradient(-180deg,#34d058,#28a745 90%)',
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 12,
+    paddingRight: 12,
+    border: '1px solid rgba(27,31,35,.2)',
+    width: 200,
+    marginLeft: 12,
+    marginRight: 12,
+  },
+  buttonText: {
+    color: '#fff',
+    lineHeight: 20,
+    fontWeight: 600,
+    fontSize: 14,
+    textAlign: 'center'
   }
 };
 export default styles;

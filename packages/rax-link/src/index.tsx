@@ -1,15 +1,10 @@
-import { createElement, useRef, forwardRef, useImperativeHandle } from 'rax';
-import { isWeex } from 'universal-env';
+import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import Text from 'rax-text';
+import { LinkProps } from './types';
 
-const Link = (props, ref) => {
-  const linkRef = useRef(null);
-  let children = props.children;
-  let nativeProps = {...props};
-  let style = {
-    ...nativeProps.style
-  };
-  let textStyle = {
+const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
+  const { className, style = {}, onClick, onPress, children, ...rest } = props;
+  const textStyle = {
     color: style.color,
     lines: style.lines,
     fontSize: style.fontSize,
@@ -18,28 +13,23 @@ const Link = (props, ref) => {
     textDecoration: style.textDecoration || 'none',
     textAlign: style.textAlign,
     fontFamily: style.fontFamily,
-    textOverflow: style.textOverflow,
+    textOverflow: style.textOverflow
   };
+  return (
+    <a
+      {...rest}
+      ref={ref}
+      className={className}
+      style={style}
+      onClick={onClick || onPress}
+    >
+      {typeof children === 'string' ? (
+        <Text style={textStyle}>{children}</Text>
+      ) :
+        children
+      }
+    </a>
+  );
+});
 
-  if (nativeProps.onPress) {
-    nativeProps.onClick = nativeProps.onPress;
-    delete nativeProps.onPress;
-  }
-
-  let content = children;
-  if (typeof children === 'string') {
-    content = <Text style={textStyle}>{children}</Text>;
-  }
-
-  useImperativeHandle(ref, () => ({
-    _nativeNode: linkRef.current
-  }));
-
-  if (isWeex) {
-    return <a ref={linkRef} {...nativeProps}>{content}</a>;
-  } else {
-    return <a ref={linkRef} {...nativeProps} style={style}>{content}</a>;
-  }
-};
-
-export default forwardRef(Link);
+export default Link;

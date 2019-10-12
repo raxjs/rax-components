@@ -12,7 +12,7 @@ Component({
     loop: false,
     index: 0,
     interval: 1000,
-    onChange: function onChange() {},
+    onChange: function onChange() {}
   },
   didMount: function didMount() {},
   methods: {

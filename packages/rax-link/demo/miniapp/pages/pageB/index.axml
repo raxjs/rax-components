@@ -1,0 +1,5 @@
+<view class="page">
+  <text class="title">PageB</text>
+  <rax-link class="button" miniappHref="navigate:../pageA/index">navigate to PageA</rax-link>
+  <rax-link class="button" miniappHref="redirect:../pageA/index">redirect to PageA</rax-link>
+</view>

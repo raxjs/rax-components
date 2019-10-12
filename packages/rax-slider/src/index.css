@@ -1,0 +1,44 @@
+.rax-slider {
+  position: relative;
+}
+.rax-slider-swipe-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+.rax-slider-swipe {
+  position: relative;
+  transform: translate3d(0,0,0);
+  transition: all .5s ease;
+}
+.rax-slider-children {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.rax-slider-dot {
+  border-radius: 50%;
+  margin: 3rpx;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 8rpx;
+  height: 8rpx;
+}
+.rax-slider-dot.active {
+  background-color: rgb(255, 80, 0);
+  width: 8rpx;
+  height: 8rpx;
+}
+
+.rax-slider-pagination {
+  position: absolute;
+  bottom: 20%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  /* item-color: rgba(255, 255, 255, 0.5);
+  item-selectedColor: rgb(255, 80, 0);
+  item-size: 8; */
+}

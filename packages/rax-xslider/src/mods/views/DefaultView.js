@@ -4,7 +4,7 @@ import {createElement, createRef} from 'rax';
 import View from 'rax-view';
 import Detection from '../Detection';
 import {isWeex} from 'universal-env';
-import Util from '../Util';
+import {isLoop, transformRangeSpec, getEl, noop, clamp, Emitter} from '../Util';
 import {EVENT_PAN_VIEW_PAN_START, FULL_WIDTH} from '../Constant';
 import animate from 'universal-animation';
 import Binding from 'weex-bindingx';
@@ -35,15 +35,15 @@ class DefaultView extends BaseView {
   }
 
   switchTo = (loopIndex, options = {params: {}, ignoreEvent: false}, cb) => {
-    let {beforeSwitch = Util.noop, afterSwitch = Util.noop, vertical, easing, loop} = this.props;
-    loop = Util.isLoop(loop);
+    let {beforeSwitch = noop, afterSwitch = noop, vertical, easing, loop} = this.props;
+    loop = isLoop(loop);
 
     let cardTransitionSpec = this.resolveTransitionSpec(this.props.cardTransitionSpec, {
       index: this.curIndex
     });
 
     if (!loop) {
-      loopIndex = Util.clamp(loopIndex, 0, this.itemCount - 1);
+      loopIndex = clamp(loopIndex, 0, this.itemCount - 1);
     }
 
     let {offset, startIndexes} = this.computeSize({loopIndex});
@@ -73,7 +73,7 @@ class DefaultView extends BaseView {
       if (cardTransitionSpec.props && cardTransitionSpec.props.length) {
         cardTransitionSpec.props.forEach((config) => {
           if (options.isInitial || (queue.posIndex === loopIndex || queue.posIndex === loopIndex - 1 || queue.posIndex === loopIndex + 1)) {
-            let result = Util.transformRangeSpec(findDOMNode(this.refs[`card_${queue.loopIndex}`]), {
+            let result = transformRangeSpec(findDOMNode(this.refs[`card_${queue.loopIndex}`]), {
               ...config
             }, loopIndex === queue.posIndex);
 
@@ -113,7 +113,7 @@ class DefaultView extends BaseView {
 
   componentWillMount() {
     if (Detection.isEnableSliderAndroid) {
-      Util.Emitter.on(EVENT_PAN_VIEW_PAN_START, this.bindCellPanExp);
+      Emitter.on(EVENT_PAN_VIEW_PAN_START, this.bindCellPanExp);
     }
   }
 
@@ -148,7 +148,7 @@ class DefaultView extends BaseView {
 
   getComputedOffset() {
     let {vertical} = this.props;
-    let style = Binding.getComputedStyle(Util.getEl(this.content.current));
+    let style = Binding.getComputedStyle(getEl(this.content.current));
     let offset = style && style[vertical ? 'translateY' : 'translateX'];
     return offset;
   }
@@ -158,7 +158,7 @@ class DefaultView extends BaseView {
     this.stopAnimate();
     let {vertical, loop, debug} = this.props;
 
-    loop = Util.isLoop(loop);
+    loop = isLoop(loop);
 
     let {offset} = this.computeSize();
     let x = vertical ? 'y' : 'x';
@@ -208,12 +208,12 @@ class DefaultView extends BaseView {
 
 
     props.forEach((prop) => {
-      prop.element = Util.getEl(prop.element);
+      prop.element = getEl(prop.element);
     });
 
     let res = Binding.bind({
       debug,
-      anchor: Util.getEl(anchor),
+      anchor: getEl(anchor),
       eventType: 'pan',
       props
     }, this.onPanCallback);

@@ -13,6 +13,10 @@
     "test": "rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
   "keywords": [
     "Rax",
     "rax-component"

@@ -18,6 +18,10 @@
     "Rax",
     "rax-component"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"

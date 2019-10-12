@@ -89,7 +89,7 @@ import Slider from 'rax-xslider';
 /** @jsx createElement */
 import {createElement, Component, render, createRef, useEffect} from 'rax';
 import Text from 'rax-text';
-import Slider from '@ali/rax-xslider';
+import Slider from 'rax-xslider';
 import DU from 'driver-universal';
 
 const styles = {

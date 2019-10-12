@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raxjs/rax-barcode.git"
+    "url": "git+https://github.com/raxjs/rax-components.git"
   },
   "keywords": [
     "Rax",

@@ -1,0 +1,63 @@
+{
+  "name": "rax-barcode",
+  "version": "1.0.0",
+  "description": "barcode component for Rax.",
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
+    "build": "npm run clean && rax-scripts build",
+    "start": "rax-scripts start",
+    "miniapp": "rax-scripts start --type 'component-miniapp'",
+    "prepublishOnly": "npm run build",
+    "test": "rax-scripts test",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+  },
+  "miniappConfig": {
+    "main": "lib/miniapp/index"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
+  "bugs": {
+    "url": "https://github.com/alibaba/rax/issues"
+  },
+  "homepage": "https://github.com/alibaba/rax#readme",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "rax-canvas": "^1.0.0",
+    "universal-stylesheet": "^0.6.5"
+  },
+  "peerDependencies": {
+    "rax": "^1.0.0"
+  },
+  "devDependencies": {
+    "rax-view": "^1.0.1",
+    "@rax-types/rax": "^1.0.5",
+    "@types/ali-app": "^1.0.0",
+    "@types/jest": "^24.0.12",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "csstype": "^2.6.4",
+    "eslint": "^5.16.0",
+    "driver-universal": "^1.0.0",
+    "driver-dom": "^1.0.0",
+    "driver-weex": "^1.0.0",
+    "eslint-config-rax": "^0.0.0",
+    "rax": "^1.0.0",
+    "rax-scripts": "^2.0.0",
+    "rax-test-renderer": "^1.0.0"
+  }
+}

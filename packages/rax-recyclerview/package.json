@@ -1,0 +1,92 @@
+{
+  "name": "rax-recyclerview",
+  "version": "1.1.1",
+  "description": "RecyclerView component for Rax.",
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
+    "build": "npm run clean && rax-scripts build",
+    "start": "rax-scripts start",
+    "prepublishOnly": "npm run build",
+    "test": "rax-scripts test",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "subComponents": {
+      "Header": {
+        "tagNameMap": "view",
+        "attributes": {
+          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
+        }
+      },
+      "Cell": {
+        "tagNameMap": "view",
+        "attributes": {
+          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
+        }
+      }
+    },
+    "propsMap": {
+      "onEndReachedThreshold": "endReachedThreshold"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/alibaba/rax/issues"
+  },
+  "homepage": "https://github.com/alibaba/rax#readme",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "rax-children": "^1.0.0",
+    "rax-find-dom-node": "^1.0.0",
+    "rax-proptypes": "^1.0.0",
+    "rax-refreshcontrol": "^1.0.0",
+    "rax-scrollview": "1.0.4",
+    "rax-view": "1.0.2",
+    "universal-env": "^1.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.0.0"
+  },
+  "devDependencies": {
+    "@rax-types/rax": "^1.0.6",
+    "@types/ali-app": "^1.0.0",
+    "@types/jest": "^24.0.12",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "babel-eslint": "^10.0.3",
+    "csstype": "^2.6.4",
+    "driver-dom": "^1.0.0",
+    "driver-universal": "^1.0.0",
+    "driver-weex": "^1.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-rax": "^0.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "rax": "^1.0.0",
+    "rax-picture": "^1.0.1",
+    "rax-plugin-component": "^0.1.10",
+    "rax-scripts": "2.0.0",
+    "rax-slider": "^1.1.0-0",
+    "rax-tab-panel": "^1.0.1",
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.0.0",
+    "universal-transition": "^1.0.0"
+  }
+}

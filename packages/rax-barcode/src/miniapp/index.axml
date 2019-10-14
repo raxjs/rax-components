@@ -1,0 +1,3 @@
+<canvas class="{{className}}" 
+    style="{{style}}" id="{{randomId}}">
+</canvas>

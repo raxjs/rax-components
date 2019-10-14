@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Rax BarCode Component",
+  "usingComponents": {
+    "rax-barcode": "../../src/miniapp/index"
+  }
+}

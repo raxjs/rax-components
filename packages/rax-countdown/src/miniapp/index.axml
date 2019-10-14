@@ -1,0 +1,12 @@
+<view class="main-wrapper">
+    <block a:for="{{parsedTime}}">
+      <view style="{{item.style}}">
+        <text a:if="{{item && item.value && item.value[0]}}"
+          style="{{timeStyle}}">{{item.value[0]}}</text>
+        <block a:if="{{item && item.value && item.value[1]}}">
+          <text a:if="{{item.isTime && index == parsedTime.length-2}}" style="{{secondStyle || timeStyle}}">{{item.value[1]}}</text>
+          <text a:else style="{{timeStyle}}">{{item.value[1]}}</text>
+        </block>
+      </view>
+    </block>
+</view>

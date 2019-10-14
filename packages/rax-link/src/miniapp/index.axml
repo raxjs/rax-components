@@ -1,0 +1,7 @@
+<view class="{{className}}" 
+    style="{{style}}"
+    onTap="onTap" 
+    onAppear="onAppear"
+    onDisAppear="onDisAppear">
+    <slot/>
+</view>

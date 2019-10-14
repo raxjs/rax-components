@@ -1,0 +1,9 @@
+<rax-scrollview 
+    className="{{className}}" 
+    style="{{style}}" 
+    endReachedThreshold="{{endReachedThreshold}}"
+    horizontal="{{horizontal}}"
+    onEndReached="onEndReached"
+    onScroll="onScroll">
+    <slot/>
+</rax-scrollview>

@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  width: 500rpx;
+  height: 50rpx;
+  border: 1rpx solid #2f54eb;
+  border-radius: 25rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2f54eb;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}

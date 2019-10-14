@@ -1,0 +1,6 @@
+<rax-view className="testClass" style="height:300rpx;width:300rpx;background:red" animation="{{animationInfo}}">
+    i am in parent
+  <rax-view data-dataA="asdf" onClick="onClick" style="height:200rpx;width:200rpx;background:green" onAppear="onAppear">
+  i am in child
+  </rax-view>
+</rax-view>

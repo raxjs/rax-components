@@ -1,0 +1,6 @@
+{
+    "defaultTitle": "小程序Rax scrollview 组件",
+    "usingComponents": {
+      "rax-refreshcontroll": "../../src/miniapp/index"
+    }
+  }

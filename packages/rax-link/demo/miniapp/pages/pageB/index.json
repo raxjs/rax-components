@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Miniapp rax link demo pageB",
+  "usingComponents": {
+    "rax-link": "../../lib/miniapp/index"
+  }
+}

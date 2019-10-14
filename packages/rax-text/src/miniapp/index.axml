@@ -1,0 +1,9 @@
+<text class="{{className}}" 
+    style="{{style}}" 
+    number-of-lines="{{numberOfLines}}"
+    selectable="{{selectable}}"
+    space="{{space}}"
+    decode="{{decode}}"
+    onTap="onClick">
+    <slot />
+</text>

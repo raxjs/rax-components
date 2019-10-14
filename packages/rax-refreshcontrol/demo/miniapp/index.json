@@ -1,0 +1,6 @@
+{
+    "defaultTitle": "miniapp rax-refreshcontroll demo",
+    "usingComponents": {
+      "rax-refreshcontroll": "../../src/miniapp/index"
+    }
+  }

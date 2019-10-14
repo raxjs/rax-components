@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "miniapp Rax scrollview demo",
+  "usingComponents": {
+    "rax-scrollview": "../lib/miniapp/index"
+  }
+}

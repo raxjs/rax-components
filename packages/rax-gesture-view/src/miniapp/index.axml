@@ -1,0 +1,6 @@
+<view style="{{style}}"
+    onTouchStart="onTouchStart"
+    onTouchMove="onTouchMove" 
+    onTouchEnd="onTouchEnd">
+  <slot />
+</view>

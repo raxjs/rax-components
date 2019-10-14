@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Rax QRCode Components",
+  "usingComponents": {
+    "rax-qrcode": "../../src/miniapp/index"
+  }
+}

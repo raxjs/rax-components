@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+     "rax-waterfall": "../../src/miniapp/index"
+   }
+}

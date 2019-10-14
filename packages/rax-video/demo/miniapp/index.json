@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "小程序Rax Video 组件",
+  "usingComponents": {
+    "rax-video": "../../src/miniapp/index"
+  }
+}

@@ -1,0 +1,6 @@
+<rax-barcode 
+className="testClass" 
+style="height:100rpx;width:300rpx"
+data="http://market.m.taobao.com/apps/market/m-vip/88-festival.html?wh_weex=true&wx_navbar_transparent=true"
+>
+</rax-barcode>

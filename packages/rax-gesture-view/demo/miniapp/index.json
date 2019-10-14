@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Rax Gesture View Component",
+  "usingComponents": {
+    "rax-gesture-view": "../../src/miniapp/index"
+  }
+}

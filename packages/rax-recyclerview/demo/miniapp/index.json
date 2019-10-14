@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "miniapp Rax scrollview demo",
+  "usingComponents": {
+    "rax-recyclerview": "../../src/miniapp/index"
+  }
+}

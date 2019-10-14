@@ -1,0 +1,9 @@
+.waterfall-wrap {
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+}
+.waterfall-class{
+  flex-grow: 1
+}

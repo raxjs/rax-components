@@ -1,0 +1,36 @@
+.tab-item-sample {
+  min-width: 200rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  border-right: 2rpx solid grey;
+  align-items: center;
+}
+
+.tab-item-active {
+  background-color: blueviolet;
+}
+
+.lower-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: #F2F2F2;
+  position: sticky;
+  height: 500rpx;
+  z-index: 998;
+  overflow: hidden;
+}
+
+.tab-pane {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 500rpx;
+  flex-shrink: 0;
+  min-width: 200rpx;
+  width: 750rpx;
+}

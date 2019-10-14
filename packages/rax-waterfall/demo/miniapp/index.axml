@@ -1,0 +1,16 @@
+<view class="waterfull-wraper">
+  <view>
+    header
+  </view>
+  <rax-waterfall  dataSource="{{dataSource}}" columnWidth="150" columnCount="4" columnGap="{{50}}" onEndReached="loadMore" leftGap="24" rightGap="24"> 
+    <view slot="renderHeader">
+        sdfsdfgsdfg
+    </view>
+    <view slot="renderItem" slot-scope="props" style="height:{{props.item.height}}rpx;background-color:red;margin-bottom:20rpx;">
+        {{props.index}}
+    </view>
+    <view slot="renderFooter">
+        asdfasdf
+    </view>
+  </rax-waterfall>
+</view>

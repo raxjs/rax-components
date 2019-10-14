@@ -1,0 +1,13 @@
+.rax-textinput {
+  appearance: none;
+  background-color: transparent;
+  border-color: #000000;
+  border-width: 0;
+  box-sizing: border-box;
+  color: #000000;
+  padding: 0;
+  padding-left: 24rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+}

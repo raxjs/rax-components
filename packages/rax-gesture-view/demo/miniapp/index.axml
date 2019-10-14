@@ -1,0 +1,6 @@
+<rax-gesture-view className="" 
+  style="width: 350rpx; height: 350rpx; background-color: red;"
+  onHorizontalPan="onHorizontalPan"
+  onVerticalPan="onVerticalPan">
+  PAN
+</rax-gesture-view>

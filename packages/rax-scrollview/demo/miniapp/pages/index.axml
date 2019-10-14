@@ -1,0 +1,21 @@
+<rax-scrollview 
+className="testClass" 
+style="height:300rpx;width:300rpx;background:red" 
+onScroll="onScroll"
+onEndReached="onEndReached"
+endReachedThreshold="10"
+horizontal='true'
+scrollTop='300'
+scrollIntoView='id2'
+scrollLeft='100'
+ref="saveRef">
+    <view style="height:310rpx;width:800rpx;background:green;flex-shrink:0">
+      asdf
+    </view>
+    <view id="id2" style="height:310rpx;width:800rpx;background:blue;flex-shrink:0">
+      asdf
+    </view>
+    <view style="height:310rpx;width:800rpx;background:red;flex-shrink:0">
+      asdf
+    </view>
+</rax-scrollview>

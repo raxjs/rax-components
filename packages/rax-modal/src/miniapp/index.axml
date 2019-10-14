@@ -1,0 +1,6 @@
+<modal
+    show="{{modalOpened}}"
+    onModalClose="hide"
+  >
+    <slot />
+</modal>

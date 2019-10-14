@@ -1,0 +1,8 @@
+<view class="{{className}}"
+    style="{{style}} transform: translateX({{config.slideDistance}}); transition-duration: {{config.duration}}ms;"
+    onAppear="onAppear"
+    onDisappear="onDisappear"
+    onFirstAppear="onFirstAppear"
+    data-id="{{id}}">
+      <slot />
+</view>

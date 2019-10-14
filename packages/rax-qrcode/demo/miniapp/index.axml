@@ -1,0 +1,6 @@
+<rax-qrcode 
+className="testClass"
+style="width: 400rpx;height: 400rpx"
+data="http://market.m.taobao.com/apps/market/m-vip/88-festival.html?wh_weex=true&wx_navbar_transparent=true"
+>
+</rax-qrcode>

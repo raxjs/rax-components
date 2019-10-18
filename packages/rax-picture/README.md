@@ -2,9 +2,6 @@
 
 [![npm](https://img.shields.io/npm/v/rax-picture.svg)](https://www.npmjs.com/package/rax-picture)
 
-**描述：**
-Complex image component
-
 ## 安装 
 
 ```bash
@@ -48,7 +45,7 @@ import Picture from 'rax-picture';
 
 当完成图片加载成功/失败时，将分别触发 `onLoad/onError` 中的回调函数 `function(event) => {}` Weex 下（iOS/Android）
 
-| **成员** | **类型** |** 描述** |
+| **成员** | **类型** | **描述** |
 | --- | --- | --- |
 | success | `boolean` | 标记图片是否成功加载，成功为1/true，失败为0/false |
 | size | `object` |  加载的图片大小对象 |
@@ -57,7 +54,7 @@ import Picture from 'rax-picture';
 
 H5 下是 Web 原生的Event事件
 
-| **成员** | **类型** |** 描述** |
+| **成员** | **类型** | **描述** |
 | --- | --- | --- |
 | target | `Dom` | 图片自身元素 |
 | target.naturalWidth | `number` |  图片宽度 |

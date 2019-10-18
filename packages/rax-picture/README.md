@@ -48,6 +48,7 @@ import Picture from 'rax-picture';
 
 当完成图片加载成功/失败时，将分别触发onLoad/onError中的回调函数 function(event) => {}
 weex下（iOS/Android）
+
 | **成员** | **类型** |** 描述** |
 | --- | --- | --- |
 | success | `boolean` | 标记图片是否成功加载，成功为1/true，失败为0/false |

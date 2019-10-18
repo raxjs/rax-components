@@ -46,8 +46,7 @@ import Picture from 'rax-picture';
 
 ### onLoad onError 返回
 
-当完成图片加载成功/失败时，将分别触发onLoad/onError中的回调函数 function(event) => {}
-weex下（iOS/Android）
+当完成图片加载成功/失败时，将分别触发 `onLoad/onError` 中的回调函数 `function(event) => {}` Weex 下（iOS/Android）
 
 | **成员** | **类型** |** 描述** |
 | --- | --- | --- |
@@ -55,7 +54,9 @@ weex下（iOS/Android）
 | size | `object` |  加载的图片大小对象 |
 | size.naturalWidth | `number` |  图片宽度，如果图片加载失败则为0/-1 |
 | size.naturalHeight | `number` |  图片高度，如果图片加载失败则为0/-1 |
-h5下是web原生的Event事件
+
+H5 下是 Web 原生的Event事件
+
 | **成员** | **类型** |** 描述** |
 | --- | --- | --- |
 | target | `Dom` | 图片自身元素 |
@@ -66,8 +67,7 @@ h5下是web原生的Event事件
 
 ```jsx 
 import { createElement, render } from 'rax';
-import DU from 'driver-universal';
-import Picture from '../src/index';
+import Picture from 'rax-picture';
 
 const App = () => {
   return (
@@ -82,5 +82,4 @@ const App = () => {
     />
   );
 }
-render(<App />, document.body, { driver: DU });
 ```

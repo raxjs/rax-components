@@ -1,0 +1,6 @@
+<image style="{{style}}"
+       class="{{className}}"
+       src="{{source.uri}}"
+       bindtap="onClick"
+       mode="{{mode}}"
+       lazyLoad="{{lazyLoad}}" />

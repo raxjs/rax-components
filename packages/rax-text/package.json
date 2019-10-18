@@ -51,7 +51,8 @@
     "rax-view": "^1.0.1-beta.11"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   },
   "husky": {
     "hooks": {

@@ -1,0 +1,6 @@
+<text class="{{className}}"
+    style="{{style}}"
+    number-of-lines="{{numberOfLines}}"
+    bindtap="onClick">
+    <slot />
+</text>

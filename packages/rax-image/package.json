@@ -57,6 +57,7 @@
     "typescript": "^3.5.3"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   }
 }

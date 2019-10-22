@@ -10,6 +10,7 @@ import {
 import { isWeex, isWeb } from 'universal-env';
 import View from 'rax-view';
 import RefreshControl from 'rax-refreshcontrol';
+import findDOMNode from 'rax-find-dom-node';
 import cx from 'classnames';
 import Timer from './timer';
 import { ScrollViewProps } from './types';
@@ -41,7 +42,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onEndReached,
       onEndReachedThreshold,
       onScroll,
-      children
+      children,
     } = props;
     const [loadmoreretry, setLoadmoreretry] = useState(0);
     let lastScrollDistance = 0;
@@ -168,6 +169,23 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             if (y >= 0) {
               scrollerRef.current.scrollTop = pixelRatio * y;
             }
+          }
+        }
+      },
+      scrollIntoView({ id, animated = false  }: { id: string; animated?: boolean }) {
+        if (!id) {
+          throw new Error('Params missing id.')
+        }
+        const node = findDOMNode(id);
+        if (node) {
+          if (isWeex) {
+            const dom = __weex_require__('@weex-module/dom');
+            dom.scrollToElement(node.ref, {
+              animated
+            });
+          }
+          if (isWeb) {
+            // TODO: Support web scrollIntoView
           }
         }
       }

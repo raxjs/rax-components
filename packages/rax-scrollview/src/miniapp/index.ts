@@ -5,7 +5,8 @@ Component({
     direction: 'vertical',
     scroll_top: 0,
     scroll_left: 0,
-    defaultStyle: 'border:0 solid black;display:flex;align-content:flex-start;flex-shrink:0;box-sizing:border-box;',
+    scroll_into_view: '',
+    scroll_with_animation: false
   },
   props: {
     className: '',
@@ -44,8 +45,12 @@ Component({
       this.props.onScroll(event);
     },
     scrollTo(param) {
-      let { x = 0, y = 0 } = param || {};
-      this.setData({ scroll_top: x, scroll_left: y });
+      let { x = 0, y = 0, animated = false } = param || {};
+      this.setData({ scroll_top: y, scroll_left: x, scroll_with_animation: animated });
+    },
+    scrollIntoView(param) {
+      const { id, animated = false } = param;
+      this.setData({ scroll_into_view: id, scroll_with_animation: animated })
     }
   }
 });

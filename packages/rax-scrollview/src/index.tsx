@@ -172,9 +172,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           }
         }
       },
-      scrollIntoView({ id, animated = false  }: { id: string; animated?: boolean }) {
+      scrollIntoView({ id, animated = false }: { id: string; animated?: boolean }) {
         if (!id) {
-          throw new Error('Params missing id.')
+          throw new Error('Params missing id.');
         }
         const node = findDOMNode(id);
         if (node) {

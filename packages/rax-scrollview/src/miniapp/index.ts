@@ -50,7 +50,7 @@ Component({
     },
     scrollIntoView(param) {
       const { id, animated = false } = param;
-      this.setData({ scroll_into_view: id, scroll_with_animation: animated })
+      this.setData({ scroll_into_view: id, scroll_with_animation: animated });
     }
   }
 });

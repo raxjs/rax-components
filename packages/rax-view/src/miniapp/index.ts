@@ -14,7 +14,7 @@ Component({
     onTouchEnd: e => {},
     onTouchCancel: e => {},
     animation: null,
-    id: ""
+    id: ''
   },
   didMount() {},
   methods: {

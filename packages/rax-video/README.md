@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/rax-video.svg)](https://www.npmjs.com/package/rax-video)
 
-**描述：**
+## 描述
 视频播放组件
 
 ## 安装

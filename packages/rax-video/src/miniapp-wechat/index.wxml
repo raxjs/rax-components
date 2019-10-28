@@ -5,6 +5,6 @@
     autoplay="{{autoPlay}}"
     style="{{style}}" 
     loop="{{loop}}"
-    onTap="onClick"
-    onEnded="onEnded">
+    bindtap="onClick"
+    bindended="onEnded">
 </video>

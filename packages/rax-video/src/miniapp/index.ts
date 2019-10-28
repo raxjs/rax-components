@@ -1,11 +1,26 @@
+import fmtEvent from './fmtEvent';
+
+const noop = () => {};
 Component({
   data: {},
   props: {
     src: '',
+    controls: true,
     autoPlay: false,
+    loop: false,
     style: '',
-    className: ''
+    className: '',
+    onClick: noop,
+    onEnded: noop
   },
-  didMount: function didMount() {},
-  methods: {}
+  methods: {
+    onClick(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onClick(event);
+    },
+    onEnded(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onEnded(event);
+    }
+  },
 });

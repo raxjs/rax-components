@@ -11,7 +11,8 @@ Component({
     style: '',
     className: '',
     onClick: noop,
-    onEnded: noop
+    onEnded: noop,
+    muted: false
   },
   methods: {
     onClick(e) {

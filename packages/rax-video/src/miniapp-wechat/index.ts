@@ -12,6 +12,10 @@ Component({
       type: Boolean,
       value: true,
     },
+    muted: {
+      type: Boolean,
+      value: false,
+    },
     autoPlay: {
       type: Boolean,
       value: false,
@@ -42,11 +46,11 @@ Component({
   },
   methods: {
     onClick(e) {
-      const event = fmtEvent(this.props, e);
+      const event = fmtEvent(this.properties, e);
       this.triggerEvent('onClick', event);
     },
     onEnded(e) {
-      const event = fmtEvent(this.props, e);
+      const event = fmtEvent(this.properties, e);
       this.triggerEvent('onEnded', event);
     },
   },

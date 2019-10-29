@@ -1,6 +1,7 @@
 <video
     src="{{src}}" 
     class="{{className}}"
+    muted="{{muted}}"
     controls="{{controls}}"
     autoplay="{{autoPlay}}"
     style="{{style}}" 

@@ -7,6 +7,7 @@
     scroll-left="{{scrollLeft||scroll_left}}"
     scroll-into-view="{{scroll_into_view}}"
     scroll-with-animation="{{scroll_with_animation}}"
+    scroll-animation-duration="{{scroll_animation_duration}}"
     lower-threshold="{{endReachedThreshold}}"
     onScroll="onScroll"
     onScrollToLower="onEndReached"

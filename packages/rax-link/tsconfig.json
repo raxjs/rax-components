@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "esNext",
+    "target": "es2015",
+    "jsx": "preserve",
+    "jsxFactory": "createElement",
+    "moduleResolution": "node",
+    "alwaysStrict": true,
+    "sourceMap": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "outDir": "lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "rax": ["node_modules/@rax-types/rax", "../../node_modules/@rax-types/rax"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
+}

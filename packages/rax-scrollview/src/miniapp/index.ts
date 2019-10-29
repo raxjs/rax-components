@@ -7,7 +7,7 @@ Component({
     scroll_top: 0,
     scroll_left: 0,
     scroll_into_view: '',
-    scroll_with_animation: false,
+    scroll_with_animation: true,
     scroll_animation_duration: 400,
   },
   props: {
@@ -45,7 +45,7 @@ Component({
       this.props.onScroll(event);
     },
     scrollTo(param) {
-      let { x = 0, y = 0, animated = false, duration = 400 } = param || {};
+      const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
         scroll_top: y,
         scroll_left: x,
@@ -54,7 +54,7 @@ Component({
       });
     },
     scrollIntoView(param) {
-      const { id, animated = false, duration = 400 } = param;
+      const { id, animated = true, duration = 400 } = param || {};
       this.setData({
         scroll_into_view: id,
         scroll_with_animation: animated,

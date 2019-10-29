@@ -126,11 +126,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         }
       },
       scrollTo(options?: { x?: number; y?: number; animated?: boolean; duration ?: number }) {
-        let { x = 0, y = 0, duration = 400 } = options;
-        let animated =
-          options && typeof options.animated !== 'undefined'
-            ? options.animated
-            : true;
+        const { x = 0, y = 0, animated = true, duration = 400 } = options || {};
+
         if (isWeex) {
           const dom = __weex_require__('@weex-module/dom');
           const contentContainer = contentContainerRef.current;
@@ -172,7 +169,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           }
         }
       },
-      scrollIntoView({ id, animated = false, duration = 400 }: { id: string; animated?: boolean; duration ?: number }) {
+      scrollIntoView(options: { id: string; animated?: boolean; duration ?: number }) {
+        const { id, animated = true, duration = 400 } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
         }

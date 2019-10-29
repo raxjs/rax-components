@@ -31,9 +31,6 @@ Component({
         const actionName = splits[0];
         const target = splits[1] || actionName;
         switch (actionName) {
-          case 'navigate':
-            my.navigateTo({ url: target });
-            break;
           case 'redirect':
             my.redirectTo({ url: target });
             break;
@@ -43,6 +40,7 @@ Component({
           case 'navigateBack':
             my.navigateBack({ delta: target });
             break;
+          case 'navigate':
           default:
             my.navigateTo({ url: target });
         }

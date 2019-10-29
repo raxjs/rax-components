@@ -24,7 +24,7 @@ $ npm install rax-link --save
   - 示例： `path?key1=value1&key2=value2`
 - **redirect**：关闭当前页面，跳转到应用内的某个指定页面
   - 需要跳转的应用内非 tabbar 的目标页面路径 ,路径后可以带参数
-  - 参数规则：路径与参数之间使用`?`分隔，参数键与参数值用=相连，不同参数必须用`&`分隔
+  - 参数规则：路径与参数之间使用`?`分隔，参数键与参数值用 `=` 相连，不同参数必须用`&`分隔
   - 示例：`path?key1=value1&key2=value2`
 - **switchTab**：跳转到指定标签页（tabbar）页面，并关闭其他所有非标签页页面
   - 跳转的标签页的路径（需在 `app.json` 的 `tabbar` 字段定义的页面）
@@ -35,8 +35,8 @@ $ npm install rax-link --save
 | **属性**    | **类型**   | **默认值** | **必填** | **描述**              | **支持**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------- | ---------- | ---------- | -------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | onClick     | `function` | -          | false    | 节点被点击之后触发    | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
-| href        | `String`   | -          | true     | 跳转目标地址          | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />                                                                                                                                                                                                                                                            |
-| miniappHref | `String`   | -          | true     | 跳转类型:目标页面路径 | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px">                                                                                                                                                                                                                                                |
+| href        | `string`   | -          | true     | 跳转目标地址          | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />                                                                                                                                                                                                                                                            |
+| miniappHref | `string`   | -          | true     | 跳转类型:目标页面路径 | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px">                                                                                                                                                                                                                                                |
 
 ## 示例
 
@@ -49,6 +49,7 @@ import Text from 'rax-text';
 render(
   <Link
     href={'//www.taobao.com'}
+    miniappHref={'/pages/Home/index'}
     onClick={e => {
       console.log(e);
     }}

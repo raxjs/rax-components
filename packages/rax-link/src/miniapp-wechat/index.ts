@@ -35,9 +35,6 @@ Component({
         const actionName = splits[0];
         const target = splits[1] || actionName;
         switch (actionName) {
-          case 'navigate':
-            wx.navigateTo({ url: target });
-            break;
           case 'redirect':
             wx.redirectTo({ url: target });
             break;
@@ -47,6 +44,7 @@ Component({
           case 'navigateBack':
             wx.navigateBack({ delta: target });
             break;
+          case 'navigate':
           default:
             wx.navigateTo({ url: target });
         }

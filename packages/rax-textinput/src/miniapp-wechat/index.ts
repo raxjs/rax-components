@@ -52,6 +52,9 @@ Component({
       value: ''
     }
   },
+  options: {
+    styleIsolation: 'apply-shared',
+  },
   attached() {
   },
   methods: {

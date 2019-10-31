@@ -33,7 +33,8 @@
     "npm": ">=3.0.0"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   },
   "dependencies": {
     "rax-image": "^1.1.1",

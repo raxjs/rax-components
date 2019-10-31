@@ -1,0 +1,10 @@
+<rax-image
+    style="{{style}}" 
+    class="{{className}}"
+    source="{{source}}"
+    onClick="onClick"
+    onError="onError"
+    onLoad="onLoad"
+    resizeMode="{{resizeMode}}"
+    lazyLoad="{{lazyload}}"
+/>

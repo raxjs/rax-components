@@ -4,7 +4,8 @@ module.exports = {
     "Component": true,
     "Page": true,
     "App": true,
-    "my": true
+    "my": true,
+    "wx": true
   },
   'rules': {
     "no-return-assign": "off",

@@ -9,8 +9,6 @@
     placeholder="{{placeholder}}"
     password="{{password||secureTextEntry}}"
     value="{{value||defaultValue}}"
-    onAppear="onAppear"
-    onDisAppear="onDisAppear"
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"

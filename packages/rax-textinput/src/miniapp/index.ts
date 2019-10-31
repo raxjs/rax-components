@@ -15,8 +15,6 @@ Component({
     secureTextEntry: false,
     value: '',
     defaultValue: '',
-    onAppear: () => {},
-    onDisAppear: () => {},
     onBlur: () => {},
     onFocus: () => {},
     onChange: () => {},
@@ -25,14 +23,6 @@ Component({
   },
   didMount() {},
   methods: {
-    onAppear(e) {
-      const event = fmtEvent(this.props, e);
-      this.props.onAppear(event);
-    },
-    onDisAppear(e) {
-      const event = fmtEvent(this.props, e);
-      this.props.onDisAppear(event);
-    },
     onBlur(e) {
       const event = fmtEvent(this.props, e);
       this.props.onBlur(event);

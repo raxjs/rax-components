@@ -90,7 +90,7 @@ class App extends Component {
           <ScrollView
             ref={this.horizontalScrollView}
             style={{
-              height: 100,
+              height: '100rpx',
             }}
             horizontal={true}
             onEndReached={() =>
@@ -116,7 +116,7 @@ class App extends Component {
           </View>
         </View>
 
-        <View style={{ ...styles.container, ...{ height: 500 } }}>
+        <View style={{ ...styles.container, height: '500rpx' }}>
           <ScrollView
             ref={scrollView => {
               this.scrollView = scrollView;

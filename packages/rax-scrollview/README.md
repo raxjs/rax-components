@@ -45,6 +45,7 @@ $ npm install rax-scrollview --save
 #### 参数
 
 **参数为 `object`，包含以下属性**
+
 | **属性** | **类型** | **默认值** | **必填** | **描述** | **支持** |
 | -------- | -------- | ---------- | ------------ | ------------------- |------------------- |
 | id | `string` | - | 是 | 需要滚动到的元素 `id` | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> |

@@ -18,6 +18,7 @@
   ],
   "miniappConfig": {
     "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
     }

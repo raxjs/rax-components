@@ -125,7 +125,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           setLoadmoreretry(loadmoreretry + 1);
         }
       },
-      scrollTo(options?: { x?: number; y?: number; animated?: boolean; duration ?: number }) {
+      scrollTo(options?: { x?: number; y?: number; animated?: boolean; duration?: number }) {
         const { x = 0, y = 0, animated = true, duration = 400 } = options || {};
 
         if (isWeex) {
@@ -169,8 +169,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           }
         }
       },
-      scrollIntoView(options: { id: string; animated?: boolean; duration ?: number }) {
-        const { id, animated = true, duration = 400 } = options || {};
+      scrollIntoView(options: { id: string; animated?: boolean; duration?: number }) {
+        const { id, animated = true } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
         }

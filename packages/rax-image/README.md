@@ -20,18 +20,20 @@ import Image from 'rax-image';
 ## 属性
 
 注：
-1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序
+1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表支付宝小程序<img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px">代表微信小程序
 
 | **属性**    | **类型**   | **默认值** | ** 必填 ** | **描述**           | ** 支持 ** |
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
-| source | `Object: {uri: String}` | - |   true | 设置图片的 uri | ALL |
-| style | `Object: { width: Number height: Number }` | - | true | 图片样式 width和height为必填属性，否则图片无法正常展示，可以补充其他属性| ALL |
-| fallbackSource | `Object: {uri: String}` | - | false | 备用图片的uri（当主图加载失败是加载） | ALL |
-| resizeMode | `String： 'contain' 'cover' 'stretch'` | - | false | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小 | ALL |
+| source | `Object: {uri: String}` | - |   true | 设置图片的 uri | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
+| style | `Object: { width: Number height: Number }` | - | true | 图片样式 width和height为必填属性，否则图片无法正常展示，可以补充其他属性| <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
+| fallbackSource | `Object: {uri: String}` | - | false | 备用图片的uri（当主图加载失败是加载） | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> |
+| resizeMode | `String： 'contain' 'cover' 'stretch'` | - | false | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> |
+| mode | String: | scaleToFill | false | 小程序中的[图片模式](https://docs.alipay.com/mini/component/image)，可选项更多 | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
 | quality | `String: 'original' 'normal' 'low' 'high' 'auto'` | - | false | 图片质量 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 | placeholder | `String` | - | false | 占位图的 URL，在图片下载过程中将展示占位图，图片下载完成后将显示source中指定的图片。 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
-| onLoad | `Function` | - | false | 图片加载成功的回调函数 | ALL |
-| onError | `Function` | - | false | 图片加载失败的回调函数 | ALL |
+| onClick | `Function` | - | false | 点击图片时的回调函数 | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
+| onLoad | `Function` | - | false | 图片加载成功的回调函数 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
+| onError | `Function` | - | false | 图片加载失败的回调函数 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
 
 
 ### onLoad onError 返回
@@ -40,7 +42,7 @@ import Image from 'rax-image';
 
 weex下（iOS/Android）
 
-| **成员** | **类型** |** 描述** |
+| **成员** | **类型** |描述 |
 | --- | --- | --- |
 | success | `boolean` | 标记图片是否成功加载，成功为1/true，失败为0/false |
 | size | `object` |  加载的图片大小对象 |
@@ -49,11 +51,22 @@ weex下（iOS/Android）
 
 h5下是web原生的Event事件
 
-| **成员** | **类型** |** 描述** |
+| **成员** | **类型** |描述 |
 | --- | --- | --- |
 | target | `Dom` | 图片自身元素 |
 | target.naturalWidth | `number` |  图片宽度 |
 | target.naturalHeight | `number` |  图片高度 |
+
+小程序下
+
+| 成员          | 类型     | 描述             |
+| ------------- | -------- | ---------------- |
+| type          | `string` | 事件类型         |
+| detail        | `object` | 点击位置信息     |
+| target        | `object` | 点击对象属性信息 |
+| currentTarget | `object` | 同上             |
+
+
 
 ## 示例
 

@@ -1,5 +1,5 @@
 <image
-    style="{{style}}" 
+    style="{{styleSheet}}" 
     class="{{className}}"
     src="{{source.uri}}"
     onTap="onClick"

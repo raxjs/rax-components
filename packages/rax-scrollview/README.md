@@ -31,7 +31,8 @@ $ npm install rax-scrollview --save
 
 #### 参数
 
-参数为 object，包含以下属性
+**参数为 object，包含以下属性**
+
 | **属性** | **类型** | **默认值** | **必填** | **描述** | **支持** |
 | -------- | -------- | ---------- | ------------ | ------------------- |------------------- |
 | x | `number` | - | 否 |  横向的偏移量 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
@@ -43,7 +44,8 @@ $ npm install rax-scrollview --save
 
 #### 参数
 
-参数为 object，包含以下属性
+**参数为 `object`，包含以下属性**
+
 | **属性** | **类型** | **默认值** | **必填** | **描述** | **支持** |
 | -------- | -------- | ---------- | ------------ | ------------------- |------------------- |
 | id | `string` | - | 是 | 需要滚动到的元素 `id` | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
@@ -88,7 +90,7 @@ class App extends Component {
           <ScrollView
             ref={this.horizontalScrollView}
             style={{
-              height: 100,
+              height: '100rpx',
             }}
             horizontal={true}
             onEndReached={() =>
@@ -114,7 +116,7 @@ class App extends Component {
           </View>
         </View>
 
-        <View style={{ ...styles.container, ...{ height: 500 } }}>
+        <View style={{ ...styles.container, height: '500rpx' }}>
           <ScrollView
             ref={scrollView => {
               this.scrollView = scrollView;
@@ -154,39 +156,39 @@ class App extends Component {
 
 const styles = {
   root: {
-    width: 750,
-    paddingTop: 20,
+    width: '750rpx',
+    paddingTop: '20rpx',
   },
   sticky: {
     position: 'sticky',
-    width: 750,
+    width: '750',
     backgroundColor: '#cccccc',
   },
   container: {
-    padding: 20,
+    padding: '20rpx',
     borderStyle: 'solid',
     borderColor: '#dddddd',
-    borderWidth: 1,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
+    borderWidth: '1rpx',
+    marginLeft: '20rpx',
+    marginRight: '20rpx',
+    marginBottom: '10rpx',
   },
   button: {
-    margin: 7,
-    padding: 5,
+    margin: '7rpx',
+    padding: '5rpx',
     alignItems: 'center',
     backgroundColor: '#eaeaea',
-    borderRadius: 3,
+    borderRadius: '3rpx',
   },
   box: {
-    width: 64,
-    height: 64,
+    width: '64rpx',
+    height: '64rpx',
   },
   eventLogBox: {
-    padding: 10,
-    margin: 10,
-    height: 80,
-    borderWidth: 1,
+    padding: '10rpx',
+    margin: '10rpx;,
+    height: '80rpx',
+    borderWidth: '1rpx',
     borderColor: '#f0f0f0',
     backgroundColor: '#f9f9f9',
   },

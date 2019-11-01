@@ -10,6 +10,7 @@ import {
 import { isWeex, isWeb } from 'universal-env';
 import View from 'rax-view';
 import RefreshControl from 'rax-refreshcontrol';
+import findDOMNode from 'rax-find-dom-node';
 import cx from 'classnames';
 import Timer from './timer';
 import { ScrollViewProps } from './types';
@@ -41,7 +42,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onEndReached,
       onEndReachedThreshold,
       onScroll,
-      children
+      children,
     } = props;
     const [loadmoreretry, setLoadmoreretry] = useState(0);
     let lastScrollDistance = 0;
@@ -124,12 +125,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           setLoadmoreretry(loadmoreretry + 1);
         }
       },
-      scrollTo(options?: { x?: number; y?: number; animated?: boolean }) {
-        let { x = 0, y = 0 } = options;
-        let animated =
-          options && typeof options.animated !== 'undefined'
-            ? options.animated
-            : true;
+      scrollTo(options?: { x?: number; y?: number; animated?: boolean; duration?: number }) {
+        const { x = 0, y = 0, animated = true, duration = 400 } = options || {};
+
         if (isWeex) {
           const dom = __weex_require__('@weex-module/dom');
           const contentContainer = contentContainerRef.current;
@@ -146,7 +144,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           const scrollTop = scrollView.scrollTop;
           if (animated) {
             const timer = new Timer({
-              duration: 400,
+              duration,
               easing: 'easeOutSine',
               onRun: e => {
                 if (x >= 0) {
@@ -168,6 +166,24 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             if (y >= 0) {
               scrollerRef.current.scrollTop = pixelRatio * y;
             }
+          }
+        }
+      },
+      scrollIntoView(options: { id: string; animated?: boolean; duration?: number }) {
+        const { id, animated = true } = options || {};
+        if (!id) {
+          throw new Error('Params missing id.');
+        }
+        const node = findDOMNode(id);
+        if (node) {
+          if (isWeex) {
+            const dom = __weex_require__('@weex-module/dom');
+            dom.scrollToElement(node.ref, {
+              animated
+            });
+          }
+          if (isWeb) {
+            // TODO: Support web scrollIntoView
           }
         }
       }

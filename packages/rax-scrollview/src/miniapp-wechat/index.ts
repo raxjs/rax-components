@@ -1,6 +1,5 @@
 import fmtEvent from './fmtEvent';
 
-const noop = () => {};
 Component({
   data: {
     direction: 'vertical',
@@ -10,24 +9,42 @@ Component({
     scroll_with_animation: true,
     scroll_animation_duration: 400,
   },
-  props: {
-    className: '',
-    style: '',
-    horizontal: false,
-    endReachedThreshold: 500,
-    onEndReached: noop,
-    onScroll: noop,
-    scrollTop: 0,
-    scrollLeft: 0,
-    ref: noop,
+  properties: {
+    className: {
+      type: String,
+      value: ''
+    },
+    style: {
+      type: String,
+      value: ''
+    },
+    horizontal: {
+      type: Boolean,
+      value: false
+    },
+    endReachedThreshold: {
+      type: Number,
+      value: 500
+    },
+    scrollTop: {
+      type: Number,
+      value: 0
+    },
+    scrollLeft: {
+      type: Number,
+      value: 0
+    }
+  },
+  options: {
+    styleIsolation: 'apply-shared',
   },
   methods: {
     onEndReached(e) {
-      const event = fmtEvent(this.props, e);
-      this.props.onEndReached(event);
+      const event = fmtEvent(this.properties, e);
+      this.triggerEvent('onEndReached', event);
     },
     onScroll(e) {
-      const event = fmtEvent(this.props, e);
+      const event = fmtEvent(this.properties, e);
       event.nativeEvent = {
         get contentOffset() {
           return {
@@ -42,7 +59,7 @@ Component({
           };
         },
       };
-      this.props.onScroll(event);
+      this.triggerEvent('onScroll', event);
     },
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};

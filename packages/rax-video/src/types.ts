@@ -2,7 +2,7 @@ import { RefAttributes, VideoHTMLAttributes } from 'rax';
 /**
  * component:video(视频播放)
  * document address(文档地址):
- * https://alibaba.github.io/rax/component/video
+ * https://rax.js.org/docs/components/video
  */
 export interface VideoProps extends RefAttributes<HTMLVideoElement>, VideoHTMLAttributes<HTMLVideoElement>{
   /**

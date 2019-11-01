@@ -14,25 +14,14 @@ Component({
     numberOfLines: {
       type: Number,
       value: 0
-    },
-    onClick: {
-      type: Function,
-      value: function onClick() {
-      }
     }
-  },
-  lifetimes: {
-    attached: function() {
-    },
-    detached: function() {
-    },
   },
   options: {
     styleIsolation: 'apply-shared'
   },
   methods: {
-    onClick: function onClick(e) {
-      var event = fmtEvent(this.props, e);
+    onClick(e) {
+      const event = fmtEvent(this.properties, e);
       this.triggerEvent('onClick', event);
     }
   }

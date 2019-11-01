@@ -34,10 +34,7 @@ Component({
   lifetimes: {
     attached: function() {
       this.initImage();
-    },
-    detached: function() {
-      // 在组件实例被从页面节点树移除时执行
-    },
+    }
   },
   options: {
     styleIsolation: 'apply-shared'
@@ -45,15 +42,15 @@ Component({
   methods: {
     onError: function(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onerror', event);
+      this.triggerEvent('onError', event);
     },
     onLoad: function(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onload', event);
+      this.triggerEvent('onLoad', event);
     },
     onTap: function(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onclick', event);
+      this.triggerEvent('onClick', event);
     },
     initImage: function initImage(e) {
       const { width = null, height = null } = this.properties.source || {};

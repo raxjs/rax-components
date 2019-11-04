@@ -32,7 +32,7 @@ Component({
       type: String,
       value: '',
     },
-    style: {
+    styleSheet: {
       type: String,
       value: '',
     },

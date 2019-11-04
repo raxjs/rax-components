@@ -1,5 +1,5 @@
 <input wx:if="{{!multiline}}" class="rax-textinput {{className}}" 
-  style="{{style}}"
+  style="{{styleSheet}}"
   focus="{{autoFocus}}"
   disabled="{{!editable}}"
   type="{{keyboardType}}"
@@ -13,7 +13,7 @@
   bindconfirm="onConfirm">
 </input>
 <textarea wx:else class="rax-textinput {{className}}" 
-  style="{{style}}"
+  style="{{styleSheet}}"
   auto-focus="{{autoFocus}}"
   disabled="{{!editable}}"
   maxlength="{{maxLength}}"

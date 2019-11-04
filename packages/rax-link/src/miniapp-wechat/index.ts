@@ -10,7 +10,7 @@ Component({
   data: {},
   properties: {
     className: '',
-    style: '',
+    styleSheet: '',
     mpHref: '',
     miniappHref: '',
   },

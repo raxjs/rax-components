@@ -1,5 +1,5 @@
 <rax-image
-    style="{{style}}" 
+    style="{{styleSheet}}" 
     class="{{className}}"
     source="{{source}}"
     onClick="onClick"

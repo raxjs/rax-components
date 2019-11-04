@@ -254,7 +254,7 @@ class Slider extends Component<SliderProps, any> {
   }
 
   public render() {
-    const { style, showsPagination, className, children } = this.props;
+    const { style, showsPagination = true, className, children } = this.props;
     this.total = Children.toArray(children).length;
     return (
       <View style={style} className={cx('rax-slider', className)}>

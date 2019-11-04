@@ -9,10 +9,22 @@ declare const wx: any;
 Component({
   data: {},
   properties: {
-    className: '',
-    styleSheet: '',
-    mpHref: '',
-    miniappHref: '',
+    className: {
+      type: String,
+      value: ''
+    },
+    styleSheet: {
+      type: String,
+      value: ''
+    },
+    mpHref: {
+      type: String,
+      value: ''
+    },
+    miniappHref: {
+      type: String,
+      value: ''
+    },
   },
   options: {
     styleIsolation: 'apply-shared',

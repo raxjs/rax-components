@@ -1,6 +1,6 @@
 <rax-image
     styleSheet="{{styleSheet}}" 
-    class="{{className}}"
+    className="{{className}}"
     source="{{source}}"
     bindonClick="onClick"
     bindonError="onError"

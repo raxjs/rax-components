@@ -2,14 +2,14 @@ import fmtEvent from './fmtEvent';
 
 Component({
   data: {
-    styleSheet: ''
+    style: ''
   },
   properties: {
     className: {
       type: String,
       value: ''
     },
-    style: {
+    styleSheet: {
       type: String,
       value: ''
     },
@@ -40,26 +40,26 @@ Component({
     styleIsolation: 'apply-shared'
   },
   methods: {
-    onError: function(e) {
+    onError(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onError', event);
     },
-    onLoad: function(e) {
+    onLoad(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onLoad', event);
     },
-    onTap: function(e) {
+    onTap(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onClick', event);
     },
-    initImage: function initImage(e) {
+    initImage() {
       const { width = null, height = null } = this.properties.source || {};
-      let style = this.properties.style || '';
+      let style = this.properties.styleSheet || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';
 
       this.setData({
-        styleSheet: style
+        style
       });
     }
   }

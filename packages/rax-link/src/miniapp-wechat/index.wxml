@@ -1,6 +1,6 @@
 <view
-    class="{{className}}" 
-    style="{{style}}"
+    class="{{className}}"
+    style="{{styleSheet}}"
     onTap="onTap">
     <slot/>
 </view>

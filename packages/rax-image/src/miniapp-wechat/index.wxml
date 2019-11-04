@@ -1,5 +1,5 @@
 <image 
-  style="{{styleSheet}}"
+  style="{{style}}"
   class="{{className}}"
   src="{{source.uri}}"
   mode="{{mode}}"

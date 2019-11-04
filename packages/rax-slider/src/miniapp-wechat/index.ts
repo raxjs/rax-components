@@ -8,7 +8,7 @@ Component({
     className: {
       type: String,
     },
-    style: {
+    styleSheet: {
       type: String,
     },
     width: {

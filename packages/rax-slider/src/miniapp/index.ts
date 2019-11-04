@@ -1,7 +1,10 @@
 import fmtEvent from './fmtEvent';
 
+const noop = () => {};
 Component({
-  data: {},
+  data: {
+    current: 0,
+  },
   props: {
     className: '',
     style: '',
@@ -11,14 +14,29 @@ Component({
     showsPagination: false,
     loop: false,
     index: 0,
-    interval: 1000,
-    onChange: function onChange() {}
+    autoPlayInterval: 1000,
+    onChange: noop,
+    paginationStyle: {
+      itemColor: 'rgba(255, 255, 255, 0.5)',
+      itemSelectedColor: 'rgb(255, 80, 0)',
+    },
   },
-  didMount: function didMount() {},
+  onInit() {
+    this.setData({
+      current: this.props.index,
+    });
+  },
   methods: {
     onChange(e) {
-      var event = fmtEvent(this.props, e);
+      const event = fmtEvent(this.props, e);
       this.props.onChange(event);
+    },
+  },
+  slideTo(index) {
+    if (index !== undefined) {
+      this.setData({
+        current: index,
+      });
     }
-  }
+  },
 });

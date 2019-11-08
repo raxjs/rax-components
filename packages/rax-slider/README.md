@@ -94,39 +94,45 @@ class App extends Component {
           onChange={this.onchange}
           ref={this.inputRef}
         >
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
         </Slider>
 
         <View onClick={this.onClick}>Click</View>
@@ -170,3 +176,6 @@ const styles = {
 
 render(<App />, document.body, { driver: DriverUniversal });
 ```
+
+## 注意事项
+如果只在 Web 和 Weex 中使用，每一个需要轮播的子项**无需**包裹 `Slider.Item` 组件。

@@ -54,6 +54,9 @@ $ npm install rax-slider --save
 | -------- | -------- | ---------- | -------- | -------------- |
 | index    | `number` | -          | 是       | 滚动到指定索引的 View |
 
+## Slider.Item
+每一个需要被轮播的子元素需要被包裹在 `Slider.Item` 组件中，在 Weex 和 Web 该组件是 `Fragment` 空节点，在小程序该组件是 `swiper-item`。由于该节点没有实际意义，所以不要在该组件上设置样式和绑定事件。 如果只在 Web 和 Weex 中使用，每一个需要轮播的子项**无需**包裹 `Slider.Item` 组件。
+
 ## 示例
 
 ```jsx
@@ -176,6 +179,3 @@ const styles = {
 
 render(<App />, document.body, { driver: DriverUniversal });
 ```
-
-## 注意事项
-如果只在 Web 和 Weex 中使用，每一个需要轮播的子项**无需**包裹 `Slider.Item` 组件。

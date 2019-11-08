@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent } from 'rax';
+import { ForwardRefExoticComponent, Fragment } from 'rax';
 import { isWeex } from 'universal-env';
 import { SliderProps } from './types';
 
@@ -13,5 +13,7 @@ if (isWeex) {
 if (Slider.default) {
   Slider = Slider.default;
 }
+
+Slider.Item = Fragment;
 
 export default Slider as ForwardRefExoticComponent<SliderProps>;

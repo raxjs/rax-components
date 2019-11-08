@@ -29,6 +29,10 @@ Component({
       type: Boolean,
       value: false,
     },
+    direaction: {
+      type: String,
+      value: 'horizontal',
+    },
     index: {
       type: Number,
       value: 0,

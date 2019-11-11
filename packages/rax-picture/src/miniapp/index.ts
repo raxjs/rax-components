@@ -1,3 +1,5 @@
+import fmtEvent from './fmtEvent';
+
 Component({
   props: {
     className: '',
@@ -13,13 +15,16 @@ Component({
   },
   methods: {
     onClick(e) {
-      this.props.onClick(e);
+      const event = fmtEvent(this.properties, e);
+      this.props.onClick(event);
     },
     onLoad(e) {
-      this.props.onLoad(e);
+      const event = fmtEvent(this.properties, e);
+      this.props.onLoad(event);
     },
     onError(e) {
-      this.props.onError(e);
+      const event = fmtEvent(this.properties, e);
+      this.props.onError(event);
     }
   }
 });

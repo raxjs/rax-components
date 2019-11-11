@@ -1,0 +1,10 @@
+<rax-image
+    styleSheet="{{styleSheet}}" 
+    className="{{className}}"
+    source="{{source}}"
+    bindonClick="onClick"
+    bindonError="onError"
+    bindonLoad="onLoad"
+    resizeMode="{{resizeMode}}"
+    lazyLoad="{{lazyload}}"
+/>

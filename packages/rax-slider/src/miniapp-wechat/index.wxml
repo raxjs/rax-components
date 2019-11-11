@@ -1,6 +1,6 @@
 <swiper
   class="{{className}}"
-  style="width:{{width || 0}}rpx;height:{{height || 0}}rpx;{{style}}"
+  style="width:{{width || 0}}rpx;height:{{height || 0}}rpx;{{styleSheet}}"
   autoplay="{{autoPlay}}"
   indicator-dots="{{showsPagination}}"
   current="{{current}}"

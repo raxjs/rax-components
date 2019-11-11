@@ -1,5 +1,5 @@
 <text class="{{className}}"
-    style="{{style}}"
+    style="{{styleSheet}}"
     number-of-lines="{{numberOfLines}}"
     bindtap="onClick">
     <slot />

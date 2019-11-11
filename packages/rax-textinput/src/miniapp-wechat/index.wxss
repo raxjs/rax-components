@@ -8,6 +8,5 @@
     padding: 0;
     padding-left: 24rpx;
     font-size: 24rpx;
-    line-height: 60rpx;
     height: 60rpx;
 }

@@ -1,4 +1,5 @@
 <video
+    id="{{id}}"
     src="{{src}}" 
     class="{{className}}"
     muted="{{muted}}"

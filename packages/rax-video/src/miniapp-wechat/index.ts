@@ -40,6 +40,10 @@ Component({
       type: Function,
       value: noop,
     },
+    id: {
+      type: String,
+      value: ''
+    }
   },
   options: {
     styleIsolation: 'apply-shared',

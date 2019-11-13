@@ -1,8 +1,9 @@
 import fmtEvent from './fmtEvent';
 
+const noop = () => {};
 Component({
   data: {
-    mode: 'aspectFit'
+    styleSheet: ''
   },
   props: {
     className: '',
@@ -10,60 +11,41 @@ Component({
     source: {
       uri: ''
     },
-    resizeMode: 'contain',
+    mode: 'scaleToFill',
     lazyLoad: false,
-    onClick: e => {},
-    onLoad: e => {},
-    onError: e => {}
+    onClick: noop,
+    onLoad: noop,
+    onError: noop
   },
   onInit() {
     this.initImage();
   },
-  didMount: function didMount() {
+  didMount() {
     if (!my.canIUse('component2')) {
       this.initImage();
     }
   },
   methods: {
-    onClick: function onClick(e) {
-      var event = fmtEvent(this.props, e);
+    onClick(e) {
+      const event = fmtEvent(this.props, e);
       this.props.onClick(event);
     },
-    onLoad: function onLoad(e) {
-      var event = fmtEvent(this.props, e);
+    onLoad(e) {
+      const event = fmtEvent(this.props, e);
       this.props.onLoad(event);
     },
-    onError: function onError(e) {
-      var event = fmtEvent(this.props, e);
+    onError(e) {
+      const event = fmtEvent(this.props, e);
       this.props.onError(event);
     },
-    initImage: function initImage(e) {
-      var mode = 'aspectFit';
+    initImage() {
       const { width = null, height = null } = this.props.source || {};
       let style = this.props.style || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';
 
-      switch (this.props.resizeMode) {
-        case 'cover':
-          mode = 'aspectFill';
-          break;
-
-        case 'contain':
-          mode = 'aspectFit';
-          break;
-
-        case 'stretch':
-          mode = 'scaleToFill';
-          break;
-
-        default:
-          mode = 'aspectFit';
-      }
-
       this.setData({
-        mode: mode,
-        style: style
+        styleSheet: style
       });
     }
   }

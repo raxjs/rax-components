@@ -14,10 +14,12 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       width,
       height,
       style,
-      children
+      children,
+      ...rest
     } = props;
     return (
       <slider
+        {...rest}
         ref={ref}
         className="rax-slider"
         autoPlay={autoPlay}

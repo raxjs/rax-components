@@ -3,12 +3,13 @@
   style="width:{{width || 0}}rpx;height:{{height || 0}}rpx;{{style}}"
   autoplay="{{autoPlay}}"
   indicator-dots="{{showsPagination}}"
-  current="{{index}}"
+  current="{{current}}"
   interval="{{autoPlayInterval}}"
   circular="{{loop}}"
+  indicator-color="{{paginationStyle.itemColor}}"
+  indicator-active-color="{{paginationStyle.itemSelectedColor}}"
+  vertical="{{direaction === 'vertical'}}"
   onChange="onChange"
 >
-  <block>
-    <slot />
-  </block>
+  <slot />
 </swiper>

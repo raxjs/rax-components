@@ -1,6 +1,10 @@
-<image style="{{style}}"
-       class="{{className}}"
-       src="{{source.uri}}"
-       bindtap="onClick"
-       mode="{{mode}}"
-       lazyLoad="{{lazyLoad}}" />
+<image 
+  style="{{style}}"
+  class="{{className}}"
+  src="{{source.uri}}"
+  mode="{{mode}}"
+  lazy-load="{{lazyLoad}}" 
+  binderror="onError"
+  bindload="onLoad"
+  bindtap="onTap"
+/>

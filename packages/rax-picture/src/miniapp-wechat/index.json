@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "rax-image":"rax-image/lib/miniapp-wechat/index"
+    }
+}

@@ -1,3 +1,12 @@
-<video src="{{src}}" 
+<video
+    id="{{id}}"
+    src="{{src}}" 
+    class="{{className}}"
+    muted="{{muted}}"
+    controls="{{controls}}"
     autoplay="{{autoPlay}}"
-    style="{{style}}" class="{{className}}"></video>
+    style="{{style}}" 
+    loop="{{loop}}"
+    onTap="onClick"
+    onEnded="onEnded">
+</video>

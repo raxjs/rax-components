@@ -1,0 +1,12 @@
+<video
+    id="{{id}}"
+    src="{{src}}" 
+    class="{{className}}"
+    muted="{{muted}}"
+    controls="{{controls}}"
+    autoplay="{{autoPlay}}"
+    style="{{styleSheet}}" 
+    loop="{{loop}}"
+    bindtap="onClick"
+    bindended="onEnded">
+</video>

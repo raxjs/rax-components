@@ -77,7 +77,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             : scrollerNode.scrollTop;
           const isEndReached =
             scrollContentSize - scrollDistance - scrollerNodeSize <
-            props.onEndReachedThreshold;
+            onEndReachedThreshold;
 
           const isScrollToEnd = scrollDistance > lastScrollDistance;
           const isLoadedMoreContent =
@@ -286,7 +286,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
       scrollerStyle.overflow = 'scroll';
-
+      delete props.onEndReachedThreshold;
       return (
         <View
           {...props}

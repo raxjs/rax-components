@@ -21,16 +21,9 @@ const DEFAULT_SCROLL_CALLBACK_THROTTLE = 50;
 const FULL_WIDTH = 750;
 const STYLE_NODE_ID = 'rax-scrollview-style';
 const baseCls = 'rax-scrollview';
-const defaultProps = {
-  scrollEventThrottle: DEFAULT_SCROLL_CALLBACK_THROTTLE,
-  onEndReachedThreshold: DEFAULT_END_REACHED_THRESHOLD,
-  showsHorizontalScrollIndicator: true,
-  showsVerticalScrollIndicator: true,
-  className: 'rax-scrollview'
-};
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
-  (props = defaultProps, ref) => {
+  (props, ref) => {
     let {
       className,
       style,
@@ -42,7 +35,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onEndReached,
       onEndReachedThreshold,
       onScroll,
-      children,
+      children
     } = props;
     const [loadmoreretry, setLoadmoreretry] = useState(0);
     let lastScrollDistance = 0;
@@ -84,7 +77,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             : scrollerNode.scrollTop;
           const isEndReached =
             scrollContentSize - scrollDistance - scrollerNodeSize <
-            props.onEndReachedThreshold;
+            onEndReachedThreshold;
 
           const isScrollToEnd = scrollDistance > lastScrollDistance;
           const isLoadedMoreContent =
@@ -125,7 +118,12 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           setLoadmoreretry(loadmoreretry + 1);
         }
       },
-      scrollTo(options?: { x?: number; y?: number; animated?: boolean; duration?: number }) {
+      scrollTo(options?: {
+        x?: number;
+        y?: number;
+        animated?: boolean;
+        duration?: number;
+      }) {
         const { x = 0, y = 0, animated = true, duration = 400 } = options || {};
 
         if (isWeex) {
@@ -169,7 +167,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           }
         }
       },
-      scrollIntoView(options: { id: string; animated?: boolean; duration?: number }) {
+      scrollIntoView(options: {
+        id: string;
+        animated?: boolean;
+        duration?: number;
+      }) {
         const { id, animated = true } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
@@ -284,7 +286,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
       scrollerStyle.overflow = 'scroll';
-
+      delete props.onEndReachedThreshold;
       return (
         <View
           {...props}
@@ -303,6 +305,14 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }
   }
 );
+
+ScrollView.defaultProps = {
+  scrollEventThrottle: DEFAULT_SCROLL_CALLBACK_THROTTLE,
+  onEndReachedThreshold: DEFAULT_END_REACHED_THRESHOLD,
+  showsHorizontalScrollIndicator: true,
+  showsVerticalScrollIndicator: true,
+  className: 'rax-scrollview'
+};
 
 function throttle(func: (...args: any[]) => void, wait: number) {
   let ctx: any;

@@ -188,9 +188,6 @@ class Slider extends Component<SliderProps, any> {
 
   private getPages = () => {
     const { children } = this.props;
-    if (this.total <= 1) {
-      return <View className="rax-slider-children">{children}</View>;
-    }
     return Children.map(children, (child, i) => {
       const ref = createRef<HTMLDivElement>();
       const translateStyle = {

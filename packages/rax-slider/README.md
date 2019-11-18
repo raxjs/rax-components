@@ -42,6 +42,7 @@ $ npm install rax-slider --save
 | index            | `number`   | 0          | 否       | 指定默认初始化第几页                   | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
 | autoPlayInterval | `number`   | 3000       | 否       | 自动播放的间隔时间                     | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
 | onChange         | `function` | -          | 否       | `index` 改变时会触发                   | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
+| direaction         | `string` | horizontal   | 否       | Slider 滚动方向 (`horizontal` / `vertical`)            | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> |
 
 ## 方法
 
@@ -52,6 +53,9 @@ $ npm install rax-slider --save
 | **属性** | **类型** | **默认值** | **必填** | **描述**       |
 | -------- | -------- | ---------- | -------- | -------------- |
 | index    | `number` | -          | 是       | 滚动到指定索引的 View |
+
+## Slider.Item
+每一个需要被轮播的子元素需要被包裹在 `Slider.Item` 组件中，在 Weex 和 Web 该组件是 `Fragment` 空节点，在小程序该组件是 `swiper-item`。由于该节点没有实际意义，所以不要在该组件上设置样式和绑定事件。 如果只在 Web 和 Weex 中使用，每一个需要轮播的子项**无需**包裹 `Slider.Item` 组件。
 
 ## 示例
 
@@ -93,39 +97,45 @@ class App extends Component {
           onChange={this.onchange}
           ref={this.inputRef}
         >
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
-          <View style={styles.itemWrap}>
-            <Image
-              style={styles.image}
-              source={{
-                height: 500,
-                width: 375,
-                uri:
-                  '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png',
-              }}
-            />
-          </View>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
+          <Slider.Item>
+            <View style={styles.itemWrap}>
+              <Image
+                style={styles.image}
+                source={{
+                  height: 500,
+                  width: 375,
+                  uri:
+                    '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png',
+                }}
+              />
+            </View>
+          </Slider.Item>
         </Slider>
 
         <View onClick={this.onClick}>Click</View>

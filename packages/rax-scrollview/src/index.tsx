@@ -286,10 +286,13 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
       scrollerStyle.overflow = 'scroll';
-      delete props.onEndReachedThreshold;
+      const webProps = {
+        ...props
+      };
+      delete webProps.onEndReachedThreshold;
       return (
         <View
-          {...props}
+          {...webProps}
           ref={scrollerRef}
           className={cls}
           style={scrollerStyle}

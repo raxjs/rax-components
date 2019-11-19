@@ -34,7 +34,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
       </text>
     );
   } else {
-    const classNames = [prefixCls];
+    const classNames = [prefixCls, className];
     if (lines) {
       classNames.push(`${prefixCls}--overflow-hidden`);
       if (lines === 1) {

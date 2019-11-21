@@ -40,7 +40,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
       if (lines === 1) {
         classNames.push(`${prefixCls}--singleline`);
       } else {
-        classNames.push(`${prefixCls}--mutiline`);
+        classNames.push(`${prefixCls}--multiline`);
       }
     }
     return (

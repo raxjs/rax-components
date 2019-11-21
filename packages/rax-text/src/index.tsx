@@ -34,13 +34,13 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
       </text>
     );
   } else {
-    const classNames = [prefixCls];
+    const classNames = [prefixCls, className];
     if (lines) {
       classNames.push(`${prefixCls}--overflow-hidden`);
       if (lines === 1) {
         classNames.push(`${prefixCls}--singleline`);
       } else {
-        classNames.push(`${prefixCls}--mutiline`);
+        classNames.push(`${prefixCls}--multiline`);
       }
     }
     return (

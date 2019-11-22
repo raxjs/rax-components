@@ -12,7 +12,8 @@
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"
-    onConfirm="onConfirm">
+    onConfirm="onConfirm"
+    enableNative="{{enableNative}}">
 </input>
 <textarea a:else class="rax-textinput {{className}}" 
     style="{{style}}"
@@ -29,4 +30,5 @@
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"
-    onConfirm="onConfirm"/>
+    onConfirm="onConfirm"
+    enableNative="{{enableNative}}"/>

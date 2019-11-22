@@ -23,6 +23,10 @@ Component({
       type: Boolean,
       value: true
     },
+    fixed: {
+      type: Boolean,
+      value: false
+    },
     keyboardType: {
       type: String,
       value: 'text'

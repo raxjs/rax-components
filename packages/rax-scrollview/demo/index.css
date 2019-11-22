@@ -1,12 +1,18 @@
 .root {
-  width: 750rpx;
   padding-top: 20rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .sticky {
   position: sticky;
   position: -webkit-sticky;
   background-color: #cccccc;
+  top: 0;
+  z-index: 1000;
 }
 
 .container {
@@ -17,6 +23,7 @@
   margin-left: 20rpx;
   margin-right: 20rpx;
   margin-bottom: 10rpx;
+  overflow: hidden;
 }
 
 .button {

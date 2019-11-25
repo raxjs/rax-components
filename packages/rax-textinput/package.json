@@ -40,7 +40,6 @@
     "classnames": "^2.2.6",
     "rax-set-native-props": "^1.0.0",
     "rax-text": "^1.0.1",
-    "rax-textinput": "^0.6.5",
     "rax-view": "^1.0.1",
     "universal-env": "^1.0.0"
   },

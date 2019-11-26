@@ -15,4 +15,6 @@ const RefreshControl = (props: RecyclerViewProps) => {
   }
 };
 
+RefreshControl.displayName = 'RefreshControl';
+
 export default RefreshControl;

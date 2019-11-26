@@ -54,4 +54,5 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     );
   }
 );
+Video.displayName = 'Video';
 export default Video;

@@ -101,4 +101,5 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(
   }
 );
 
+Image.displayName = 'Image';
 export default Image;

@@ -183,6 +183,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     }
   }
 );
+Picture.displayName = 'Picture';
 
 function shouldComponentUpdate(preProps: PictureProps) {
   return !!preProps.children;

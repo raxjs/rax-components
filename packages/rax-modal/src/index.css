@@ -6,6 +6,7 @@
   height: 3000rpx;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 100;
+  display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;

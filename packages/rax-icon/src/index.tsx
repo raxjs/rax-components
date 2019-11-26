@@ -4,15 +4,15 @@ import {
   HTMLAttributes,
   ForwardRefExoticComponent,
   forwardRef
-} from "rax";
-import { isWeex, isWeb } from "universal-env";
-import Text from "rax-text";
-import Image from "rax-image";
+} from 'rax';
+import { isWeex, isWeb } from 'universal-env';
+import Text from 'rax-text';
+import Image from 'rax-image';
 
 declare const __weex_require__: any;
 export interface IconProps
   extends RefAttributes<HTMLSpanElement>,
-    HTMLAttributes<HTMLSpanElement> {
+  HTMLAttributes<HTMLSpanElement> {
   source: {
     uri: string;
     codePoint: string;
@@ -22,15 +22,15 @@ export interface IconProps
 
 export interface IconFontProps
   extends RefAttributes<HTMLSpanElement>,
-    HTMLAttributes<HTMLSpanElement> {
+  HTMLAttributes<HTMLSpanElement> {
   name: string;
 }
 
 let domModule = null;
 try {
-  domModule = __weex_require__("@weex-module/dom");
+  domModule = __weex_require__('@weex-module/dom');
 } catch (error) {
-  console.log("require @weex-module/dom error");
+  console.log('require @weex-module/dom error');
 }
 const fontCache = new Map();
 const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
@@ -43,7 +43,7 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
       fontCache.set(fontFamily, uri);
       if (isWeb) {
         if (window.FontFace) {
-          const iconfont = new window.FontFace(fontFamily, "url(" + uri + ")");
+          const iconfont = new window.FontFace(fontFamily, 'url(' + uri + ')');
           document.fonts.add(iconfont);
         } else {
           const iconFontStyles = `@font-face {
@@ -51,13 +51,13 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
                 font-family: ${fontFamily};
               }`;
           // Create stylesheet
-          const style = document.createElement("style");
-          style.type = "text/css";
+          const style = document.createElement('style');
+          style.type = 'text/css';
           style.appendChild(document.createTextNode(iconFontStyles));
           document.head.appendChild(style);
         }
       } else if (isWeex) {
-        domModule.addRule("fontFace", {
+        domModule.addRule('fontFace', {
           fontFamily,
           src: "url('" + uri + "')" // single quotes are required around uri, and double quotes can not work
         });

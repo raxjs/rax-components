@@ -15,15 +15,15 @@ Component({
   },
   methods: {
     onClick(e) {
-      const event = fmtEvent(this.properties, e);
+      const event = fmtEvent(this.props, e);
       this.props.onClick(event);
     },
     onLoad(e) {
-      const event = fmtEvent(this.properties, e);
+      const event = fmtEvent(this.props, e);
       this.props.onLoad(event);
     },
     onError(e) {
-      const event = fmtEvent(this.properties, e);
+      const event = fmtEvent(this.props, e);
       this.props.onError(event);
     }
   }

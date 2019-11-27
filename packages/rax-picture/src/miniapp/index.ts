@@ -9,6 +9,7 @@ Component({
     },
     resizeMode: 'contain',
     lazyload: false,
+    mode: 'scaleToFill',
     onClick: e => {},
     onLoad: e => {},
     onError: e => {}

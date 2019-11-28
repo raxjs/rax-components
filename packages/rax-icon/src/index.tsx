@@ -73,6 +73,7 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
     );
   }
 );
+Icon.displayName = 'Icon';
 
 export function createIconSet(
   glyphMap = {},
@@ -93,6 +94,7 @@ export function createIconSet(
       );
     }
   );
+  IconFont.displayName = 'IconFont';
   return IconFont;
 }
 

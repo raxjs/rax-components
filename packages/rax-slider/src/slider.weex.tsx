@@ -39,4 +39,5 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
     );
   }
 );
+Slider.displayName = 'Slider';
 export default Slider;

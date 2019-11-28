@@ -15,6 +15,7 @@ Component({
     secureTextEntry: false,
     value: '',
     defaultValue: '',
+    enableNative: true,
     onBlur: () => {},
     onFocus: () => {},
     onChange: () => {},

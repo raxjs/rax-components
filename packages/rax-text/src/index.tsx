@@ -54,5 +54,5 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     );
   }
 });
-
+Text.displayName = 'Text';
 export default Text;

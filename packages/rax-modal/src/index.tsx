@@ -103,5 +103,6 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
     </View>
   );
 };
+Modal.displayName = 'Modal';
 
 export default Modal;

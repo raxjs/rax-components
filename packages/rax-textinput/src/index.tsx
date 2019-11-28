@@ -142,4 +142,5 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     }
   }
 );
+TextInput.displayName = 'TextInput';
 export default TextInput;

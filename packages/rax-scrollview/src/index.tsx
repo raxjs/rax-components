@@ -316,6 +316,7 @@ ScrollView.defaultProps = {
   showsVerticalScrollIndicator: true,
   className: 'rax-scrollview'
 };
+ScrollView.displayName = 'ScrollView';
 
 function throttle(func: (...args: any[]) => void, wait: number) {
   let ctx: any;

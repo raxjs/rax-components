@@ -221,6 +221,7 @@ ParallaxProps
     </View>
   );
 });
+BindingParallax.displayName = 'BindingParallax';
 
 const Parallax: ForwardRefExoticComponent<ParallaxProps> = forwardRef((props, ref) => {
   let { bindingScroller, className, style, ...rest } = props;
@@ -235,5 +236,6 @@ const Parallax: ForwardRefExoticComponent<ParallaxProps> = forwardRef((props, re
     <View ref={ref} {...rest} className={className} style={style} />
   );
 });
+Parallax.displayName = 'Parallax';
 
 export default Parallax;

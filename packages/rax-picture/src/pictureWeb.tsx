@@ -83,7 +83,9 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       autoPixelRatio = true
     } = props;
     let { uri } = source;
-    let nativeProps = props;
+    let nativeProps = {
+      ...props
+    };
 
     const [visible, setVisible] = useState(false);
 

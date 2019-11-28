@@ -58,7 +58,7 @@
     "rax-proptypes": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
     "rax-scrollview": "^1.0.4",
-    "rax-view": "1.0.2",
+    "rax-view": "^1.0.2",
     "universal-env": "^1.0.0"
   },
   "peerDependencies": {

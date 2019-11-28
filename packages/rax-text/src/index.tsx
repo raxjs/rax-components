@@ -29,9 +29,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         style={{ ...style, lines }}
         value={children}
         onClick={handleClick}
-      >
-        {children}
-      </text>
+      />
     );
   } else {
     const classNames = [prefixCls, className];

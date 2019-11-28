@@ -1,22 +1,15 @@
 import {
   createElement,
   useState,
-  forwardRef,
-  useRef,
-  useEffect,
-  ForwardRefExoticComponent
+  useCallback
 } from 'rax';
 import { isWeex } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent } from './types';
 
-function Image() {
-
-}
-const Image = (props, ref) => {
+const Image = (props: ImageProps) => {
   const [source, setSource] = useState<Source>(props.source);
-  const isInitialMount = useRef(false);
 
-  const onError = (e: ImageLoadEvent) => {
+  const onError = useCallback((e: ImageLoadEvent) => {
     const { fallbackSource, onError = () => {} } = props;
     if (
       fallbackSource &&
@@ -26,9 +19,9 @@ const Image = (props, ref) => {
       setSource(fallbackSource);
     }
     onError(e);
-  };
+  }, []);
 
-  const onLoad = (e: ImageLoadEvent) => {
+  const onLoad = useCallback((e: ImageLoadEvent) => {
     const { onLoad = () => {} } = props;
     if (typeof e.success !== 'undefined') {
       if (e.success) {
@@ -46,32 +39,24 @@ const Image = (props, ref) => {
         onError(e);
       }
     }
-  };
-
-  useEffect(() => {
-    if (!isInitialMount.current) {
-      isInitialMount.current = true;
-    } else {
-      setSource(props.source);
-    }
-  }, [props.source.uri]);
-
-  const nativeProps = {
-    ...props
-  };
+  }, []);
 
   // Source must a object
   if (source && source.uri) {
-    const { style = {} } = nativeProps;
-    let { width, height, uri } = source;
+    const { style = {} } = props;
+    const { width, height, uri } = source;
+    const nativeProps = {
+      ...props,
+      src: uri,
+      onLoad,
+      onError
+    };
+
     nativeProps.style = {
       width,
       height,
       ...style
     };
-    nativeProps.src = uri;
-    nativeProps.onLoad = onLoad;
-    nativeProps.onError = onError;
 
     delete nativeProps.source;
 
@@ -86,23 +71,14 @@ const Image = (props, ref) => {
       }
     }
 
-    const {
-      className,
-      children,
-      style: nativeStyle,
-      ...otherProps
-    } = nativeProps;
-    const cls = ['rax-image', className].join(' ');
-
-    return isWeex ? (
     // Set default quality to "original" in weex avoid image be optimized unexpect
-      <image ref={ref} className={cls} style={nativeStyle} quality="original" {...otherProps} />
+    return isWeex ? (
+      <image quality="original" {...nativeProps} />
     ) : (
-      <img ref={ref} className={cls} style={nativeStyle} {...otherProps} />
+      <img {...nativeProps} />
     );
   }
   return null;
 };
-
 
 export default Image;

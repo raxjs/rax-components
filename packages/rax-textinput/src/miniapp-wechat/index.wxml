@@ -22,5 +22,6 @@
   bindblur="onBlur"
   bindfocus="onFocus"
   bindinput="onInput"
+  fixed="{{fixed}}"
   bindconfirm="onConfirm"
 />

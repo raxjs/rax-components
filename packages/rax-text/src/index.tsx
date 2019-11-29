@@ -1,9 +1,9 @@
-import { createElement, forwardRef, ForwardRefExoticComponent } from "rax";
-import { isWeex } from "universal-env";
-import { TextProps } from "./types";
-import "./index.css";
+import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
+import { isWeex } from 'universal-env';
+import { TextProps } from './types';
+import './index.css';
 
-const prefixCls = "rax-text";
+const prefixCls = 'rax-text';
 
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
@@ -17,9 +17,15 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   } = props;
   const handleClick = onClick || onPress;
   const lines =
-    typeof numberOfLines === "string"
+    typeof numberOfLines === 'string'
       ? parseInt(numberOfLines, 10)
       : numberOfLines;
+  let textString = '';
+  if (!Array.isArray(children)) {
+    textString = children.toString();
+  } else {
+    textString = children.join('');
+  }
   if (isWeex) {
     return (
       <text
@@ -27,7 +33,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         ref={ref}
         className={className}
         style={{ ...style, lines }}
-        value={Array.isArray(children) ? children.join('') : children}
+        value={textString}
         onClick={handleClick}
       />
     );
@@ -45,11 +51,11 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
       <span
         {...rest}
         ref={ref}
-        className={classNames.join(" ")}
+        className={classNames.join(' ')}
         style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
         onClick={handleClick}
       >
-        {children}
+        {textString}
       </span>
     );
   }

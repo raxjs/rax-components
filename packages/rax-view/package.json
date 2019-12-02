@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "universal-env": "^1.0.0"
+    "universal-env": "^2.0.0"
   },
   "peerDependencies": {
     "rax": "^1.0.0"

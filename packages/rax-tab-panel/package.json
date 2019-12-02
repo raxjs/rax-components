@@ -33,7 +33,7 @@
     "rax-proptypes": "^1.0.0",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1",
-    "universal-env": "^1.0.0",
+    "universal-env": "^2.0.0",
     "universal-transition": "^1.0.0-beta.1",
     "weex-bindingx": "^0.0.49"
   },

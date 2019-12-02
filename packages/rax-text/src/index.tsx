@@ -4,7 +4,10 @@ import { TextProps } from './types';
 import './index.css';
 
 const prefixCls = 'rax-text';
-
+const isObject = (value: any) => {
+  const type = typeof value;
+  return value != null && (type === 'object' || type === 'function');
+};
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
     className,
@@ -20,22 +23,18 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     typeof numberOfLines === 'string'
       ? parseInt(numberOfLines, 10)
       : numberOfLines;
-  let textString = '';
-  if (!Array.isArray(children)) {
-    textString = children.toString();
-  } else {
-    textString = children.join('');
-  }
+  const child = isObject(children) ? children.toString() : children;
   if (isWeex) {
     return (
       <text
         {...rest}
         ref={ref}
         className={className}
-        style={{ ...style, lines }}
-        value={textString}
+        style={{ textOverflow: 'ellipsis', lines, ...style }}
         onClick={handleClick}
-      />
+      >
+        {child}
+      </text>
     );
   } else {
     const classNames = [prefixCls, className];
@@ -55,7 +54,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
         onClick={handleClick}
       >
-        {textString}
+        {child}
       </span>
     );
   }

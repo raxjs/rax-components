@@ -30,7 +30,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         {...rest}
         ref={ref}
         className={className}
-        style={{ textOverflow: 'ellipsis', lines, ...style }}
+        style={{ lines, ...style }}
         onClick={handleClick}
       >
         {child}

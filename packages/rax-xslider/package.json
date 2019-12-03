@@ -29,7 +29,7 @@
     "rax-find-dom-node": "^1.0.0",
     "rax-gesture-view": "^1.0.0",
     "rax-link": "^1.0.1",
-    "rax-proptypes": "^1.0.0",
+    "prop-types": "^15.7.2",
     "rax-recyclerview": "^1.0.0",
     "rax-scrollview": "^1.0.0",
     "rax-text": "^1.0.1",

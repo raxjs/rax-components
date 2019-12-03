@@ -22,7 +22,11 @@
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
     },
-    "renderSlotProps":["renderFooter","renderHeader","renderItem"]
+    "renderSlotProps": [
+      "renderFooter",
+      "renderHeader",
+      "renderItem"
+    ]
   },
   "repository": {
     "type": "git",
@@ -45,7 +49,7 @@
     "rax-scrollview": "^1.0.0",
     "rax-view": "^1.0.1",
     "rax-text": "^1.0.1",
-    "universal-env": "^1.0.0",
+    "universal-env": "^3.0.0",
     "rax-clone-element": "^1.0.0"
   },
   "peerDependencies": {

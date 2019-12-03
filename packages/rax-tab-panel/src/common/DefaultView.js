@@ -12,7 +12,7 @@ import TabPanel from './TabPanel';
 import { clamp, noop, forbidSwipeBack, Event as Emitter, combineStyle } from './Utils';
 import BaseView from './BaseView';
 import PanView from './PanView';
-import PropTypes from 'rax-proptypes';
+import PropTypes from 'prop-types';
 import findDOMNode from 'rax-find-dom-node';
 
 function setStyles(node, styles) {

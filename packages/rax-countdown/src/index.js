@@ -1,5 +1,5 @@
-import {createElement, Component} from 'rax';
-import PropTypes from 'rax-proptypes';
+import { createElement, Component } from 'rax';
+import PropTypes from 'prop-types';
 import Text from 'rax-text';
 import View from 'rax-view';
 import Image from 'rax-image';
@@ -45,7 +45,9 @@ class Index extends Component {
     timeStyle: PropTypes.object, // style for num
     textStyle: PropTypes.object, // style for text
     timeWrapStyle: PropTypes.object,
-    timeBackground: PropTypes.string,
+    timeBackground: PropTypes.shape({
+      uri: PropTypes.string
+    }),
     timeBackgroundStyle: PropTypes.object,
     interval: PropTypes.number
   };

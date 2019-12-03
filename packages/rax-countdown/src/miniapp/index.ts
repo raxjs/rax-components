@@ -34,21 +34,16 @@ Component({
         if (this.counter) clearInterval(this.counter);
       }
 
-      var seconds = parseInt(timeDuration / 1000 % 60),
-        minutes = parseInt(timeDuration / (1000 * 60) % 60),
-        hours = parseInt(timeDuration / (1000 * 60 * 60) % 24),
-        days = parseInt(timeDuration / (1000 * 60 * 60 * 24));
-
-      days = days < 10 ? '0' + days : days;
-      hours = hours < 10 ? '0' + hours : hours;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
+      var seconds = timeDuration / 1000 % 60,
+        minutes = timeDuration / (1000 * 60) % 60,
+        hours = timeDuration / (1000 * 60 * 60) % 24,
+        days = timeDuration / (1000 * 60 * 60 * 24);
 
       const timeType = {
-        'd': days,
-        'h': hours,
-        'm': minutes,
-        's': seconds
+        'd': days < 10 ? '0' + days : days + '',
+        'h': hours < 10 ? '0' + hours : hours + '',
+        'm': minutes < 10 ? '0' + minutes : minutes + '',
+        's': seconds < 10 ? '0' + seconds : seconds + ''
       };
 
       // format time
@@ -121,10 +116,6 @@ Component({
       }
     },
     splitTime(time = '00') {
-      if (typeof time !== 'string') {
-        time = time.toString();
-      }
-
       return time.split('');
     }
   }

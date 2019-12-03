@@ -34,7 +34,7 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
-    "rax-view": "^1.0.1-beta.7",
+    "rax-view": "^1.1.0",
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {

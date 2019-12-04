@@ -4,9 +4,9 @@ import {
   useCallback
 } from 'rax';
 import { isWeex } from 'universal-env';
-import { ImageProps, Source, ImageLoadEvent } from './types';
+import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
-const Image = (props: ImageProps) => {
+function Image(props: ImageProps) {
   const [source, setSource] = useState<Source>(props.source);
 
   const onError = useCallback((e: ImageLoadEvent) => {
@@ -45,7 +45,8 @@ const Image = (props: ImageProps) => {
   if (source && source.uri) {
     const { style = {} } = props;
     const { width, height, uri } = source;
-    const nativeProps = {
+
+    const nativeProps: ImageNativeProps = {
       ...props,
       src: uri,
       onLoad,
@@ -79,7 +80,6 @@ const Image = (props: ImageProps) => {
     );
   }
   return null;
-};
+}
 
-Image.displayName = 'Image';
 export default Image;

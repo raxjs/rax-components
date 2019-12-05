@@ -9,7 +9,7 @@ import {
   TabPanel,
   TabPanelView,
   TabPanelLink
-} from 'rax-tab-panel';
+} from '../src/index.js';
 import transition from 'universal-transition';
 import ScrollView from 'rax-scrollview';
 import { isWeex } from 'universal-env';

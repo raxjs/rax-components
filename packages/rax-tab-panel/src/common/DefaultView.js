@@ -169,8 +169,8 @@ class DefaultView extends BaseView {
 
     if (duration === 0) {
       setStyles(wrap, {
-        transform: `translateX(${end}rem)`,
-        webkitTransform: `translateX(${end}rem)`
+        transform: `translateX(${end}rpx)`,
+        webkitTransform: `translateX(${end}rpx)`
       });
       return callback();
     }
@@ -178,8 +178,8 @@ class DefaultView extends BaseView {
     transition(
       wrap,
       {
-        transform: `translateX(${end}rem)`,
-        webkitTransform: `translateX(${end}rem)`
+        transform: `translateX(${end}rpx)`,
+        webkitTransform: `translateX(${end}rpx)`
       },
       {
         timingFunction: this.props.easing,

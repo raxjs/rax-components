@@ -1,4 +1,3 @@
-/** @jsx createElement */
 import { createElement, Component, render, createRef } from 'rax';
 import findDOMNode from 'rax-find-dom-node';
 import View from 'rax-view';
@@ -10,7 +9,7 @@ import {
   TabPanel,
   TabPanelView,
   TabPanelLink
-} from '../src/index.js';
+} from 'rax-tab-panel';
 import transition from 'universal-transition';
 import ScrollView from 'rax-scrollview';
 import { isWeex } from 'universal-env';
@@ -25,12 +24,12 @@ const DURATION = 250;
 
 const styles = {
   tabBar: {
-    top: 100
+    top: '100rpx'
   },
   page: {},
   pageTxt: {
-    fontSize: 60,
-    lineHeight: 200,
+    fontSize: '60rpx',
+    lineHeight: '200rpx',
     textAlign: 'center'
   }
 };
@@ -87,24 +86,24 @@ let listData = [
 
 const tabStyles = {
   container: {
-    height: 100
+    height: '100rpx'
   },
   scrollContent: {
     flexDirection: 'row',
     position: 'relative'
   },
   item: {
-    width: 187.5,
-    height: 100,
+    width: '187.5rpx',
+    height: '100rpx',
     position: 'relative'
   },
   itemTxt: {
-    fontSize: 50,
-    lineHeight: 100,
+    fontSize: '50rpx',
+    lineHeight: '100rpx',
     textAlign: 'center'
   },
   block: {
-    height: 100,
+    height: '100rpx',
     position: 'absolute',
     left: 0,
     top: 0,
@@ -170,9 +169,9 @@ class Tab extends Component {
     transition(
       block,
       {
-        transform: `translateX(${left}rem)`,
-        webkitTransform: `translateX(${left}rem)`,
-        width: `${itemWidth}rem`
+        transform: `translateX(${left}rpx)`,
+        webkitTransform: `translateX(${left}rpx)`,
+        width: `${itemWidth}rpx`
       },
       {
         timingFunction: 'ease-out',

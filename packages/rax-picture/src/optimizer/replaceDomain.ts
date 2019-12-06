@@ -6,7 +6,8 @@ const filterDomains = [
   'wwc.taobaocdn.com',
   'wwc.alicdn.com',
   'cbu01.alicdn.com',
-  'ossgw.alicdn.com'
+  'ossgw.alicdn.com',
+  'img-ov.alicdn.com'
 ];
 
 /**

@@ -21,11 +21,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
       : numberOfLines;
   let textString = '';
   if (children != null) {
-    if (!Array.isArray(children)) {
-      textString = children.toString();
-    } else {
-      textString = children.join('');
-    }
+    textString = Array.isArray(children) ? children.join('') : children.toString();
   }
   if (isWeex) {
     return (

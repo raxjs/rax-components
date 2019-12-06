@@ -129,4 +129,6 @@ export interface PictureProps
    * default: true
    */
   ignoreGif?: boolean;
+  downgradeScale?: number | string;
+  qualitySuffix?: string;
 }

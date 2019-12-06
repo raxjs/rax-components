@@ -83,23 +83,32 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       compressSuffix = ['Q75', 'Q50'],
       defaultHeight = '750rem',
       lazyload = false,
-      autoPixelRatio = true
+      autoPixelRatio = true,
+      downgradeScale = 0,
+      qualitySuffix = ''
     } = props;
+    const [visible, setVisible] = useState(false);
     let { uri } = source;
     let nativeProps = {
       ...props
     };
-
-    const [visible, setVisible] = useState(false);
-
     let sWidth = style.width, // style width of picture
       sHeight = style.height; // style width of picture
 
+    let scalingWidth = 0;
+    downgradeScale = parseFloat(downgradeScale + ''); 
+    if (downgradeScale > 0 && downgradeScale < 1) {
+      scalingWidth = downgradeScale * parseFloat(sWidth + '');
+      autoScaling = false;
+    }
+    if (qualitySuffix) {
+      autoCompress = false;
+    }
     // according to the original height and width of the picture
     if (!sHeight && sWidth && width && height) {
       const pScaling =
-        width / (typeof sWidth === 'string' ? parseInt(sWidth, 10) : sWidth);
-      sHeight = parseInt(height / pScaling + '', 10);
+        width / parseFloat(sWidth + '');
+      sHeight = parseFloat(height / pScaling + '');
     }
 
     let newStyle = Object.assign(
@@ -113,7 +122,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       if (autoPixelRatio && window.devicePixelRatio > 1) {
         // devicePixelRatio >= 2 for web
         if (typeof sWidth === 'string' && sWidth.indexOf('rem') > -1) {
-          sWidth = parseInt(sWidth.split('rem')[0]) * 2 + 'rem';
+          sWidth = parseFloat(sWidth.split('rem')[0]) * 2 + 'rem';
         }
       }
       uri = optimizer(uri, {
@@ -121,7 +130,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
         ignorePng: true,
         removeScheme: autoRemoveScheme,
         replaceDomain: autoReplaceDomain,
-        scalingWidth: autoScaling ? sWidth : 0,
+        scalingWidth: autoScaling ? sWidth : scalingWidth,
         webp: autoWebp && (isSupportJPG && isSupportPNG),
         compressSuffix: autoCompress
           ? getQualitySuffix(highQuality, compressSuffix)

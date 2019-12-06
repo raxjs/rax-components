@@ -42,14 +42,18 @@ $ npm install rax-tab-panel --save
 [在线 Demo](https://jsplayground.taobao.org/raxplayground/cc5241c1-3e00-4830-b5d0-aa375fb977cb)
 
 ```js
-/** @jsx createElement */
 import { createElement, Component, render, createRef } from 'rax';
 import findDOMNode from 'rax-find-dom-node';
 import View from 'rax-view';
 import Text from 'rax-text';
 import DU from 'driver-universal';
 
-import RaxTabPanel from '../src/index.js';
+import {
+  TabController,
+  TabPanel,
+  TabPanelView,
+  TabPanelLink
+} from 'rax-tab-panel';
 import transition from 'universal-transition';
 import ScrollView from 'rax-scrollview';
 import { isWeex } from 'universal-env';
@@ -58,20 +62,18 @@ function combineStyle(style1, style2) {
   return Object.assign({}, style1, style2);
 }
 
-const { TabController, TabPanel, TabPanelView, TabPanelLink } = RaxTabPanel;
-
 const FULL_WIDTH = 750;
 
 const DURATION = 250;
 
 const styles = {
   tabBar: {
-    top: 100
+    top: '100rpx'
   },
   page: {},
   pageTxt: {
-    fontSize: 60,
-    lineHeight: 200,
+    fontSize: '60rpx',
+    lineHeight: '200rpx',
     textAlign: 'center'
   }
 };
@@ -128,24 +130,24 @@ let listData = [
 
 const tabStyles = {
   container: {
-    height: 100
+    height: '100rpx'
   },
   scrollContent: {
     flexDirection: 'row',
     position: 'relative'
   },
   item: {
-    width: 187.5,
-    height: 100,
+    width: '187.5rpx',
+    height: '100rpx',
     position: 'relative'
   },
   itemTxt: {
-    fontSize: 50,
-    lineHeight: 100,
+    fontSize: '50rpx',
+    lineHeight: '100rpx',
     textAlign: 'center'
   },
   block: {
-    height: 100,
+    height: '100rpx',
     position: 'absolute',
     left: 0,
     top: 0,
@@ -207,13 +209,13 @@ class Tab extends Component {
       type
     });
 
-    // 移动Block
+    // move block
     transition(
       block,
       {
-        transform: `translateX(${left}rem)`,
-        webkitTransform: `translateX(${left}rem)`,
-        width: `${itemWidth}rem`
+        transform: `translateX(${left}rpx)`,
+        webkitTransform: `translateX(${left}rpx)`,
+        width: `${itemWidth}rpx`
       },
       {
         timingFunction: 'ease-out',
@@ -228,9 +230,9 @@ class Tab extends Component {
       }
     );
     let offset =
-      left - FULL_WIDTH / 2 + itemWidth / 2 < 0 ? 0 : left - FULL_WIDTH / 2 + itemWidth / 2;
-
-    // console.log('offset', offset)
+      left - FULL_WIDTH / 2 + itemWidth / 2 < 0
+        ? 0
+        : left - FULL_WIDTH / 2 + itemWidth / 2;
 
     this.scroller.current.scrollTo({ x: offset });
   }
@@ -252,7 +254,10 @@ class Tab extends Component {
         ref={this.scroller}
       >
         <View style={tabStyles.scrollContent}>
-          <View style={combineStyle(tabStyles.block, { width: itemWidths[0] })} ref={this.block} />
+          <View
+            style={combineStyle(tabStyles.block, { width: itemWidths[0] })}
+            ref={this.block}
+          />
           {itemData.map((item, i) => {
             return (
               <View
@@ -287,7 +292,6 @@ class App extends Component {
   };
 
   beforeTabBarSwitch = e => {
-    // console.log(111);
     this.tab.current.switchTo(e.index);
   };
 
@@ -295,7 +299,6 @@ class App extends Component {
 
   beforeTabSwitch = e => {
     if (e.type === 'click') {
-      // console.log(1);
       this.tabBar.current.switchTo(e.index);
     }
   };
@@ -339,5 +342,4 @@ class App extends Component {
   }
 }
 render(<App />, document.body, { driver: DU });
-
 ```

@@ -3,7 +3,10 @@ import {
   useState,
   memo,
   forwardRef,
-  ForwardRefExoticComponent
+  ForwardRefExoticComponent,
+  useRef,
+  MutableRefObject,
+  useImperativeHandle
 } from 'rax';
 import View from 'rax-view';
 import Image from 'rax-image';
@@ -88,6 +91,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       qualitySuffix = ''
     } = props;
     const [visible, setVisible] = useState(false);
+    const domRef = useRef<HTMLImageElement | HTMLDivElement>(null);
+    useImperativeHandle(ref, () => domRef.current);
     let { uri } = source;
     let nativeProps = {
       ...props
@@ -96,7 +101,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       sHeight = style.height; // style width of picture
 
     let scalingWidth = 0;
-    downgradeScale = parseFloat(downgradeScale + ''); 
+    downgradeScale = parseFloat(downgradeScale + '');
     if (downgradeScale > 0 && downgradeScale < 1) {
       scalingWidth = downgradeScale * parseFloat(sWidth + '');
       autoScaling = false;
@@ -164,6 +169,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       return (
         <View
           {...nativeProps}
+          ref={domRef as MutableRefObject<HTMLDivElement>}
           className={className}
           style={{
             ...newStyle,
@@ -185,7 +191,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       return (
         <Image
           {...nativeProps}
-          ref={ref}
+          ref={domRef as MutableRefObject<HTMLImageElement>}
           className={className}
           style={newStyle}
           data-once={true}

@@ -126,8 +126,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     if (uri) {
       if (autoPixelRatio && window.devicePixelRatio > 1) {
         // devicePixelRatio >= 2 for web
-        if (typeof sWidth === 'string' && sWidth.indexOf('rem') > -1) {
-          sWidth = parseFloat(sWidth.split('rem')[0]) * 2 + 'rem';
+        if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
+          sWidth = parseFloat(sWidth.split('rpx')[0]) * 2 + 'rpx';
         }
       }
       uri = optimizer(uri, {

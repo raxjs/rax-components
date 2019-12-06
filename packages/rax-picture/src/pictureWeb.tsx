@@ -62,7 +62,10 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     let {
       children,
       className,
-      style = {},
+      style = {
+        width: 0,
+        height: 0
+      },
       resizeMode,
       width,
       height,

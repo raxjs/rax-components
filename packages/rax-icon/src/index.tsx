@@ -81,14 +81,14 @@ export function createIconSet(
   fontFile: string
 ) {
   const IconFont: ForwardRefExoticComponent<IconFontProps> = forwardRef(
-    ({ name, className, style = {}, ...rest }, ref) => {
+    ({ name, className, codePoint, style = {}, ...rest }, ref) => {
       return (
         <Icon
           {...rest}
           ref={ref}
           className={className}
           style={style}
-          source={{ uri: fontFile, codePoint: glyphMap[name] }}
+          source={{ uri: fontFile, codePoint: codePoint || glyphMap[name] }}
           fontFamily={fontFamily}
         />
       );

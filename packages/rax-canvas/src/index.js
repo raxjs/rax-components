@@ -1,6 +1,6 @@
 import { createElement, Component, createRef } from 'rax';
 import { isWeex } from 'universal-env';
-import { enable, WeexBridge, Image as GImage } from 'gcanvas.js';
+import { enable, WeexBridge, Image as GImage } from '@gcanvas/core';
 
 import findDOMNode from 'rax-find-dom-node';
 

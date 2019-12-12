@@ -8,9 +8,11 @@ const axios = require('axios');
 const semver = require('semver');
 
 function checkVersion(folder, callback) {
-  const ret = []; // { name: 'foo', workDir, latest: 'x.x.x', local: 'x.x.x'}
+  const ret = []; // { name: 'foo', workDir, latest: 'x.x.x', local: 'x.x.x', shouldBuild }
   if (existsSync(folder)) {
     const packages = readdirSync(folder);
+    console.log('[PUBLISH] Start check with following packages:');
+    console.log(packages.map(p => '- ' + p).join('\n'));
 
     let finishCount = 0;
     function finish() {
@@ -25,22 +27,20 @@ function checkVersion(folder, callback) {
       const packageInfoPath = join(folder, packageFolderName, 'package.json');
       if (existsSync(packageInfoPath)) {
         const packageInfo = JSON.parse(readFileSync(packageInfoPath));
-        getVersion(packageInfo.name)
-          .then((version) => {
-            if (version !== packageInfo.version) {
+        checkVersionExists(packageInfo.name, packageInfo.version)
+          .then((exists) => {
+            if (!exists) {
               ret.push({
                 name: packageInfo.name,
                 workDir: join(folder, packageFolderName),
-                latest: version,
-                local: packageInfo.version
+                local: packageInfo.version,
+                // If exists scripts.build, then run it.
+                shouldBuild: !!(packageInfo.scripts && packageInfo.scripts.build),
               });
             }
+
             finish();
-          })
-          .catch((err) => {
-            console.log('Error: getting version of ' + packageInfoPath.name);
-            console.log(err);
-          })
+          });
       }
     }
   } else {
@@ -48,14 +48,35 @@ function checkVersion(folder, callback) {
   }
 }
 
-function getVersion(pkg, tag = 'latest') {
-  return axios(`http://registry.npmjs.com/${pkg}/${tag}`)
-    .then((res) => res.data.version);
+function checkVersionExists(pkg, version) {
+  return axios(`http://registry.npmjs.com/${pkg}/${version}`, { timeout: 2000 })
+    .then((res) => res.status === 200)
+    .catch(err => false);
 }
 
-function publish(pkg, workDir, version, tag = 'latest') {
-  console.log('[PUBLISH]', `${pkg}@${version} tag=${tag}`);
+function publish(pkg, workDir, version, shouldBuild) {
+  console.log('[PUBLISH]', `${pkg}@${version}`);
 
+  // npm install
+  spawnSync('npm', [
+    'install',
+  ], {
+    stdio: 'inherit',
+    cwd: workDir,
+  });
+
+  if (shouldBuild) {
+    // npm run build
+    spawnSync('npm', [
+      'run',
+      'build',
+    ], {
+      stdio: 'inherit',
+      cwd: workDir,
+    });
+  }
+
+  // npm publish
   spawnSync('npm', [
     'publish',
     '--tag=' + tag,
@@ -73,15 +94,19 @@ function isPrerelease(v) {
 }
 
 function checkVersionAndPublish() {
-  checkVersion(join(__dirname, 'packages'), (ret) => {
+  checkVersion(join(__dirname, '../packages'), (ret) => {
+    console.log('');
     if (ret.length === 0) {
       console.log('[PUBLISH] No diff with all packages.');
+    } else {
+      console.log('[PUBLISH] Will publish following packages:');
     }
 
     for (let i = 0; i < ret.length; i++) {
-      const { name, workDir, latest, local } = ret[i];
+      const { name, workDir, local, shouldBuild } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';
-      publish(name, workDir, local, tag);
+      console.log(`--- ${name}@${local} current tag: ${tag} ---`);
+      // publish(name, workDir, local, shouldBuild, tag);
     }
   });
 }

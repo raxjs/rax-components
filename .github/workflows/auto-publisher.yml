@@ -1,6 +1,10 @@
 name: Auto Publisher
 
-on: [push]
+on: 
+  push:
+    branches:
+      - master
+      - 'releases/**'
 
 jobs:
   build-and-publish:

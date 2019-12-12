@@ -106,7 +106,7 @@ function checkVersionAndPublish() {
       const { name, workDir, local, shouldBuild } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';
       console.log(`--- ${name}@${local} current tag: ${tag} ---`);
-      // publish(name, workDir, local, shouldBuild, tag);
+      publish(name, workDir, local, shouldBuild, tag);
     }
   });
 }

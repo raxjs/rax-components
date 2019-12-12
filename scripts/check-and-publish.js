@@ -49,7 +49,7 @@ function checkVersion(folder, callback) {
 }
 
 function checkVersionExists(pkg, version) {
-  return axios(`http://registry.npmjs.com/${pkg}/${version}`, { timeout: 2000 })
+  return axios(`http://registry.npmjs.com/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}`, { timeout: 2000 })
     .then((res) => res.status === 200)
     .catch(err => false);
 }

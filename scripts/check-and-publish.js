@@ -54,7 +54,7 @@ function checkVersionExists(pkg, version) {
     .catch(err => false);
 }
 
-function publish(pkg, workDir, version, shouldBuild) {
+function publish(pkg, workDir, version, shouldBuild, tag) {
   console.log('[PUBLISH]', `${pkg}@${version}`);
 
   // npm install

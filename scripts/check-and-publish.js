@@ -21,8 +21,8 @@ function checkVersion(folder, callback) {
     }
 
     for (let i = 0; i < packages.length; i++) {
-      const package = packages[i];
-      const packageInfoPath = join(folder, package, 'package.json');
+      const packageFolderName = packages[i];
+      const packageInfoPath = join(folder, packageFolderName, 'package.json');
       if (existsSync(packageInfoPath)) {
         const packageInfo = JSON.parse(readFileSync(packageInfoPath));
         getVersion(packageInfo.name)
@@ -30,7 +30,7 @@ function checkVersion(folder, callback) {
             if (version !== packageInfo.version) {
               ret.push({
                 name: packageInfo.name,
-                workDir: join(folder, package),
+                workDir: join(folder, packageFolderName),
                 latest: version,
                 local: packageInfo.version
               });
@@ -74,6 +74,10 @@ function isPrerelease(v) {
 
 function checkVersionAndPublish() {
   checkVersion(join(__dirname, 'packages'), (ret) => {
+    if (ret.length === 0) {
+      console.log('[PUBLISH] No diff with all packages.');
+    }
+
     for (let i = 0; i < ret.length; i++) {
       const { name, workDir, latest, local } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';

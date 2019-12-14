@@ -1,37 +1,8 @@
 import barCodes from '../barcodes';
+import { getStyleNumber, getStyleProps } from '../utils';
 
-function trimString(str: string) {
-  return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-}
+const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
 
-function getStyleProps(key: string, styles: string) {
-  if (styles === '') {
-    return '';
-  }
-  const props = styles.split(';');
-  let value;
-  props.forEach(prop => {
-    const [propKey, propValue] = prop.split(':');
-    if (trimString(propKey) === key) {
-      value = propValue;
-    }
-  });
-  return value;
-}
-
-function getStyleNumber(styleProp: string) {
-  let rpxEndIndex = styleProp.indexOf('rpx');
-  if (rpxEndIndex > 0) {
-    return styleProp.substring(0, rpxEndIndex);
-  } else {
-    let pxEndIndex = styleProp.indexOf('px');
-    if (pxEndIndex > 0) {
-      return styleProp.substring(0, pxEndIndex);
-    } else {
-      return styleProp;
-    }
-  }
-}
 Component({
   onInit() {
     this.randomId = Math.random().toString().substr(2);
@@ -80,8 +51,8 @@ Component({
       }
       let styleHeight = getStyleProps('height', style);
       let styleWidth = getStyleProps('width', style);
-      this.width = width || getStyleNumber(styleWidth) || 300;
-      this.height = heigth || getStyleNumber(styleHeight) || 300;
+      this.width = width || getStyleNumber(styleWidth, SCREEN_WIDTH) || 300;
+      this.height = heigth || getStyleNumber(styleHeight, SCREEN_WIDTH) || 300;
       this.drawCode(type, data, options);
     }
   }

@@ -8,31 +8,38 @@ enum ErrorCorrectLevelMap {
   H = 2
 }
 
-const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
+const SCREEN_WIDTH = wx.getSystemInfoSync().screenWidth;
 
 Component({
-  onInit() {
-    this.randomId = Math.random()
-      .toString()
-      .substr(2);
-    this.setData({ randomId: this.randomId });
-  },
   data: {
-    randomId: 'qrid'
+    randomId: Math.random().toString().substr(2)
   },
-  props: {
-    className: '',
-    style: '',
-    data: ''
+  properties: {
+    className: {
+      type: String,
+      value: ''
+    },
+    styleSheet: {
+      type: String,
+      value: ''
+    },
+    data: {
+      type: String,
+      value: ''
+    },
+    options: {
+      type: Object,
+      value: {}
+    }
   },
-  didMount() {
-    const { data = '', options = {}, width, height, style = '' } = this.props;
+  attached() {
+    const { data = '', options = {}, width, height, styleSheet = {} } = this.properties;
     if (data === '') {
       return;
     }
-    this.width = width || getStyleNumber(getStyleProps('width', style), SCREEN_WIDTH) || 300;
+    this.width = width || getStyleNumber(getStyleProps('width', styleSheet), SCREEN_WIDTH) || 300;
     this.height =
-    height || getStyleNumber(getStyleProps('height', style), SCREEN_WIDTH) || 300;
+    height || getStyleNumber(getStyleProps('height', styleSheet), SCREEN_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {
@@ -45,7 +52,7 @@ Component({
       const cells = codeData.modules;
       const tileWidth = this.width / cells.length;
       const tileHeight = this.height / cells.length;
-      let ctx = my.createCanvasContext(this.randomId || 'qrid');
+      let ctx = wx.createCanvasContext(this.data.randomId, this);
       for (let r = 0; r < cells.length; ++r) {
         const row = cells[r];
         for (let c = 0; c < row.length; ++c) {

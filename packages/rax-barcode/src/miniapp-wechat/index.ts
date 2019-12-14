@@ -33,32 +33,43 @@ function getStyleNumber(styleProp: string) {
   }
 }
 Component({
-  onInit() {
-    this.randomId = Math.random().toString().substr(2);
-    this.setData({ randomId: this.randomId });
-  },
   data: {
-    randomId: 'qrid'
+    randomId: Math.random().toString().substr(2)
   },
-  props: {
-    className: '',
-    style: '',
-    data: '',
-    type: 'CODE128',
-    options: {}
+  properties: {
+    className: {
+      type: String,
+      value: ''
+    },
+    styleSheet: {
+      type: String,
+      value: ''
+    },
+    data: {
+      type: String,
+      value: ''
+    },
+    type: {
+      type: String,
+      value: 'CODE128'
+    },
+    options: {
+      type: Object,
+      value: {}
+    }
   },
-  didMount() {
-    this.startChange();
-  },
-  didUpdate() {
-    this.startChange();
+  observers: {
+    'data': function() {
+      // @ts-ignore
+      this.startChange();
+    }
   },
   methods: {
     drawCode(type, data, options) {
       const Encoder = barCodes[type];
       const barCodeData = new Encoder(data, options);
       const { fillColor = '#000000', barWidth = 2 } = options;
-      let ctx = my.createCanvasContext(this.randomId || 'qrid');
+      let ctx = wx.createCanvasContext(this.data.randomId, this);
       const binary = barCodeData.encode().data;
       ctx.clearRect(0, 0, this.width, this.height);
       ctx.setFillStyle(fillColor);
@@ -74,12 +85,12 @@ Component({
       ctx.draw();
     },
     startChange() {
-      const { type, data, options, width, heigth, style } = this.props;
+      const { type, data, options, width, heigth, styleSheet } = this.properties;
       if (data === '') {
         return;
       }
-      let styleHeight = getStyleProps('height', style);
-      let styleWidth = getStyleProps('width', style);
+      let styleHeight = getStyleProps('height', styleSheet);
+      let styleWidth = getStyleProps('width', styleSheet);
       this.width = width || getStyleNumber(styleWidth) || 300;
       this.height = heigth || getStyleNumber(styleHeight) || 300;
       this.drawCode(type, data, options);

@@ -33,13 +33,12 @@ Component({
     }
   },
   attached() {
-    const { data = '', options = {}, width, height, styleSheet = {} } = this.properties;
+    const { data = '', options = {}, styleSheet = '' } = this.properties;
     if (data === '') {
       return;
     }
-    this.width = width || getStyleNumber(getStyleProps('width', styleSheet), SCREEN_WIDTH) || 300;
-    this.height =
-    height || getStyleNumber(getStyleProps('height', styleSheet), SCREEN_WIDTH) || 300;
+    this.width = getStyleNumber(getStyleProps('width', styleSheet), SCREEN_WIDTH) || 300;
+    this.height = getStyleNumber(getStyleProps('height', styleSheet), SCREEN_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {

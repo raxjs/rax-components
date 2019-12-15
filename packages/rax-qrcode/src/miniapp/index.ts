@@ -26,13 +26,12 @@ Component({
     data: ''
   },
   didMount() {
-    const { data = '', options = {}, width, height, style = '' } = this.props;
+    const { data = '', options = {}, style = '' } = this.props;
     if (data === '') {
       return;
     }
-    this.width = width || getStyleNumber(getStyleProps('width', style), SCREEN_WIDTH) || 300;
-    this.height =
-    height || getStyleNumber(getStyleProps('height', style), SCREEN_WIDTH) || 300;
+    this.width = getStyleNumber(getStyleProps('width', style), SCREEN_WIDTH) || 300;
+    this.height = getStyleNumber(getStyleProps('height', style), SCREEN_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {

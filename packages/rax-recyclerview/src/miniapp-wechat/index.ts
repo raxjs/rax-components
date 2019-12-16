@@ -1,7 +1,5 @@
 import fmtEvent from "./fmtEvent";
 
-const noop = () => {};
-
 Component({
   properties: {
     className: {

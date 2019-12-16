@@ -1,5 +1,3 @@
-const noop = () => {};
-
 const UP_CASE_REG = /\B([A-Z])/g;
 
 const triggleVisible = (instance, visible) => {
@@ -47,7 +45,7 @@ Component({
     },
     maskCanBeClick: {
       type: Boolean,
-      value: false
+      value: true
     },
     delay: {
       type: Number,
@@ -58,25 +56,32 @@ Component({
       value: 300
     }
   },
+  options: {
+    styleIsolation: 'apply-shared'
+  },
   attached() {
     const { delay, visible, maskStyle, contentStyle } = this.properties;
-    if (delay) {
-      setTimeout(() => {
-        triggleVisible(this, visible);
-      }, delay);
-    } else {
-      triggleVisible(this, visible);
+    if (visible) {
+      if (delay) {
+        setTimeout(() => {
+          triggleVisible(this, visible, true);
+        }, delay);
+      } else {
+        triggleVisible(this, visible, true);
+      }
+      loadStyle(this, maskStyle, contentStyle);
     }
-    loadStyle(this, maskStyle, contentStyle);
   },
   observers: {
     visible(visible) {
-      if (this.properties.delay) {
-        setTimeout(() => {
+      if (this.properties.visible !== visible) {
+        if (this.properties.delay) {
+          setTimeout(() => {
+            triggleVisible(this, visible);
+          }, this.properties.delay);
+        } else {
           triggleVisible(this, visible);
-        }, this.properties.delay);
-      } else {
-        triggleVisible(this, visible);
+        }
       }
     },
     'maskStyle, contentStyle': function(maskStyle, contentStyle) {

@@ -1,6 +1,6 @@
 <rax-scrollview 
     className="{{className}}" 
-    style="{{style}}" 
+    styleSheet="{{styleSheet}}" 
     endReachedThreshold="{{endReachedThreshold}}"
     onEndReached="onEndReached"
     onScroll="onScroll">

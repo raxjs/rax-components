@@ -1,5 +1,5 @@
 import { createElement, Component } from 'rax';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import View from 'rax-view';
 import * as PanResponder from 'universal-panresponder';
 import isValidSwipe from './isValidSwipe';

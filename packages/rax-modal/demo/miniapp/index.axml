@@ -1,7 +1,0 @@
-<view>
-  <button onTap="showModal">open modal</button>
-  <rax-modal modalOpened="{{modalOpened}}" ref="modalRef">
-    <view style="width: 300rpx; height: 600rpx;"
-     >Modal Content Here</view>
-  </rax-modal>
-</view>

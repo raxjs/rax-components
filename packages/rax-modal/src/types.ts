@@ -1,7 +1,8 @@
-import { RefAttributes, HTMLAttributes, CSSProperties } from 'rax';
+import { RefAttributes, HTMLAttributes, CSSProperties, ComponentType } from 'rax';
 
 export interface ModalProps extends RefAttributes<HTMLDivElement>, HTMLAttributes<HTMLDivElement> {
   visible: boolean;
+  children?: Array<ComponentType>;
   maskCanBeClick?: boolean;
   maskStyle?: CSSProperties;
   contentStyle?: CSSProperties;

@@ -18,6 +18,8 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "axios": "^0.19.0",
+    "semver": "^6.3.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
@@ -58,6 +60,7 @@
     "lint": "npm run lint:nofix -- --fix",
     "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
     "test": "rax-scripts test",
+    "check-and-publish": "node ./scripts/check-and-publish",
     "clean:compile": "rm -rf ./packages/*/lib"
   },
   "config": {

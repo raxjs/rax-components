@@ -1,6 +1,6 @@
 {
   "name": "rax-barcode",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "barcode component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -14,7 +14,8 @@
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   },
   "files": [
     "dist",
@@ -44,20 +45,21 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "rax-view": "^1.0.1",
     "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
-    "eslint": "^5.16.0",
-    "driver-universal": "^1.0.0",
     "driver-dom": "^1.0.0",
+    "driver-universal": "^1.0.0",
     "driver-weex": "^1.0.0",
+    "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "miniprogram-api-typings": "^2.9.3",
     "rax": "^1.0.0",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
+    "rax-test-renderer": "^1.0.0",
+    "rax-view": "^1.0.1"
   }
 }

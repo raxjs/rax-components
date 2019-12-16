@@ -1,8 +1,7 @@
 {
   "name": "rax-modal",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "rax-modal",
-  "author": "hongxun.lhx@alibaba-inc.com",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -25,10 +24,9 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
-    "omit.js": "^1.0.2",
-    "rax-text": "^1.1.0-0",
-    "rax-view": "^1.1.0-0",
-    "universal-env": "^0.6.6",
+    "rax-text": "^1.1.0",
+    "rax-view": "^1.1.0",
+    "universal-env": "^3.0.0",
     "universal-transition": "^1.0.0"
   },
   "peerDependencies": {
@@ -39,7 +37,7 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
-    "csstype": "^2.6.6",
+    "csstype": "^2.6.7",
     "driver-universal": "^1.0.2",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
@@ -47,13 +45,14 @@
     "lerna": "^3.16.4",
     "lint-staged": "^9.2.5",
     "rax": "^1.0.4",
-    "rax-plugin-component": "^0.1.9",
+    "rax-plugin-component": "^0.1.25",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.6.2"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   },
   "husky": {
     "hooks": {

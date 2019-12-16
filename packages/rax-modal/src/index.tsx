@@ -1,15 +1,13 @@
-import {createElement, useState, useRef, useEffect, FunctionComponent} from 'rax';
+import { createElement, useState, useRef, useEffect } from 'rax';
 import View from 'rax-view';
-import { VisibilityProperty } from 'csstype';
 import transition from 'universal-transition';
-import {isWeb} from 'universal-env';
-import omit from 'omit.js';
+import { isWeb, isWeex } from 'universal-env';
 import { ModalProps } from './types';
 import './index.css';
 
 declare function __weex_require__(s: string): any;
 
-const Modal: FunctionComponent<ModalProps> = (props) => {
+function Modal(props: ModalProps) {
   const {
     visible,
     maskCanBeClick = true,
@@ -33,17 +31,16 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const [visibility, setVisibility] = useState<VisibilityProperty>(visible ? 'visible' : 'hidden');
-  const [height, setHeight] = useState(3000);
+  const [visibility, setVisibility] = useState(visible ? 'visible' : 'hidden');
+  const [height, setHeight] = useState(null);
 
-  // compute window height
-  if (isWeb) {
-    setHeight(window.innerHeight / window.innerWidth * 750);
-  } else {
+  if (isWeex) {
     const dom = __weex_require__('@weex-module/dom');
     dom.getComponentRect('viewport', (e) => {
       setHeight(e.size.height);
     });
+  } else if (isWeb) {
+    setHeight('100vh');
   }
 
   const animate = (callback: Function) => {
@@ -82,7 +79,12 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
   return (
     <View
       className="rax-modal-mask"
-      style={{visibility, height, ...omit(maskStyle, ['visibility', 'height'])}}
+      style={{
+        ...maskStyle,
+        // @ts-ignore
+        visibility,
+        height: height || 0
+      }}
       onClick={(e) => {
         if (maskCanBeClick) {
           onHide && onHide();

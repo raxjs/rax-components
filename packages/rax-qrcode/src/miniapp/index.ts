@@ -11,6 +11,7 @@ enum ErrorCorrectLevelMap {
 const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
 
 Component({
+  // @ts-ignore
   onInit() {
     this.randomId = Math.random()
       .toString()

@@ -1,4 +1,4 @@
-let isWeb = typeof window === 'object';
+import { isWeb } from 'universal-env';
 
 let width;
 if (isWeb) {

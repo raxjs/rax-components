@@ -1,17 +1,3 @@
-const requestAnimationFrame =
-  typeof window.requestAnimationFrame === 'undefined'
-    ? typeof webkitRequestAnimationFrame === 'undefined'
-      ? (job: (...args: any[]) => void) => setTimeout(job, 16)
-      : webkitRequestAnimationFrame
-    : window.requestAnimationFrame;
-
-const cancelAnimationFrame =
-  typeof window.cancelAnimationFrame === 'undefined'
-    ? typeof webkitCancelAnimationFrame === 'undefined'
-      ? clearTimeout
-      : webkitCancelAnimationFrame
-    : window.cancelAnimationFrame;
-
 const TYPES = {
   START: 'start',
   END: 'end',
@@ -53,11 +39,29 @@ class Timer {
     now?: number;
   };
   private _raf: number | NodeJS.Timeout;
+  private _requestAnimationFrame: Function;
+  private _cancelAnimationFrame: Function;
+
   public constructor(config) {
     this.config = {
       ...this.config,
       ...config
     };
+
+    const requestAnimationFrame = typeof window.requestAnimationFrame === 'undefined'
+      ? typeof webkitRequestAnimationFrame === 'undefined'
+        ? (job: (...args: any[]) => void) => setTimeout(job, 16)
+        : webkitRequestAnimationFrame
+      : window.requestAnimationFrame;
+
+    const cancelAnimationFrame = typeof window.cancelAnimationFrame === 'undefined'
+      ? typeof webkitCancelAnimationFrame === 'undefined'
+        ? clearTimeout
+        : webkitCancelAnimationFrame
+      : window.cancelAnimationFrame;
+
+    this._requestAnimationFrame = requestAnimationFrame ? requestAnimationFrame.bind(window) : noop;
+    this._cancelAnimationFrame = cancelAnimationFrame ? cancelAnimationFrame.bind(window) : noop;
   }
 
   public run() {
@@ -81,8 +85,9 @@ class Timer {
 
   private _run() {
     let { onRun, onStop } = this.config;
-    this._raf && cancelAnimationFrame(this._raf as number);
-    this._raf = requestAnimationFrame(() => {
+    // this.fn();
+    this._raf && this._cancelAnimationFrame(this._raf as number);
+    this._raf = this._requestAnimationFrame(() => {
       this.now = Date.now();
       this.t = this.now - this.start;
       this.duration =
@@ -142,7 +147,7 @@ class Timer {
       t: this.t,
       type: TYPES.END
     });
-    cancelAnimationFrame(this._raf as number);
+    this._cancelAnimationFrame(this._raf as number);
   }
 }
 

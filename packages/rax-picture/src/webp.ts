@@ -5,13 +5,7 @@
  * animation : example gif
  */
 
-import { isWeex } from 'universal-env';
-
-
-let isIOS: boolean;
-if (!isWeex && !window.__isSSR) {
-  isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-}
+import { isWeex, isNode } from 'universal-env';
 
 function isSupportTest(callback: (isSupport: boolean) => void, type: string) {
   if ('function' !== typeof callback) return;
@@ -37,7 +31,12 @@ function setLocalStorage(isSupport: boolean, type: string) {
 
 export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
   if ('function' === typeof callback) {
-    if (isWeex || window.__isSSR) {
+    let isIOS: boolean;
+    if (!isWeex && !isNode && !window.__isSSR) {
+      isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    }
+
+    if (isWeex || isNode || window.__isSSR) {
       callback(true);
     } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
       callback(false);

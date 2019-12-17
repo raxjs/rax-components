@@ -1,3 +1,5 @@
+import { isNode } from 'universal-env';
+
 import isCdnImage from './isCdnImage';
 import isOSSImage from './isOSSImage';
 import removeUrlScheme from './removeScheme';
@@ -52,7 +54,7 @@ export default function(uri, config) {
 
       let scalingSuffix = suffixRet[1] || '';
       if (
-        scalingWidth && notGif
+        !isNode && scalingWidth && notGif
       ) {
         scalingSuffix = scaling(scalingWidth, isOSSImg) || scalingSuffix;
       }

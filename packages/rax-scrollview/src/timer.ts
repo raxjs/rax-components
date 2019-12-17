@@ -60,7 +60,6 @@ class Timer {
     now?: number;
   };
   private _raf: number | NodeJS.Timeout;
-
   public constructor(config) {
     this.config = {
       ...this.config,
@@ -89,7 +88,6 @@ class Timer {
 
   private _run() {
     let { onRun, onStop } = this.config;
-
     this._raf && cancelAnimationFrame(this._raf as number);
     this._raf = requestAnimationFrame(() => {
       this.now = Date.now();

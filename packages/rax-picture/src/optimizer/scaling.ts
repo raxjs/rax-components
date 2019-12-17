@@ -61,7 +61,6 @@ function find(c: number, arr: number[]) {
 export default function(sWidth: string | number, isOSSImg: any): string {
   let xWidth = 0;
   let scaling = 1;
-
   if (typeof sWidth === 'string') {
     if (sWidth.indexOf('rem') > -1) {
       // isRem

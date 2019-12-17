@@ -1,5 +1,11 @@
 let isWeb = typeof window === 'object';
 
+let width;
+if (isWeb) {
+  const screenWidth = window.screen.width;
+  width = window.__isSSR ? screenWidth : document.documentElement.clientWidth / 750 * screenWidth;
+}
+
 const scalingWidth = [
   // use width
   110,
@@ -55,11 +61,6 @@ function find(c: number, arr: number[]) {
 export default function(sWidth: string | number, isOSSImg: any): string {
   let xWidth = 0;
   let scaling = 1;
-
-  let width = window.screen.width && window.screen.width;
-  if (isWeb && !window.__isSSR) {
-    width = document.documentElement.clientWidth / 750 * width;
-  }
 
   if (typeof sWidth === 'string') {
     if (sWidth.indexOf('rem') > -1) {

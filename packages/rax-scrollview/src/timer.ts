@@ -1,18 +1,23 @@
-const requestAnimationFrame = 
-  typeof window === 'undefined' ? null
-    : typeof window.requestAnimationFrame === 'undefined'
-    ? typeof webkitRequestAnimationFrame === 'undefined'
-      ? (job: (...args: any[]) => void) => setTimeout(job, 16)
-      : webkitRequestAnimationFrame
-    : window.requestAnimationFrame;
+import { isWeb } from 'universal-env';
 
-const cancelAnimationFrame = 
-  typeof window === 'undefined' ? null
-    : typeof window.cancelAnimationFrame === 'undefined'
-    ? typeof webkitCancelAnimationFrame === 'undefined'
-      ? clearTimeout
-      : webkitCancelAnimationFrame
-    : window.cancelAnimationFrame;
+let requestAnimationFrame;
+let cancelAnimationFrame;
+
+if (isWeb && typeof window.requestAnimationFrame !== 'undefined') {
+  requestAnimationFrame = window.requestAnimationFrame;
+} else if (typeof webkitRequestAnimationFrame !== 'undefined') {
+  requestAnimationFrame = webkitRequestAnimationFrame;
+} else {
+  requestAnimationFrame = (job: (...args: any[]) => void) => setTimeout(job, 16);
+}
+
+if (isWeb && typeof window.cancelAnimationFrame !== 'undefined') {
+  cancelAnimationFrame = window.cancelAnimationFrame;
+} else if (typeof webkitCancelAnimationFrame !== 'undefined') {
+  cancelAnimationFrame = webkitCancelAnimationFrame;
+} else {
+  cancelAnimationFrame = clearTimeout;
+}
 
 const TYPES = {
   START: 'start',
@@ -84,11 +89,6 @@ class Timer {
 
   private _run() {
     let { onRun, onStop } = this.config;
-    // this.fn();
-
-    if (!requestAnimationFrame || !cancelAnimationFrame) {
-      return;
-    }
 
     this._raf && cancelAnimationFrame(this._raf as number);
     this._raf = requestAnimationFrame(() => {
@@ -151,7 +151,7 @@ class Timer {
       t: this.t,
       type: TYPES.END
     });
-    cancelAnimationFrame && cancelAnimationFrame(this._raf as number);
+    cancelAnimationFrame(this._raf as number);
   }
 }
 

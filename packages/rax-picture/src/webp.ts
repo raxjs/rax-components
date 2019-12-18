@@ -36,7 +36,7 @@ function setLocalStorage(isSupport: boolean, type: string) {
 
 export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
   if ('function' === typeof callback) {
-    if (isWeex || isNode || window.navigator.userAgent.match(/^PHA/i)) {
+    if (isWeex || isNode || window.navigator.userAgent.match(/PHA/)) {
       callback(true);
     } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
       callback(false);

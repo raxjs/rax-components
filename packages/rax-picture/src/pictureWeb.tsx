@@ -134,7 +134,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     if (
       window.__isHydrating ||
       props.isHydrating ||
-      window.navigator.userAgent.match(/^PHA/i)
+      window.navigator.userAgent.match(/PHA/)
     ) {
       lazyload = false;
     }

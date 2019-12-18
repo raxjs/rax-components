@@ -32,8 +32,5 @@ export interface ScrollViewProps extends RefAttributes<ScrollViewRefObject>, HTM
 }
 
 declare global {
-  interface Window {
-    __isSSR?: boolean;
-  }
   function __weex_require__(weexModuleName: string): any
 }

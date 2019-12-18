@@ -274,8 +274,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     } else {
       if (
         !showsScrollIndicator &&
-        !window.__isSSR &&
         typeof document !== 'undefined' &&
+        typeof document.createElement === 'function' &&
+        typeof document.getElementById === 'function' &&
         !document.getElementById(STYLE_NODE_ID)
       ) {
         let styleNode = document.createElement('style');

@@ -38,9 +38,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       children
     } = props;
     const [loadmoreretry, setLoadmoreretry] = useState(0);
-    let lastScrollDistance = 0;
-    let lastScrollContentSize = 0;
-    let scrollerNodeSize = 0;
+    const lastScrollDistance = useRef(0);
+    const lastScrollContentSize = useRef(0);
+    const scrollerNodeSize = useRef(0);
     const scrollerRef = useRef<HTMLDivElement>(null);
     const contentContainerRef = useRef<HTMLDivElement>(null);
     const handleScroll = e => {
@@ -65,7 +65,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
         if (props.onEndReached) {
           const scrollerNode = scrollerRef.current;
-          scrollerNodeSize = props.horizontal
+          scrollerNodeSize.current = props.horizontal
             ? scrollerNode.offsetWidth
             : scrollerNode.offsetHeight;
           // NOTE：in iOS7/8 offsetHeight/Width is is inaccurate （ use scrollHeight/Width ）
@@ -76,19 +76,19 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             ? scrollerNode.scrollLeft
             : scrollerNode.scrollTop;
           const isEndReached =
-            scrollContentSize - scrollDistance - scrollerNodeSize <
+            scrollContentSize - scrollDistance - scrollerNodeSize.current <
             onEndReachedThreshold;
 
-          const isScrollToEnd = scrollDistance > lastScrollDistance;
+          const isScrollToEnd = scrollDistance > lastScrollDistance.current;
           const isLoadedMoreContent =
-            scrollContentSize != lastScrollContentSize;
+            scrollContentSize != lastScrollContentSize.current;
 
           if (isEndReached && isScrollToEnd && isLoadedMoreContent) {
-            lastScrollContentSize = scrollContentSize;
+            lastScrollContentSize.current = scrollContentSize;
             props.onEndReached(e);
           }
 
-          lastScrollDistance = scrollDistance;
+          lastScrollDistance.current = scrollDistance;
         }
       }
       if (isWeex) {
@@ -112,8 +112,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       _nativeNode: scrollerRef.current,
       resetScroll() {
         if (isWeb) {
-          lastScrollContentSize = 0;
-          lastScrollDistance = 0;
+          lastScrollContentSize.current = 0;
+          lastScrollDistance.current = 0;
         } else {
           setLoadmoreretry(loadmoreretry + 1);
         }

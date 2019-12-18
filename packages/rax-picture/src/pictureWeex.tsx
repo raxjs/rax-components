@@ -66,7 +66,7 @@ function shouldComponentUpdate(preProps, nextProps) {
     return true;
   }
 
-  return preProps.source.uri !== nextProps.source.uri;
+  return preProps.source.uri === nextProps.source.uri;
 }
 
 export default memo(Picture, shouldComponentUpdate);

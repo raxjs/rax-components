@@ -1,5 +1,7 @@
 import fmtEvent from './fmtEvent';
 
+function noop() {}
+
 Component({
   data: {},
   props: {
@@ -16,30 +18,40 @@ Component({
     value: '',
     defaultValue: '',
     enableNative: true,
-    onBlur: () => {},
-    onFocus: () => {},
-    onChange: () => {},
-    onChangeText: () => {},
-    onInput: () => {}
+    confirmType: '',
+    onBlur: noop,
+    onFocus: noop,
+    onChange: noop,
+    onChangeText: noop,
+    onInput: noop,
+    onConfirm: noop
   },
   didMount() {},
   methods: {
+    trigger(type, value) {
+      this.props[type] !== noop && this.props[type](value);
+    },
     onBlur(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onBlur(event);
+      this.trigger('onBlur', event);
+      this.trigger('onChange', event);
+      this.trigger('onChangeText', event.detail.value);
     },
     onFocus(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onFocus(event);
+      this.trigger('onFocus', event);
+      this.trigger('onChange', event);
+      this.trigger('onChangeText', event.detail.value);
     },
     onConfirm(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onChange(event);
-      this.props.onChangeText(event.detail.value);
+      this.trigger('onConfirm', event);
     },
     onInput(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onInput(event);
+      this.trigger('onInput', event);
+      this.trigger('onChange', event);
+      this.trigger('onChangeText', event.detail.value);
     }
   }
 });

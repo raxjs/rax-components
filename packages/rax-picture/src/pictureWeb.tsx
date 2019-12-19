@@ -133,9 +133,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     let url = placeholder;
     if (
       window.__isHydrating ||
-      window.__isSSR ||
       props.isHydrating ||
-      props.isSSR
+      window.navigator.userAgent.match(/PHA/)
     ) {
       lazyload = false;
     }

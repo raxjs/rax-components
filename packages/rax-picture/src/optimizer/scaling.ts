@@ -3,7 +3,7 @@ import { isWeb } from 'universal-env';
 let width;
 if (isWeb) {
   const screenWidth = window.screen.width;
-  width = window.__isSSR ? screenWidth : document.documentElement.clientWidth / 750 * screenWidth;
+  width = screenWidth ? screenWidth : document.documentElement.clientWidth / 750 * screenWidth;
 }
 
 const scalingWidth = [

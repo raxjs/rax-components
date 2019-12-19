@@ -32,12 +32,12 @@ Component({
       const event = fmtEvent(this.props, e);
       this.props.onChange(event);
     },
-  },
-  slideTo(index) {
-    if (index !== undefined) {
-      this.setData({
-        current: index,
-      });
-    }
+    slideTo(index) {
+      if (index !== undefined) {
+        this.setData({
+          current: index,
+        });
+      }
+    },
   },
 });

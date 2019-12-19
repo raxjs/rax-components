@@ -59,12 +59,12 @@ Component({
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onChange', event);
     },
-  },
-  slideTo(index) {
-    if (index !== undefined) {
-      this.setData({
-        current: index,
-      });
-    }
+    slideTo(index) {
+      if (index !== undefined) {
+        this.setData({
+          current: index,
+        });
+      }
+    },
   },
 });

@@ -54,6 +54,10 @@ Component({
     defaultValue: {
       type: String,
       value: ''
+    },
+    confirmType: {
+      type: String,
+      value: ''
     }
   },
   options: {
@@ -64,20 +68,25 @@ Component({
   methods: {
     onBlur(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onblur', event);
+      this.triggerEvent('onBlur', event);
+      this.triggerEvent('onChange', event);
+      this.triggerEvent('onChangeText', event.detail.value);
     },
     onFocus(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onfocus', event);
+      this.triggerEvent('onFocus', event);
+      this.triggerEvent('onChange', event);
+      this.triggerEvent('onChangeText', event.detail.value);
     },
     onConfirm(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onchange', event);
-      this.triggerEvent('onchangetext', event.detail.value);
+      this.triggerEvent('onConfirm', event);
     },
     onInput(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('oninput', event);
+      this.triggerEvent('onInput', event);
+      this.triggerEvent('onChange', event);
+      this.triggerEvent('onChangeText', event.detail.value);
     }
   }
 });

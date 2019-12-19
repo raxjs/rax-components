@@ -9,6 +9,7 @@
     placeholder="{{placeholder}}"
     password="{{password||secureTextEntry}}"
     value="{{value||defaultValue}}"
+    confirm-type="{{confirmType}}"
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"

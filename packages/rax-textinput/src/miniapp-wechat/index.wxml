@@ -7,6 +7,7 @@
   placeholder="{{placeholder}}"
   password="{{password || secureTextEntry}}"
   value="{{value || defaultValue}}"
+  confirm-type="{{confirmType}}"
   bindblur="onBlur"
   bindfocus="onFocus"
   bindinput="onInput"

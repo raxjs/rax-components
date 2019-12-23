@@ -1,8 +1,8 @@
-let count = 0;
 const DEFAULT_TPL = '{d}天{h}时{m}分{s}秒';
 
 Component({
   data: {
+    count: 0
   },
   props: {
     timeRemaining: 0,
@@ -27,8 +27,11 @@ Component({
   },
   methods: {
     msToTime() {
+      const { count } = this.data;
       const timeDuration = this.props.timeRemaining - count * this.props.interval;
-      count++;
+      this.setData({
+        count: count + 1
+      });
 
       if (!timeDuration || timeDuration <= 0) {
         if (this.counter) clearInterval(this.counter);

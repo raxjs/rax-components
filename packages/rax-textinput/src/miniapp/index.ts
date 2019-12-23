@@ -29,7 +29,7 @@ Component({
     onConfirm: noop
   },
   didMount() {
-    const { value, defaultValue } = this.properties;
+    const { value, defaultValue } = this.props;
     this.setData({
       previousValue: value || defaultValue
     });

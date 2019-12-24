@@ -3,7 +3,9 @@ import fmtEvent from './fmtEvent';
 function noop() {}
 
 Component({
-  data: {},
+  data: {
+    previousValue: ''
+  },
   props: {
     className: '',
     style: '',
@@ -26,7 +28,12 @@ Component({
     onInput: noop,
     onConfirm: noop
   },
-  didMount() {},
+  didMount() {
+    const { value, defaultValue } = this.props;
+    this.setData({
+      previousValue: value || defaultValue
+    });
+  },
   methods: {
     trigger(type, value) {
       this.props[type] !== noop && this.props[type](value);
@@ -34,14 +41,17 @@ Component({
     onBlur(e) {
       const event = fmtEvent(this.props, e);
       this.trigger('onBlur', event);
-      this.trigger('onChange', event);
-      this.trigger('onChangeText', event.detail.value);
+      if (event.detail.value !== this.data.previousValue) {
+        this.trigger('onChange', event);
+        this.trigger('onChangeText', event.detail.value);
+        this.setData({
+          previousValue: event.detail.value
+        });
+      }
     },
     onFocus(e) {
       const event = fmtEvent(this.props, e);
       this.trigger('onFocus', event);
-      this.trigger('onChange', event);
-      this.trigger('onChangeText', event.detail.value);
     },
     onConfirm(e) {
       const event = fmtEvent(this.props, e);
@@ -50,8 +60,6 @@ Component({
     onInput(e) {
       const event = fmtEvent(this.props, e);
       this.trigger('onInput', event);
-      this.trigger('onChange', event);
-      this.trigger('onChangeText', event.detail.value);
     }
   }
 });

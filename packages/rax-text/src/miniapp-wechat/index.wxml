@@ -1,5 +1,6 @@
-<view class="_rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
-    style="-webkit-line-clamp: {{numberOfLines}};{{styleSheet}}"
+<!--wecaht numberOfLines should add 1-->
+<text class="_rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
+    style="-webkit-line-clamp: {{numberOfLines + 1}};{{styleSheet}}"
     bindtap="onClick">
-  <slot></slot>
-</view>
+  {{__content}}
+</text>

@@ -13,6 +13,10 @@ Component({
     numberOfLines: {
       type: Number,
       value: 0
+    },
+    __content: {
+      type: String,
+      value: ''
     }
   },
   options: {

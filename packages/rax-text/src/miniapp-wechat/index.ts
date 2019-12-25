@@ -1,7 +1,6 @@
 import fmtEvent from './fmtEvent';
 
 Component({
-  data: {},
   properties: {
     className: {
       type: String,

@@ -1,6 +1,5 @@
-<text class="{{className}}"
-    style="{{styleSheet}}"
-    number-of-lines="{{numberOfLines}}"
+<view class="_rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
+    style="-webkit-line-clamp: {{numberOfLines}};{{styleSheet}}"
     bindtap="onClick">
-    <slot />
-</text>
+  <slot></slot>
+</view>

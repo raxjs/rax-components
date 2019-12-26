@@ -133,14 +133,6 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     }
 
     let url = placeholder;
-    if (
-      isNode ||
-      window.__isHydrating ||
-      props.isHydrating ||
-      window.navigator.userAgent.match(/PHA/)
-    ) {
-      lazyload = false;
-    }
     if (lazyload) {
       nativeProps.onAppear = () => setVisible(true);
       if (visible) {

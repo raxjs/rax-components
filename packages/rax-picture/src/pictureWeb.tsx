@@ -83,7 +83,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       autoCompress = true,
       highQuality = true,
       compressSuffix = ['Q75', 'Q50'],
-      defaultHeight = '750rem',
+      defaultHeight = '750rpx',
       lazyload = false,
       autoPixelRatio = true
     } = props;
@@ -114,8 +114,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     if (uri) {
       if (!isNode && autoPixelRatio && window.devicePixelRatio > 1) {
         // devicePixelRatio >= 2 for web
-        if (typeof sWidth === 'string' && sWidth.indexOf('rem') > -1) {
-          sWidth = parseInt(sWidth.split('rem')[0]) * 2 + 'rem';
+        if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
+          sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
         }
       }
       uri = optimizer(uri, {

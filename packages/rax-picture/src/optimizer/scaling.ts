@@ -62,8 +62,8 @@ export default function(sWidth: string | number, isOSSImg: any): string {
   let xWidth = 0;
   let scaling = 1;
   if (typeof sWidth === 'string') {
-    if (sWidth.indexOf('rem') > -1) {
-      // isRem
+    if (sWidth.indexOf('rpx') > -1) {
+      // isRpx
       xWidth = parseFloat(sWidth);
       if (width) {
         scaling = visualStandard / width;

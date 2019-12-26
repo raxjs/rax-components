@@ -36,7 +36,10 @@ function setLocalStorage(isSupport: boolean, type: string) {
 
 export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
   if ('function' === typeof callback) {
-    if (isWeex || isNode || window.navigator.userAgent.match(/PHA/)) {
+    // When render in server side, it is hard to judge if client supports support webp
+    if (isNode) {
+      callback(false);
+    } else if (isWeex || window.navigator.userAgent.match(/PHA/)) {
       callback(true);
     } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
       callback(false);

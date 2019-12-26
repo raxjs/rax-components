@@ -17,13 +17,15 @@ let isSupportJPG = false;
 let isSupportPNG = false;
 
 // Can not judge whether support webp in node env
-!isNode && isSupport(_isSupportJPG => {
-  isSupportJPG = _isSupportJPG;
-});
-
-!isNode && isSupport(_isSupportPNG => {
-  isSupportPNG = _isSupportPNG;
-}, 'alpha');
+if (!isNode) {
+  isSupport(_isSupportJPG => {
+    isSupportJPG = _isSupportJPG;
+  });
+  
+  isSupport(_isSupportPNG => {
+    isSupportPNG = _isSupportPNG;
+  }, 'alpha');
+}
 
 /**
  * @param  {String|[String]} suffix

@@ -16,11 +16,12 @@ import { PictureProps } from './types';
 let isSupportJPG = false;
 let isSupportPNG = false;
 
-isSupport(_isSupportJPG => {
+// Can not judge whether support webp in node env
+!isNode && isSupport(_isSupportJPG => {
   isSupportJPG = _isSupportJPG;
 });
 
-isSupport(_isSupportPNG => {
+!isNode && isSupport(_isSupportPNG => {
   isSupportPNG = _isSupportPNG;
 }, 'alpha');
 

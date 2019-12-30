@@ -78,7 +78,7 @@ class Waterfall extends Component {
       this.setState({
         loadmoreretry: this.loadmoreretry++, // for weex 0.9-
       });
-      this.refs.waterfall && this.refs.waterfall.resetLoadmore && list.current.resetLoadmore(); // for weex 0.9+
+      this.refs.waterfall && this.refs.waterfall.resetLoadmore && this.refs.waterfall.resetLoadmore(); // for weex 0.9+
     } else {
       this.scrollview.resetScroll();
     }

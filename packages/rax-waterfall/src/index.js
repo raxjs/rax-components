@@ -76,8 +76,9 @@ class Waterfall extends Component {
   resetScroll = () => {
     if (isWeex) {
       this.setState({
-        loadmoreretry: this.loadmoreretry++,
+        loadmoreretry: this.loadmoreretry++, // for weex 0.9-
       });
+      this.refs.waterfall && this.refs.waterfall.resetLoadmore && list.current.resetLoadmore(); // for weex 0.9+
     } else {
       this.scrollview.resetScroll();
     }
@@ -132,6 +133,7 @@ class Waterfall extends Component {
     if (isWeex) {
       return (<waterfall
         style={{width: 750}}
+        ref="waterfall"
         {...props}
         onLoadmore={props.onEndReached}
         loadmoreoffset={props.onEndReachedThreshold}

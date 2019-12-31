@@ -98,6 +98,7 @@ function Modal(props: ModalProps) {
         visibility,
         height: height || 0
       }}
+      // prevent content that under the modal scroll
       onTouchStart={preventDefault}
       onClick={e => {
         if (maskCanBeClick) {

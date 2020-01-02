@@ -1,7 +1,6 @@
 import {
   createElement,
   useState,
-  memo,
   forwardRef,
   ForwardRefExoticComponent
 } from 'rax';
@@ -184,8 +183,4 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
 );
 Picture.displayName = 'Picture';
 
-function shouldComponentUpdate(preProps: PictureProps) {
-  return !!preProps.children;
-}
-
-export default memo(Picture, shouldComponentUpdate);
+export default Picture;

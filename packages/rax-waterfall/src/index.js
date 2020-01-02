@@ -76,7 +76,7 @@ class Waterfall extends Component {
   resetScroll = () => {
     if (isWeex) {
       this.setState({
-        loadmoreretry: this.loadmoreretry++, // for weex 0.9-
+        loadmoreretry: this.loadmoreretry++, // Change the value every time you turn the page, for weex 0.9-.
       });
       this.refs.waterfall && this.refs.waterfall.resetLoadmore && this.refs.waterfall.resetLoadmore(); // for weex 0.9+
     } else {

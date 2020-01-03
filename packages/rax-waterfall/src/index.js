@@ -72,7 +72,6 @@ class Waterfall extends Component {
       });
     } else {
       let WebWaterfall = require('./waterfall.web').default;
-      console.log(WebWaterfall);
       cells = cells.concat(<WebWaterfall key={'waterfall_webfall'} {...props} />);
     }
 

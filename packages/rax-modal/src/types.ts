@@ -8,6 +8,7 @@ export interface ModalProps extends RefAttributes<HTMLDivElement>, HTMLAttribute
   contentStyle?: CSSProperties;
   delay?: number;
   duration?: number | [number] | [number, number]; // [number, number?] not work
+  onClose?: () => void;
   onShow?: () => void;
   onHide?: () => void;
 }

@@ -20,6 +20,7 @@ function Modal(props: ModalProps) {
     maskCanBeClick = true,
     maskStyle = {},
     contentStyle = {},
+    onClose,
     onShow,
     onHide,
     children,
@@ -102,7 +103,7 @@ function Modal(props: ModalProps) {
       onTouchStart={preventDefault}
       onClick={e => {
         if (maskCanBeClick) {
-          onHide && onHide();
+          onClose && onClose();
         }
       }}
       ref={maskRef}

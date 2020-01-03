@@ -122,16 +122,20 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
         }
       };
     });
+
     if (multiline) {
       return (
         <Fragment>
-          <style x-if={isWeb} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <textarea
             {...propsCommon}
             className={['rax-textinput', styleClassName, className || ''].join(' ')}
-            style={style}
+            style={{
+              ...style,
+              placeholderColor
+            }}
             row={rows}
             rows={rows}
             disabled={disbaled}
@@ -144,13 +148,16 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     } else {
       return (
         <Fragment>
-          <style x-if={isWeb} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <input
             {...propsCommon}
             className={['rax-textinput', styleClassName, className || ''].join(' ')}
-            style={style}
+            style={{
+              ...style,
+              placeholderColor
+            }}
             type={type}
             disabled={disbaled}
           />

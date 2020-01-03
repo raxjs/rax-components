@@ -74,13 +74,13 @@ class Waterfall extends Component {
   }
 
   resetScroll = () => {
-    if (isWeex) {
+    if (isWeex && this.refs.waterfall) {
       this.setState({
         loadmoreretry: this.loadmoreretry++, // Change the value every time you turn the page, for weex 0.9-.
       });
-      this.refs.waterfall && this.refs.waterfall.resetLoadmore && this.refs.waterfall.resetLoadmore(); // for weex 0.9+
+      this.refs.waterfall.resetLoadmore && this.refs.waterfall.resetLoadmore(); // Using the resetLoadmore method to update the loaded place, for weex 0.9+.
     } else {
-      this.scrollview.resetScroll();
+      this.scrollview.current && this.scrollview.current.resetScroll();
     }
   }
 
@@ -105,7 +105,7 @@ class Waterfall extends Component {
     let cells = header.map((child, index) => {
       if (child) {
         if (child.type != RefreshControl && child.type != Header) {
-          return <Header>{child}</Header>;
+          return <Header key={'waterfall_header_' + index}>{child}</Header>;
         } else {
           return cloneElement(child, {});
         }
@@ -114,16 +114,16 @@ class Waterfall extends Component {
 
     if (isWeex) {
       dataSource && dataSource.forEach((item, index) => {
-        cells.push(<cell {...cellProps}>{renderItem(item, index)}</cell>);
+        cells.push(<cell key={'waterfall_cell_' + index} {...cellProps}>{renderItem(item, index)}</cell>);
       });
     } else {
-      cells = cells.concat(<WebFall {...props} />);
+      cells = cells.concat(<WebFall key={'waterfall_webfall'} {...props} />);
     }
 
     cells = cells.concat(footer.map((child, index) => {
       if (child) {
         if (child.type != Header) {
-          return <Header>{child}</Header>;
+          return <Header key={'waterfall_footer_' + index}>{child}</Header>;
         } else {
           return cloneElement(child, {});
         }
@@ -133,7 +133,7 @@ class Waterfall extends Component {
     if (isWeex) {
       return (<waterfall
         style={{width: 750}}
-        ref="waterfall"
+        ref={'waterfall'}
         {...props}
         onLoadmore={props.onEndReached}
         loadmoreoffset={props.onEndReachedThreshold}

@@ -80,7 +80,7 @@ class App extends Component {
           return <View key="3" style={{width: 750, height: 300, backgroundColor: 'blue', marginTop: 20}}>footer1</View>;
         }}
         renderItem={(item, index) => {
-          return (<View style={{height: item.height, backgroundColor: 'red', marginBottom: 20}}>
+          return (<View key={'item_' + index} style={{height: item.height, backgroundColor: 'red', marginBottom: 20}}>
             <Text>{index}</Text>
             {/* {index} */}
           </View>);

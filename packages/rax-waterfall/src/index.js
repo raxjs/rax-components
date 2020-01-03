@@ -71,14 +71,15 @@ class Waterfall extends Component {
       loadmoreretry: 0,
     };
     this.scrollview = createRef();
+    this.waterfall = createRef();
   }
 
   resetScroll = () => {
-    if (isWeex && this.refs.waterfall) {
+    if (isWeex && this.waterfall && this.waterfall.current) {
       this.setState({
         loadmoreretry: this.loadmoreretry++, // Change the value every time you turn the page, for weex 0.9-.
       });
-      this.refs.waterfall.resetLoadmore && this.refs.waterfall.resetLoadmore(); // Using the resetLoadmore method to update the loaded place, for weex 0.9+.
+      this.waterfall.current.resetLoadmore && this.waterfall.current.resetLoadmore(); // Using the resetLoadmore method to update the loaded place, for weex 0.9+.
     } else {
       this.scrollview.current && this.scrollview.current.resetScroll();
     }
@@ -133,7 +134,7 @@ class Waterfall extends Component {
     if (isWeex) {
       return (<waterfall
         style={{width: 750}}
-        ref={'waterfall'}
+        ref={this.waterfall}
         {...props}
         onLoadmore={props.onEndReached}
         loadmoreoffset={props.onEndReachedThreshold}

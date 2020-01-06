@@ -20,8 +20,8 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       ...rest
     } = props;
 
+    // Ignore 'HTMLElement Error', because it's a Weex Component.
     // @ts-ignore
-    // Ignore 'HTMLElement error', because it's a Weex Component.
     useImperativeHandle(ref, () => ({
       slideTo: (newIndex: number) => {
         setIndex(newIndex);
@@ -31,7 +31,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
     const handleChange = (result: any) => {
       let currentIndex = 0;
       // https://weex.apache.org/docs/components/slider.html#rax-example
-      // The past Weex docs shows that result is an number, But in the new Weex App returns {index:x, timestamp:...}
+      // The past Weex docs shows that the 'result' is a number, But in the new Weex App returns {index:x, timestamp:...}
       if (typeof result === "number") {
         currentIndex = result;
       }

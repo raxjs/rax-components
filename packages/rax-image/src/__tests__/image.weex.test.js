@@ -1,38 +1,36 @@
-import {createElement, Component} from 'rax';
+import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
 import Image from '../../lib/';
 
-describe('Image', () => {
-  it('should render null when no source or source.uri', () => {
-    const component = renderer.create(
-      <Image />
-    );
-    let tree = component.toJSON();
-    expect(tree).toEqual(null);
-  });
+jest.mock('universal-env', () => {
+  return {
+    isWeex: true
+  };
+});
 
+describe('Link in weex', () => {
   it('should render a image', () => {
     const component = renderer.create(
       <Image source={{uri: 'a.png'}} style={{
-        width: '20rem',
-        height: '20rem'
+        width: '20rpx',
+        height: '20rpx'
       }} />
     );
-
     let tree = component.toJSON();
-    expect(tree.tagName).toEqual('IMG');
+    expect(tree.tagName).toEqual('IMAGE');
     expect(tree.attributes.src).toEqual('a.png');
   });
 
   it('should render a image with resizeMode', () => {
     const component = renderer.create(
       <Image source={{uri: 'a.png'}} style={{
-        width: '20rem',
-        height: '20rem'
+        width: '20rpx',
+        height: '20rpx'
       }} resizeMode="cover" />
     );
 
     let tree = component.toJSON();
-    expect(tree.style.objectFit).toEqual('cover');
+    expect(tree.style.resizeMode).toEqual('cover');
+    expect(tree.attributes.resize).toEqual('cover');
   });
 });

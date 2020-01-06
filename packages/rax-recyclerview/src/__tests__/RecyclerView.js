@@ -1,48 +1,34 @@
 import {createElement, Component} from 'rax';
 import renderer from 'rax-test-renderer';
-import RecyclerView from '../';
+import RecyclerView from '../../lib/index';
 
 class RecyclerViewTest extends Component {
   renderHeader() {
-    return <span>header</span>;
+    return <span key={'header'}>header</span>;
   }
   renderFooter() {
-    return <span>footer</span>;
+    return <span key={'footer'}>footer</span>;
   }
   renderBody() {
-    return [1, 2, 3].map((num) => {
-      return <span>{num}</span>;
-    });
-  }
-  componentDidMount() {
-    this.refs.recycleview.scrollTo({
-      x: 0,
-      y: 0
+    return [1, 2, 3].map((num, index) => {
+      return <span key={index}>{num}</span>;
     });
   }
   render() {
     let props = {
       ref: 'recycleview',
       children: [].concat(this.renderHeader(), this.renderBody(), this.renderFooter()),
-      style: {
-        height: 667
-      },
-      itemSize: 74,
     };
     return <RecyclerView {...props} />;
   }
 }
 
 describe('RecyclerView', () => {
-  let component;
-
-  beforeEach(() => {
-    component = renderer.create(
+  it('should render a RecyclerView', () => {
+    let component = renderer.create(
       <RecyclerViewTest />
     );
-  });
 
-  it('should render a RecyclerView', () => {
     let tree = component.toJSON();
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0].children[0].children[0]).toEqual('header');

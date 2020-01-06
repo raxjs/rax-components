@@ -16,7 +16,7 @@ import ScrollView from 'rax-scrollview';
 import Children from 'rax-children';
 import VirtualizedList from './VirtualizedList/index';
 
-const Context = createContext(true);
+const Context = createContext(false);
 
 const Cell = memo(
   forwardRef(({ className, style, ...rest }, ref) => {

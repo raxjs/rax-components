@@ -1,6 +1,6 @@
 import {createElement, Component} from 'rax';
 import renderer from 'rax-test-renderer';
-import RecyclerView from '../';
+import RecyclerView from '../../lib/index';
 
 jest.mock('universal-env', () => {
   return {
@@ -10,14 +10,14 @@ jest.mock('universal-env', () => {
 
 class RecyclerViewTest extends Component {
   renderHeader() {
-    return <span>header</span>;
+    return <span key={'header'}>header</span>;
   }
   renderFooter() {
-    return <span>footer</span>;
+    return <span key={'footer'}>footer</span>;
   }
   renderBody() {
-    return [1, 2, 3].map((num) => {
-      return <span>{num}</span>;
+    return [1, 2, 3].map((num, index) => {
+      return <span key={index}>{num}</span>;
     });
   }
   render() {

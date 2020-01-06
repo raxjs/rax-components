@@ -9,13 +9,18 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "rax-scripts test",
+    "test": "npm run build && rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
   },
   "files": [
     "dist",
     "lib"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.css$": "jest-transform-css"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
@@ -71,6 +76,7 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "jest-transform-css": "^2.0.0",
     "babel-eslint": "^10.0.3",
     "csstype": "^2.6.4",
     "driver-dom": "^1.0.0",

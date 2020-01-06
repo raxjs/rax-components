@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  pointer-events: auto;
   opacity: 0;
 }
 

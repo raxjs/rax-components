@@ -1,14 +1,14 @@
-import fmtEvent from "./fmtEvent";
+import fmtEvent from './fmtEvent';
 
 Component({
   properties: {
     className: {
       type: String,
-      value: ""
+      value: ''
     },
     styleSheet: {
       type: String,
-      value: ""
+      value: ''
     },
     endReachedThreshold: {
       type: Number,

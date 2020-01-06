@@ -4,12 +4,6 @@ import Image from 'rax-image';
 import renderer from 'rax-test-renderer';
 import Slider from '../slider.web';
 
-jest.mock('rax-image', () => {
-  return function() {
-    return <img src="" alt="" />;
-  };
-});
-
 describe('Slider in web', () => {
   it('render correctly', () => {
     const mockChange = jest.fn();

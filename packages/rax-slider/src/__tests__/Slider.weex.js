@@ -10,24 +10,7 @@ jest.mock('universal-env', () => {
   };
 });
 
-jest.mock('rax-image', () => {
-  return function() {
-    return <img src="" alt="" />;
-  };
-});
-
 describe('Slider in weex', () => {
-  it('should render a slider', () => {
-    const component = renderer.create(
-      <Slider>Example</Slider>
-    );
-    const dd = renderer.create(
-      <div>Example</div>
-    );
-    let tree = component.toJSON();
-    expect(tree.tagName).toEqual('SLIDER');
-  });
-
   it('render correctly', () => {
     const mockChange = jest.fn();
     const component = renderer.create(

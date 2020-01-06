@@ -35,7 +35,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       if (typeof result === "number") {
         currentIndex = result;
       }
-      if (typeof result === "object" && typeof result.index !== "undefined") {
+      if (typeof result === "object" && typeof result.index !== "number") {
         currentIndex = result.index;
       }
       setIndex(currentIndex);

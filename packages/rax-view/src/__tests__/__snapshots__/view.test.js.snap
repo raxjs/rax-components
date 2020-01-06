@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View special cases in View 1`] = `
+Object {
+  "attributes": Object {
+    "class": "rax-view",
+  },
+  "children": Array [
+    Object {
+      "attributes": Object {
+        "class": "rax-view",
+      },
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view",
+      },
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view",
+      },
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view",
+      },
+      "children": Array [
+        "1",
+        "2",
+        "3",
+      ],
+      "tagName": "DIV",
+    },
+  ],
+  "tagName": "DIV",
+}
+`;

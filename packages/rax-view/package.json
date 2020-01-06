@@ -1,6 +1,6 @@
 {
   "name": "rax-view",
-  "version": "1.1.2-beta.1",
+  "version": "1.1.2",
   "description": "View component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "start": "rax-scripts start",
     "miniapp": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build",
+    "test": "rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
   },
   "keywords": [
@@ -52,12 +52,18 @@
     "eslint-config-rax": "^0.0.0",
     "eslint-plugin-import": "^2.18.2",
     "husky": "^3.0.4",
+    "jest-transform-css": "^2.0.0",
     "lint-staged": "^9.2.3",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "jest-transform-css"
+    }
   },
   "husky": {
     "hooks": {

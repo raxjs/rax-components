@@ -22,17 +22,12 @@ describe('View', () => {
     expect(tree.eventListeners.click).toBe(mockPress);
   });
 
-  it('style in View', () => {
+  it('className in View', () => {
     const component = renderer.create(
       <View>Example</View>
     );
     let tree = component.toJSON();
-    expect(tree.style.border).toBe('0 solid black');
-    expect(tree.style.boxSizing).toBe('border-box');
-    expect(tree.style.display).toBe('flex');
-    expect(tree.style.flexDirection).toBe('column');
-    expect(tree.style.alignContent).toBe('flex-start');
-    expect(tree.style.flexShrink).toBe(0);
+    expect(tree.attributes.class).toBe('rax-view');
   });
 
   it('children in View', () => {
@@ -43,5 +38,21 @@ describe('View', () => {
     );
     let tree = component.toJSON();
     expect(tree.children[0].children[0]).toBe('Example');
+  });
+
+  it('special cases in View', () => {
+    const component = renderer.create(
+      <View>
+        <View>{undefined}</View>
+        <View>{null}</View>
+        <View>{false}</View>
+        <View>{[1, 2, 3, null]}</View>
+      </View>
+    );
+    let tree = component.toJSON();
+    expect(tree.children[0].children).toBe(undefined);
+    expect(tree.children[1].children).toBe(undefined);
+    expect(tree.children[2].children).toBe(undefined);
+    expect(tree).toMatchSnapshot();
   });
 });

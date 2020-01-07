@@ -88,17 +88,17 @@ function Modal(props: ModalProps) {
     }
   }, [visible]);
 
-  if (isWeb) {
-    useEffect(() => {
-      const touchMoveCallback = e => e.preventDefault();
-      if (maskRef.current) {
-        maskRef.current.addEventListener('touchmove', touchMoveCallback, { passive: false });
-      }
-      return () => {
-        maskRef.current.removeEventListener('touchmove', touchMoveCallback);
-      };
-    }, []);
-  }
+  // if (isWeb) {
+  //   useEffect(() => {
+  //     const touchMoveCallback = e => e.preventDefault();
+  //     if (maskRef.current) {
+  //       maskRef.current.addEventListener('touchmove', touchMoveCallback);
+  //     }
+  //     return () => {
+  //       maskRef.current.removeEventListener('touchmove', touchMoveCallback);
+  //     };
+  //   }, []);
+  // }
 
   return (
     <View
@@ -109,6 +109,7 @@ function Modal(props: ModalProps) {
         visibility: visibleState ? 'visible' : 'hidden',
         height: height || 0
       }}
+      onTouchMove={e => e.preventDefault()}
       onClick={() => {
         if (maskCanBeClick) {
           hide();

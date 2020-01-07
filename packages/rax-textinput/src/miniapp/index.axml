@@ -4,7 +4,7 @@
     onTap="onClick" 
     focus="{{autoFocus}}"
     disabled="{{!editable}}"
-    type="text"
+    type="{{keyboardType}}"
     maxlength="{{maxLength}}"
     placeholder="{{placeholder}}"
     placeholder-style="color:{{placeholderColor}}"

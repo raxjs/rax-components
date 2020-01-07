@@ -13,6 +13,10 @@ Component({
       type: String,
       value: ''
     },
+    placeholderColor: {
+      type: String,
+      value: '#999999'
+    },
     multiline: {
       type: Boolean,
       value: false

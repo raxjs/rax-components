@@ -9,6 +9,7 @@ Component({
   props: {
     className: '',
     style: '',
+    placeholderColor: '#999999',
     multiline: false,
     autoFocus: false,
     editable: true,

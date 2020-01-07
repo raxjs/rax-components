@@ -8,7 +8,9 @@ import './index.css';
 declare function __weex_require__(s: string): any;
 
 function stopPropagation(event) {
-  event.stopPropagation();
+  if (isWeb) {
+    event.stopPropagation();
+  }
 }
 
 function Modal(props: ModalProps) {

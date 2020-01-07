@@ -1,6 +1,6 @@
 {
   "name": "rax-textinput",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "TextInput component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -51,6 +51,7 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "babel-runtime-jsx-plus": "^0.1.4",
     "csstype": "^2.6.4",
     "driver-universal": "^1.0.0",
     "eslint": "^5.16.0",
@@ -58,11 +59,11 @@
     "husky": "^3.0.5",
     "lint-staged": "^9.2.5",
     "rax": "^1.0.0",
-    "rax-text": "^1.0.1",
-    "rax-view": "^1.0.1",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.0.1",
+    "rax-view": "^1.0.1"
   },
   "husky": {
     "hooks": {

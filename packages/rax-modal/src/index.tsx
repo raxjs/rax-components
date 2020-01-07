@@ -88,18 +88,6 @@ function Modal(props: ModalProps) {
     }
   }, [visible]);
 
-  // if (isWeb) {
-  //   useEffect(() => {
-  //     const touchMoveCallback = e => e.preventDefault();
-  //     if (maskRef.current) {
-  //       maskRef.current.addEventListener('touchmove', touchMoveCallback);
-  //     }
-  //     return () => {
-  //       maskRef.current.removeEventListener('touchmove', touchMoveCallback);
-  //     };
-  //   }, []);
-  // }
-
   return (
     <View
       className="rax-modal-mask"

@@ -5,8 +5,8 @@ const { spawnSync } = require('child_process');
 function runTest() {
   const packagesPath = join(process.cwd(), 'packages');
   const packages = readdirSync(packagesPath);
-  packages.forEach(package => {
-    const packagePath = join(packagesPath, package);
+  packages.forEach(packageName => {
+    const packagePath = join(packagesPath, packageName);
     const packageInfoPath = join(packagePath, 'package.json');
     if (existsSync(packageInfoPath)) {
       const packageInfo = JSON.parse(readFileSync(packageInfoPath));

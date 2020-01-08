@@ -7,8 +7,21 @@ import './index.css';
 
 declare function __weex_require__(s: string): any;
 
+let bodyEl, originalBodyOverflow = 'initial';
+
+if (isWeb) {
+  bodyEl = document.body;
+}
+
 function stopPropagation(event) {
   if (isWeb) {
+    event.stopPropagation();
+  }
+}
+
+function stopEventEffect(event) {
+  if (isWeb) {
+    event.preventDefault();
     event.stopPropagation();
   }
 }
@@ -67,6 +80,10 @@ function Modal(props: ModalProps) {
   };
 
   const show = () => {
+    if (isWeb) {
+      originalBodyOverflow = bodyEl.style.overflow || 'initial';
+      bodyEl.style.overflow = 'hidden';
+    }
     setVisibleState(true);
     animate(true, () => {
       onShow && onShow();
@@ -77,6 +94,9 @@ function Modal(props: ModalProps) {
     if (visibleState) {
       // execute hide animation on element that is already hidden will cause bug
       animate(false, () => {
+        if (isWeb) {
+          bodyEl.style.overflow = originalBodyOverflow;
+        }
         setVisibleState(false);
         onHide && onHide();
       });
@@ -99,7 +119,7 @@ function Modal(props: ModalProps) {
         visibility: visibleState ? 'visible' : 'hidden',
         height: height || 0
       }}
-      onTouchMove={e => e.preventDefault()}
+      onTouchMove={stopEventEffect}
       onClick={() => {
         if (maskCanBeClick) {
           hide();
@@ -111,6 +131,7 @@ function Modal(props: ModalProps) {
         className="rax-modal-main"
         style={contentStyle}
         onClick={stopPropagation}
+        onTouchMove={stopPropagation}
       >
         {children}
       </View>

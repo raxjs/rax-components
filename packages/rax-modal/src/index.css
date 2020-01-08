@@ -17,4 +17,5 @@
   width: 640rpx;
   height: 340rpx;
   background-color: #ffffff;
+  overflow: auto;
 }

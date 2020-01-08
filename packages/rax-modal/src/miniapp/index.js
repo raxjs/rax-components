@@ -24,19 +24,19 @@ const updateData = (instance, props) => {
   } else {
     triggleVisible(instance, props);
   }
-  const mask_style = computeStyle(props.maskStyle);
-  const content_style = computeStyle(props.contentStyle);
+  const maskStyleState = computeStyle(props.maskStyle);
+  const contentStyleState = computeStyle(props.contentStyle);
   instance.setData({
-    mask_style: mask_style,
-    content_style: content_style
+    maskStyleState: maskStyleState,
+    contentStyleState: contentStyleState
   });
 };
 
 Component({
   data: {
     visibility: false,
-    mask_style: '',
-    content_style: ''
+    maskStyleState: '',
+    contentStyleState: ''
   },
   props: {
     visible: false,

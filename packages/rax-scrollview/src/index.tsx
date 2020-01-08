@@ -244,7 +244,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     const scrollerStyle: CSSProperties = {
       ...style
     };
-    if (scrollerStyle.height === undefined || scrollerStyle.height === null) {
+    if (scrollerStyle.height == undefined || scrollerStyle.height == null) {
       scrollerStyle.flex = 1;
     }
     const cls = cx(

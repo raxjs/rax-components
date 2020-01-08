@@ -1,8 +1,8 @@
 import Canvas from '../index';
 import renderer from 'rax-test-renderer';
-import {createElement} from 'rax';
+import { createElement } from 'rax';
 
-jest.mock('@weex-module/gcanvas', () => {
+jest.mock('@gcanvas/core', () => {
   return {
     enable: () => {},
     setContextType: () => {},

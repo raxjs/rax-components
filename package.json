@@ -59,7 +59,7 @@
     "build": "node ./scripts/compile-packages.js",
     "lint": "npm run lint:nofix -- --fix",
     "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
-    "test": "rax-scripts test",
+    "test": "node ./scripts/run-test.js",
     "check-and-publish": "node ./scripts/check-and-publish",
     "clean:compile": "rm -rf ./packages/*/lib"
   },

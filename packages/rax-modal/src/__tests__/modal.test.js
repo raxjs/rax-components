@@ -75,4 +75,36 @@ describe("render modal", () => {
     jest.runAllTimers();
     expect(showModal).toBe(true);
   });
+
+  it("should render a default visible modal", () => {
+    let showModal = false;
+    function App() {
+      const [visible, setVisible] = useState(true);
+      showModal = true;
+      useEffect(() => {
+        setTimeout(() => {
+          setVisible(false);
+        }, 1000);
+      }, []);
+      return (
+        <View>
+          <Modal
+            visible={visible}
+            onHide={() => {
+              showModal = false;
+              setVisible(false);
+            }}
+            disableAnimation={true}
+            maskCanBeClick={true}
+          >
+            <View>这里是弹窗内容</View>
+          </Modal>
+        </View>
+      );
+    }
+    renderer.create(<App />).toJSON();
+    expect(showModal).toBe(true);
+    jest.runAllTimers();
+    expect(showModal).toBe(false);
+  });
 });

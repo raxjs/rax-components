@@ -7,7 +7,7 @@ import './index.css';
 
 declare function __weex_require__(s: string): any;
 
-let bodyEl, originalBodyOverflow = 'initial';
+let bodyEl, originalBodyOverflow;
 
 if (isWeb) {
   bodyEl = document.body;
@@ -81,7 +81,7 @@ function Modal(props: ModalProps) {
 
   const show = () => {
     if (isWeb) {
-      originalBodyOverflow = bodyEl.style.overflow || 'initial';
+      originalBodyOverflow = bodyEl.style.overflow;
       bodyEl.style.overflow = 'hidden';
     }
     setVisibleState(true);

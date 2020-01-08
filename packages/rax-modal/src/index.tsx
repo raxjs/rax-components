@@ -1,4 +1,4 @@
-import { createElement, useState, useRef, useEffect, useCallback } from 'rax';
+import { createElement, useState, useRef, useEffect } from 'rax';
 import View from 'rax-view';
 import transition from 'universal-transition';
 import { isWeb, isWeex } from 'universal-env';
@@ -7,13 +7,25 @@ import './index.css';
 
 declare function __weex_require__(s: string): any;
 
-function usePreventDefault() {
-  return useCallback(e => {
-    if (isWeb) {
-      e.preventDefault();
-    }
-  }, []);
+let bodyEl, originalBodyOverflow;
+
+if (isWeb) {
+  bodyEl = document.body;
 }
+
+function stopPropagation(event) {
+  if (isWeb) {
+    event.stopPropagation();
+  }
+}
+
+function stopEventEffect(event) {
+  if (isWeb) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+}
+
 function Modal(props: ModalProps) {
   const {
     visible,
@@ -38,9 +50,8 @@ function Modal(props: ModalProps) {
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const [visibility, setVisibility] = useState(visible ? 'visible' : 'hidden');
+  const [visibleState, setVisibleState] = useState(visible);
   const [height, setHeight] = useState(null);
-  const preventDefault = usePreventDefault();
 
   if (isWeex) {
     const dom = __weex_require__('@weex-module/dom');
@@ -51,16 +62,16 @@ function Modal(props: ModalProps) {
     setHeight('100vh');
   }
 
-  const animate = (callback: Function) => {
+  const animate = (show: boolean, callback: Function) => {
     transition(
       maskRef.current,
       {
-        opacity: visible ? 1 : 0
+        opacity: show ? 1 : 0
       },
       {
         timingFunction: 'ease',
         delay,
-        duration: visible ? duration[0] : duration[1]
+        duration: show ? duration[0] : duration[1]
       },
       () => {
         callback && callback();
@@ -69,24 +80,34 @@ function Modal(props: ModalProps) {
   };
 
   const show = () => {
-    setVisibility('visible');
-    animate(() => {
+    if (isWeb) {
+      originalBodyOverflow = bodyEl.style.overflow;
+      bodyEl.style.overflow = 'hidden';
+    }
+    setVisibleState(true);
+    animate(true, () => {
       onShow && onShow();
     });
   };
 
   const hide = () => {
-    if (visibility !== 'hidden') {
+    if (visibleState) {
       // execute hide animation on element that is already hidden will cause bug
-      animate(() => {
-        setVisibility('hidden');
+      animate(false, () => {
+        if (isWeb) {
+          bodyEl.style.overflow = originalBodyOverflow;
+        }
+        setVisibleState(false);
         onHide && onHide();
       });
     }
   };
 
   useEffect(() => {
-    visible ? show() : hide();
+    // if state is unequal to props trigger show or hide
+    if (visible !== visibleState) {
+      visible ? show() : hide();
+    }
   }, [visible]);
 
   return (
@@ -95,14 +116,13 @@ function Modal(props: ModalProps) {
       style={{
         ...maskStyle,
         // @ts-ignore
-        visibility,
+        visibility: visibleState ? 'visible' : 'hidden',
         height: height || 0
       }}
-      // prevent content that under the modal scroll
-      onTouchStart={preventDefault}
-      onClick={e => {
+      onTouchMove={stopEventEffect}
+      onClick={() => {
         if (maskCanBeClick) {
-          onHide && onHide();
+          hide();
         }
       }}
       ref={maskRef}
@@ -110,11 +130,8 @@ function Modal(props: ModalProps) {
       <View
         className="rax-modal-main"
         style={contentStyle}
-        onClick={e => {
-          if (isWeb) {
-            e.stopPropagation && e.stopPropagation();
-          }
-        }}
+        onClick={stopPropagation}
+        onTouchMove={stopPropagation}
       >
         {children}
       </View>

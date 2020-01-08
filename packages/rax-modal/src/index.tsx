@@ -50,7 +50,7 @@ function Modal(props: ModalProps) {
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const [visibleState, setVisibleState] = useState(visible);
+  const [visibleState, setVisibleState] = useState(false);
   const [height, setHeight] = useState(null);
 
   if (isWeex) {

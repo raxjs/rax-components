@@ -31,7 +31,6 @@ describe('Icon', () => {
       <IconFont codePoint={'\uE60f'}/>
     );
     let tree = component.toJSON();
-    console.log(3, tree);
     expect(tree.tagName).toEqual('SPAN');
   });
 
@@ -43,7 +42,6 @@ describe('Icon', () => {
       <IconFont codePoint={'\uE60f'}/>
     );
     let tree = component.toJSON();
-    console.log(3, tree);
     expect(tree.tagName).toEqual('SPAN');
   });
 });

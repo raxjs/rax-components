@@ -1,7 +1,7 @@
 global.callNative = null;
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import TextInput from '../';
+import TextInput from '../../lib/';
 
 describe('TextInput', () => {
   it('render tag TextInput', () => {

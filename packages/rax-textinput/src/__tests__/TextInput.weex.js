@@ -1,6 +1,6 @@
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import TextInput from '../';
+import TextInput from '../../lib/';
 
 jest.mock('universal-env', () => {
   return {

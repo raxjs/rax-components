@@ -37,7 +37,6 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
-    "babel-eslint": "^10.0.3",
     "babel-runtime-jsx-plus": "^0.1.4",
     "classnames": "^2.2.6",
     "rax-set-native-props": "^1.0.0",

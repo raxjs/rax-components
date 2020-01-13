@@ -13,6 +13,11 @@
     "test": "npm run build && rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "jest-transform-css"
+    }
+  },
   "files": [
     "dist",
     "lib"
@@ -54,6 +59,7 @@
     "driver-universal": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "jest-transform-css": "^2.0.0",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9-0",
     "rax-scripts": "^2.0.0",

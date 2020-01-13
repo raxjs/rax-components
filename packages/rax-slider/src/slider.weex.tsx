@@ -1,4 +1,4 @@
-import { createElement, ForwardRefExoticComponent, forwardRef, useImperativeHandle, useState } from 'rax';
+import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
 import { SliderProps } from './types';
 import './index.css';
 
@@ -28,7 +28,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       }
     }));
 
-    const handleChange = (result: any) => {
+    const handleChange = useCallback((result: any) => {
       let currentIndex = 0;
       // https://weex.apache.org/docs/components/slider.html#rax-example
       // The past Weex docs shows that the 'result' is a number, But in the new Weex App returns {index:x, timestamp:...}
@@ -40,7 +40,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       }
       setIndex(currentIndex);
       onChange && onChange(result);
-    }
+    }, [props.index]);
 
     return (
       <slider

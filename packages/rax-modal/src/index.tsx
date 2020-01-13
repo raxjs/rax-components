@@ -35,7 +35,7 @@ function Modal(props: ModalProps) {
     onShow,
     onHide,
     children,
-    disableAnimation,
+    animation,
     delay = 0
   } = props;
 
@@ -86,7 +86,7 @@ function Modal(props: ModalProps) {
       bodyEl.style.overflow = 'hidden';
     }
     setVisibleState(true);
-    if (disableAnimation) {
+    if (animation) {
       onShow && onShow();
     } else {
       animate(true, () => {
@@ -105,7 +105,7 @@ function Modal(props: ModalProps) {
 
   const hide = () => {
     if (visibleState) {
-      if (disableAnimation) {
+      if (animation) {
         hideAction();
       } else {
         // execute hide animation on element that is already hidden will cause bug

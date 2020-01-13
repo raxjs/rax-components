@@ -28,7 +28,7 @@ describe("render modal", () => {
               onShow={() => {
                 showModal = true;
               }}
-              disableAnimation={true}
+              animation={true}
               maskCanBeClick={true}
             >
               <View>这里是弹窗内容</View>
@@ -62,7 +62,7 @@ describe("render modal", () => {
             onShow={() => {
               showModal = true;
             }}
-            disableAnimation={true}
+            animation={true}
             maskCanBeClick={true}
           >
             <View>这里是弹窗内容</View>
@@ -94,7 +94,7 @@ describe("render modal", () => {
               showModal = false;
               setVisible(false);
             }}
-            disableAnimation={true}
+            animation={true}
             maskCanBeClick={true}
           >
             <View>这里是弹窗内容</View>

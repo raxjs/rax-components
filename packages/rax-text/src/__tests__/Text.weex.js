@@ -15,6 +15,6 @@ describe('Text in weex', () => {
     );
     let tree = component.toJSON();
     expect(tree.tagName).toEqual('TEXT');
-    expect(tree.attributes.value).toEqual('Example');
+    expect(tree.children[0]).toEqual('Example');
   });
 });

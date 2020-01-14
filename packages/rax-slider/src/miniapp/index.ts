@@ -34,7 +34,7 @@ Component({
       this.setData({
         current: this.props.index,
       }, () => {
-        // Set default duratoion value
+        // Set default duration value
         this.setData({
           duration: 500
         });

@@ -4,6 +4,7 @@ const noop = () => {};
 Component({
   data: {
     current: 0,
+    duration: 0
   },
   props: {
     className: '',
@@ -26,6 +27,18 @@ Component({
     this.setData({
       current: this.props.index,
     });
+  },
+  didMount() {
+    if (!my.canIUse('component2')) {
+      this.setData({
+        current: this.props.index,
+      }, () => {
+        // Set default duratoion value
+        this.setData({
+          duration: 500
+        });
+      });
+    }
   },
   methods: {
     onChange(e) {

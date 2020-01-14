@@ -26,6 +26,7 @@ Component({
   onInit() {
     this.setData({
       current: this.props.index,
+      duration: 500
     });
   },
   didMount() {

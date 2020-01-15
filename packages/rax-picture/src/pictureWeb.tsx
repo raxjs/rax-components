@@ -1,12 +1,13 @@
 import {
   createElement,
   useState,
-  memo,
   forwardRef,
   ForwardRefExoticComponent
 } from 'rax';
 import View from 'rax-view';
 import Image from 'rax-image';
+import { isNode } from 'universal-env';
+
 import optimizer from './optimizer/index';
 import { isSupport } from './webp';
 import { PictureProps } from './types';
@@ -14,13 +15,16 @@ import { PictureProps } from './types';
 let isSupportJPG = false;
 let isSupportPNG = false;
 
-isSupport(_isSupportJPG => {
-  isSupportJPG = _isSupportJPG;
-});
+// Can not judge whether support webp in node env
+if (!isNode) {
+  isSupport(_isSupportJPG => {
+    isSupportJPG = _isSupportJPG;
+  });
 
-isSupport(_isSupportPNG => {
-  isSupportPNG = _isSupportPNG;
-}, 'alpha');
+  isSupport(_isSupportPNG => {
+    isSupportPNG = _isSupportPNG;
+  }, 'alpha');
+}
 
 /**
  * @param  {String|[String]} suffix
@@ -78,7 +82,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       autoCompress = true,
       highQuality = true,
       compressSuffix = ['Q75', 'Q50'],
-      defaultHeight = '750rem',
+      defaultHeight = '750rpx',
       lazyload = false,
       autoPixelRatio = true
     } = props;
@@ -107,10 +111,10 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     );
 
     if (uri) {
-      if (autoPixelRatio && window.devicePixelRatio > 1) {
+      if (!isNode && autoPixelRatio && window.devicePixelRatio > 1) {
         // devicePixelRatio >= 2 for web
-        if (typeof sWidth === 'string' && sWidth.indexOf('rem') > -1) {
-          sWidth = parseInt(sWidth.split('rem')[0]) * 2 + 'rem';
+        if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
+          sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
         }
       }
       uri = optimizer(uri, {
@@ -131,13 +135,6 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     }
 
     let url = placeholder;
-    if (
-      window.__isHydrating ||
-      props.isHydrating ||
-      window.navigator.userAgent.match(/PHA/)
-    ) {
-      lazyload = false;
-    }
     if (lazyload) {
       nativeProps.onAppear = () => setVisible(true);
       if (visible) {
@@ -186,8 +183,4 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
 );
 Picture.displayName = 'Picture';
 
-function shouldComponentUpdate(preProps: PictureProps) {
-  return !!preProps.children;
-}
-
-export default memo(Picture, shouldComponentUpdate);
+export default Picture;

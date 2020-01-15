@@ -1,6 +1,6 @@
 {
   "name": "rax-modal",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "rax-modal",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "rax-scripts test",
+    "test": "npm run build && rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
   },
   "repository": {
@@ -20,6 +20,11 @@
     "Rax",
     "rax-component"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "jest-transform-css"
+    }
+  },
   "engines": {
     "npm": ">=3.0.0"
   },
@@ -42,6 +47,7 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "husky": "^3.0.5",
+    "jest-transform-css": "^2.0.0",
     "lerna": "^3.16.4",
     "lint-staged": "^9.2.5",
     "rax": "^1.0.4",

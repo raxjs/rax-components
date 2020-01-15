@@ -2,19 +2,19 @@
 
 [![npm](https://img.shields.io/npm/v/rax-picture.svg)](https://www.npmjs.com/package/rax-picture)
 
-## 安装 
+## 安装
 
 ```bash
 $ npm install rax-picture --save
 ```
 
-## 引用 
+## 引用
 
 ```jsx
 import Picture from 'rax-picture';
 ```
 
-## 属性 
+## 属性
 
 注：
 1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序
@@ -24,10 +24,9 @@ import Picture from 'rax-picture';
 | source | `Object: {uri: String}` | - |   true | 设置图片的 uri | ALL |
 | style | `Object: { width: Number height: Number }` | - | true | 图片样式 width和height为必填属性，否则图片无法正常展示，可以补充其他属性| ALL |
 | fallbackSource | `Object: {uri: String}` | - | false | 备用图片的uri（当主图加载失败是加载） | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> |
-| forceUpdate | `Boolean` | false | false | Picture 是一个 PureComponent ，它的 shouldComponentUpdate 决定了当且仅当 porps.source.uri 有变化时才会重新 render。如果你想忽略它的 shouldComponentUpdate，则传入 forceUpdate={true} | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> |
 | resizeMode | `String： 'contain' 'cover' 'stretch'` | - | false | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小 | ALL |
 | quality | `String: 'original' 'normal' 'low' 'high' 'auto'` | - | false | 图片质量 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
-| placeholder | `String` | - | false | 占位图的 URL，在图片下载过程中将展示占位图，图片下载完成后将显示source中指定的图片。 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| placeholder | `String` | - | false | 懒加载时的占位 URL，在图片下载过程中将展示占位图，图片下载完成后将显示source中指定的图片。 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 | lazyload | `Boolean` | true | false | web端有效，根据图像是否在可视范围内延迟加载图像，Web 端需引入 `//g.alicdn.com/kg/appear/0.2.2/appear.min.js` 脚本 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
 | autoPixelRatio | `Boolean` | true | false | web端有效，在高分辨率下使用二倍图 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
 | autoRemoveScheme | `Boolean` | true | false | web端有效,图像 URL 自动删除协议头 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
@@ -62,7 +61,7 @@ H5 下是 Web 原生的Event事件
 
 ## 示例
 
-```jsx 
+```jsx
 import { createElement, render } from 'rax';
 import Picture from 'rax-picture';
 

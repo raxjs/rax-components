@@ -16,19 +16,19 @@ const triggleVisible = (instance, visible) => {
 };
 
 const loadStyle = (instance, maskStyle, contentStyle) => {
-  const mask_style = computeStyle(maskStyle);
-  const content_style = computeStyle(contentStyle);
+  const maskStyleState = computeStyle(maskStyle);
+  const contentStyleState = computeStyle(contentStyle);
   instance.setData({
-    mask_style: mask_style,
-    content_style: content_style
+    maskStyleState: maskStyleState,
+    contentStyleState: contentStyleState
   });
 };
 
 Component({
   data: {
     visibility: false,
-    mask_style: '',
-    content_style: ''
+    maskStyleState: '',
+    contentStyleState: ''
   },
   properties: {
     visible: {

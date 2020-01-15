@@ -1,7 +1,9 @@
 import fmtEvent from './fmtEvent';
 
 Component({
-  data: {},
+  data: {
+    previousValue: ''
+  },
   properties: {
     className: {
       type: String,
@@ -10,6 +12,10 @@ Component({
     styleSheet: {
       type: String,
       value: ''
+    },
+    placeholderColor: {
+      type: String,
+      value: '#999999'
     },
     multiline: {
       type: Boolean,
@@ -64,19 +70,26 @@ Component({
     styleIsolation: 'apply-shared',
   },
   attached() {
+    const { value, defaultValue } = this.properties;
+    this.setData({
+      previousValue: value || defaultValue
+    });
   },
   methods: {
     onBlur(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onBlur', event);
-      this.triggerEvent('onChange', event);
-      this.triggerEvent('onChangeText', event.detail.value);
+      if (event.detail.value !== this.data.previousValue) {
+        this.triggerEvent('onChange', event);
+        this.triggerEvent('onChangeText', event.detail.value);
+        this.setData({
+          previousValue: event.detail.value
+        });
+      }
     },
     onFocus(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onFocus', event);
-      this.triggerEvent('onChange', event);
-      this.triggerEvent('onChangeText', event.detail.value);
     },
     onConfirm(e) {
       const event = fmtEvent(this.properties, e);
@@ -85,8 +98,6 @@ Component({
     onInput(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onInput', event);
-      this.triggerEvent('onChange', event);
-      this.triggerEvent('onChangeText', event.detail.value);
     }
   }
 });

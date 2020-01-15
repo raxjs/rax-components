@@ -11,6 +11,10 @@
     lower-threshold="{{endReachedThreshold}}"
     onScroll="onScroll"
     onScrollToLower="onEndReached"
+    onTouchStart="onTouchStart"
+    onTouchMove="onTouchMove"
+    onTouchEnd="onTouchEnd"
+    onTouchCancel="onTouchCancel"
 >
     <slot/>
 </scroll-view>

@@ -18,6 +18,9 @@ import {
 } from './types';
 import './index.css';
 
+declare const Fragment;
+let inputId = 0;
+
 function getText(event) {
   let text = '';
   if (isWeex) {
@@ -43,6 +46,8 @@ function genEventObject(event): EventObject {
 const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
   (props, ref) => {
     const refEl = useRef<TextInputElement>(null);
+    const styleClassName = `rax-textinput-placeholder-${inputId++}`;
+
     const {
       className,
       accessibilityLabel,
@@ -62,6 +67,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       password,
       secureTextEntry,
       style,
+      placeholderColor = '#999999',
       value,
       defaultValue
     } = props;
@@ -116,28 +122,46 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
         }
       };
     });
+
     if (multiline) {
       return (
-        <textarea
-          {...propsCommon}
-          style={style}
-          row={rows}
-          rows={rows}
-          disabled={disbaled}
-          onChange={handleChange}
-          value={value || defaultValue}
-          children={isWeb && propsCommon.value}
-        />
+        <Fragment>
+          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+            color: ${placeholderColor}
+          }` }} />
+          <textarea
+            {...propsCommon}
+            className={['rax-textinput', styleClassName, className || ''].join(' ')}
+            style={{
+              ...style,
+              placeholderColor
+            }}
+            row={rows}
+            rows={rows}
+            disabled={disbaled}
+            onChange={handleChange}
+            value={value || defaultValue}
+            children={isWeb && propsCommon.value}
+          />
+        </Fragment>
       );
     } else {
       return (
-        <input
-          {...propsCommon}
-          className={['rax-textinput', className || ''].join(' ')}
-          style={style}
-          type={type}
-          disabled={disbaled}
-        />
+        <Fragment>
+          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+            color: ${placeholderColor}
+          }` }} />
+          <input
+            {...propsCommon}
+            className={['rax-textinput', styleClassName, className || ''].join(' ')}
+            style={{
+              ...style,
+              placeholderColor
+            }}
+            type={type}
+            disabled={disbaled}
+          />
+        </Fragment>
       );
     }
   }

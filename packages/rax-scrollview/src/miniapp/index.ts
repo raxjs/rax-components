@@ -20,6 +20,10 @@ Component({
     scrollTop: 0,
     scrollLeft: 0,
     ref: noop,
+    onTouchStart: noop,
+    onTouchMove: noop,
+    onTouchEnd: noop,
+    onTouchCancel: noop
   },
   methods: {
     onEndReached(e) {
@@ -61,5 +65,53 @@ Component({
         scroll_animation_duration: duration,
       });
     },
+    onTouchStart: function onTouchStart(e) {
+      const event = fmtEvent(this.props, e);
+      event.nativeEvent = {
+        get target() {
+          return e.target;
+        },
+        get currentTarget() {
+          return e.currentTarget;
+        }
+      };
+      this.props.onTouchStart(event);
+    },
+    onTouchMove: function onTouchMove(e) {
+      const event = fmtEvent(this.props, e);
+      event.nativeEvent = {
+        get target() {
+          return e.target;
+        },
+        get currentTarget() {
+          return e.currentTarget;
+        }
+      };
+      this.props.onTouchMove(event);
+    },
+    onTouchEnd: function onTouchEnd(e) {
+      const event = fmtEvent(this.props, e);
+      event.nativeEvent = {
+        get target() {
+          return e.target;
+        },
+        get currentTarget() {
+          return e.currentTarget;
+        }
+      };
+      this.props.onTouchEnd(event);
+    },
+    onTouchCancel: function onTouchCancel(e) {
+      const event = fmtEvent(this.props, e);
+      event.nativeEvent = {
+        get target() {
+          return e.target;
+        },
+        get currentTarget() {
+          return e.currentTarget;
+        }
+      };
+      this.props.onTouchCancel(event);
+    }
   },
 });

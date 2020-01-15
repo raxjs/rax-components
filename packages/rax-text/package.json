@@ -1,6 +1,6 @@
 {
   "name": "rax-text",
-  "version": "1.1.6",
+  "version": "1.1.7-0",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -12,6 +12,11 @@
     "prepublishOnly": "npm run build",
     "test": "npm run build && rax-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.css$": "jest-transform-css"
+    }
   },
   "repository": {
     "type": "git",
@@ -36,6 +41,7 @@
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "jest-transform-css": "^2.0.0",
     "csstype": "^2.6.4",
     "driver-dom": "^1.0.0",
     "driver-universal": "^1.0.1",

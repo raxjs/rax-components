@@ -1,6 +1,6 @@
 {
   "name": "rax-textinput",
-  "version": "1.1.4",
+  "version": "1.1.8",
   "description": "TextInput component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -37,10 +37,9 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
+    "babel-runtime-jsx-plus": "^0.1.4",
     "classnames": "^2.2.6",
     "rax-set-native-props": "^1.0.0",
-    "rax-text": "^1.0.1",
-    "rax-view": "^1.0.1",
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {
@@ -62,7 +61,9 @@
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.0.1",
+    "rax-view": "^1.0.1"
   },
   "husky": {
     "hooks": {

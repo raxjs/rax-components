@@ -54,6 +54,15 @@ Component({
       current: this.properties.index,
     });
   },
+  observers: {
+    'index': function(nextIndex) {
+      if (this.properties.index !== nextIndex) {
+        this.setData({
+          index: nextIndex
+        });
+      }
+    }
+  },
   methods: {
     onChange(e) {
       const event = fmtEvent(this.properties, e);

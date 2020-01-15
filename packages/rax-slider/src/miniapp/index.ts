@@ -41,6 +41,13 @@ Component({
       });
     }
   },
+  didUpdate(prevProps) {
+    if (prevProps.index !== this.props.index) {
+      this.setData({
+        current: this.props.index
+      });
+    }
+  },
   methods: {
     onChange(e) {
       const event = fmtEvent(this.props, e);

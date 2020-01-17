@@ -71,6 +71,7 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp/index",
     "subComponents": {
       "Item": {
         "tagNameMap": "swiper-item"

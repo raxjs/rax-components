@@ -20,7 +20,7 @@ if (!isNode) {
   isSupport(_isSupportJPG => {
     isSupportJPG = _isSupportJPG;
   });
-  
+
   isSupport(_isSupportPNG => {
     isSupportPNG = _isSupportPNG;
   }, 'alpha');

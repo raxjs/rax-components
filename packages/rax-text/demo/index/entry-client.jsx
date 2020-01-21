@@ -4,7 +4,7 @@ import DU from 'driver-universal';
 
 import App from './index';
 
-render(<App/>, document.body, {
+render(<App />, document.getElementById('root'), {
   driver: DU,
   hydrate: location.pathname.indexOf('/ssr') > -1 ? true : false, // Dev previw path for SSR is like this: http://localhost:9999/ssr/index
 });

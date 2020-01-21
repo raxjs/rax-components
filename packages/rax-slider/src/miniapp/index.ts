@@ -31,10 +31,15 @@ Component({
   },
   didMount() {
     if (!my.canIUse('component2')) {
+      /**
+       * The default duration is 500.
+       * There should be no transition animation when the current is initialized,
+       * so the initial duration is 0.
+       * After initialization, the value is set to the default value.
+       */
       this.setData({
         current: this.props.index,
       }, () => {
-        // Set default duration value
         this.setData({
           duration: 500
         });

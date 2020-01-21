@@ -2,33 +2,32 @@
 /**
  * @jsx createElement
  */
-import {createElement, render, Component} from 'rax';
-import DU from 'driver-universal';
+import {createElement, Component} from 'rax';
 import View from 'rax-view';
-import Text from '../src/index';
+import Text from '../../src/index';
 
 const styles = {
   root: {
-    width: 750,
-    paddingTop: 20,
+    width: '750rpx',
+    paddingTop: '20rpx',
   },
   container: {
-    padding: 20,
+    padding: '20rpx',
     borderStyle: 'solid',
     borderColor: '#dddddd',
-    borderWidth: 1,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
+    borderWidth: '1rpx',
+    marginLeft: '20rpx',
+    marginRight: '20rpx',
+    marginBottom: '10rpx',
   },
   textBlock: {
     fontWeight: '500',
     color: 'blue',
   },
   logBox: {
-    padding: 20,
-    margin: 10,
-    borderWidth: 1,
+    padding: '20rpx',
+    margin: '10rpx',
+    borderWidth: '1rpx',
     borderColor: '#f0f0f0',
     backgroundColor: '#f9f9f9',
   },
@@ -52,12 +51,12 @@ class App extends Component {
 
         <View style={styles.container}>
           <Text numberOfLines={1} style={{
-            width: 300,
+            width: '300rpx',
             textOverflow: 'ellipsis',
           }}>Single line of text exceeds truncated text</Text>
 
           <Text numberOfLines={2} style={{
-            width: 300,
+            width: '300rpx',
             textOverflow: 'ellipsis',
           }}>
           Multi-line text exceeds truncated text, exceeds truncated text, exceeds truncated text, exceeds truncated text</Text>
@@ -86,4 +85,4 @@ class App extends Component {
   }
 }
 
-render(<App/>, document.body, {driver: DU});
+export default App;

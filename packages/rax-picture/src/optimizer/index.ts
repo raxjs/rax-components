@@ -49,8 +49,8 @@ export default function(uri, config) {
       const host = ret[1];
       const path = ret[2];
       let suffixRet = path.match(REG_IMG_SUFFIX) || [];
-      const notGif = !~path.indexOf('gif') && !~path.indexOf('GIF') || !ignoreGif;
-      const notPng = !~path.indexOf('png') && !~path.indexOf('png') || !ignorePng;
+      const notGif = !/\.gif($|\?)/i.test(path) || !ignoreGif;
+      const notPng = !/\.png($|\?)/i.test(path) || !ignorePng;
 
       let scalingSuffix = suffixRet[1] || '';
       if (

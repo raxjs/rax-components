@@ -56,7 +56,9 @@ Component({
   methods: {
     onChange(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onChange(event);
+      this.props.onChange({
+        index: event.detail.current
+      });
     },
     slideTo(index) {
       if (index !== undefined) {

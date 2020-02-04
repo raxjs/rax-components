@@ -7,10 +7,10 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
+    "build": "npm run clean && build-scripts build",
+    "start": "build-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
+    "test": "npm run build && build-scripts test",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
   },
   "jest": {
@@ -36,12 +36,13 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
+    "@alib/build-scripts": "^0.1.0",
     "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
-    "jest-transform-css": "^2.0.0",
+    "build-plugin-rax-component": "^0.1.0",
     "csstype": "^2.6.4",
     "driver-dom": "^1.0.0",
     "driver-universal": "^1.0.1",
@@ -49,12 +50,13 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "husky": "^3.0.5",
+    "jest-transform-css": "^2.0.0",
     "lint-staged": "^9.2.5",
     "rax": "^1.0.0",
-    "rax-plugin-component": "^0.1.9",
-    "rax-scripts": "^2.0.0",
+    "rax-server-renderer": "^1.1.5",
     "rax-test-renderer": "^1.0.0",
-    "rax-view": "^1.0.1-beta.11"
+    "rax-view": "^1.1.0",
+    "universal-env": "^3.0.0"
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",

@@ -2,7 +2,7 @@
 import {createElement, render} from 'rax';
 import DU from 'driver-universal';
 
-import App from './index';
+import App from './app';
 
 render(<App />, document.getElementById('root'), {
   driver: DU,

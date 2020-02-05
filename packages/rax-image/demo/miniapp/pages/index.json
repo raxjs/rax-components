@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "miniapp Rax Image demo",
-  "usingComponents": {
-    "rax-image": "../lib/miniapp/index"
-  }
-}

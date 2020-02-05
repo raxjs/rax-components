@@ -3,7 +3,7 @@
 'use strict';
 
 import {Component} from 'rax';
-import Util, {isLoop, transformExpression, clamp, uuid, getLast} from '../Util';
+import Util, {isLoop, transformExpression, clamp, uuid, getLast, formatTransformValue} from '../Util';
 import Indicator from '../Indicator';
 import Panel from '../Panel';
 import {FULL_WIDTH} from '../Constant';
@@ -295,7 +295,7 @@ class BaseView extends Component {
     if (this.refs[`card_${loopIndex}`]) {
       this.setStyles(findDOMNode(this.refs[`card_${loopIndex}`]), {
         transition: 'none', // prevent transition on web
-        ...vertical ? {top: `${destIndex * cardSize}rem`} : {left: `${destIndex * cardSize}rem`}
+        ...vertical ? {top: formatTransformValue(destIndex * cardSize)} : {left: formatTransformValue(destIndex * cardSize)}
       });
     }
   }
@@ -369,7 +369,7 @@ class BaseView extends Component {
               case 'translate':
               case 'translateX':
               case 'translateY':
-                transform.push(`${transformKey}(${val}rem)`);
+                transform.push(`${transformKey}(${formatTransformValue(val)})`);
                 break;
             }
           } else {

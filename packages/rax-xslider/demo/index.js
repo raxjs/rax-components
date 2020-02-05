@@ -19,7 +19,8 @@ const styles = {
     justifyContent: 'center',
     borderRadius: 24,
     borderWidth: 5,
-    borderColor: '#000'
+    borderColor: '#000',
+    borderStyle: 'solid'
   },
   panView: {
     height: 400,

@@ -10,8 +10,7 @@
     "build": "npm run clean && build-scripts build",
     "start": "build-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && build-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build && build-scripts test"
   },
   "jest": {
     "moduleNameMapper": {
@@ -49,9 +48,7 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "husky": "^3.0.5",
     "jest-transform-css": "^2.0.0",
-    "lint-staged": "^9.2.5",
     "rax": "^1.0.0",
     "rax-server-renderer": "^1.1.5",
     "rax-test-renderer": "^1.0.0",
@@ -61,16 +58,5 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ]
   }
 }

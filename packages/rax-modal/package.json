@@ -9,8 +9,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build && rax-scripts test"
   },
   "repository": {
     "type": "git",
@@ -46,10 +45,8 @@
     "driver-universal": "^1.0.2",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "husky": "^3.0.5",
     "jest-transform-css": "^2.0.0",
     "lerna": "^3.16.4",
-    "lint-staged": "^9.2.5",
     "rax": "^1.0.4",
     "rax-plugin-component": "^0.1.25",
     "rax-scripts": "^2.0.0",
@@ -59,16 +56,5 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ]
   }
 }

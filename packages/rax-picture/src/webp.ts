@@ -12,6 +12,15 @@ if (!isWeex && !isNode) {
   isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 }
 
+function setLocalStorage(isSupport: boolean, type: string) {
+  if (window.localStorage && typeof window.localStorage.setItem === 'function') {
+    try {
+      window.localStorage.setItem('webpsupport-' + type, isSupport + '');
+    } catch (e) {
+    }
+  }
+}
+
 function isSupportTest(callback: (isSupport: boolean) => void, type: string) {
   if ('function' !== typeof callback) return;
   let img = new Image();
@@ -25,15 +34,6 @@ function isSupportTest(callback: (isSupport: boolean) => void, type: string) {
     callback(false);
   };
   img.src = '//gw.alicdn.com/mt/TB11KmBXwoQMeJjy0FoXXcShVXa-1-1.png_.webp';
-}
-
-function setLocalStorage(isSupport: boolean, type: string) {
-  if (window.localStorage && typeof window.localStorage.setItem === 'function') {
-    try {
-      window.localStorage.setItem('webpsupport-' + type, isSupport + '');
-    } catch (e) {
-    }
-  }
 }
 
 export function isSupport(callback: (status: boolean) => void, type = 'lossy') {

@@ -141,8 +141,9 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             disabled={disbaled}
             onChange={handleChange}
             value={value || defaultValue}
-            children={isWeb && propsCommon.value}
-          />
+          >
+            {isWeb && propsCommon.value}
+          </textarea>
         </Fragment>
       );
     } else {

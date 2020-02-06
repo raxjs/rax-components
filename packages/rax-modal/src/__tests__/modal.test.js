@@ -1,14 +1,14 @@
-import { createElement, useState, useEffect } from "rax";
-import renderer from "rax-test-renderer";
-import View from "rax-view";
-import Modal from "../../lib";
+import { createElement, useState, useEffect } from 'rax';
+import renderer from 'rax-test-renderer';
+import View from 'rax-view';
+import Modal from '../../lib';
 
-describe("render modal", () => {
+describe('render modal', () => {
   beforeEach(function() {
     jest.useFakeTimers();
   });
 
-  it("should first render is visible", () => {
+  it('should first render is visible', () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(false);
@@ -43,7 +43,7 @@ describe("render modal", () => {
     expect(showModal).toBe(true);
   });
 
-  it("should render a default hidden modal", () => {
+  it('should render a default hidden modal', () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(false);
@@ -76,7 +76,7 @@ describe("render modal", () => {
     expect(showModal).toBe(true);
   });
 
-  it("should render a default visible modal", () => {
+  it('should render a default visible modal', () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(true);

@@ -10,7 +10,6 @@
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
     "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src",
     "miniapp": "rax-scripts start --type 'component-miniapp'"
   },
   "files": [

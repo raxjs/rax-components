@@ -1,6 +1,6 @@
 {
   "name": "rax-icon",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "icon component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -17,6 +17,10 @@
     "dist",
     "lib"
   ],
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
@@ -43,7 +47,6 @@
   },
   "devDependencies": {
     "@rax-types/rax": "^1.0.5",
-    "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
@@ -52,6 +55,8 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "mini-types": "^0.1.1",
+    "miniprogram-api-typings": "^2.10.1",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",

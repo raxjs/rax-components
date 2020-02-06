@@ -5,7 +5,7 @@ import {
   ForwardRefExoticComponent,
   forwardRef
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import Text from 'rax-text';
 import Image from 'rax-image';
 
@@ -60,6 +60,16 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
         domModule.addRule('fontFace', {
           fontFamily,
           src: "url('" + uri + "')" // single quotes are required around uri, and double quotes can not work
+        });
+      } else if (isMiniApp) {
+        my.loadFontFace({
+          family: fontFamily,
+          source: "url('" + uri + "')"
+        });
+      } else if (isWeChatMiniProgram) {
+        wx.loadFontFace({
+          family: fontFamily,
+          source: "url('" + uri + "')"
         });
       }
     } else if (fontFile !== uri) {

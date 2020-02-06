@@ -38,7 +38,7 @@ Component({
       this.initImage('styleSheet', newStyleSheet);
     },
     source(newSource) {
-      this.initImage('srouce', newSource);
+      this.initImage('source', newSource);
     }
   },
   options: {

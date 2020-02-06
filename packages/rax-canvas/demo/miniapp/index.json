@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "miniapp Rax scrollview demo",
-  "usingComponents": {
-    "rax-canvas": "../../src/miniapp/index"
-  }
-}

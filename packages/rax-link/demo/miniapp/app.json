@@ -1,6 +1,0 @@
-{
-  "pages": ["pages/pageA/index", "pages/pageB/index"],
-  "window": {
-    "defaultTitle": "rax-link miniapp demo"
-  }
-}

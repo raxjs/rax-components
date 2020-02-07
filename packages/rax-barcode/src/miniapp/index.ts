@@ -4,7 +4,7 @@ import { getStyleNumber, getStyleProps } from '../utils';
 const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
 
 Component({
-  //@ts-ignore
+  // @ts-ignore
   onInit() {
     this.randomId = Math.random().toString().substr(2);
     this.setData({ randomId: this.randomId });

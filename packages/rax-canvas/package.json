@@ -10,8 +10,7 @@
     "start": "rax-scripts start",
     "miniapp": "rax-scripts start --type 'component-miniapp'",
     "prepublishOnly": "npm run build",
-    "test": "rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+    "test": "rax-scripts test"
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",

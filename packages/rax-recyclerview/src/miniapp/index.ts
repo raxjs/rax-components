@@ -1,11 +1,11 @@
-import fmtEvent from "./fmtEvent";
+import fmtEvent from './fmtEvent';
 
 const noop = () => {};
 
 Component({
   props: {
-    className: "",
-    style: "",
+    className: '',
+    style: '',
     endReachedThreshold: 500,
     onEndReached: noop,
     onScroll: noop,

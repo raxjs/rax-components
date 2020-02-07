@@ -101,7 +101,7 @@ function Modal(props: ModalProps) {
     }
     setVisibleState(false);
     onHide && onHide();
-  }
+  };
 
   const hide = () => {
     if (visibleState) {

@@ -11,8 +11,7 @@
     "start": "rax-scripts start",
     "miniapp": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build"
   },
   "keywords": [
     "Rax",
@@ -51,23 +50,10 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.0.4",
-    "lint-staged": "^9.2.3",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ]
   }
 }

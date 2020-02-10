@@ -1,5 +1,5 @@
 /** @jsx createElement */
-import {createElement, render, useRef} from 'rax';
+import {createElement, render, useRef, useState} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import DU from 'driver-universal';
@@ -50,6 +50,7 @@ const colors = [
 
 const App = () => {
   const pagination = useRef(null); 
+  const [loadMore, setLoadMore] = useState(false);
   const bgList = Array.apply(null, {length: colors.length}).map(() => useRef(null));
   const getCardTransitionSpec = () => {
     return {
@@ -339,6 +340,35 @@ const App = () => {
         }}>/{colors.length}</Text>
       </View>
     </View>
+    </View>
+
+    <View>
+      <Text style={styles.title}>loadMore Offset</Text>
+    </View>
+    <View>
+      <Slider
+        minLoadMoreOffset={80}
+        cardSize={750}
+      >
+        {colors.map((color, i) => {
+          return (<Slider.Panel style={{...styles.item, backgroundColor: color}}>
+            <Slider.PanView style={styles.panView}><Text style={styles.txt}>{i}</Text></Slider.PanView>
+          </Slider.Panel>);
+        })}
+        <Slider.LoadMore
+          onLoading={() => {
+            setLoadMore(true);
+          }}
+          style={{
+            ...styles.item,
+            backgroundColor: '#f00',
+            width: 800,
+            height: 500,
+          }}
+        >
+          <Slider.PanView style={styles.panView}><Text style={styles.title}>{!loadMore ? 'load more...' : 'load finish'}</Text></Slider.PanView>
+        </Slider.LoadMore>
+      </Slider>
     </View>
   </ScrollView>);
 } 

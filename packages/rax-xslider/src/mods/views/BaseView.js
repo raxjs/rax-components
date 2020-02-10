@@ -386,8 +386,15 @@ class BaseView extends Component {
   }
 
   handleLoadMore(e) {
+    const { minLoadMoreOffset } = this.props;
     if (!this.loadmore.current) return;
-    if (e.index === e.prevIndex && e.index === this.itemCount - 1 && !e.isInitial && this.dist < 0) {
+    let offsetCheck = false;
+    if (minLoadMoreOffset) {
+      offsetCheck = this.dist <= -minLoadMoreOffset;
+    } else {
+      offsetCheck = this.dist < 0;
+    }
+    if (e.index === e.prevIndex && e.index === this.itemCount - 1 && !e.isInitial && offsetCheck) {
       this.loadmore.current.handleLoading();
     }
   }

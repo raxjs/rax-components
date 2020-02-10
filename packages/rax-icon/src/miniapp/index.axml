@@ -1,0 +1,14 @@
+<image 
+  a:if="{{isImage}}"
+  src="{{source.uri}}"
+  style="{{styleSheet}}" 
+  class="{{className}}"
+/>
+<view
+  a:else
+  style="{{styleSheet}}" 
+  class="{{className}}"
+>
+{{source.codePoint}}
+</view>
+

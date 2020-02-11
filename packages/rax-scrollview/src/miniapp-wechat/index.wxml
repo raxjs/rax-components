@@ -1,8 +1,8 @@
 <scroll-view
     class="rax-scrollview {{className}}"
     style="flex-direction:{{horizontal?'row':'column'}};{{styleSheet}}"
-    scroll-x="{{horizontal}}"
-    scroll-y="{{!horizontal}}"
+    scroll-x="{{!disableScroll && horizontal}}"
+    scroll-y="{{!disableScroll && !horizontal}}"
     scroll-top="{{scrollTop||scroll_top}}"
     scroll-left="{{scrollLeft||scroll_left}}"
     scroll-into-view="{{scroll_into_view}}"
@@ -14,4 +14,3 @@
 >
     <slot/>
 </scroll-view>
-  

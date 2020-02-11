@@ -13,6 +13,7 @@ Component({
   props: {
     className: '',
     style: '',
+    disableScroll: false,
     horizontal: false,
     endReachedThreshold: 500,
     onEndReached: noop,

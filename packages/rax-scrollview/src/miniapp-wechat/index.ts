@@ -18,6 +18,10 @@ Component({
       type: String,
       value: ''
     },
+    disableScroll: {
+      type: Boolean,
+      value: false
+    },
     horizontal: {
       type: Boolean,
       value: false

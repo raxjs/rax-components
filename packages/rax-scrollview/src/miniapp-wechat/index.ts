@@ -3,8 +3,8 @@ import fmtEvent from './fmtEvent';
 Component({
   data: {
     direction: 'vertical',
-    scroll_top: 0,
-    scroll_left: 0,
+    scrollY: 0,
+    scrollX: 0,
     scrollIntoViewId: '',
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
@@ -68,8 +68,8 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-        scroll_top: y,
-        scroll_left: x,
+        scrollY: y,
+        scrollX: x,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

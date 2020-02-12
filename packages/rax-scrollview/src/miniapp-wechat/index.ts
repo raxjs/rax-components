@@ -5,7 +5,7 @@ Component({
     direction: 'vertical',
     scrollTop: 0,
     scrollLeft: 0,
-    scrollIntoView: '',
+    scrollIntoViewId: '',
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
   },
@@ -29,14 +29,6 @@ Component({
     endReachedThreshold: {
       type: Number,
       value: 500
-    },
-    scrollTop: {
-      type: Number,
-      value: 0
-    },
-    scrollLeft: {
-      type: Number,
-      value: 0
     }
   },
   options: {
@@ -77,7 +69,7 @@ Component({
     scrollIntoView(param) {
       const { id, animated = true, duration = 400 } = param || {};
       this.setData({
-        scrollIntoView: id,
+        scrollIntoViewId: id,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

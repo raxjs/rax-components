@@ -4,8 +4,8 @@ const noop = () => {};
 Component({
   data: {
     direction: 'vertical',
-    scrollTop: 0,
-    scrollLeft: 0,
+    scroll_top: 0,
+    scroll_left: 0,
     scrollIntoViewId: '',
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
@@ -18,6 +18,8 @@ Component({
     endReachedThreshold: 500,
     onEndReached: noop,
     onScroll: noop,
+    scrollTop: 0,
+    scrollLeft: 0,
     ref: noop,
     onTouchStart: noop,
     onTouchMove: noop,
@@ -50,8 +52,8 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-        scrollTop: y,
-        scrollLeft: x,
+        scroll_top: y,
+        scroll_left: x,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

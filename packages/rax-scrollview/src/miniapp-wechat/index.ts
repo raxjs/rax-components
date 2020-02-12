@@ -3,8 +3,8 @@ import fmtEvent from './fmtEvent';
 Component({
   data: {
     direction: 'vertical',
-    scrollTop: 0,
-    scrollLeft: 0,
+    scroll_top: 0,
+    scroll_left: 0,
     scrollIntoViewId: '',
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
@@ -29,6 +29,14 @@ Component({
     endReachedThreshold: {
       type: Number,
       value: 500
+    },
+    scrollTop: {
+      type: Number,
+      value: 0
+    },
+    scrollLeft: {
+      type: Number,
+      value: 0
     }
   },
   options: {
@@ -60,8 +68,8 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-        scrollTop: y,
-        scrollLeft: x,
+        scroll_top: y,
+        scroll_left: x,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

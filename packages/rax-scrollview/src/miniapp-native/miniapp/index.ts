@@ -4,15 +4,9 @@ const noop = () => {};
 Component({
   data: {
     direction: 'vertical',
-<<<<<<< HEAD:packages/rax-scrollview/src/miniapp-native/miniapp/index.ts
     scrollY: 0,
     scrollX: 0,
     scrollIntoViewId: '',
-=======
-    scrollTop: 0,
-    scrollLeft: 0,
-    scrollIntoView: '',
->>>>>>> master:packages/rax-scrollview/src/miniapp/index.ts
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
   },
@@ -58,13 +52,8 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-<<<<<<< HEAD:packages/rax-scrollview/src/miniapp-native/miniapp/index.ts
         scrollY: y,
         scrollX: x,
-=======
-        scrollTop: y,
-        scrollLeft: x,
->>>>>>> master:packages/rax-scrollview/src/miniapp/index.ts
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });
@@ -72,11 +61,7 @@ Component({
     scrollIntoView(param) {
       const { id, animated = true, duration = 400 } = param || {};
       this.setData({
-<<<<<<< HEAD:packages/rax-scrollview/src/miniapp-native/miniapp/index.ts
         scrollIntoViewId: id,
-=======
-        scrollIntoView: id,
->>>>>>> master:packages/rax-scrollview/src/miniapp/index.ts
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

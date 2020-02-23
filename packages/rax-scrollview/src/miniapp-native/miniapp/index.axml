@@ -1,7 +1,6 @@
 <scroll-view
     class="rax-scrollview {{className}}"
     style="flex-direction:{{horizontal?'row':'column'}};{{style}}"
-<<<<<<< HEAD:packages/rax-scrollview/src/miniapp-native/miniapp/index.axml
     scroll-x="{{!disableScroll&&horizontal}}"
     scroll-y="{{!disableScroll&&!horizontal}}"
     scroll-top="{{scrollTop||scrollY}}"
@@ -9,15 +8,6 @@
     scroll-into-view="{{scrollIntoViewId}}"
     scroll-with-animation="{{scrollWithAnimation}}"
     scroll-animation-duration="{{scrollAnimationDuration}}"
-=======
-    scroll-x="{{!disableScroll && horizontal}}"
-    scroll-y="{{!disableScroll && !horizontal}}"
-    scroll-top="{{scrollTop||scroll_top}}"
-    scroll-left="{{scrollLeft||scroll_left}}"
-    scroll-into-view="{{scroll_into_view}}"
-    scroll-with-animation="{{scroll_with_animation}}"
-    scroll-animation-duration="{{scroll_animation_duration}}"
->>>>>>> master:packages/rax-scrollview/src/miniapp/index.axml
     lower-threshold="{{endReachedThreshold}}"
     onScroll="onScroll"
     onScrollToLower="onEndReached"

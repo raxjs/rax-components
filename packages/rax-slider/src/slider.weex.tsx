@@ -32,10 +32,10 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       let currentIndex = 0;
       // https://weex.apache.org/docs/components/slider.html#rax-example
       // The past Weex docs shows that the 'result' is a number, But in the new Weex App returns {index:x, timestamp:...}
-      if (typeof result === "number") {
+      if (typeof result === 'number') {
         currentIndex = result;
       }
-      if (typeof result === "object" && typeof result.index === "number") {
+      if (typeof result === 'object' && typeof result.index === 'number') {
         currentIndex = result.index;
       }
       setIndex(currentIndex);

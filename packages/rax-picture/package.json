@@ -1,6 +1,6 @@
 {
   "name": "rax-picture",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Picture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -10,8 +10,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+    "test": "npm run build && rax-scripts test"
   },
   "jest": {
     "moduleNameMapper": {

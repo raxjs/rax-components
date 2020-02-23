@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "Miniapp rax view component",
-  "usingComponents": {
-    "rax-countdown": "../lib/miniapp/index"
-  }
-}

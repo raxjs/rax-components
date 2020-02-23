@@ -23,6 +23,13 @@ export interface QRCodeProps {
   style?: Rax.CSSProperties;
 }
 
+const styles = {
+  qrCode: {
+    width: 300,
+    height: 300
+  }
+};
+
 class QRCode extends Component<QRCodeProps, {}> {
   public width = 0;
   public height = 0;
@@ -87,12 +94,5 @@ class QRCode extends Component<QRCodeProps, {}> {
     return <Canvas style={{ ...styles.qrCode, ...style }} ref={this.canvas} />;
   }
 }
-
-const styles = {
-  qrCode: {
-    width: 300,
-    height: 300
-  }
-};
 
 export default QRCode;

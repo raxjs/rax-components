@@ -5,7 +5,7 @@ import {
   ForwardRefExoticComponent,
   forwardRef
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import Text from 'rax-text';
 import Image from 'rax-image';
 
@@ -41,13 +41,14 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {
       fontCache.set(fontFamily, uri);
+      const source = `url('${uri}')`;
       if (isWeb) {
         if (window.FontFace) {
-          const iconfont = new window.FontFace(fontFamily, 'url(' + uri + ')');
+          const iconfont = new window.FontFace(fontFamily, source);
           document.fonts.add(iconfont);
         } else {
           const iconFontStyles = `@font-face {
-                src: url(${uri});
+                src: ${source};
                 font-family: ${fontFamily};
               }`;
           // Create stylesheet
@@ -59,7 +60,17 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
       } else if (isWeex) {
         domModule.addRule('fontFace', {
           fontFamily,
-          src: "url('" + uri + "')" // single quotes are required around uri, and double quotes can not work
+          src: source // single quotes are required around uri, and double quotes can not work
+        });
+      } else if (isMiniApp) {
+        my.loadFontFace({
+          family: fontFamily,
+          source
+        });
+      } else if (isWeChatMiniProgram) {
+        wx.loadFontFace({
+          family: fontFamily,
+          source
         });
       }
     } else if (fontFile !== uri) {

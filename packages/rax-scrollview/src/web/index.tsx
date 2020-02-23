@@ -29,7 +29,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
       onEndReached,
-      onEndReachedThreshold = 50,
+      onEndReachedThreshold,
       onScroll,
       children
     } = props;

@@ -18,10 +18,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       style,
       horizontal,
       onEndReached,
-      onEndReachedThreshold = 50,
       onScroll,
       children,
-      disableScroll = false
+      disableScroll = false,
+      onEndReachedThreshold
     } = props;
     const [scrollTop, setScrollTop] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);

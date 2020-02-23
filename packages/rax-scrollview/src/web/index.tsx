@@ -184,7 +184,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       }
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
-      scrollerStyle.overflow = 'scroll';
+      scrollerStyle.overflow = 'auto';
       const webProps = {
         ...props
       };

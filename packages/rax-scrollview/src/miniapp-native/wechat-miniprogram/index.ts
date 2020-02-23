@@ -3,11 +3,11 @@ import fmtEvent from './fmtEvent';
 Component({
   data: {
     direction: 'vertical',
-    scroll_top: 0,
-    scroll_left: 0,
-    scroll_into_view: '',
-    scroll_with_animation: true,
-    scroll_animation_duration: 400,
+    scrollY: 0,
+    scrollX: 0,
+    scrollIntoViewId: '',
+    scrollWithAnimation: true,
+    scrollAnimationDuration: 400,
   },
   properties: {
     className: {
@@ -17,6 +17,10 @@ Component({
     styleSheet: {
       type: String,
       value: ''
+    },
+    disableScroll: {
+      type: Boolean,
+      value: false
     },
     horizontal: {
       type: Boolean,
@@ -64,18 +68,18 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-        scroll_top: y,
-        scroll_left: x,
-        scroll_with_animation: animated,
-        scroll_animation_duration: duration,
+        scrollY: y,
+        scrollX: x,
+        scrollWithAnimation: animated,
+        scrollAnimationDuration: duration,
       });
     },
     scrollIntoView(param) {
       const { id, animated = true, duration = 400 } = param || {};
       this.setData({
-        scroll_into_view: id,
-        scroll_with_animation: animated,
-        scroll_animation_duration: duration,
+        scrollIntoViewId: id,
+        scrollWithAnimation: animated,
+        scrollAnimationDuration: duration,
       });
     },
   },

@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "rax-find-dom-node": "^1.0.0",
     "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
     "rax-text": "^1.0.1",

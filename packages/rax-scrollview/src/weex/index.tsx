@@ -64,7 +64,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
         const dom = __weex_require__('@weex-module/dom');
         const contentContainer = contentContainerRef.current;
-        // 首屏多个scrollview需要自动滚动到某个默认选中的位置，但是可能内容还未渲染出（不存在contentContainer的情况）
+        /**
+         * Multiple scrollviews on the first screen need to be automatically scrolled to a default selected location,
+         * but the content may not have been rendered (in the case of contentContainer)
+         */
         contentContainer &&
           dom.scrollToElement(contentContainer, {
             offset: x || y || 0,

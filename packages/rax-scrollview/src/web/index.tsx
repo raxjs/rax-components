@@ -126,6 +126,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
             scrollerRef.current.scrollTop = pixelRatio * y;
           }
         }
+      },
+      scrollIntoView() {
+        // Due to compatibility problems, currently itn't support web
       }
     }));
 

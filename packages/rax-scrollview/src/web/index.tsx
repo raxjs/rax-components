@@ -18,6 +18,45 @@ const ANIMATION_DURATION = 400;
 const STYLE_NODE_ID = 'rax-scrollview-style';
 const baseCls = 'rax-scrollview';
 
+/**
+ * Scroll to some position method
+ * @param scrollerRef the scroll container ref
+ * @param x offset x
+ * @param y offset y
+ * @param animated does it need animated
+ * @param duration animate duration
+ */
+function scrollTo(scrollerRef, x, y, animated, duration) {
+  const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
+  const scrollView = scrollerRef.current;
+  const scrollLeft = scrollView.scrollLeft;
+  const scrollTop = scrollView.scrollTop;
+  if (animated) {
+    const timer = new Timer({
+      duration,
+      easing: 'easeOutSine',
+      onRun: e => {
+        if (x >= 0) {
+          scrollerRef.current.scrollLeft =
+            scrollLeft + e.percent * (x * pixelRatio - scrollLeft);
+        }
+        if (y >= 0) {
+          scrollerRef.current.scrollTop =
+            scrollTop + e.percent * (y * pixelRatio - scrollTop);
+        }
+      }
+    });
+    timer.run();
+  } else {
+    if (x >= 0) {
+      scrollerRef.current.scrollLeft = pixelRatio * x;
+    }
+    if (y >= 0) {
+      scrollerRef.current.scrollTop = pixelRatio * y;
+    }
+  }
+}
+
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
     let {
@@ -200,36 +239,5 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }
   }
 );
-
-function scrollTo(scrollerRef, x, y, animated, duration) {
-  const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
-  const scrollView = scrollerRef.current;
-  const scrollLeft = scrollView.scrollLeft;
-  const scrollTop = scrollView.scrollTop;
-  if (animated) {
-    const timer = new Timer({
-      duration,
-      easing: 'easeOutSine',
-      onRun: e => {
-        if (x >= 0) {
-          scrollerRef.current.scrollLeft =
-            scrollLeft + e.percent * (x * pixelRatio - scrollLeft);
-        }
-        if (y >= 0) {
-          scrollerRef.current.scrollTop =
-            scrollTop + e.percent * (y * pixelRatio - scrollTop);
-        }
-      }
-    });
-    timer.run();
-  } else {
-    if (x >= 0) {
-      scrollerRef.current.scrollLeft = pixelRatio * x;
-    }
-    if (y >= 0) {
-      scrollerRef.current.scrollTop = pixelRatio * y;
-    }
-  }
-}
 
 export default ScrollView;

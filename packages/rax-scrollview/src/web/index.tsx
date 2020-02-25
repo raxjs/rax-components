@@ -98,37 +98,21 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-        const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
-        const scrollView = scrollerRef.current;
-        const scrollLeft = scrollView.scrollLeft;
-        const scrollTop = scrollView.scrollTop;
-        if (animated) {
-          const timer = new Timer({
-            duration,
-            easing: 'easeOutSine',
-            onRun: e => {
-              if (x >= 0) {
-                scrollerRef.current.scrollLeft =
-                  scrollLeft + e.percent * (x * pixelRatio - scrollLeft);
-              }
-              if (y >= 0) {
-                scrollerRef.current.scrollTop =
-                  scrollTop + e.percent * (y * pixelRatio - scrollTop);
-              }
-            }
-          });
-          timer.run();
-        } else {
-          if (x >= 0) {
-            scrollerRef.current.scrollLeft = pixelRatio * x;
-          }
-          if (y >= 0) {
-            scrollerRef.current.scrollTop = pixelRatio * y;
-          }
-        }
+        scrollTo(scrollerRef, x, y, animated, duration);
       },
-      scrollIntoView() {
-        // Due to compatibility problems, currently itn't support web
+      scrollIntoView(options?: {
+        id?: string;
+        animated?: boolean;
+        duration?: number;
+      }) {
+        const { id, animated = true, duration = ANIMATION_DURATION } = options || {};
+        if (!id) {
+          throw new Error('Params missing id.');
+        }
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          scrollTo(scrollerRef, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
+        }
       }
     }));
 
@@ -216,5 +200,36 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }
   }
 );
+
+function scrollTo(scrollerRef, x, y, animated, duration) {
+  const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
+  const scrollView = scrollerRef.current;
+  const scrollLeft = scrollView.scrollLeft;
+  const scrollTop = scrollView.scrollTop;
+  if (animated) {
+    const timer = new Timer({
+      duration,
+      easing: 'easeOutSine',
+      onRun: e => {
+        if (x >= 0) {
+          scrollerRef.current.scrollLeft =
+            scrollLeft + e.percent * (x * pixelRatio - scrollLeft);
+        }
+        if (y >= 0) {
+          scrollerRef.current.scrollTop =
+            scrollTop + e.percent * (y * pixelRatio - scrollTop);
+        }
+      }
+    });
+    timer.run();
+  } else {
+    if (x >= 0) {
+      scrollerRef.current.scrollLeft = pixelRatio * x;
+    }
+    if (y >= 0) {
+      scrollerRef.current.scrollTop = pixelRatio * y;
+    }
+  }
+}
 
 export default ScrollView;

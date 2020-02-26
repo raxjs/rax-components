@@ -166,7 +166,7 @@ class Slider extends Component<SliderProps, any> {
     };
     const ActiveDot = activeDot || (
       <View
-        className="rax-slider-dot active"
+        className="rax-slider-dot rax-slider-dot-active"
         style={{ backgroundColor: itemSelectedColor, ...size }}
       />
     );

@@ -4,9 +4,9 @@ const noop = () => {};
 Component({
   data: {
     direction: 'vertical',
-    scrollTop: 0,
-    scrollLeft: 0,
-    scrollIntoView: '',
+    scrollY: 0,
+    scrollX: 0,
+    scrollIntoViewId: '',
     scrollWithAnimation: true,
     scrollAnimationDuration: 400,
   },
@@ -52,8 +52,8 @@ Component({
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
       this.setData({
-        scrollTop: y,
-        scrollLeft: x,
+        scrollY: y,
+        scrollX: x,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });
@@ -61,7 +61,7 @@ Component({
     scrollIntoView(param) {
       const { id, animated = true, duration = 400 } = param || {};
       this.setData({
-        scrollIntoView: id,
+        scrollIntoViewId: id,
         scrollWithAnimation: animated,
         scrollAnimationDuration: duration,
       });

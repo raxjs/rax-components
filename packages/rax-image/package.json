@@ -58,5 +58,8 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   }
 }

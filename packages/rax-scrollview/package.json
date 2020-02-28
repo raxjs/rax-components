@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -16,8 +16,8 @@
     "lib"
   ],
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
+    "main": "lib/miniapp-native/miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
     }
@@ -40,10 +40,10 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "rax-find-dom-node": "^1.0.0",
+    "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
-    "rax-view": "^1.1.0",
     "rax-text": "^1.0.1",
+    "rax-view": "^1.1.0",
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {

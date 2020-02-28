@@ -347,7 +347,7 @@ const App = () => {
     </View>
     <View>
       <Slider
-        minLoadMoreOffset={80}
+        minLoadMoreOffset={100}
         cardSize={750}
       >
         {colors.map((color, i) => {

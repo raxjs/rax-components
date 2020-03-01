@@ -4,7 +4,7 @@ import { createElement, Component, render } from 'rax';
 import GestureView from '../src/index';
 import View from 'rax-view';
 import Text from 'rax-text';
-import DU from 'driver-universal';
+import DriverUniversal from 'driver-universal';
 
 class App extends Component {
   onHorizontalPan = (e) => {
@@ -27,4 +27,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.body, { driver: DU });
+render(<App />, document.body, { driver: DriverUniversal });

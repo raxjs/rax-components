@@ -1,6 +1,6 @@
 {
   "name": "rax-gesture-view",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gesture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -38,23 +38,22 @@
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {
-    "rax": "^1.0.0"
+    "rax": "^1.0.0",
+    "@rax-types/rax": "^1.0.6"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
-    "driver-dom": "^1.0.0",
-    "driver-universal": "^1.0.0",
-    "driver-weex": "^1.0.0",
+    "driver-universal": "^1.0.2",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.1.6"
   },
   "miniappConfig": {
     "main": "lib/miniapp/index"

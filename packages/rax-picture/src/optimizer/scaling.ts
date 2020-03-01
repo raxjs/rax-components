@@ -60,7 +60,7 @@ function find(c: number, arr: number[]) {
  */
 export default function(sWidth: string | number, isOSSImg: any): string {
   let xWidth = 0;
-  let scaling = 1;
+  let scaling = 1.5;
   if (typeof sWidth === 'string') {
     xWidth = parseFloat(sWidth);
     if (sWidth.indexOf('rpx') > -1) {

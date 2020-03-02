@@ -7,7 +7,6 @@
   export default {
     props: [ 'id', 'styleSheet', 'className', 'numberOfLines', 'bindClick', 'bindPress', 'parentId', 'tagId'],
     data() {
-      // console.log('text----', this)
       let _style = this.styleSheet || {};
       if (this.numberOfLines) {
         if (typeof _style === 'string') {

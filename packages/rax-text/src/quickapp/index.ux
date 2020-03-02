@@ -25,7 +25,6 @@
       }
     },
     onInit() {
-      // 监听数据变化
       this.$watch('styleSheet', 'watchStyleChange')
       this.$watch('className', 'watchClassChange')
     },

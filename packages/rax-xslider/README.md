@@ -46,7 +46,7 @@ import Slider from 'rax-xslider';
 |defaultIndex|Number|0|默认聚焦到第几个panel|
 |minOffset|Number||滚动offset边界最小值(仅loop:false下生效)|
 |maxOffset|Number||滚动offset边界最大值(仅loop:false下生效)|
-
+|minLoadMoreOffset|Number||loadMore组件的onLoading触发最小距离|
 ### 方法
 
 |名称|参数|返回值|描述|

@@ -30,20 +30,21 @@ function find(c: number, arr: number[]) {
   let min = 1000;
   let result = c;
   let fKey = 0;
-  for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    let abs = Math.abs(num - c);
+  arr.forEach((num, key) => {
+    var abs = Math.abs(num - c);
+
     if (abs === 0) {
       result = num;
-      fKey = i;
+      fKey = key;
       return false;
     }
+
     if (min > abs) {
       min = abs;
       result = num;
-      fKey = i;
+      fKey = key;
     }
-  }
+  });
   if (c > result && arr[fKey + 1]) {
     result = arr[fKey + 1];
   }

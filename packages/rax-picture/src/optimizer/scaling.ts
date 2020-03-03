@@ -26,14 +26,14 @@ const scalingWidth = [
 ];
 const visualStandard = 750;
 
-function find(c: number, arr: number[]) {
+function find(width: number) {
   let min = 1000;
-  let result = c;
+  let result = width;
   let fKey = 0;
   let isMatchValue = false;
-  for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    let abs = Math.abs(num - c);
+  for (let i = 0; i < scalingWidth.length; i++) {
+    const num = scalingWidth[i];
+    let abs = Math.abs(num - width);
     if (abs === 0) {
       result = num;
       fKey = i;
@@ -45,10 +45,10 @@ function find(c: number, arr: number[]) {
       fKey = i;
     }
   }
-  if (c > result && arr[fKey + 1]) {
-    result = arr[fKey + 1];
+  if (width > result && scalingWidth[fKey + 1]) {
+    result = scalingWidth[fKey + 1];
   }
-  if (arr.indexOf(result) > -1) {
+  if (scalingWidth.indexOf(result) > -1) {
     return result;
   }
   return false;
@@ -74,6 +74,6 @@ export default function(sWidth: string | number, isOSSImg: any): string {
     // isNum
     xWidth = sWidth;
   }
-  const newWidth = find(Math.floor(xWidth / scaling), scalingWidth);
+  const newWidth = find(Math.floor(xWidth / scaling));
   return newWidth ? isOSSImg ? `_${newWidth}w` : `${newWidth}x10000` : '';
 }

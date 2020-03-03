@@ -1,6 +1,6 @@
 {
   "name": "rax-text",
-  "version": "1.1.7-0",
+  "version": "1.2.0",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -57,6 +57,10 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   }
 }

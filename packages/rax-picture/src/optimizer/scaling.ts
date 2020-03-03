@@ -30,16 +30,16 @@ function find(c: number, arr: number[]) {
   let min = 1000;
   let result = c;
   let fKey = 0;
-  let isAbsoluteValue = false;
+  let isMatchValue = false;
   for (let i = 0; i < arr.length; i++) {
     const num = arr[i];
     let abs = Math.abs(num - c);
     if (abs === 0) {
       result = num;
       fKey = i;
-      isAbsoluteValue = true;
+      isMatchValue = true;
     }
-    if (min > abs && !isAbsoluteValue) {
+    if (min > abs && !isMatchValue) {
       min = abs;
       result = num;
       fKey = i;

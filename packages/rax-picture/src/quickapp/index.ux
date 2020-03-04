@@ -1,0 +1,37 @@
+<template>
+  <image id="{{id}}" @click="eventClick"  src="{{src}}" class="{{className}}" style="{{style}}" ></image>
+</template>
+
+<script>
+export default {
+  props: ['className', 'styleSheet', 'id', 'source', 'bindClick', 'bindPress', 'parentId', 'tagId'],
+  data() {
+    let _src = this.source.uri || '';
+    return {
+      id: this.id,
+      className: this.className,
+      style: this.styleSheet || {},
+      eventClick: this.bindClick || this.bindPress,
+      src: _src
+    }
+  },
+  onInit() {
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+      this.$watch('id', 'watchIdChange')
+      this.$watch('source', 'watchSourceChange')
+    },
+    watchStyleChange(newV, oldV) {
+      this.style = newV;
+    },
+    watchClassChange(newV, oldV) {
+      this.className = newV;
+    },
+    watchIdChange(newV, oldV) {
+      this.id = newV;
+    },
+    watchSourceChange(newV, oldV) {
+      this.source = newV;
+    },
+}
+</script>

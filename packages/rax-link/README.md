@@ -1,6 +1,9 @@
+[![npm](https://img.shields.io/npm/v/rax-link.svg)](https://www.npmjs.com/package/rax-link)
+
 ## 描述
 
-Link 是基础的链接组件。使用 Link 标签并不能新开一个 webview ，它只是在当前的 webview 中做页面的跳转。
+Link 是基础的链接组件，同 a 标签。它带有默认样式 textDecoration: 'none'。
+在浏览器中，同我们熟悉的 a 标签，使用 Link 标签并不能新开一个 webview ，它只是在当前的 webview 中做页面的跳转。
 
 ## 安装
 

@@ -21,7 +21,7 @@
       const router = require('@system.router');
       this.eventClick();
       router.push({
-        uri: this.href || ''
+        uri: this.href || ""
       })
     },
     onInit() {

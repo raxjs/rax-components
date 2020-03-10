@@ -1,6 +1,6 @@
 {
   "name": "rax-picture",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "Picture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -38,7 +38,11 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   },
   "dependencies": {
     "rax-image": "^1.1.3",

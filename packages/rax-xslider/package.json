@@ -1,6 +1,6 @@
 {
   "name": "rax-xslider",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "advanced slider",
   "author": "john.yy",
   "main": "lib/index.js",
@@ -10,8 +10,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build && rax-scripts test"
   },
   "keywords": [
     "Rax",
@@ -29,15 +28,14 @@
     "rax-find-dom-node": "^1.0.0",
     "rax-gesture-view": "^1.0.0",
     "rax-link": "^1.0.1",
-    "rax-proptypes": "^1.0.0",
+    "prop-types": "^15.7.2",
     "rax-recyclerview": "^1.0.0",
     "rax-scrollview": "^1.0.0",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1",
     "style-unit": "^1.0.1",
-    "universal-animation": "^1.0.0-beta.1",
-    "universal-env": "^1.0.1",
-    "universal-transition": "^1.0.0-beta.1",
+    "universal-animation": "^1.0.1",
+    "universal-env": "^3.0.0",
     "weex-bindingx": "^0.0.49"
   },
   "peerDependencies": {

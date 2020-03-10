@@ -43,6 +43,10 @@ Component({
     id: {
       type: String,
       value: ''
+    },
+    poster: {
+      type: String,
+      value: ''
     }
   },
   options: {

@@ -1,24 +1,21 @@
 import fmtEvent from './fmtEvent';
 
+const noop = function() {};
+
 Component({
-  data: {
-  },
   props: {
     className: '',
     style: '',
     id: '',
-    width: '600',
-    height: '600',
-    onClick: (e) => {},
-    onLongpress: (e) => {},
-    onAppear: (e) => {},
-    onDisAppear: (e) => {},
-    onTouchStart: (e) => {},
-    onTouchMove: (e) => {},
-    onTouchEnd: (e) => {},
-    onTouchCancel: (e) => {}
+    width: 0,
+    height: 0,
+    onClick: noop,
+    onLongpress: noop,
+    onTouchStart: noop,
+    onTouchMove: noop,
+    onTouchEnd: noop,
+    onTouchCancel: noop
   },
-  didMount() {},
   methods: {
     onClick(e) {
       const event = fmtEvent(this.props, e);
@@ -27,14 +24,6 @@ Component({
     onLongpress(e) {
       const event = fmtEvent(this.props, e);
       this.props.onLongpress(event);
-    },
-    onAppear(e) {
-      const event = fmtEvent(this.props, e);
-      this.props.onAppear(event);
-    },
-    onDisAppear(e) {
-      const event = fmtEvent(this.props, e);
-      this.props.onDisAppear(event);
     },
     onTouchStart(e) {
       const event = fmtEvent(this.props, e);

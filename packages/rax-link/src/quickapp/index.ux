@@ -1,0 +1,46 @@
+<template>
+  <div onClick='goUrl' id="{{id}}" style="{{styleSheet}}" class="{{className}}">
+    <slot></slot>
+  </div>
+</template>
+    
+<script>
+  export default {
+    props: ['className', 'styleSheet', 'id', 'href', 'bindClick', 'bindPress', 'tagId', 'parentId', 'miniappHref'],
+    data() {
+      let _style = this.styleSheet || {};
+      return {
+        id: this.id,
+        className: this.className,
+        styleSheet: _style,
+        href: this.href,
+        eventClick: this.bindClick || this.bindPress
+      }
+    },
+    goUrl(){
+      const router = require('@system.router');
+      this.eventClick();
+      router.push({
+        uri: this.href || ""
+      })
+    },
+    onInit() {
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+      this.$watch('id', 'watchIdChange')
+      this.$watch('href', 'watchHrefChange')
+    },
+    watchStyleChange(newV, oldV) {
+      this.styleSheet = newV;
+    },
+    watchClassChange(newV, oldV) {
+      this.className = newV;
+    },
+    watchIdChange(newV, oldV) {
+      this.id = newV;
+    },
+    watchHrefChange(newV, oldV) {
+      this.href = newV;
+    },
+  }
+</script>

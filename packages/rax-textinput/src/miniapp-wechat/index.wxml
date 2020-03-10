@@ -1,5 +1,6 @@
 <input wx:if="{{!multiline}}" class="rax-textinput {{className}}" 
   style="{{styleSheet}}"
+  placeholder-style="color:{{placeholderColor}}"
   focus="{{autoFocus}}"
   disabled="{{!editable}}"
   type="{{keyboardType}}"
@@ -7,6 +8,7 @@
   placeholder="{{placeholder}}"
   password="{{password || secureTextEntry}}"
   value="{{value || defaultValue}}"
+  confirm-type="{{confirmType}}"
   bindblur="onBlur"
   bindfocus="onFocus"
   bindinput="onInput"
@@ -14,6 +16,7 @@
 </input>
 <textarea wx:else class="rax-textinput {{className}}" 
   style="{{styleSheet}}"
+  placeholder-style="color:{{placeholderColor}}"
   auto-focus="{{autoFocus}}"
   disabled="{{!editable}}"
   maxlength="{{maxLength}}"
@@ -22,5 +25,6 @@
   bindblur="onBlur"
   bindfocus="onFocus"
   bindinput="onInput"
+  fixed="{{fixed}}"
   bindconfirm="onConfirm"
 />

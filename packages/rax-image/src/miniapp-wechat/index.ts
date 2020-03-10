@@ -28,12 +28,17 @@ Component({
       value: false
     },
   },
-  onInit() {
-    this.initImage();
-  },
   lifetimes: {
     attached: function() {
       this.initImage();
+    }
+  },
+  observers: {
+    styleSheet(newStyleSheet) {
+      this.initImage('styleSheet', newStyleSheet);
+    },
+    source(newSource) {
+      this.initImage('source', newSource);
     }
   },
   options: {
@@ -52,9 +57,9 @@ Component({
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onClick', event);
     },
-    initImage() {
-      const { width = null, height = null } = this.properties.source || {};
-      let style = this.properties.styleSheet || '';
+    initImage(type, newValue) {
+      const { width = null, height = null } = type === 'source' ? newValue : this.properties.source || {};
+      let style = type === 'styleSheet' ? newValue : this.properties.styleSheet || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';
 

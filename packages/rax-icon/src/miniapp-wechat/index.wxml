@@ -1,0 +1,14 @@
+<image 
+  wx:if="{{isImage}}"
+  src="{{source.uri}}"
+  style="{{style}}" 
+  class="{{className}}"
+/>
+<view
+  wx:else
+  style="{{style}}" 
+  class="{{className}}"
+>
+{{source.codePoint}}
+</view>
+

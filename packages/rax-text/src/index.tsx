@@ -4,7 +4,6 @@ import { TextProps } from './types';
 import './index.css';
 
 const prefixCls = 'rax-text';
-
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
     className,
@@ -20,17 +19,20 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     typeof numberOfLines === 'string'
       ? parseInt(numberOfLines, 10)
       : numberOfLines;
+  let textString = '';
+  if (children != null) {
+    textString = Array.isArray(children) ? children.join('') : children.toString();
+  }
   if (isWeex) {
     return (
       <text
         {...rest}
         ref={ref}
         className={className}
-        style={{ ...style, lines }}
-        value={children}
+        style={{ lines, ...style }}
         onClick={handleClick}
       >
-        {children}
+        {textString}
       </text>
     );
   } else {
@@ -51,10 +53,10 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
         onClick={handleClick}
       >
-        {children}
+        {textString}
       </span>
     );
   }
 });
-
+Text.displayName = 'Text';
 export default Text;

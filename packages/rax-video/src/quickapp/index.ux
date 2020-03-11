@@ -1,0 +1,70 @@
+<template>
+  <video
+    style="{{ style }}"
+    id="{{ id }}"
+    @fullscreenchange="onFullscreenchange"
+    @timeupdate="onTimeupdate"
+    @seeked="onSeeked"
+    @seeking="onSeeking"
+    @finish="onFinish"
+    @prepared="onPrepared"
+    @start="onStart"
+    object-fit="{{ objectFit }}"
+    class="video-container"
+    controls="{{ controls }}"
+    poster="{{ poster }}"
+    muted="{{ muted }}"
+    autoplay="{{ autoPlay }}"
+    src="{{ src }}"
+  ></video>
+</template>
+
+<script>
+  export default {
+    props: [
+      "id",
+      "onprepared",
+      "onfinish",
+      "onpause",
+      "onstart",
+      "src",
+      "muted",
+      "poster",
+      "controls",
+      "autoPlay",
+      "style",
+      "loop",
+      "onClick",
+      "onEnded",
+      "objectFit"
+    ],
+    data() {
+      return {
+        onPrepared: this.onprepared,
+        onStart: this.onstart,
+        onPause: this.onpause,
+        onSeeking: this.onseeking,
+        onSeeked: this.onseeked,
+        onTimeupdate: this.ontimeupdate,
+        onFullscreenchange: this.fullscreenchange
+      };
+    },
+    onFinish() {
+      if (this.loop) {
+        const v = this.$element(this.id);
+        v.setCurrentTime({ currenttime: 0 });
+        v.start();
+      }
+      if (this.onEnded) {
+        this.onEnded();
+      }
+    }
+  };
+</script>
+
+<style>
+  .video-container {
+    width: 750px;
+    height: 375px;
+  }
+</style>

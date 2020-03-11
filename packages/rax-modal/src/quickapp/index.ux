@@ -1,14 +1,12 @@
 <template>
   <div @click="stopClick" class="{{visible ? 'rax-modal-mask' : 'rax-modal-mask-none'}}" style="height: {{height}}px; width: {{width}}px">
-    <div class="rax-modal-main" style="{{style}}">
-      <div>
+    <div class="rax-modal-main">
+      <div style="{{contentStyle}}">
         <slot></slot>
       </div>
       <div @click="hide" class="modal-footer">
-        <div>
           <text>关闭</text>
         </div>
-      </div>
     </div>
   </div> 
 </template>

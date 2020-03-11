@@ -4,7 +4,7 @@
       <div>
         <slot></slot>
       </div>
-      <div @click="show" class="modal-footer">
+      <div @click="hide" class="modal-footer">
         <div>
           <text>关闭</text>
         </div>
@@ -17,8 +17,8 @@
  export default {
    props: [ 'id', 'styleSheet','stopClick', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick'],
    data() {
-     let height = this.$page && this.$page.windowHeight;
-     let width = this.$page && this.$page.windowWidth;
+     const height = this.$page && this.$page.windowHeight;
+     const width = this.$page && this.$page.windowWidth;
      return {
        id: this.id,
        style: this.styleSheet || {},
@@ -26,7 +26,7 @@
        height,
        className: this.className,
        visible: this.visible,
-       show: this.bindHide,
+       hide: this.bindHide,
        eventClick: this.bindClick || this.bindPress,
        stopClick: this.stopClick,
        maskStyle: this.maskStyle,

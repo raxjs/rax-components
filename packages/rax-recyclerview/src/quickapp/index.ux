@@ -1,0 +1,29 @@
+<template>
+  <list class="{{className}}"  style="{{style}}" onscroll="bindScroll" onscrollbottom="bindEndReached" id="list"
+    onscrolltouchup="scrolltouchup" onscrollend="scrollend" scrollpage="false">
+    <slot></slot>
+  </list>
+</template>
+
+<script>
+  import prompt from '@system.prompt'
+
+  export default {
+    props: ['className', 'styleSheet', 'id', 'loadMore', 'bindEndReached', 'bindScroll', 'totalSize', 'bindEndReachedThreshold'],
+    data() {
+      let _style = this.styleSheet || {};
+      console.log('quickscroll', this);
+      let scrollHeight = this.totalSize || this.$page.windowHeight;
+      _style.height = scrollHeight + 'px';
+      return {
+        id: this.id,
+        className: this.className,
+        style: _style,
+        bindScroll: this.bindScroll,
+        bindEndReachedThreshold: this.bindEndReachedThreshold,
+        bindEndReached: this.bindEndReached,
+        loadMore: this.loadMore
+      }
+    }
+  }
+</script>

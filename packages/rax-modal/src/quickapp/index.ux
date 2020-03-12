@@ -49,8 +49,6 @@
 </script>
 
 <style>
- @import './css/common.css';
-
  .rax-modal-mask { 
    position: fixed;
    top: 0;

@@ -1,19 +1,14 @@
 <template>
-  <div @click="stopClick" class="{{visible ? 'rax-modal-mask' : 'rax-modal-mask-none'}}" style="height: {{height}}px; width: {{width}}px">
-    <div class="rax-modal-main">
-      <div style="{{contentStyle}}">
-        <slot></slot>
-      </div>
-      <div @click="hide" class="modal-footer">
-          <text>关闭</text>
-        </div>
+  <div @click="hide" class="{{show ? 'rax-modal-mask' : 'rax-modal-mask-none'}}" style="height: {{height}}px; width: {{width}}px">
+    <div @click="stopClick" class="rax-modal-main">
+      <slot></slot>
     </div>
   </div> 
 </template>
 
 <script>
  export default {
-   props: [ 'id', 'styleSheet','stopClick', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick'],
+   props: [ 'id', 'styleSheet', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick', 'bindShow'],
    data() {
      const height = this.$page && this.$page.windowHeight;
      const width = this.$page && this.$page.windowWidth;
@@ -23,13 +18,14 @@
        width,
        height,
        className: this.className,
-       visible: this.visible,
-       hide: this.bindHide,
+       show: this.visible,
+       hide: this.maskCanBeClick ? this.bindHide : ()=> {},
        eventClick: this.bindClick || this.bindPress,
-       stopClick: this.stopClick,
-       maskStyle: this.maskStyle,
-       contentStyle: this.contentStyle
+       maskCanBeClick: this.maskCanBeClick
      }
+  },
+  stopClick(e) {
+    e.stopPropagation();
   },
   onInit() {
     this.$watch('styleSheet', 'watchStyleChange')
@@ -47,7 +43,7 @@
     this.id = newV;
   },
   watchVisibleChange(newV, oldV) {
-    this.visible = newV;
+    this.show = newV;
   }
  };
 </script>
@@ -81,7 +77,6 @@
  .rax-modal-main {
    width: 600px;
    height: 600px;
-   border-radius: 16px;
    background-color: #ffffff;
    flex-direction: column;
    flex-shrink: 0;

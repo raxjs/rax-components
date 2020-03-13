@@ -1,0 +1,98 @@
+<template>
+  <div>
+    <input if="{{!multiline}}" enterkeyclick="bindConfirm" id="{{id}}" focus="{{autoFocus || bindFocus}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="{{bindChange || bindChangeText}}"></input>
+    <textarea else id="{{id}}" enterkeyclick="bindConfirm" focus="{{autoFocus || bindFocus}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="bindChange"></textarea>
+  <div>
+</template>
+<script>
+  export default {
+    props: [ 'id', 'styleSheet', 'type', 'value', 
+    'className', 'placeholder',  'bindClick', 'bindPress', 
+    'bindChangeText','bindChange', 'maxLength', 'autoComplete', 'password',
+    'multiline', 'numberOfLines', 'autoFocus', 'maxNumberOfLines',
+    'bindFocus', 'placeholderColor', 'secureTextEntry', 'defaultValue', 'bindConfirm', 'enableNative', 'fixed'],
+    data() {
+      console.log('textinput----', this)
+      let _style = this.styleSheet || {};
+      const autocomplete = this.autoComplete ? 'on' : 'off';
+      let type = this.type;
+      let value = this.value;
+      
+      if (!this.value && this.defaultValue) {
+        value = this.defaultValue;
+      }
+      if (this.password || this.secureTextEntry) {
+        type = 'password'
+      }
+      if (this.maxNumberOfLines && this.multiline) {
+        if (typeof _style === 'string') {
+          _style = _style + ';lines: ' + this.maxNumberOfLines + ';';
+        }else {
+          _style = Object.assign({}, _style, {
+            lines: this.maxNumberOfLines
+          });
+        }
+      } else if (this.numberOfLines) {
+        if (typeof _style === 'string') {
+          _style = _style + ';lines: ' + this.numberOfLines + ';';
+        } else {
+          _style = Object.assign({}, _style, {
+            lines: this.numberOfLines
+          });
+        }
+      }
+      if (this.placeholderColor) {
+        if (typeof _style === 'string') {
+          _style = _style + ';placeholder-color: ' + this.placeholderColor + ';';
+        } else {
+          _style = Object.assign({}, _style, {
+            lines: this.placeholderColor
+          });
+        }
+      }
+      return {
+        id: this.id,
+        style: _style || {},
+        className: this.className,
+        placeholder: this.placeholder,
+        eventClick: this.bindClick || this.bindPress,
+        type,
+        value,
+        maxlength: this.maxLength,
+        autocomplete,
+        multiline: this.multiline,
+      }
+    },
+    onInit() {
+      // 监听数据变化
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+      this.$watch('id', 'watchIdChange')
+      this.$watch('type', 'watchTypeChange')
+      this.$watch('placeholder', 'watchPlaceChange')
+      this.$watch('maxlength', 'watchMaxChange')
+      this.$watch('autocomplete', 'watchAutoChange')
+    },
+    watchStyleChange(newV, oldV) {
+      this.style = newV;
+    },
+    watchClassChange(newV, oldV) {
+      this.className = newV;
+    },
+    watchIdChange(newV, oldV) {
+      this.id = newV;
+    },
+    watchTypeChange(newV, oldV) {
+      this.type = newV;
+    },
+    watchPlaceChange(newV, oldV) {
+      this.placeholder = newV;
+    },
+    watchMaxChange(newV, oldV) {
+      this.maxlength = newV;
+    },
+    watchAutoChange(newV, oldV) {
+      this.autocomplete = newV;
+    },
+  };
+</script>

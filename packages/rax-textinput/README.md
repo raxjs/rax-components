@@ -250,3 +250,7 @@ class App extends Component {
 
 render(<App />, document.body, { driver: DriverUniversal });
 ```
+## 注意
+
+- 支付宝小程序中， input 如果父类是 position: fixed，可以加上 enableNative="false"，解决输入框错位问题。
+- 微信小程序中，如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true

@@ -12,8 +12,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "rax-scripts test"
   },
   "files": [
     "dist",
@@ -40,12 +39,10 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
+    "babel-runtime-jsx-plus": "^0.1.4",
     "classnames": "^2.2.6",
     "rax-set-native-props": "^1.0.0",
-    "rax-text": "^1.0.1",
-    "rax-textinput": "^0.6.5",
-    "rax-view": "^1.0.1",
-    "universal-env": "^1.0.0"
+    "universal-env": "^3.0.0"
   },
   "peerDependencies": {
     "rax": "^1.0.0"
@@ -61,22 +58,17 @@
     "driver-universal": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
+    "jest-transform-css": "^2.0.0",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0"
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.0.1",
+    "rax-view": "^1.0.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "jest-transform-css"
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ]
   }
 }

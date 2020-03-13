@@ -1,7 +1,7 @@
 global.callNative = null;
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import TextInput from '../';
+import TextInput from '../../lib/index';
 
 describe('TextInput', () => {
   it('render tag TextInput', () => {
@@ -9,26 +9,33 @@ describe('TextInput', () => {
       <TextInput />
     );
     let tree = component.toJSON();
-    expect(tree.tagName).toEqual('INPUT');
+    let input = tree[1];
+    expect(input.tagName).toEqual('INPUT');
   });
-
 
   it('style in TextInput', () => {
     const component = renderer.create(
-      <TextInput />
+      <TextInput
+        style={{
+          color: '#333'
+        }}
+      />
     );
     let tree = component.toJSON();
-    expect(tree.style.appearance).toBe('none');
-    expect(tree.style.backgroundColor).toBe('transparent');
-    expect(tree.style.borderColor).toBe('#000000');
-    expect(tree.style.borderWidth).toBe(0);
-    expect(tree.style.boxSizing).toBe('border-box');
-    expect(tree.style.color).toBe('#000000');
-    expect(tree.style.padding).toBe(0);
-    expect(tree.style.paddingLeft).toBe(24);
-    expect(tree.style.fontSize).toBe(24);
-    expect(tree.style.lineHeight).toBe(60);
-    expect(tree.style.height).toBe(60);
+    let input = tree[1];
+    expect(input.style.placeholderColor).toBe('#999999');
+    expect(input.style.color).toBe('#333');
+  });
+
+  it('use className in TextInput', () => {
+    const component = renderer.create(
+      <TextInput
+        className={'my-textinput'}
+      />
+    );
+    let tree = component.toJSON();
+    let input = tree[1];
+    expect(input.attributes.class).toBe('rax-textinput rax-textinput-placeholder-2 my-textinput');
   });
 
   it('onInput & onChange', () => {
@@ -42,9 +49,10 @@ describe('TextInput', () => {
       />
     );
     let tree = component.toJSON();
-    expect(typeof tree.eventListeners.input).toBe('function');
-    expect(typeof tree.eventListeners.change).toBe('function');
-    expect(typeof tree.eventListeners.blur).toBe('function');
-    expect(typeof tree.eventListeners.focus).toBe('function');
+    let input = tree[1];
+    expect(typeof input.eventListeners.input).toBe('function');
+    expect(typeof input.eventListeners.change).toBe('function');
+    expect(typeof input.eventListeners.blur).toBe('function');
+    expect(typeof input.eventListeners.focus).toBe('function');
   });
 });

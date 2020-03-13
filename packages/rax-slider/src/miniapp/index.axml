@@ -10,6 +10,7 @@
   indicator-active-color="{{paginationStyle.itemSelectedColor}}"
   vertical="{{direaction === 'vertical'}}"
   onChange="onChange"
+  duration="{{duration}}"
 >
   <slot />
 </swiper>

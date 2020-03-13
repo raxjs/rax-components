@@ -99,6 +99,7 @@ class App extends Component {
           <TextInput
             autoCapitalize="none"
             placeholder="Enter text to see events"
+            placeholderColor="#6FA331"
             autoCorrect={false}
             onFocus={() => this.updateText('onFocus')}
             onBlur={() => this.updateText('onBlur')}
@@ -123,6 +124,7 @@ class App extends Component {
         <View style={styles.container}>
           <TextInput
             placeholder="Enter text to see events"
+            placeholderColor="#00E8C6"
             value={this.state.value}
             ref={this.inputRef}
             style={{

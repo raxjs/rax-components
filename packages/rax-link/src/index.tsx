@@ -31,5 +31,5 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     </a>
   );
 });
-
+Link.displayName = 'Link';
 export default Link;

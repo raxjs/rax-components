@@ -11,6 +11,7 @@ coverage/
 node_modules/
 examples/test
 .idea/
+.history/
 packages/**/lib/
 packages/**/dist/
 packages/**/build/

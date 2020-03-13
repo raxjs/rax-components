@@ -1,15 +1,32 @@
-import {createElement, useState, useRef, useEffect, FunctionComponent} from 'rax';
+import { createElement, useState, useRef, useEffect } from 'rax';
 import View from 'rax-view';
-import { VisibilityProperty } from 'csstype';
 import transition from 'universal-transition';
-import {isWeb} from 'universal-env';
-import omit from 'omit.js';
+import { isWeb, isWeex } from 'universal-env';
 import { ModalProps } from './types';
 import './index.css';
 
 declare function __weex_require__(s: string): any;
 
-const Modal: FunctionComponent<ModalProps> = (props) => {
+let bodyEl, originalBodyOverflow;
+
+if (isWeb) {
+  bodyEl = document.body;
+}
+
+function stopPropagation(event) {
+  if (isWeb) {
+    event.stopPropagation();
+  }
+}
+
+function stopEventEffect(event) {
+  if (isWeb) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+}
+
+function Modal(props: ModalProps) {
   const {
     visible,
     maskCanBeClick = true,
@@ -18,7 +35,8 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
     onShow,
     onHide,
     children,
-    delay = 0,
+    animation,
+    delay = 0
   } = props;
 
   let {
@@ -33,59 +51,91 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const [visibility, setVisibility] = useState<VisibilityProperty>(visible ? 'visible' : 'hidden');
-  const [height, setHeight] = useState(3000);
+  const [visibleState, setVisibleState] = useState(false);
+  const [height, setHeight] = useState(null);
 
-  // compute window height
-  if (isWeb) {
-    setHeight(window.innerHeight / window.innerWidth * 750);
-  } else {
+  if (isWeex) {
     const dom = __weex_require__('@weex-module/dom');
-    dom.getComponentRect('viewport', (e) => {
+    dom.getComponentRect('viewport', e => {
       setHeight(e.size.height);
     });
+  } else if (isWeb) {
+    setHeight('100vh');
   }
 
-  const animate = (callback: Function) => {
-    transition(maskRef.current, {
-      opacity: visible ? 1 : 0
-    }, {
-      timingFunction: 'ease',
-      delay,
-      duration: visible ? duration[0] : duration[1]
-    }, () => {
-      callback && callback();
-    });
+  const animate = (show: boolean, callback: Function) => {
+    transition(
+      maskRef.current,
+      {
+        opacity: show ? 1 : 0
+      },
+      {
+        timingFunction: 'ease',
+        delay,
+        duration: show ? duration[0] : duration[1]
+      },
+      () => {
+        callback && callback();
+      }
+    );
   };
 
   const show = () => {
-    setVisibility('visible');
-    animate(() => {
+    if (isWeb) {
+      originalBodyOverflow = bodyEl.style.overflow;
+      bodyEl.style.overflow = 'hidden';
+    }
+    setVisibleState(true);
+    if (animation) {
       onShow && onShow();
-    });
-  };
-
-  const hide = () => {
-    if (visibility !== 'hidden') { // execute hide animation on element that is already hidden will cause bug
-      animate(() => {
-        setVisibility('hidden');
-        onHide && onHide();
+    } else {
+      animate(true, () => {
+        onShow && onShow();
       });
     }
   };
 
-  useEffect(() => {
-    visible ? show() : hide();
-  }, [visible]);
+  const hideAction = () => {
+    if (isWeb) {
+      bodyEl.style.overflow = originalBodyOverflow;
+    }
+    setVisibleState(false);
+    onHide && onHide();
+  };
 
+  const hide = () => {
+    if (visibleState) {
+      if (animation) {
+        hideAction();
+      } else {
+        // execute hide animation on element that is already hidden will cause bug
+        animate(false, () => {
+          hideAction();
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    // if state is unequal to props trigger show or hide
+    if (visible !== visibleState) {
+      visible ? show() : hide();
+    }
+  }, [visible]);
 
   return (
     <View
       className="rax-modal-mask"
-      style={{visibility, height, ...omit(maskStyle, ['visibility', 'height'])}}
-      onClick={(e) => {
+      style={{
+        ...maskStyle,
+        // @ts-ignore
+        visibility: visibleState ? 'visible' : 'hidden',
+        height: height || 0
+      }}
+      onTouchMove={stopEventEffect}
+      onClick={() => {
         if (maskCanBeClick) {
-          onHide && onHide();
+          hide();
         }
       }}
       ref={maskRef}
@@ -93,15 +143,14 @@ const Modal: FunctionComponent<ModalProps> = (props) => {
       <View
         className="rax-modal-main"
         style={contentStyle}
-        onClick={(e) => {
-          if (isWeb) {
-            e.stopPropagation && e.stopPropagation();
-          }
-        }}>
+        onClick={stopPropagation}
+        onTouchMove={stopPropagation}
+      >
         {children}
       </View>
     </View>
   );
-};
+}
+Modal.displayName = 'Modal';
 
 export default Modal;

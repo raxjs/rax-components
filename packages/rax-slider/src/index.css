@@ -23,10 +23,8 @@
   width: 8rpx;
   height: 8rpx;
 }
-.rax-slider-dot.active {
+.rax-slider-dot-active {
   background-color: rgb(255, 80, 0);
-  width: 8rpx;
-  height: 8rpx;
 }
 
 .rax-slider-pagination {

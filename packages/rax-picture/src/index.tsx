@@ -4,10 +4,13 @@ import { PictureProps } from './types';
 import PicWeex from './pictureWeex';
 import PicWeb from './pictureWeb';
 
-export default forwardRef((props: PictureProps, ref: Ref<HTMLImageElement>) => {
+const Picture = forwardRef((props: PictureProps, ref: Ref<HTMLImageElement>) => {
   if (isWeex) {
     return <PicWeex {...props} ref={ref} />;
   } else {
     return <PicWeb {...props} ref={ref} />;
   }
 });
+
+Picture.displayName = 'Picture';
+export default Picture;

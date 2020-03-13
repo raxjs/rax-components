@@ -1,0 +1,12 @@
+._rax-text {
+  display: inline;
+}
+
+._mutilple-lines {
+  overflow: hidden;
+  box-sizing: border-box;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}

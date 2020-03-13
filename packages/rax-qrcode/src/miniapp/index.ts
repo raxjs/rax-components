@@ -1,33 +1,17 @@
 import qr from 'qr.js';
+import { getStyleNumber, getStyleProps } from '../utils';
 
-function getStyleProps(key: string, styles: string) {
-  if (styles === '') {
-    return '';
-  }
-  const props = styles.split(';');
-  let value = '';
-  props.forEach(prop => {
-    const [propKey, propValue] = prop.split(':');
-    if (propKey == key) {
-      value = propValue;
-    }
-  });
-  return value;
+enum ErrorCorrectLevelMap {
+  L = 1,
+  M = 0,
+  Q = 3,
+  H = 2
 }
-function getStyleNumber(styleProp: string) {
-  const rpxEndIndex = styleProp.indexOf('rpx');
-  if (rpxEndIndex > 0) {
-    return styleProp.substring(0, rpxEndIndex);
-  } else {
-    const pxEndIndex = styleProp.indexOf('px');
-    if (pxEndIndex > 0) {
-      return styleProp.substring(0, pxEndIndex);
-    } else {
-      return '';
-    }
-  }
-}
+
+const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
+
 Component({
+  // @ts-ignore
   onInit() {
     this.randomId = Math.random()
       .toString()
@@ -43,18 +27,20 @@ Component({
     data: ''
   },
   didMount() {
-    const { data = '', options = {}, width, heigth, style = {} } = this.props;
+    const { data = '', options = {}, style = '' } = this.props;
     if (data === '') {
       return;
     }
-    this.width = width || getStyleNumber(getStyleProps('width', style)) || 300;
-    this.height =
-      heigth || getStyleNumber(getStyleProps('height', style)) || 300;
+    this.width = getStyleNumber(getStyleProps('width', style), SCREEN_WIDTH) || 300;
+    this.height = getStyleNumber(getStyleProps('height', style), SCREEN_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {
     drawCode(data, options) {
-      const codeData = qr(data, options);
+      const opt = Object.assign(options, {
+        errorCorrectLevel: ErrorCorrectLevelMap[options.errorCorrectLevel || 'H']
+      });
+      const codeData = qr(data, opt);
       const { fillColor = '#000000', blankColor = '#ffffff' } = options;
       const cells = codeData.modules;
       const tileWidth = this.width / cells.length;

@@ -14,9 +14,7 @@ export interface Source {
 /**
  * props of components
  */
-export interface ImageProps
-  extends HTMLAttributes<HTMLImageElement>,
-  RefAttributes<HTMLImageElement> {
+export interface ImageProps extends HTMLAttributes<HTMLImageElement>, RefAttributes<HTMLImageElement> {
   /**
    * source: set image uri
    * support: Weex/Web
@@ -64,4 +62,9 @@ export interface ImageProps
 
 export interface ImageLoadEvent extends SyntheticEvent<HTMLImageElement> {
   success?: string;
+}
+
+export interface ImageNativeProps extends ImageProps {
+  src: string;
+  resize?: string;
 }

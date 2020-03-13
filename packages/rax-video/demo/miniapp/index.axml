@@ -1,5 +1,0 @@
-<rax-video 
-    src="https://t.alipayobjects.com/images/T1T78eXapfXXXXXXXX.mp4"
-    autoPlay="{{false}}"
-    className="video-style"
-    style="width: 750rpx;"></rax-video>

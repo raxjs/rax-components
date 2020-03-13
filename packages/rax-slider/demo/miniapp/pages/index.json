@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "mini-program rax slider component",
-  "usingComponents": {
-    "rax-swiper": "../lib/miniapp/index"
-  }
-}

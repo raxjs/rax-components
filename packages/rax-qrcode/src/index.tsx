@@ -2,12 +2,14 @@ import { createElement, Component, createRef } from 'rax';
 import Canvas from 'rax-canvas';
 import qr from 'qr.js';
 
-export enum ErrorCorrectLevel {
+enum ErrorCorrectLevelMap {
   L = 1,
   M = 0,
   Q = 3,
   H = 2
 }
+
+type ErrorCorrectLevel = 'L' | 'M' | 'Q' | 'H';
 
 export interface QRCodeOptions {
   errorCorrectLevel?: ErrorCorrectLevel;
@@ -21,11 +23,17 @@ export interface QRCodeProps {
   style?: Rax.CSSProperties;
 }
 
+const styles = {
+  qrCode: {
+    width: 300,
+    height: 300
+  }
+};
+
 class QRCode extends Component<QRCodeProps, {}> {
   public width = 0;
   public height = 0;
   private canvas: Canvas | null = null;
-  public static ErrorCorrectLevel = qr.ErrorCorrectLevel as ErrorCorrectLevel;
 
   public constructor(props) {
     super(props);
@@ -51,7 +59,10 @@ class QRCode extends Component<QRCodeProps, {}> {
   }
 
   private drawCode = (data: string, options: QRCodeOptions) => {
-    const codeData = qr(data, options);
+    const opt = Object.assign(options, {
+      errorCorrectLevel: ErrorCorrectLevelMap[options.errorCorrectLevel || 'H']
+    });
+    const codeData = qr(data, opt);
     const { fillColor = '#000000', blankColor = '#ffffff' } = options;
     const cells = codeData.modules;
     const tileWidth = this.width / cells.length;
@@ -83,12 +94,5 @@ class QRCode extends Component<QRCodeProps, {}> {
     return <Canvas style={{ ...styles.qrCode, ...style }} ref={this.canvas} />;
   }
 }
-
-const styles = {
-  qrCode: {
-    width: 300,
-    height: 300
-  }
-};
 
 export default QRCode;

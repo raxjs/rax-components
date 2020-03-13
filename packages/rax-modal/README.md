@@ -6,14 +6,8 @@
 
 ## 安装
 
-```javascript
+```bash
 $ npm install rax-modal --save
-```
-
-## 引用
-
-```javascript
-import RaxModal from 'rax-modal';
 ```
 
 ## 属性
@@ -32,34 +26,39 @@ import RaxModal from 'rax-modal';
 
 ## 示例
 
-```javascript
-import {createElement, Component, render} from 'rax';
+```jsx
+import { createElement, Component, render } from 'rax';
 import Modal from 'rax-modal';
 
-const Demo = (props) => {
+const Demo = props => {
   const [visible, setVisible] = useState(false);
-  return ([
-      <View onClick={() => setVisible(true)}><Text>open</Text></View>,
-      <Modal
-        visible={visible}
-        onHide={() => {
-          setVisible(false)
-        }}
-        onShow ={() => {
-          setVisible(true)
-        }}
-        maskCanBeClick={true}
-        contentStyle={{
-          position: "absolute",
-          top: "150rpx",
-          width: "400rpx",
-          left: "175rpx"
-        }}
-        >
-        <Text>这里是弹窗内容</Text>
-      </Modal>
-  ]);
-}
+  return [
+    <View onClick={() => setVisible(true)}>
+      <Text>open</Text>
+    </View>,
+    <Modal
+      visible={visible}
+      onHide={() => {
+        setVisible(false);
+      }}
+      onShow={() => {
+        setVisible(true);
+      }}
+      maskCanBeClick={true}
+      contentStyle={{
+        position: 'absolute',
+        top: '150rpx',
+        width: '400rpx',
+        left: '175rpx',
+      }}
+    >
+      <Text>这里是弹窗内容</Text>
+    </Modal>,
+  ];
+};
 
 render(<Demo />);
 ```
+
+## 注意
+在阿里巴巴系列小程序中使用该组件时需要开启 `component2`。

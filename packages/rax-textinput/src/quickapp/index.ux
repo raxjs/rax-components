@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input if="{{!multiline}}" enterkeyclick="bindConfirm" id="{{id}}" focus="{{autoFocus || bindFocus}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="{{bindChange || bindChangeText}}"></input>
-    <textarea else id="{{id}}" enterkeyclick="bindConfirm" focus="{{autoFocus || bindFocus}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="bindChange"></textarea>
+    <input if="{{!multiline}}" disabled="{{!editable}}" enterkeyclick="bindConfirm" id="{{id}}" focus="bindFocus" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="{{bindChange || bindChangeText}}"></input>
+    <textarea else id="{{id}}" disabled="{{!editable}}" enterkeyclick="bindConfirm" focus="bindFocus" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="bindChange"></textarea>
   <div>
 </template>
 <script>
@@ -10,9 +10,8 @@
     'className', 'placeholder',  'bindClick', 'bindPress', 
     'bindChangeText','bindChange', 'maxLength', 'autoComplete', 'password',
     'multiline', 'numberOfLines', 'autoFocus', 'maxNumberOfLines',
-    'bindFocus', 'placeholderColor', 'secureTextEntry', 'defaultValue', 'bindConfirm', 'enableNative', 'fixed'],
+    'bindFocus', 'placeholderColor', 'secureTextEntry', 'defaultValue', 'bindConfirm', 'enableNative', 'fixed', 'editable'],
     data() {
-      console.log('textinput----', this)
       let _style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
       let type = this.type;
@@ -27,7 +26,7 @@
       if (this.maxNumberOfLines && this.multiline) {
         if (typeof _style === 'string') {
           _style = _style + ';lines: ' + this.maxNumberOfLines + ';';
-        }else {
+        } else {
           _style = Object.assign({}, _style, {
             lines: this.maxNumberOfLines
           });
@@ -46,7 +45,7 @@
           _style = _style + ';placeholder-color: ' + this.placeholderColor + ';';
         } else {
           _style = Object.assign({}, _style, {
-            lines: this.placeholderColor
+            placeholderColor: this.placeholderColor
           });
         }
       }
@@ -64,7 +63,6 @@
       }
     },
     onInit() {
-      // 监听数据变化
       this.$watch('styleSheet', 'watchStyleChange')
       this.$watch('className', 'watchClassChange')
       this.$watch('id', 'watchIdChange')

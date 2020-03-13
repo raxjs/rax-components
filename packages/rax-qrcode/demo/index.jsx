@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render } from 'rax';
-import DU from 'driver-universal';
+import DriverUniversal from 'driver-universal';
 import QRCode from '../src/index';
 
 function App() {
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-render(<App />, document.body, { driver: DU });
+render(<App />, document.body, { driver: DriverUniversal });

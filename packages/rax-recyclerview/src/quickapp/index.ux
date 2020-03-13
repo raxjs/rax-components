@@ -10,14 +10,12 @@
     props: ['className', 'styleSheet', 'id', 'loadMore', 'bindEndReached', 'bindScroll', 'totalSize', 'bindEndReachedThreshold'],
     data() {
       let _style = this.styleSheet || {};
-      console.log('quickscroll', this);
       let scrollHeight = this.totalSize || this.$page.windowHeight;
       _style.height = scrollHeight + 'px';
       return {
         id: this.id,
         className: this.className,
         style: _style,
-        bindEndReachedThreshold: this.bindEndReachedThreshold,
         bindEndReached: this.bindEndReached,
       }
     }

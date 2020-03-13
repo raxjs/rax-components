@@ -1,6 +1,0 @@
-
-App({
-  onLaunch() {},
-  onShow() {},
-  onHide() {},
-});

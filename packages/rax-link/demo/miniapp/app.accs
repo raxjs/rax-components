@@ -1,5 +1,0 @@
-.button {
-  width: 500rpx;
-  height: 50rpx;
-  background-color: 'red';
-}

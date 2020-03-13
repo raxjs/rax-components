@@ -17,10 +17,15 @@ Component({
     onLoad: noop,
     onError: noop
   },
-  onInit() {
-    this.initImage();
+  deriveDataFromProps(nextProps) {
+    this.initImage(nextProps);
   },
   didMount() {
+    if (!my.canIUse('component2')) {
+      this.initImage();
+    }
+  },
+  didUpdate() {
     if (!my.canIUse('component2')) {
       this.initImage();
     }
@@ -38,9 +43,10 @@ Component({
       const event = fmtEvent(this.props, e);
       this.props.onError(event);
     },
-    initImage() {
-      const { width = null, height = null } = this.props.source || {};
-      let style = this.props.style || '';
+    initImage(nextProps) {
+      const props = nextProps || this.props;
+      const { width = null, height = null } = props.source || {};
+      let style = props.style || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';
 

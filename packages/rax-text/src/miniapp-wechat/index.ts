@@ -1,7 +1,6 @@
 import fmtEvent from './fmtEvent';
 
 Component({
-  data: {},
   properties: {
     className: {
       type: String,
@@ -14,6 +13,10 @@ Component({
     numberOfLines: {
       type: Number,
       value: 0
+    },
+    __content: {
+      type: String,
+      value: ''
     }
   },
   options: {

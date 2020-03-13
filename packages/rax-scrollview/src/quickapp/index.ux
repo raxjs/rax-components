@@ -23,7 +23,6 @@
         id: this.id,
         className: this.className,
         style: _style,
-        bindEndReachedThreshold: this.bindEndReachedThreshold,
         bindEndReached: this.bindEndReached,
       }
     }

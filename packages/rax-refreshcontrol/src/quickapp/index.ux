@@ -1,0 +1,51 @@
+<template>
+  <list class="{{className}}"  style="{{style}}" onscroll="handleScroll" onscrollbottom="scrollBottom" id="list"
+    onscrolltouchup="scrolltouchup" onscrollend="scrollend" scrollpage="false" loadMore="{{loadMore}}">
+    <slot></slot>
+  </list>
+</template>
+
+<script>
+  import prompt from '@system.prompt'
+
+  export default {
+    props: ['className', 'styleSheet', 'id', 'loadMore', 'scrollBottom', 'handleScroll', 'height', 'tagId',
+      'parentId'],
+    data() {
+      let _style = this.styleSheet || {};
+      console.log('recyclerview', this);
+      let scrollHeight = this.height || this.$page.windowHeight;
+      _style.height = scrollHeight + 'px';
+      return {
+        id: this.id,
+        className: this.className,
+        style: _style,
+        loadMore: this.loadMore
+      }
+    },
+    onInit() {
+      // 监听数据变化
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+      this.$watch('id', 'watchIdChange')
+      this.$watch('loadMore', 'watchLoadMoreChange')
+      this.$watch('height', 'watchHeightChange')
+    },
+    watchStyleChange(newV, oldV) {
+      this.style = newV;
+    },
+    watchClassChange(newV, oldV) {
+      this.className = newV;
+    },
+    watchIdChange(newV, oldV) {
+      this.id = newV;
+    },
+    watchLoadMoreChange(newV, oldV) {
+      this.loadMore = newV;
+    },
+    watchHeightChange(newV, oldV) {
+      let scrollHeight = newV || this.$page.windowHeight;
+      this.style = scrollHeight + 'px';
+    }
+  }
+</script>

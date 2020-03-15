@@ -40,6 +40,9 @@ Component({
     onTouchCancel(e) {
       const event = fmtEvent(this.props, e);
       this.props.onTouchCancel(event);
+    },
+    getContext() {
+      return my.createCanvasContext(this.props.id);
     }
   }
 });

@@ -1,12 +1,15 @@
-<canvas class="{{className}}" 
-    style="{{styleSheet}}"
-    id="{{id}}"
-    width="{{width}}"
-    height="{{height}}"
-    bindtap="onClick" 
-    bindlongtap="onLongPress" 
-    bindtouchstart="onTouchStart"
-    bindtouchmove="onTouchMove"
-    bindtouchend="onTouchEnd"
-    bindtouchcancel="onTouchCancel">
+<canvas
+  type="{{type}}"
+  class="{{className}}"
+  style="{{styleSheet}}"
+  id="{{componentId}}"
+  canvas-id="{{componentId}}"
+  width="{{width}}"
+  height="{{height}}"
+  bindtap="onClick"
+  bindlongtap="onLongPress"
+  bindtouchstart="onTouchStart"
+  bindtouchmove="onTouchMove"
+  bindtouchend="onTouchEnd"
+  bindtouchcancel="onTouchCancel">
 </canvas>

@@ -2,8 +2,11 @@
     className="{{className}}" 
     style="{{style}}" 
     endReachedThreshold="{{endReachedThreshold}}"
-    horizontal="{{horizontal}}"
     onEndReached="onEndReached"
-    onScroll="onScroll">
+    onScroll="onScroll"
+    onTouchStart="onTouchStart"
+    onTouchMove="onTouchMove"
+    onTouchEnd="onTouchEnd"
+    onTouchCancel="onTouchCancel">
     <slot/>
 </rax-scrollview>

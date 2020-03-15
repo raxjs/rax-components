@@ -28,6 +28,7 @@ const Cell = memo(
     );
   })
 );
+Cell.displayName = 'Cell';
 
 const Header = memo(
   forwardRef(({ className, style, ...rest }, ref) => {
@@ -39,6 +40,7 @@ const Header = memo(
     );
   })
 );
+Header.displayName = 'Header';
 
 const NestedList = memo(
   forwardRef(({ className, style, ...rest }, ref) => {
@@ -50,6 +52,7 @@ const NestedList = memo(
     );
   })
 );
+NestedList.displayName = 'NestedList';
 
 const RecyclerView = forwardRef((props, ref) => {
   const { className, style, ...rest } = props;
@@ -168,5 +171,6 @@ const RecyclerView = forwardRef((props, ref) => {
 RecyclerView.Header = Header;
 RecyclerView.Cell = Cell;
 RecyclerView.NestedList = NestedList;
+RecyclerView.displayName = 'RecyclerView';
 
 export default RecyclerView;

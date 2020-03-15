@@ -48,10 +48,10 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
         style={style}
         webkit-playsinline
         playsinline
-      >
-        <source src={props.src} />
-      </video>
+        src={props.src}
+      />
     );
   }
 );
+Video.displayName = 'Video';
 export default Video;

@@ -24,6 +24,10 @@ Component({
       type: Boolean,
       value: false
     },
+    mode: {
+      type: String,
+      value: 'scaleToFill',
+    }
   },
   options: {
     styleIsolation: 'apply-shared',

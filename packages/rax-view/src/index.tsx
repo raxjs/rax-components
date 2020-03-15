@@ -11,4 +11,6 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
     return <div {...rest} ref={ref} className={cx( isWeex ? '' : 'rax-view', className)} style={style} />;
   }
 );
+
+View.displayName = 'View';
 export default View;

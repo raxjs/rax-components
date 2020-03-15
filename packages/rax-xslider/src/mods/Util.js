@@ -148,6 +148,20 @@ let Emitter = {
   }
 };
 
+function formatTransformValue(num, noUnit) {
+  const unit = noUnit ? '' : 'rpx';
+  if (isWeex) {
+    return num + unit;
+  } else {
+    const ratio = document.documentElement.style.fontSize;
+    if (ratio) {
+      return num / (parseInt(ratio) * 2) + unit;
+    } else {
+      return num + unit;
+    }
+  }
+}
+
 export default {
   find,
   uuid,
@@ -161,7 +175,8 @@ export default {
   transformExpression,
   transformRangeSpec,
   getLast,
-  Emitter
+  Emitter,
+  formatTransformValue
 };
 
 export {
@@ -177,5 +192,6 @@ export {
   transformExpression,
   transformRangeSpec,
   getLast,
-  Emitter
+  Emitter,
+  formatTransformValue
 };

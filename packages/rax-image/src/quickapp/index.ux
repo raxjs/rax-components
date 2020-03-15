@@ -1,0 +1,58 @@
+<template>
+  <image id="{{id}}" @click="eventClick" @complete="bindLoad" @error="bindError" src="{{src}}" class="{{className}}" style="{{style}}" ></image>
+</template>
+
+<script>
+export default {
+  props: ['className', 'styleSheet', 'resizeMode', 'id', 'source', 'bindClick', 'bindLoad', 'bindError', 'bindPress', 'parentId', 'tagId'],
+  data() {
+    let _src = this.source.uri || '';
+    let _style = this.styleSheet || {};
+    if (this.resizeMode) {
+      if (typeof _style === 'string') {
+        _style = _style + ';object-fit: ' + this.resizeMode + ';';
+      } else {
+        _style = Object.assign({}, _style, {
+          'objectFit': this.resizeMode
+        });
+      }
+    }
+    return {
+      id: this.id,
+      className: this.className,
+      style: _style,
+      eventClick: this.bindClick || this.bindPress,
+      src: _src
+    }
+  },
+  onInit() {
+    this.$watch('styleSheet', 'watchStyleChange')
+    this.$watch('className', 'watchClassChange')
+    this.$watch('id', 'watchIdChange')
+    this.$watch('source', 'watchSourceChange')
+  },
+  watchStyleChange(newV, oldV) {
+    let _style = newV || {};
+    if (this.resizeMode) {
+      if (typeof _style === 'string') {
+        _style = _style + ';object-fit: ' + this.resizeMode + ';';
+      } else {
+        _style = Object.assign({}, _style, {
+          'objectFit': this.resizeMode
+        });
+      }
+    }
+    this.style = _style;
+  },
+  watchClassChange(newV, oldV) {
+    this.className = newV;
+  },
+  watchIdChange(newV, oldV) {
+    this.id = newV;
+  },
+  watchSourceChange(newV, oldV) {
+    this.source = newV;
+  },
+}
+
+</script>

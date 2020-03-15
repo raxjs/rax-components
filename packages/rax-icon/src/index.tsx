@@ -5,11 +5,10 @@ import {
   ForwardRefExoticComponent,
   forwardRef
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import Text from 'rax-text';
 import Image from 'rax-image';
 
-declare const FontFace: any;
 declare const __weex_require__: any;
 export interface IconProps
   extends RefAttributes<HTMLSpanElement>,
@@ -42,13 +41,14 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {
       fontCache.set(fontFamily, uri);
+      const source = `url('${uri}')`;
       if (isWeb) {
-        if (FontFace) {
-          const iconfont = new FontFace(fontFamily, 'url(' + uri + ')');
+        if (window.FontFace) {
+          const iconfont = new window.FontFace(fontFamily, source);
           document.fonts.add(iconfont);
         } else {
           const iconFontStyles = `@font-face {
-                src: url(${uri});
+                src: ${source};
                 font-family: ${fontFamily};
               }`;
           // Create stylesheet
@@ -60,7 +60,17 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
       } else if (isWeex) {
         domModule.addRule('fontFace', {
           fontFamily,
-          src: "url('" + uri + "')" // single quotes are required around uri, and double quotes can not work
+          src: source // single quotes are required around uri, and double quotes can not work
+        });
+      } else if (isMiniApp) {
+        my.loadFontFace({
+          family: fontFamily,
+          source
+        });
+      } else if (isWeChatMiniProgram) {
+        wx.loadFontFace({
+          family: fontFamily,
+          source
         });
       }
     } else if (fontFile !== uri) {
@@ -74,6 +84,7 @@ const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
     );
   }
 );
+Icon.displayName = 'Icon';
 
 export function createIconSet(
   glyphMap = {},
@@ -81,19 +92,20 @@ export function createIconSet(
   fontFile: string
 ) {
   const IconFont: ForwardRefExoticComponent<IconFontProps> = forwardRef(
-    ({ name, className, style = {}, ...rest }, ref) => {
+    ({ name, className, codePoint, style = {}, ...rest }, ref) => {
       return (
         <Icon
           {...rest}
           ref={ref}
           className={className}
           style={style}
-          source={{ uri: fontFile, codePoint: glyphMap[name] }}
+          source={{ uri: fontFile, codePoint: codePoint || glyphMap[name] }}
           fontFamily={fontFamily}
         />
       );
     }
   );
+  IconFont.displayName = 'IconFont';
   return IconFont;
 }
 

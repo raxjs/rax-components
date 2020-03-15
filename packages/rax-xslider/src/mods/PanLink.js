@@ -7,7 +7,7 @@ import Link from 'rax-link';
 import {Emitter} from './Util';
 import {EVENT_PAN_VIEW_PAN_START} from './Constant';
 import Detection from './Detection';
-import PropTypes from 'rax-proptypes';
+import PropTypes from 'prop-types';
 
 
 class PanLink extends Component {

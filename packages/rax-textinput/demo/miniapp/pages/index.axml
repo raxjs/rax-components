@@ -1,2 +1,0 @@
-<rax-textinput onChange="onChange" onChangeText="onChangeText" onBlur="onBlur" onFocus="onFocus"></rax-textinput>
-<text>event: {{text}}</text>

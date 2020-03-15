@@ -14,6 +14,17 @@ export default {
   data() {
     let _style = this.styleSheet || {};
     let vertical = false;
+    if (this.paginationStyle) {
+      if (typeof _style === 'string') {
+        _style = `${_style};item-color: ${this.paginationStyle.itemColor || 'rgba(255, 255, 255, 0.5)'}; item-selected-color: ${this.paginationStyle.itemSelectedColor || 'rgb(255, 80, 0)'}; item-size: ${this.paginationStyle.itemSize || '8rpx'};`
+      } else {
+        _style = Object.assign({}, _style, {
+          itemColor: this.paginationStyle.itemColor || 'rgba(255, 255, 255, 0.5)',
+          itemSelectedColor: this.paginationStyle.itemSelectedColor || 'rgb(255, 80, 0)',
+          itemSize: this.paginationStyle.itemSize || '8rpx'
+        });
+      }
+    }
     if (this.direaction && this.direaction === 'vertical') {
       vertical = true;
     }

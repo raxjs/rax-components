@@ -16,7 +16,7 @@ $ npm install rax-slider --save
 
 1. **支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表 Web <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表 Weex <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表支付宝小程序, <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> 代表微信小程序<img alt="quickApp" src="https://gw.alicdn.com/tfs/TB1MP7EwQT2gK0jSZPcXXcKkpXa-200-200.svg" width="25px" height="25px">代表快应用
 2. Web 环境中 slider 内部默认做了节点的懒加载渲染，不再需要使用 picture 的`lazyload`做懒加载
-3. `paginationStyle`中`itemColor` 用来定义分页原点的颜色，`itemSelectedColor` 用来定义分页原点激活时的颜色，`itemSize`用来定义分页圆点的大小，小程序只支持设置 `itemColor` `用来定义分页原点的颜色，itemSelectedColor`，默认样式如下：
+3. `paginationStyle`中`itemColor` 用来定义分页原点的颜色，`itemSelectedColor` 用来定义分页原点激活时的颜色，`itemSize`用来定义分页圆点的大小，小程序只支持设置 `itemColor` `用来定义分页原点的颜色，itemSelectedColor`，默认样式如下：快应用只支持`paginationStyle`中`itemColor` 用来定义分页原点的颜色，`itemSelectedColor` 用来定义分页原点激活时的颜色，`itemSize`用来定义分页圆点的大小这三个样式。
 
 ```js
 {

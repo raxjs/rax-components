@@ -2,7 +2,7 @@
 import {createElement, Component, render} from 'rax';
 import GestureView from '../src/index';
 import View from 'rax-view';
-import { DriverUniversal } from 'driver-universal';
+import DriverUniversal from 'driver-universal';
 
 class App extends Component {
   onHorizontalPan = (e) => {

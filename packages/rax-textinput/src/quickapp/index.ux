@@ -14,15 +14,8 @@
     data() {
       let _style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
-      let type = this.type;
-      let value = this.value;
-      
-      if (!this.value && this.defaultValue) {
-        value = this.defaultValue;
-      }
-      if (this.password || this.secureTextEntry) {
-        type = 'password'
-      }
+      const value = (!this.value && this.defaultValue) ? this.defaultValue : this.value;
+      const type = (this.password || this.secureTextEntry) ? 'password' : this.type;
       if (this.maxNumberOfLines && this.multiline) {
         if (typeof _style === 'string') {
           _style = _style + ';lines: ' + this.maxNumberOfLines + ';';
@@ -63,18 +56,18 @@
       }
     },
     onInit() {
-      this.$watch('styleSheet', 'watchStyleChange')
-      this.$watch('className', 'watchClassChange')
+      this.$watch('styleSheet', 'watchStyleSheetChange')
+      this.$watch('className', 'watchClassNameChange')
       this.$watch('id', 'watchIdChange')
       this.$watch('type', 'watchTypeChange')
-      this.$watch('placeholder', 'watchPlaceChange')
-      this.$watch('maxlength', 'watchMaxChange')
-      this.$watch('autocomplete', 'watchAutoChange')
+      this.$watch('placeholder', 'watchPlaceHolderChange')
+      this.$watch('maxlength', 'watchMaxLengthChange')
+      this.$watch('autocomplete', 'watchAutoCompleteChange')
     },
-    watchStyleChange(newV, oldV) {
+    watchStyleSheetChange(newV, oldV) {
       this.style = newV;
     },
-    watchClassChange(newV, oldV) {
+    watchClassNameChange(newV, oldV) {
       this.className = newV;
     },
     watchIdChange(newV, oldV) {
@@ -83,13 +76,13 @@
     watchTypeChange(newV, oldV) {
       this.type = newV;
     },
-    watchPlaceChange(newV, oldV) {
+    watchPlaceHolderChange(newV, oldV) {
       this.placeholder = newV;
     },
-    watchMaxChange(newV, oldV) {
+    watchMaxLengthChange(newV, oldV) {
       this.maxlength = newV;
     },
-    watchAutoChange(newV, oldV) {
+    watchAutoCompleteChange(newV, oldV) {
       this.autocomplete = newV;
     },
   };

@@ -20,7 +20,8 @@
   ],
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:quickapp": "lib/quickapp/index"
   },
   "repository": {
     "type": "git",

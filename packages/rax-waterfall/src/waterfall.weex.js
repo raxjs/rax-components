@@ -22,9 +22,9 @@ class Waterfall extends Component {
   resetScroll = () => {
     if (this.waterfall.current) {
       this.setState({
-        loadmoreretry: this.loadmoreretry++,
+        loadmoreretry: this.loadmoreretry++, // for weex 0.9-
       });
-      this.waterfall && this.waterfall.resetLoadmore && this.waterfall.resetLoadmore();
+      this.waterfall.current.resetLoadmore && this.waterfall.current.resetLoadmore(); // for weex 0.9+.
     }
   }
 

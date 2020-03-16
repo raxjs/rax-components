@@ -4,23 +4,6 @@
   "description": "RecyclerView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "quickappConfig": {
-    "main": "lib/quickapp/index",
-    "subComponents": {
-      "Header": {
-        "tagNameMap": "list-item",
-        "attributes": {
-          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
-        }
-      },
-      "Cell": {
-        "tagNameMap": "list-item",
-        "attributes": {
-          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
-        }
-      }
-    }
-  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
     "build": "npm run clean && rax-scripts build",
@@ -44,15 +27,18 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index",
+    "main:quickapp": "lib/quickapp/index",
     "subComponents": {
       "Header": {
         "tagNameMap": "view",
+        "tagNameMap:quickapp": "list-item",
         "attributes": {
           "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
         }
       },
       "Cell": {
         "tagNameMap": "view",
+        "tagNameMap:quickapp": "list-item",
         "attributes": {
           "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
         }

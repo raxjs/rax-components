@@ -76,6 +76,7 @@
       "Item": {
         "tagNameMap": "swiper-item"
       }
-    }
+    },
+    "main:quickapp": "lib/quickapp/index"
   }
 }

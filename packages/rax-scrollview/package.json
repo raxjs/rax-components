@@ -23,7 +23,8 @@
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
-    }
+    },
+    "main:quickapp": "lib/quickapp/index"
   },
   "repository": {
     "type": "git",

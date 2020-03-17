@@ -76,7 +76,7 @@ class Slider extends Component<SliderProps, any> {
 
   private autoPlay() {
     const autoPlayInterval = this.props.autoPlayInterval;
-    if (this.isSwiping) return;
+    if (this.isSwiping || this.total < 2 ) return;
     this.autoPlayTimer && clearInterval(this.autoPlayTimer);
     const interval = () => {
       if (this.isLoopEnd()) return;
@@ -244,10 +244,10 @@ class Slider extends Component<SliderProps, any> {
         </View>
       </SwipeEvent>
     ) : (
-      <View ref={this.swipeView} className="rax-slider-swipe" style={style}>
-        {pages}
-      </View>
-    );
+        <View ref={this.swipeView} className="rax-slider-swipe" style={style}>
+          {pages}
+        </View>
+      );
   }
 
   public render() {

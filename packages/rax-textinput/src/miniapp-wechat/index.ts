@@ -64,7 +64,19 @@ Component({
     confirmType: {
       type: String,
       value: ''
-    }
+    },
+    showCount: {
+      type: Boolean,
+      value: true
+    },
+    selectionStart: {
+      type: Number,
+      value: -1
+    },
+    selectionEnd: {
+      type: Boolean,
+      value: -1
+    },
   },
   options: {
     styleIsolation: 'apply-shared',

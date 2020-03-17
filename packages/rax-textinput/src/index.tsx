@@ -59,6 +59,11 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       maxlength,
       multiline,
       numberOfLines,
+      confirmType,
+      randomNumber,
+      showCount = true,
+      selectionStart,
+      selectionEnd,
       onBlur,
       onFocus,
       onChange,
@@ -141,6 +146,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             disabled={disbaled}
             onChange={handleChange}
             value={value || defaultValue}
+            confirm-type={confirmType}
+            show-count={showCount}
           >
             {isWeb && propsCommon.value}
           </textarea>
@@ -161,6 +168,10 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             }}
             type={type}
             disabled={disbaled}
+            confirm-type={confirmType}
+            random-Number={randomNumber}
+            selection-start={selectionStart}
+            selection-end={selectionEnd}
           />
         </Fragment>
       );

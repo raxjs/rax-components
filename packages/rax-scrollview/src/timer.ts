@@ -1,16 +1,12 @@
+import { isWeb } from 'universal-env';
+
 const requestAnimationFrame =
-  typeof window.requestAnimationFrame === 'undefined'
-    ? typeof webkitRequestAnimationFrame === 'undefined'
-      ? (job: (...args: any[]) => void) => setTimeout(job, 16)
-      : webkitRequestAnimationFrame
-    : window.requestAnimationFrame;
+  isWeb && typeof window.requestAnimationFrame !== 'undefined'
+    ? window.requestAnimationFrame : (job: (...args: any[]) => void) => setTimeout(job, 16);
 
 const cancelAnimationFrame =
-  typeof window.cancelAnimationFrame === 'undefined'
-    ? typeof webkitCancelAnimationFrame === 'undefined'
-      ? clearTimeout
-      : webkitCancelAnimationFrame
-    : window.cancelAnimationFrame;
+  isWeb && typeof window.cancelAnimationFrame !== 'undefined'
+    ? window.cancelAnimationFrame : clearTimeout;
 
 const TYPES = {
   START: 'start',

@@ -12,7 +12,7 @@ import TabPanel from './TabPanel';
 import { clamp, noop, forbidSwipeBack, Event as Emitter, combineStyle } from './Utils';
 import BaseView from './BaseView';
 import PanView from './PanView';
-import PropTypes from 'rax-proptypes';
+import PropTypes from 'prop-types';
 import findDOMNode from 'rax-find-dom-node';
 
 function setStyles(node, styles) {
@@ -169,8 +169,8 @@ class DefaultView extends BaseView {
 
     if (duration === 0) {
       setStyles(wrap, {
-        transform: `translateX(${end}rem)`,
-        webkitTransform: `translateX(${end}rem)`
+        transform: `translateX(${end}rpx)`,
+        webkitTransform: `translateX(${end}rpx)`
       });
       return callback();
     }
@@ -178,8 +178,8 @@ class DefaultView extends BaseView {
     transition(
       wrap,
       {
-        transform: `translateX(${end}rem)`,
-        webkitTransform: `translateX(${end}rem)`
+        transform: `translateX(${end}rpx)`,
+        webkitTransform: `translateX(${end}rpx)`
       },
       {
         timingFunction: this.props.easing,

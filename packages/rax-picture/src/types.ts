@@ -44,12 +44,6 @@ export interface PictureProps extends RefAttributes<HTMLImageElement>, HTMLAttri
   resizeMode?: PictureResizeMode;
 
   /**
-   * picture is a PureComponent whose shouldComponentUpdate determines if and only if porps.source.uri changes. If you want to ignore its shouldComponentUpdate, pass in forceUpdate={true}
-   *  default: false
-   */
-  forceUpdate?: boolean;
-
-  /**
    * real width of picture, unit px
    */
   width?: number;

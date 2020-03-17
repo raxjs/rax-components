@@ -7,4 +7,5 @@
     onLoad="onLoad"
     resizeMode="{{resizeMode}}"
     lazyLoad="{{lazyload}}"
+    mode="{{mode}}"
 />

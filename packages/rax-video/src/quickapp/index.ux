@@ -51,9 +51,9 @@
     },
     onFinish() {
       if (this.loop) {
-        const $video = this.$element(this.id);
-        $video.setCurrentTime({ currenttime: 0 });
-        $video.start();
+        const videoEl = this.$element(this.id);
+        videoEl.setCurrentTime({ currenttime: 0 });
+        videoEl.start();
       }
       if (this.onEnded) {
         this.onEnded();

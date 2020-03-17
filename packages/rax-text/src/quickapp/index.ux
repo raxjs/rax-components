@@ -1,0 +1,48 @@
+<template>
+  <text id="{{id}}" style="{{style}}" class="{{className}}" @click="eventClick" >
+    <slot></slot>
+  </text>
+</template>
+<script>
+  export default {
+    props: [ 'id', 'styleSheet', 'className', 'numberOfLines', 'bindClick', 'bindPress', 'parentId', 'tagId'],
+    data() {
+      let _style = this.styleSheet || {};
+      if (this.numberOfLines) {
+        if (typeof _style === 'string') {
+          _style = _style + ';lines: ' + this.numberOfLines + ';';
+        } else {
+          _style = Object.assign({}, _style, {
+            lines: this.numberOfLines
+          });
+        }
+      }
+      return {
+        id: this.id,
+        style: _style || {},
+        className: this.className,
+        eventClick: this.bindClick || this.bindPress
+      }
+    },
+    onInit() {
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+    },
+    watchStyleChange(newV, oldV) {
+      let _style = newV;
+      if (this.numberOfLines) {
+        if (typeof _style === 'string') {
+          _style = _style + ';lines: ' + this.numberOfLines + ';';
+        } else {
+          _style = Object.assign({}, _style, {
+            lines: this.numberOfLines
+          });
+        }
+      }
+      this.style = _style;
+    },
+    watchClassChange(newV, oldV) {
+      this.className = newV;
+    }
+  };
+</script>

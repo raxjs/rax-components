@@ -1,5 +1,5 @@
 import { createElement, PureComponent } from 'rax';
-import PropTypes from 'rax-proptypes';
+import PropTypes from 'prop-types';
 
 import SizeAndPositionManager from './SizeAndPositionManager';
 

@@ -1,5 +1,5 @@
 import { PureComponent, createElement } from 'rax';
-import PropTypes from 'rax-proptypes';
+import PropTypes from 'prop-types';
 import BaseList from './BaseList';
 import {
   SCROLL_CHANGE_REASON,

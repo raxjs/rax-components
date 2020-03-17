@@ -1,22 +1,43 @@
 import fmtEvent from './fmtEvent';
 
+const noop = () => {};
+
 Component({
   props: {
     className: '',
     style: '',
-    horizontal: false,
     endReachedThreshold: 500,
-    onEndReached: function onEndReached() {},
-    onScroll: function onScroll() {}
+    onEndReached: noop,
+    onScroll: noop,
+    onTouchStart: noop,
+    onTouchMove: noop,
+    onTouchEnd: noop,
+    onTouchCancel: noop
   },
   methods: {
-    onEndReached: function onEndReached(e) {
-      var event = fmtEvent(this.props, e);
+    onEndReached(e) {
+      const event = fmtEvent(this.props, e);
       this.props.onEndReached(event);
     },
-    onScroll: function onScroll(e) {
-      var event = fmtEvent(this.props, e);
+    onScroll(e) {
+      const event = fmtEvent(this.props, e);
       this.props.onScroll(event);
+    },
+    onTouchStart: function onTouchStart(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onTouchStart(event);
+    },
+    onTouchMove: function onTouchMove(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onTouchMove(event);
+    },
+    onTouchEnd: function onTouchEnd(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onTouchEnd(event);
+    },
+    onTouchCancel: function onTouchCancel(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onTouchCancel(event);
     }
   }
 });

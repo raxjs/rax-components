@@ -4,18 +4,22 @@
     onTap="onClick" 
     focus="{{autoFocus}}"
     disabled="{{!editable}}"
-    type="text"
+    type="{{keyboardType}}"
     maxlength="{{maxLength}}"
     placeholder="{{placeholder}}"
+    placeholder-style="color:{{placeholderColor}}"
     password="{{password||secureTextEntry}}"
     value="{{value||defaultValue}}"
+    confirm-type="{{confirmType}}"
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"
-    onConfirm="onConfirm">
+    onConfirm="onConfirm"
+    enableNative="{{enableNative}}">
 </input>
 <textarea a:else class="rax-textinput {{className}}" 
     style="{{style}}"
+    placeholder-style="color:{{placeholderColor}}"
     onTap="onClick" 
     focus="{{autoFocus}}"
     disabled="{{!editable}}"
@@ -29,4 +33,5 @@
     onBlur="onBlur"
     onFocus="onFocus"
     onInput="onInput"
-    onConfirm="onConfirm"/>
+    onConfirm="onConfirm"
+    enableNative="{{enableNative}}"/>

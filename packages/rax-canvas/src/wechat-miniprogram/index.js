@@ -61,7 +61,16 @@ Component({
           type
         });
       }
-      return wx.createCanvasContext(this.properties.componentId);
+      const context = wx.createCanvasContext(this.properties.componentId, this);
+      Object.defineProperty(context, 'fillStyle', {
+        get() {
+          return context.setFillStyle;
+        },
+        set(value) {
+          context.setFillStyle(value);
+        }
+      })
+      return context;
     }
   }
 });

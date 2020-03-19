@@ -1,10 +1,16 @@
 {
   "name": "rax-icon",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "icon component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "miniappConfig": {
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && rax-scripts build",

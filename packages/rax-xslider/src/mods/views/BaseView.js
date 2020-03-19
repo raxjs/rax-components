@@ -331,10 +331,13 @@ class BaseView extends Component {
   onAppear() {
     let {onAppear} = this.props;
     if (this.isDisappear) {
+      this.autoPlay();
+      /*
       this.switchTo(this.loopIndex, {duration: 0}, () => {
         // to solve shark problem
         this.autoPlay();
       });
+      */
     }
     onAppear && onAppear();
   }

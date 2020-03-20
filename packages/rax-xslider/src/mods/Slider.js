@@ -34,25 +34,11 @@ class Slider extends Component {
       style: {...styles.container, ...style},
       ref: 'content'
     };
-    //  window.__weex_tag_supports__('vslider')
 
     return <DefaultView
       {...commonProps}
       ref={this.content}
     />;
-    // list View is not ready for 1.x
-    // force vertical in list mode
-    // return isWeex && useListView ? <ListView
-    //   {...commonProps}
-    //   loop={false}
-    //   vertical={true}
-    //   startGap={0}
-    //   endGap={0}
-    //   />
-    //   : <DefaultView
-    //     {...commonProps}
-    //     ref={this.content}
-    //   />;
   }
 }
 

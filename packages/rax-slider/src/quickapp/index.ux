@@ -10,7 +10,7 @@
 export default {
   props: ['width', 'height','autoPlay','showsPagination', 'paginationStyle', 'loop', 
   'index', 'autoPlayInterval', 'bindChange', 'direaction', 'id', 'styleSheet',
-   'className', 'bindClick', 'bindPress'],
+   'className', 'bindClick', 'bindPress', 'tagId'],
   data() {
     let _style = this.styleSheet || {};
     let vertical = false;
@@ -63,20 +63,20 @@ export default {
     this.$watch('autoPlay', 'watchAutoplayChange')
     this.$watch('loop', 'watchLoopChange')
   },
-  watchStyleChange(newV, oldV) {
-    this.style = newV;
+  watchStyleChange(newStyle, oldStyle) {
+    this.style = newStyle;
   },
-  watchClassChange(newV, oldV) {
-    this.className = newV;
+  watchClassChange(newClassName, oldClassName) {
+    this.className = newClassName;
   },
-  watchIdChange(newV, oldV) {
-    this.id = newV;
+  watchIdChange(newId, oldId) {
+    this.id = newId;
   },
-  watchAutoplayChange(newV, oldV) {
-    this.autoPlay = newV;
+  watchAutoplayChange(newAutoplay, oldAutoplay) {
+    this.autoPlay = newAutoplay;
   },
-  watchLoopChange(newV, oldV) {
-    this.loop = newV;
+  watchLoopChange(newLoop, oldLoop) {
+    this.loop = newLoop;
   },
 }
 </script>

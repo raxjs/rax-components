@@ -1,5 +1,5 @@
 {
-  "name": "rax-icon",
+  "name": "@ali/motor-rax-icon",
   "version": "1.2.0",
   "description": "icon component for Rax.",
   "license": "BSD-3-Clause",
@@ -23,6 +23,9 @@
     "dist",
     "lib"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"

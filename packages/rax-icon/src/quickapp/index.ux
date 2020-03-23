@@ -3,8 +3,7 @@
 </template>
 <script>
   export default {
-    props: [ 'id', 'styleSheet','className', 'source', 'bindClick', 'bindPress', 'fontFamily', 'tagId',
-      'parentId'],
+    props: [ 'id', 'styleSheet','className', 'source', 'bindClick', 'bindPress', 'fontFamily', 'tagId'],
     data() {
       let _style = this.styleSheet || {};
       let codePoint = this.source.codePoint;
@@ -22,17 +21,17 @@
       this.$watch('id', 'watchIdChange')
       this.$watch('source', 'watchSourceChange')
     },
-    watchStyleChange(newV, oldV) {
-      this.style = newV;
+    watchStyleChange(newStyle, oldStyle) {
+      this.style = newStyle;
     },
-    watchClassChange(newV, oldV) {
+    watchClassChange(newClassName, oldClassName) {
       this.className = newV;
     },
-    watchIdChange(newV, oldV) {
-      this.id = newV;
+    watchIdChange(newId, oldId) {
+      this.id = newId;
     },
-    watchSourceChange(newV, oldV) {
-      this.codePoint = newV.codePoint;
+    watchSourceChange(newSource, oldSource) {
+      this.codePoint = newSource.codePoint;
     },
   };
 </script>

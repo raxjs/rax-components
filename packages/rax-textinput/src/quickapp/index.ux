@@ -64,26 +64,26 @@
       this.$watch('maxlength', 'watchMaxLengthChange')
       this.$watch('autocomplete', 'watchAutoCompleteChange')
     },
-    watchStyleSheetChange(newV, oldV) {
-      this.style = newV;
+    watchStyleSheetChange(newStyle, oldStyle) {
+      this.style = newStyle;
     },
-    watchClassNameChange(newV, oldV) {
-      this.className = newV;
+    watchClassNameChange(newClassName, oldClassName) {
+      this.className = newClassName;
     },
-    watchIdChange(newV, oldV) {
-      this.id = newV;
+    watchIdChange(newId, oldId) {
+      this.id = newId;
     },
-    watchTypeChange(newV, oldV) {
-      this.type = newV;
+    watchTypeChange(newType, oldType) {
+      this.type = newType;
     },
-    watchPlaceHolderChange(newV, oldV) {
-      this.placeholder = newV;
+    watchPlaceHolderChange(newPlaceHolder, oldPlaceHolder) {
+      this.placeholder = newPlaceHolder;
     },
-    watchMaxLengthChange(newV, oldV) {
-      this.maxlength = newV;
+    watchMaxLengthChange(newMaxLength, oldMaxLength) {
+      this.maxlength = newMaxLength;
     },
-    watchAutoCompleteChange(newV, oldV) {
-      this.autocomplete = newV;
+    watchAutoCompleteChange(newAutoComplete, oldAutoComplete) {
+      this.autocomplete = newAutoComplete;
     },
   };
 </script>

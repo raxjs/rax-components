@@ -1,10 +1,15 @@
 import fmtEvent from './fmtEvent';
 
+function noop() {}
+
 Component({
-  data: {},
+  data: {
+    previousValue: ''
+  },
   props: {
     className: '',
     style: '',
+    placeholderColor: '#999999',
     multiline: false,
     autoFocus: false,
     editable: true,
@@ -15,30 +20,52 @@ Component({
     secureTextEntry: false,
     value: '',
     defaultValue: '',
-    onBlur: () => {},
-    onFocus: () => {},
-    onChange: () => {},
-    onChangeText: () => {},
-    onInput: () => {}
+    enableNative: true,
+    confirmType: '',
+    showCount: true,
+    randomNumber: false,
+    selectionStart: -1,
+    selectionEnd: -1,
+    controlled: false,
+    onBlur: noop,
+    onFocus: noop,
+    onChange: noop,
+    onChangeText: noop,
+    onInput: noop,
+    onConfirm: noop
   },
-  didMount() {},
+  didMount() {
+    const { value, defaultValue } = this.props;
+    this.setData({
+      previousValue: value || defaultValue
+    });
+  },
   methods: {
+    trigger(type, value) {
+      this.props[type] !== noop && this.props[type](value);
+    },
     onBlur(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onBlur(event);
+      this.trigger('onBlur', event);
+      if (event.detail.value !== this.data.previousValue) {
+        this.trigger('onChange', event);
+        this.trigger('onChangeText', event.detail.value);
+        this.setData({
+          previousValue: event.detail.value
+        });
+      }
     },
     onFocus(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onFocus(event);
+      this.trigger('onFocus', event);
     },
     onConfirm(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onChange(event);
-      this.props.onChangeText(event.detail.value);
+      this.trigger('onConfirm', event);
     },
     onInput(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onInput(event);
+      this.trigger('onInput', event);
     }
   }
 });

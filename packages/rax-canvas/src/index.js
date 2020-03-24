@@ -1,6 +1,6 @@
-import {createElement, Component, createRef} from 'rax';
-import {isWeex} from 'universal-env';
-import { enable, WeexBridge, Image as GImage } from 'gcanvas.js';
+import { createElement, Component, createRef } from 'rax';
+import { isWeex } from 'universal-env';
+import { enable, WeexBridge, Image as GImage } from '@gcanvas/core';
 
 import findDOMNode from 'rax-find-dom-node';
 
@@ -20,12 +20,23 @@ class Canvas extends Component {
   };
 
   render() {
-    const {style = {}} = this.props;
+    const { style = {}, width, height } = this.props;
+    const customStyle = {};
+    if (width !== undefined) {
+      customStyle.width = width;
+    }
+
+    if (height !== undefined) {
+      customStyle.height = height;
+    }
 
     if (isWeex) {
-      return <gcanvas {...this.props} ref={this.canvas} />;
+      return <gcanvas {...this.props} style={{
+        ...style,
+        ...customStyle
+      }} ref={this.canvas} />;
     } else {
-      return <canvas {...this.props} width={style.width} height={style.height} ref={this.canvas} />;
+      return <canvas {...this.props} width={customStyle.width} height={customStyle.height} ref={this.canvas} />;
     }
   }
 }

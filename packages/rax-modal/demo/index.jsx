@@ -8,27 +8,32 @@ import View from 'rax-view';
 const Demo = props => {
   const [visible, setVisible] = useState(false);
   return (
-    [ <View onClick={() => setVisible(true)}>
-      <Text>open</Text>
-    </View>,
-    <Modal
-      visible={visible}
-      onHide={() => {
-        setVisible(false);
-      }}
-      onShow={() => {
-        setVisible(true);
-      }}
-      maskCanBeClick={true}
-      contentStyle={{
-        position: 'absolute',
-        top: '150rpx',
-        width: '400rpx',
-        left: '175rpx'
-      }}
-    >
-      <Text>Modal Content Here</Text>
-    </Modal>]
+    [
+      <View style={{
+        width: '750rpx',
+        height: '3000rpx'
+      }} onClick={() => setVisible(true)}>
+        <Text>open</Text>
+      </View>,
+      <Modal
+        visible={visible}
+        onHide={() => {
+          setVisible(false);
+        }}
+        onShow={() => {
+          setVisible(true);
+        }}
+        maskCanBeClick={true}
+        contentStyle={{
+          position: 'absolute',
+          top: '150rpx',
+          width: '400rpx',
+          left: '175rpx'
+        }}
+      >
+        <Text>Modal Content Here</Text>
+      </Modal>
+    ]
   );
 };
 

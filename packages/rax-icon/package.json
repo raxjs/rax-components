@@ -1,12 +1,14 @@
 {
-  "name": "@ali/motor-rax-icon",
+  "name": "rax-icon",
   "version": "1.2.0",
   "description": "icon component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "miniappConfig": {
-    "main:quickapp": "lib/quickapp/index"
+    "main:quickapp": "lib/quickapp/index",
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"
@@ -16,16 +18,12 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+    "test": "rax-scripts test"
   },
   "files": [
     "dist",
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npm.alibaba-inc.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
@@ -45,14 +43,13 @@
   "dependencies": {
     "rax-image": "^1.0.1",
     "rax-text": "^1.0.1",
-    "universal-env": "^1.0.0"
+    "universal-env": "^3.0.0"
   },
   "peerDependencies": {
     "rax": "^1.0.0"
   },
   "devDependencies": {
     "@rax-types/rax": "^1.0.5",
-    "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
@@ -61,6 +58,8 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "mini-types": "^0.1.1",
+    "miniprogram-api-typings": "^2.10.1",
     "rax": "^1.0.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",

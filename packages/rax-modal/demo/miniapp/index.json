@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "小程序Rax Modal 组件",
-  "usingComponents": {
-    "rax-modal": "../../src/miniapp/index"
-  }
-}

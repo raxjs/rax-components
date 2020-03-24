@@ -1,11 +1,9 @@
 .rax-scrollview-vertical {
     flex-direction: column;
-    flex: 1;
 }
 
 .rax-scrollview-horizontal {
     flex-direction: row;
-    flex: 1;
 }
 
 .rax-scrollview-content-container-horizontal {

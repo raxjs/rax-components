@@ -54,17 +54,28 @@ Component({
       current: this.properties.index,
     });
   },
+  observers: {
+    'index': function(nextIndex) {
+      if (this.properties.index !== nextIndex) {
+        this.setData({
+          index: nextIndex
+        });
+      }
+    }
+  },
   methods: {
     onChange(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onChange', event);
-    },
-  },
-  slideTo(index) {
-    if (index !== undefined) {
-      this.setData({
-        current: index,
+      this.triggerEvent('onChange', {
+        index: event.detail.current
       });
-    }
+    },
+    slideTo(index) {
+      if (index !== undefined) {
+        this.setData({
+          current: index,
+        });
+      }
+    },
   },
 });

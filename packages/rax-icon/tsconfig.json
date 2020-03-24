@@ -19,7 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "rax": ["node_modules/@rax-types/rax"]
-    }
+    },
+    "types": ["miniprogram-api-typings", "@rax-types/rax", "mini-types"]
   },
   "include": [
     "src/**/*"

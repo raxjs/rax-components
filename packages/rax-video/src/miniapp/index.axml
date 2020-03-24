@@ -8,5 +8,6 @@
     style="{{style}}" 
     loop="{{loop}}"
     onTap="onClick"
+    poster="{{poster}}"
     onEnded="onEnded">
 </video>

@@ -1,5 +1,4 @@
 <canvas
-  type="{{type}}"
   class="{{className}}"
   style="{{styleSheet}}"
   id="{{componentId}}"

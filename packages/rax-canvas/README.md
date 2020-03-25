@@ -34,7 +34,7 @@ $ npm install rax-canvas --save
 ### getContext(type: string)
 返回画布实例。
 
-type 默认值为 `2d`，目前在微信小程序中仅支持 `2d`/`webgl`，在阿里小程序中暂不支持设置。
+type 默认值为 `2d`，目前在小程序中暂不支持设置。
 
 ## 注意
 直接指定 `width` 或者 `height` 的优先级高于在 `style` 和 `className` 中指定的宽高。

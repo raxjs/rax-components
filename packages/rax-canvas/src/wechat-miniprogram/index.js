@@ -21,10 +21,6 @@ Component({
     height: {
       type: Number,
       value: 0
-    },
-    type: {
-      type: String,
-      value: '2d'
     }
   },
   options: {
@@ -56,11 +52,6 @@ Component({
       this.triggerEvent('onTouchCancel', event.detail);
     },
     getContext(type) {
-      if (type && this.data.type !== type) {
-        this.setData({
-          type
-        });
-      }
       const context = wx.createCanvasContext(this.properties.componentId, this);
       Object.defineProperty(context, 'fillStyle', {
         get() {

@@ -76,7 +76,7 @@ Component({
     },
     onTap(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onClick', event);
+      this.triggerEvent('onClick', event.detail);
     }
   }
 });

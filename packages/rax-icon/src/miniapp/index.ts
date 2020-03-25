@@ -1,3 +1,7 @@
+import fmtEvent from './fmtEvent';
+
+const noop = () => {};
+
 Component({
   data: {
     styleSheet: '',
@@ -12,7 +16,8 @@ Component({
       uri: '',
       codePoint: ''
     },
-    fontFamily: ''
+    fontFamily: '',
+    onClick: noop
   },
   deriveDataFromProps(nextProps) {
     this.initIcon(nextProps);
@@ -52,6 +57,12 @@ Component({
           console.error(`font-family ${fontFamily} should be unique!`);
         }
       }
-    }
+    },
+    onTap(e) {
+      const event = fmtEvent(this.props, e);
+      if (this.props.onClick !== noop) {
+        this.props.onClick(event);
+      }
+    },
   }
 });

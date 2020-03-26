@@ -149,8 +149,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           throw new Error('Params missing id.');
         }
         const targetElement = document.getElementById(id);
+        const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
         if (targetElement) {
-          scrollTo(scrollerRef, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
+          scrollTo(scrollerRef, targetElement.offsetLeft / pixelRatio, targetElement.offsetTop / pixelRatio, animated, duration);
         }
       }
     }));

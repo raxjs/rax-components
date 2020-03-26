@@ -2,6 +2,8 @@ import fmtEvent from './fmtEvent';
 
 function noop() {}
 
+const defaultKeyboardType = 'text';
+
 Component({
   data: {
     previousValue: ''
@@ -13,7 +15,7 @@ Component({
     multiline: false,
     autoFocus: false,
     editable: true,
-    keyboardType: 'default',
+    keyboardType: defaultKeyboardType,
     maxLength: '',
     placeholder: '',
     password: false,
@@ -35,9 +37,20 @@ Component({
     onConfirm: noop
   },
   didMount() {
-    const { value, defaultValue } = this.props;
+    const { value, defaultValue, keyboardType } = this.props;
+    const supportKeyboardTypes = [
+      'text',
+      'number',
+      'idcard',
+      'digit',
+      'numberpad',
+      'digitpad',
+      'idcardpad',
+    ];
     this.setData({
-      previousValue: value || defaultValue
+      previousValue: value || defaultValue,
+      keyboardType: supportKeyboardTypes.indexOf(keyboardType) !== -1 ?
+        keyboardType : defaultKeyboardType,
     });
   },
   methods: {

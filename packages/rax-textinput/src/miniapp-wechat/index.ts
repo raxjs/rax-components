@@ -1,5 +1,7 @@
 import fmtEvent from './fmtEvent';
 
+const defaultKeyboardType = 'text';
+
 Component({
   data: {
     previousValue: ''
@@ -35,7 +37,7 @@ Component({
     },
     keyboardType: {
       type: String,
-      value: 'text'
+      value: defaultKeyboardType
     },
     maxLength: {
       type: Number,
@@ -82,9 +84,17 @@ Component({
     styleIsolation: 'apply-shared',
   },
   attached() {
-    const { value, defaultValue } = this.properties;
+    const { value, defaultValue, keyboardType } = this.properties;
+    const supportKeyboardTypes = [
+      'text',
+      'number',
+      'idcard',
+      'digit',
+    ];
     this.setData({
-      previousValue: value || defaultValue
+      previousValue: value || defaultValue,
+      keyboardType: supportKeyboardTypes.indexOf(keyboardType) !== -1 ?
+        keyboardType : defaultKeyboardType,
     });
   },
   methods: {

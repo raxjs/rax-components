@@ -1,5 +1,11 @@
 import fmtEvent from './fmtEvent';
 
+const supportKeyboardTypes = [
+  'text',
+  'number',
+  'idcard',
+  'digit',
+];
 const defaultKeyboardType = 'text';
 
 Component({
@@ -83,19 +89,31 @@ Component({
   options: {
     styleIsolation: 'apply-shared',
   },
+  observers: {
+    'keyboardType': function(value) {
+      const { keyboardType } = this.properties;
+      const preKeyboardType = this.getKeyboardType(keyboardType);
+      const currentKeyboardType = this.getKeyboardType(value);
+
+      if (preKeyboardType !== currentKeyboardType) {
+        this.setData({
+          keyboardType: currentKeyboardType,
+        });
+      }
+    }
+  },
   attached() {
     const { value, defaultValue, keyboardType } = this.properties;
-    const supportKeyboardTypes = [
-      'text',
-      'number',
-      'idcard',
-      'digit',
-    ];
-    this.setData({
+    const currentKeyboardType = this.getKeyboardType(keyboardType);
+    const data = {
       previousValue: value || defaultValue,
-      keyboardType: supportKeyboardTypes.indexOf(keyboardType) !== -1 ?
-        keyboardType : defaultKeyboardType,
-    });
+    };
+    if (currentKeyboardType !== keyboardType) {
+      Object.assign(data, {
+        keyboardType: currentKeyboardType,
+      });
+    }
+    this.setData(data);
   },
   methods: {
     onBlur(e) {
@@ -120,6 +138,10 @@ Component({
     onInput(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onInput', event);
-    }
+    },
+    getKeyboardType(keyboardType) {
+      return supportKeyboardTypes.indexOf(keyboardType) !== -1 ?
+        keyboardType : defaultKeyboardType;
+    },
   }
 });

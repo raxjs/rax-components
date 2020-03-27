@@ -1,6 +1,7 @@
 import fmtEvent from './fmtEvent';
 
 Component({
+  data: {},
   properties: {
     className: {
       type: String,
@@ -14,18 +15,11 @@ Component({
       type: Number,
       value: 0
     },
-    __content: {
-      type: String,
-      value: ''
-    }
-  },
-  options: {
-    styleIsolation: 'apply-shared'
   },
   methods: {
-    onClick(e) {
-      const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onClick', event);
-    }
-  }
+    onClick: function onClick(e) {
+      const event = fmtEvent(this.props, e);
+      this.props.onClick(event);
+    },
+  },
 });

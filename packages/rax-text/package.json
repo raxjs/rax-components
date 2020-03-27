@@ -59,7 +59,7 @@
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index",
     "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance/index"
+    "main:bytedance": "lib/miniapp-bytedance/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"

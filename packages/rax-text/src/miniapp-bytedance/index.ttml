@@ -1,6 +1,9 @@
-<!--bytedance numberOfLines should add 1-->
-<text class="_rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
+<text class="rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
     style="-webkit-line-clamp: {{numberOfLines + 1}};{{styleSheet}}"
-    bindtap="onClick">
-  {{__content}}
+    number-of-lines="{{numberOfLines}}"
+    selectable="{{selectable}}"
+    space="{{space}}"
+    decode="{{decode}}"
+    onTap="onClick">
+    <slot />
 </text>

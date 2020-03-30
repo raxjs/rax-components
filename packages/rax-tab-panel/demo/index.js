@@ -145,17 +145,17 @@ function getLeft(widths, index) {
 }
 
 class Tab extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.scroller = createRef();
     this.block = createRef();
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   switchTo(index, options = { duration: DURATION }) {
     let { type, duration } = options;
-    let { beforeSwitch = () => {}, afterSwitch = () => {} } = this.props;
+    let { beforeSwitch = () => { }, afterSwitch = () => { } } = this.props;
     let block = findDOMNode(this.block.current);
     let left = getLeft(tabItemWidth, index);
     let itemWidth = tabItemWidth[index];
@@ -231,7 +231,7 @@ class Tab extends Component {
 }
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.tab = createRef();
     this.tabBar = createRef();
@@ -239,9 +239,9 @@ class App extends Component {
 
   state = {};
 
-  componentWillMount() {}
+  componentWillMount() { }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   getTabBlockRef = () => {
     return this.tab.current.refs.block;
@@ -251,7 +251,7 @@ class App extends Component {
     this.tab.current.switchTo(e.index);
   };
 
-  afterTabBarSwitch = e => {};
+  afterTabBarSwitch = e => { };
 
   beforeTabSwitch = e => {
     if (e.type === 'click') {
@@ -276,6 +276,7 @@ class App extends Component {
           ref={this.tabBar}
           beforeSwitch={this.beforeTabBarSwitch}
           afterSwitch={this.afterTabBarSwitch}
+          defaultFocusIndex="1"
         >
           <TabPanel style={styles.page}>
             <TabPanelView style={{ flex: 1 }}>{1}</TabPanelView>

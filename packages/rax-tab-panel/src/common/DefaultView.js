@@ -14,14 +14,15 @@ import BaseView from './BaseView';
 import PanView from './PanView';
 import PropTypes from 'prop-types';
 import findDOMNode from 'rax-find-dom-node';
+import { convertUnit } from 'style-unit';
 
 function setStyles(node, styles) {
   for (let key in styles) {
     let val = styles[key];
     if (isWeex) {
-      node.setStyle(key, val);
+      node.setStyle(key, convertUnit(val, key, 'weex'));
     } else {
-      node.style[key] = val;
+      node.style[key] = convertUnit(val, key, 'web');
     }
   }
 }
@@ -53,7 +54,7 @@ const styles = {
 };
 
 class DefaultView extends BaseView {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.wrap = createRef();
   }
@@ -211,16 +212,16 @@ class DefaultView extends BaseView {
       origin: `x+${this.x}`,
       transformed: `{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
         this.x
-      }}]}`
+        }}]}`
     };
     if (this.curIndex === 0) {
       // left edge bounce
       expression.origin = `x > 0 ? (x/3+${this.x}) : (x + ${this.x})`;
       expression.transformed = ` {\"type\":\"?\",\"children\":[{\"type\":\">\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${
         this.x
-      }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
+        }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
         this.x
-      }}]}]}`;
+        }}]}]}`;
     }
 
     if (this.curIndex === this.itemCount - 1) {
@@ -228,9 +229,9 @@ class DefaultView extends BaseView {
       expression.origin = `x < 0 ? (x/3+${this.x}) : (x + ${this.x})`;
       expression.transformed = `{\"type\":\"?\",\"children\":[{\"type\":\"<\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${
         this.x
-      }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
+        }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
         this.x
-      }}]}]}`;
+        }}]}]}`;
     }
 
     this.startTime = Date.now();

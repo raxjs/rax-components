@@ -26,11 +26,12 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
+    "prop-types": "^15.7.2",
     "rax-find-dom-node": "^1.0.0",
     "rax-link": "^1.0.1",
-    "prop-types": "^15.7.2",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1",
+    "style-unit": "^2.0.1",
     "universal-env": "^3.0.0",
     "universal-transition": "^1.0.2",
     "weex-bindingx": "^0.0.49"

@@ -21,14 +21,10 @@ class Canvas extends Component {
 
   render() {
     const { style = {}, width, height } = this.props;
-    const customStyle = {};
-    if (width !== undefined) {
-      customStyle.width = width;
-    }
-
-    if (height !== undefined) {
-      customStyle.height = height;
-    }
+    const customStyle = {
+      width: width !== undefined ? width : style.width,
+      height: height !== undefined ? height : style.height,
+    };
 
     if (isWeex) {
       return <gcanvas {...this.props} style={{
@@ -36,7 +32,7 @@ class Canvas extends Component {
         ...customStyle
       }} ref={this.canvas} />;
     } else {
-      return <canvas {...this.props} width={customStyle.width} height={customStyle.height} ref={this.canvas} />;
+      return <canvas {...this.props} width={parseInt(customStyle.width)} height={parseInt(customStyle.height)} ref={this.canvas} />;
     }
   }
 }

@@ -49,7 +49,7 @@ Component({
       let style = props.style || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';
-      if (style == this.data.styleSheet) return;
+      if (style === this.data.styleSheet) return;
 
       this.setData({
         styleSheet: style

@@ -150,7 +150,6 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           throw new Error('Params missing id.');
         }
         const targetElement = document.getElementById(id);
-        console.log('targetElement', targetElement)
         if (targetElement) {
           scrollTo(scrollerRef, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
         }

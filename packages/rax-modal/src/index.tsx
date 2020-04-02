@@ -46,7 +46,8 @@ function Modal(props: ModalProps) {
   if (typeof duration === 'number') {
     duration = [duration, duration];
   } else if (duration.length === 1) {
-    duration = duration.concat(duration);
+    // If duration's length is one, in and out are the same.
+    duration = [duration[0], duration[0]];
   }
 
   const maskRef = useRef<HTMLDivElement>(null);

@@ -220,7 +220,7 @@ class Slider extends Component<SliderProps, any> {
       width: this.width + 'rpx',
       height: this.height + 'rpx'
     };
-    return this.total !== 0 ? (
+    return this.total > 1  ? (
       <SwipeEvent
         className="rax-slider-swipe-wrapper"
         style={style}
@@ -244,10 +244,10 @@ class Slider extends Component<SliderProps, any> {
         </View>
       </SwipeEvent>
     ) : (
-      <View ref={this.swipeView} className="rax-slider-swipe" style={style}>
-        {pages}
-      </View>
-    );
+        <View ref={this.swipeView} className="rax-slider-swipe" style={style}>
+          {pages}
+        </View>
+      );
   }
 
   public render() {

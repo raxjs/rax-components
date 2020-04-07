@@ -24,6 +24,7 @@ Component({
     },
     type: {
       type: String,
+      // Compatible with old interface, type should be an empty string
       value: ''
     }
   },

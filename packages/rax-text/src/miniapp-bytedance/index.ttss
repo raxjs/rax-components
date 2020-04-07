@@ -2,7 +2,6 @@
   box-sizing: border-box;
   display: block;
   font-size: 32rpx;
-  white-space: pre-wrap;
 }
 ._mutilple-lines {
   overflow: hidden;

@@ -1,6 +1,6 @@
 {
   "name": "rax-slider",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Slider component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -46,13 +46,13 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
     "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "babel-eslint": "^10.0.3",
     "csstype": "^2.6.4",
     "driver-universal": "^1.0.0",
     "eslint": "^5.10.0",
@@ -61,6 +61,7 @@
     "eslint-plugin-react": "~7.11.1",
     "jest-localstorage-mock": "^2.3.0",
     "rax": "^1.0.0",
+    "rax-image": "^2.1.0",
     "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",

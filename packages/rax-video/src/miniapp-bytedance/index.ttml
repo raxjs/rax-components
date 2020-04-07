@@ -1,5 +1,5 @@
 <video
-    id="{{id}}"
+    id="{{_id}}"
     src="{{src}}" 
     class="{{className}}"
     controls="{{controls}}"

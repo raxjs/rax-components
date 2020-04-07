@@ -1,8 +1,15 @@
 import fmtEvent from './fmtEvent';
 
+declare const tt: any;
+const randomVideoID = () => {
+  return '__rax_video_' + Date.now();
+};
 const noop = () => {};
+
 Component({
-  data: {},
+  data: {
+    _id: ''
+  },
   properties: {
     src: {
       type: String,
@@ -47,10 +54,31 @@ Component({
     poster: {
       type: String,
       value: ''
+    },
+    playControl: {
+      type: String,
+      value: 'pause',
+      observer: function(newVal, oldVal) {
+        if (!(newVal === 'pause' || newVal === 'play')) {
+          return;
+        }
+        const videoIns = tt.createVideoContext(this.data._id);
+        if (newVal === 'pause') {
+          videoIns.pause();
+        }
+        if (newVal === 'play') {
+          videoIns.play();
+        }
+      }
     }
   },
   options: {
     styleIsolation: 'apply-shared',
+  },
+  attached() {
+    this.setData({
+      _id: this.data.id || randomVideoID()
+    })
   },
   methods: {
     onClick(e) {

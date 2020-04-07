@@ -150,16 +150,7 @@ let Emitter = {
 
 function formatTransformValue(num, noUnit) {
   const unit = noUnit ? '' : 'rpx';
-  if (isWeex) {
-    return num + unit;
-  } else {
-    const ratio = document.documentElement.style.fontSize;
-    if (ratio) {
-      return num / (parseInt(ratio) * 2) + unit;
-    } else {
-      return num + unit;
-    }
-  }
+  return num + unit;
 }
 
 export default {

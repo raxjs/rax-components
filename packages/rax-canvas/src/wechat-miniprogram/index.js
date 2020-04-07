@@ -10,7 +10,7 @@ Component({
       type: String,
       value: ''
     },
-    id: {
+    componentId: {
       type: String,
       value: ''
     },
@@ -21,6 +21,10 @@ Component({
     height: {
       type: Number,
       value: 0
+    },
+    type: {
+      type: String,
+      value: '2d'
     }
   },
   options: {
@@ -29,27 +33,44 @@ Component({
   methods: {
     onClick(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onClick', event);
+      this.triggerEvent('onClick', event.detail);
     },
     onLongpress(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onLongpress', event);
+      this.triggerEvent('onLongpress', event.detail);
     },
     onTouchStart(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onTouchStart', event);
+      this.triggerEvent('onTouchStart', event.detail);
     },
     onTouchMove(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onTouchMove', event);
+      this.triggerEvent('onTouchMove', event.detail);
     },
     onTouchEnd(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onTouchEnd', event);
+      this.triggerEvent('onTouchEnd', event.detail);
     },
     onTouchCancel(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onTouchCancel', event);
+      this.triggerEvent('onTouchCancel', event.detail);
+    },
+    getContext(type) {
+      if (type && this.data.type !== type) {
+        this.setData({
+          type
+        });
+      }
+      const context = wx.createCanvasContext(this.properties.componentId, this);
+      Object.defineProperty(context, 'fillStyle', {
+        get() {
+          return context.setFillStyle;
+        },
+        set(value) {
+          context.setFillStyle(value);
+        }
+      })
+      return context;
     }
   }
 });

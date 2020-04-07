@@ -27,7 +27,6 @@ const baseCls = 'rax-scrollview';
  * @param duration animate duration
  */
 function scrollTo(scrollerRef, x, y, animated, duration) {
-  const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
   const scrollView = scrollerRef.current;
   const scrollLeft = scrollView.scrollLeft;
   const scrollTop = scrollView.scrollTop;
@@ -38,21 +37,21 @@ function scrollTo(scrollerRef, x, y, animated, duration) {
       onRun: e => {
         if (x >= 0) {
           scrollerRef.current.scrollLeft =
-            scrollLeft + e.percent * (x * pixelRatio - scrollLeft);
+            scrollLeft + e.percent * (x - scrollLeft);
         }
         if (y >= 0) {
           scrollerRef.current.scrollTop =
-            scrollTop + e.percent * (y * pixelRatio - scrollTop);
+            scrollTop + e.percent * (y - scrollTop);
         }
       }
     });
     timer.run();
   } else {
     if (x >= 0) {
-      scrollerRef.current.scrollLeft = pixelRatio * x;
+      scrollerRef.current.scrollLeft = x;
     }
     if (y >= 0) {
-      scrollerRef.current.scrollTop = pixelRatio * y;
+      scrollerRef.current.scrollTop = y;
     }
   }
 }
@@ -137,7 +136,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-        scrollTo(scrollerRef, x, y, animated, duration);
+        const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
+
+        scrollTo(scrollerRef, x * pixelRatio, y * pixelRatio, animated, duration);
       },
       scrollIntoView(options?: {
         id?: string;

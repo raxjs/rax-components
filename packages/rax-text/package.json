@@ -1,6 +1,6 @@
 {
   "name": "rax-text",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

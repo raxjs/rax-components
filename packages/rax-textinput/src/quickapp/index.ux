@@ -1,30 +1,24 @@
 <template>
-  <div>
-    <input if="{{!multiline}}" disabled="{{!editable}}" enterkeyclick="bindConfirm" id="{{id}}" focus="bindFocus" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="{{bindChange || bindChangeText}}"></input>
-    <textarea else id="{{id}}" disabled="{{!editable}}" enterkeyclick="bindConfirm" focus="bindFocus" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  change="bindChange"></textarea>
-  <div>
+  <span>
+    <input if="{{!multiline}}" disabled="{{editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="bindChange"></input>
+    <textarea if="{{multiline}}" disabled="{{editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="bindChange"></textarea>
+  <span>
 </template>
 <script>
   export default {
-    props: [ 'id', 'styleSheet', 'type', 'value', 
-    'className', 'placeholder',  'bindClick', 'bindPress', 
-    'bindChangeText','bindChange', 'maxLength', 'autoComplete', 'password',
-    'multiline', 'numberOfLines', 'autoFocus', 'maxNumberOfLines',
-    'bindFocus', 'placeholderColor', 'secureTextEntry', 'defaultValue', 'bindConfirm', 'enableNative', 'fixed', 'editable'],
+    props: [ 'id', 'styleSheet', 'type', 'value', 'bindAppear',
+    'className',  'bindClick', 'bindPress',  'numberOfLines',
+    'multiline', 'accessibilityLabel','autoComplete', 'autoFocus','fixed',
+    'editable', 'keyboardType','maxLength', 'maxNumberOfLines', 'enableNative',
+    'placeholder', 'placeholderColor', 'password','randomNumber', 'bindConfirm',
+    'showCount', 'selectionStart', 'selectionEnd', 'bindBlur', 'confirmType',
+    'bindFocus', 'bindChange','bindChangeText', 'bindInput', 'defaultValue'],
     data() {
       let _style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
-      const value = (!this.value && this.defaultValue) ? this.defaultValue : this.value;
-      const type = (this.password || this.secureTextEntry) ? 'password' : this.type;
-      if (this.maxNumberOfLines && this.multiline) {
-        if (typeof _style === 'string') {
-          _style = _style + ';lines: ' + this.maxNumberOfLines + ';';
-        } else {
-          _style = Object.assign({}, _style, {
-            lines: this.maxNumberOfLines
-          });
-        }
-      } else if (this.numberOfLines) {
+      const type = this.password ? 'password' : 'text';
+      const value = this.value || this.defaultValue;
+      if (this.numberOfLines) {
         if (typeof _style === 'string') {
           _style = _style + ';lines: ' + this.numberOfLines + ';';
         } else {
@@ -33,57 +27,51 @@
           });
         }
       }
-      if (this.placeholderColor) {
-        if (typeof _style === 'string') {
-          _style = _style + ';placeholder-color: ' + this.placeholderColor + ';';
-        } else {
-          _style = Object.assign({}, _style, {
-            placeholderColor: this.placeholderColor
-          });
-        }
-      }
       return {
         id: this.id,
         style: _style || {},
+        editable: this.editable,
         className: this.className,
         placeholder: this.placeholder,
         eventClick: this.bindClick || this.bindPress,
-        type,
-        value,
+        bindChange: this.bindChangeText || this.bindChange,
+        type: type,
+        value: this.value,
         maxlength: this.maxLength,
         autocomplete,
         multiline: this.multiline,
       }
     },
     onInit() {
-      this.$watch('styleSheet', 'watchStyleSheetChange')
-      this.$watch('className', 'watchClassNameChange')
-      this.$watch('id', 'watchIdChange')
-      this.$watch('type', 'watchTypeChange')
-      this.$watch('placeholder', 'watchPlaceHolderChange')
-      this.$watch('maxlength', 'watchMaxLengthChange')
-      this.$watch('autocomplete', 'watchAutoCompleteChange')
+      // 监听数据变化
+      this.$watch('styleSheet', 'watchStyleChange');
+      this.$watch('className', 'watchClassChange');
+      this.$watch('id', 'watchIdChange');
+      this.$watch('type', 'watchTypeChange');
+      this.$watch('placeholder', 'watchPlaceChange');
+      this.$watch('maxlength', 'watchMaxChange');
+      this.$watch('autocomplete', 'watchAutoChange');
     },
-    watchStyleSheetChange(newStyle, oldStyle) {
-      this.style = newStyle;
+    watchStyleChange(newStyleValue, oldStyleValue) {
+      this.style = newStyleValue;
     },
-    watchClassNameChange(newClassName, oldClassName) {
-      this.className = newClassName;
+    watchClassChange(newClassNameValue, oldClassNameValue) {
+      this.className = newV;
     },
-    watchIdChange(newId, oldId) {
-      this.id = newId;
+    watchIdChange(newIdValue, oldIdValue) {
+      this.id = newIdValue;
     },
-    watchTypeChange(newType, oldType) {
-      this.type = newType;
+    watchTypeChange(newTypeValue, oldTypeValue) {
+      this.type = newTypeValue;
     },
-    watchPlaceHolderChange(newPlaceHolder, oldPlaceHolder) {
-      this.placeholder = newPlaceHolder;
+    watchPlaceChange(newPlaceholderValue, oldPlaceholderValue) {
+      this.placeholder = newPlaceholderValue;
     },
-    watchMaxLengthChange(newMaxLength, oldMaxLength) {
-      this.maxlength = newMaxLength;
+    watchMaxChange(newMaxLengthValue, oldMaxLengthValue) {
+      this.maxlength = newMaxLengthValue;
     },
-    watchAutoCompleteChange(newAutoComplete, oldAutoComplete) {
-      this.autocomplete = newAutoComplete;
+    watchAutoChange(newAutocompleteValue, oldAutocompleteValue) {
+      this.autocomplete = newAutocompleteValue;
     },
   };
 </script>

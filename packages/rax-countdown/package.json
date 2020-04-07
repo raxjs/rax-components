@@ -1,6 +1,6 @@
 {
   "name": "rax-countdown",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Countdown component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -59,6 +59,7 @@
     "typescript": "^3.7.2"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:bytedance": "lib/miniapp-bytedance/index"
   }
 }

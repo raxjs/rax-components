@@ -21,7 +21,7 @@ export interface IconProps {
   source: {
     uri?: string;
     codePoint?: string;
-  }
+  };
   fontFamily?: string;
   [key: string]: any;
 }

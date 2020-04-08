@@ -70,6 +70,7 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp/index",
+    "main:bytedance": "lib/miniapp-bytedance/index",
     "subComponents": {
       "Item": {
         "tagNameMap": "swiper-item"

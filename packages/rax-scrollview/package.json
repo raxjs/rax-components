@@ -18,6 +18,7 @@
   "miniappConfig": {
     "main": "lib/miniapp-native/miniapp/index",
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
     }

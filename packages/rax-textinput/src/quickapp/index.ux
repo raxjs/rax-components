@@ -5,10 +5,10 @@
   </div>
 </template>
 <script>
-  import keyboardTypeMap from './keyboardTypeMap';
+  import keyboardTypeMap from '../keyboardTypeMap';
   export default {
     props: [ 'id', 'styleSheet', 'value', 'bindAppear',
-    'className',  'bindClick', 'bindPress',  'numberOfLines',
+    'className',  'bindClick', 'bindPress',  'numberOfLines','secureTextEntry',
     'multiline', 'accessibilityLabel','autoComplete', 'autoFocus','fixed',
     'editable', 'keyboardType','maxLength', 'maxNumberOfLines', 'enableNative',
     'placeholder', 'placeholderColor', 'password','randomNumber', 'bindConfirm',
@@ -18,7 +18,7 @@
       let _style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
       let keyboardType = 'text';
-      if (this.password) {
+      if (this.password || this.secureTextEntry) {
         keyboardType = 'password';
       } else if (this.keyboardType) {
         keyboardType = keyboardTypeMap[this.keyboardType];
@@ -33,7 +33,6 @@
           });
         }
       }
-      console.log('value', this.value)
       return {
         id: this.id,
         style: _style || {},

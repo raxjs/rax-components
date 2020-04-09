@@ -1,9 +1,12 @@
 {
   "name": "rax-slider",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Slider component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
     "build": "npm run clean && rax-scripts build",
@@ -74,6 +77,7 @@
       "Item": {
         "tagNameMap": "swiper-item"
       }
-    }
+    },
+    "main:quickapp": "lib/quickapp/index"
   }
 }

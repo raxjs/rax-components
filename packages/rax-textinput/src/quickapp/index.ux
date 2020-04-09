@@ -1,22 +1,28 @@
 <template>
-  <span>
-    <input if="{{!multiline}}" disabled="{{editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{type}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="bindChange"></input>
-    <textarea if="{{multiline}}" disabled="{{editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{value}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="bindChange"></textarea>
-  <span>
+  <div>
+    <input if="{{!multiline}}" disabled="{{!editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" type="{{keyboardType}}" value="{{inputValue}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="onChangeValue"></input>
+    <textarea if="{{multiline}}" disabled="{{!editable}}" id="{{id}}" maxlength="{{maxlength}}" autocomplete="{{autocomplete}}" value="{{inputValue}}" style="{{style}}" class="{{className}}" placeholder="{{placeholder}}" @click="eventClick"  onchange="onChangeValue"></textarea>
+  </div>
 </template>
 <script>
+  import keyboardTypeMap from './keyboardTypeMap';
   export default {
-    props: [ 'id', 'styleSheet', 'type', 'value', 'bindAppear',
+    props: [ 'id', 'styleSheet', 'value', 'bindAppear',
     'className',  'bindClick', 'bindPress',  'numberOfLines',
     'multiline', 'accessibilityLabel','autoComplete', 'autoFocus','fixed',
     'editable', 'keyboardType','maxLength', 'maxNumberOfLines', 'enableNative',
     'placeholder', 'placeholderColor', 'password','randomNumber', 'bindConfirm',
     'showCount', 'selectionStart', 'selectionEnd', 'bindBlur', 'confirmType',
-    'bindFocus', 'bindChange','bindChangeText', 'bindInput', 'defaultValue'],
+    'bindFocus', 'bindChange','bindChangeText', 'bindInput', 'defaultValue', 'tagId'],
     data() {
       let _style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
-      const type = this.password ? 'password' : 'text';
+      let keyboardType = 'text';
+      if (this.password) {
+        keyboardType = 'password';
+      } else if (this.keyboardType) {
+        keyboardType = keyboardTypeMap[this.keyboardType];
+      }
       const value = this.value || this.defaultValue;
       if (this.numberOfLines) {
         if (typeof _style === 'string') {
@@ -27,51 +33,50 @@
           });
         }
       }
+      console.log('value', this.value)
       return {
         id: this.id,
         style: _style || {},
-        editable: this.editable,
+        editable: this.editable || true,
         className: this.className,
         placeholder: this.placeholder,
         eventClick: this.bindClick || this.bindPress,
         bindChange: this.bindChangeText || this.bindChange,
-        type: type,
-        value: this.value,
+        keyboardType: keyboardType,
+        inputValue: value,
         maxlength: this.maxLength,
         autocomplete,
         multiline: this.multiline,
       }
     },
+    onChangeValue(val) {
+      this.bindChange(val.value || '');
+    },
     onInit() {
-      // 监听数据变化
       this.$watch('styleSheet', 'watchStyleChange');
       this.$watch('className', 'watchClassChange');
       this.$watch('id', 'watchIdChange');
-      this.$watch('type', 'watchTypeChange');
+      this.$watch('keyboardType', 'watchTypeChange');
       this.$watch('placeholder', 'watchPlaceChange');
       this.$watch('maxlength', 'watchMaxChange');
-      this.$watch('autocomplete', 'watchAutoChange');
     },
     watchStyleChange(newStyleValue, oldStyleValue) {
       this.style = newStyleValue;
     },
     watchClassChange(newClassNameValue, oldClassNameValue) {
-      this.className = newV;
+      this.className = newClassNameValue;
     },
     watchIdChange(newIdValue, oldIdValue) {
       this.id = newIdValue;
     },
     watchTypeChange(newTypeValue, oldTypeValue) {
-      this.type = newTypeValue;
+      this.keyboardType = newTypeValue;
     },
     watchPlaceChange(newPlaceholderValue, oldPlaceholderValue) {
       this.placeholder = newPlaceholderValue;
     },
     watchMaxChange(newMaxLengthValue, oldMaxLengthValue) {
       this.maxlength = newMaxLengthValue;
-    },
-    watchAutoChange(newAutocompleteValue, oldAutocompleteValue) {
-      this.autocomplete = newAutocompleteValue;
-    },
+    }
   };
 </script>

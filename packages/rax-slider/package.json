@@ -1,6 +1,6 @@
 {
   "name": "rax-slider",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Slider component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -72,7 +72,7 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp/index",
+    "main:wechat": "lib/wechat-miniprogram/index",
     "subComponents": {
       "Item": {
         "tagNameMap": "swiper-item"

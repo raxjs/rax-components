@@ -19,11 +19,13 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "rax": ["node_modules/@rax-types/rax", "../../node_modules/@rax-types/rax"]
+      "rax": ["node_modules/@types/rax"]
     },
-    "types": ["miniprogram-api-typings", "@rax-types/rax", "@types/ali-app"]
+    "types": ["miniprogram-api-typings", "@types/rax", "mini-types"]
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "lib"

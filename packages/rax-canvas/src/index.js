@@ -11,7 +11,7 @@ import findDOMNode from 'rax-find-dom-node';
  */
 function processCanvasDimension(userInputDimension) {
   if (typeof userInputDimension === 'number') {
-    return userInputDimension;
+    return rpx2px(userInputDimension);
   }
   if (typeof userInputDimension === 'string') {
     const numberValue = parseInt(userInputDimension);

@@ -30,7 +30,7 @@ export interface QRCodeProps {
  */
 function processDimension(userInputDimension: number|string): number|null {
   if (typeof userInputDimension === 'number') {
-    return userInputDimension;
+    return rpx2px(userInputDimension);
   }
   if (typeof userInputDimension === 'string') {
     const numberValue = parseInt(userInputDimension);

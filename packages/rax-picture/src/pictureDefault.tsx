@@ -112,7 +112,6 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     );
 
     if (uri) {
-      
       if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
         // devicePixelRatio >= 2
         if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {

@@ -91,7 +91,7 @@ Component({
         if (this.counter) clearInterval(this.counter);
       }
 
-      var seconds = timeDuration / 1000 % 60,
+      let seconds = timeDuration / 1000 % 60,
         minutes = timeDuration / (1000 * 60) % 60,
         hours = timeDuration / (1000 * 60 * 60) % 24,
         days = timeDuration / (1000 * 60 * 60 * 24);

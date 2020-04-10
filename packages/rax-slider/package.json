@@ -1,10 +1,10 @@
 {
   "name": "rax-slider",
   "author": "rax",
-  "version": "0.0.0",
-  "description": "",
+  "version": "2.1.0",
+  "description": "Slider component for Rax.",
+  "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "module": "src/index.js",
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/wechat-miniprogram/index",

@@ -1,5 +1,6 @@
 import { createElement, Component, createRef } from 'rax';
 import Canvas from 'rax-canvas';
+import { rpx2px } from 'universal-unit-tool';
 import qr from 'qr.js';
 
 enum ErrorCorrectLevelMap {
@@ -23,12 +24,23 @@ export interface QRCodeProps {
   style?: Rax.CSSProperties;
 }
 
-const styles = {
-  qrCode: {
-    width: 300,
-    height: 300
+/**
+ * process user input width/height in style
+ * @param userInputDimension 
+ */
+function processDimension(userInputDimension: number|string): number|null {
+  if (typeof userInputDimension === 'number') {
+    return userInputDimension;
   }
-};
+  if (typeof userInputDimension === 'string') {
+    const numberValue = parseInt(userInputDimension);
+    if (userInputDimension.endsWith('rpx')) {
+     return rpx2px(numberValue);
+    }
+    return numberValue;
+  }
+  return null;
+}
 
 class QRCode extends Component<QRCodeProps, {}> {
   public width = 0;
@@ -38,9 +50,9 @@ class QRCode extends Component<QRCodeProps, {}> {
   public constructor(props) {
     super(props);
     const { style = {} } = props;
-    const { width = 300, height = 300 } = style;
-    this.width = width;
-    this.height = height;
+    const { width, height } = style;
+    this.width = processDimension(width) || 300;
+    this.height = processDimension(height) || 300;
     this.canvas = createRef();
   }
 
@@ -91,7 +103,11 @@ class QRCode extends Component<QRCodeProps, {}> {
 
   public render() {
     const { style } = this.props;
-    return <Canvas style={{ ...styles.qrCode, ...style }} ref={this.canvas} />;
+    const processedDimension = {
+      width: this.width,
+      height: this.height
+    };
+    return <Canvas style={{ ...processedDimension, ...style }} ref={this.canvas} />;
   }
 }
 

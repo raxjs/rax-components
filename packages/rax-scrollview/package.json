@@ -1,9 +1,12 @@
 {
   "name": "rax-scrollview",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
     "build": "npm run clean && rax-scripts build",
@@ -20,7 +23,8 @@
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
-    }
+    },
+    "main:quickapp": "lib/quickapp/index"
   },
   "repository": {
     "type": "git",

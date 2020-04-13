@@ -56,7 +56,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
         onSwiperChange={handleChange}
         style={{ width: Number(width), height: Number(height), ...style }}
       >
-        {Children.map(children, child => <swiper-item>{child}</swiper-item>)}
+        {Children.map(children, child => <swiper-item key={child.key}>{child}</swiper-item>)}
       </swiper>
     );
   }

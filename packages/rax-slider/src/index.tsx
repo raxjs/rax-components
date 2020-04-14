@@ -1,11 +1,13 @@
 import { ForwardRefExoticComponent, Fragment } from 'rax';
-import { isWeex } from 'universal-env';
+import { isWeex, isWeChatMiniProgram, isMiniApp, isByteDanceMicroApp } from 'universal-env';
 import { SliderProps } from './types';
 
 let Slider = null;
 
 if (isWeex) {
   Slider = require('./slider.weex');
+} else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp) {
+  Slider = require('./slider.miniapp');
 } else {
   Slider = require('./slider.web');
 }

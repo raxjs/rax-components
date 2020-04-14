@@ -1,39 +1,43 @@
 {
   "name": "rax-slider",
-  "version": "2.1.0",
+  "author": "rax",
+  "version": "2.2.0",
   "description": "Slider component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/wechat-miniprogram/index",
+    "subComponents": {
+      "Item": {
+        "tagNameMap": "swiper-item"
+      }
+    },
+    "main:quickapp": "lib/quickapp/index"
+  },
   "quickappConfig": {
     "main": "lib/quickapp/index"
   },
-  "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test"
-  },
   "files": [
     "dist",
+    "es",
     "lib",
-    "src"
+    "src",
+    "types"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raxjs/rax-components.git"
-  },
   "keywords": [
     "Rax",
-    "rax-component",
-    "react-component"
+    "rax-component"
   ],
-  "bugs": {
-    "url": "https://github.com/alibaba/rax/issues"
-  },
-  "homepage": "https://github.com/raxjs/rax-slider#readme",
   "engines": {
     "npm": ">=3.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.1.0"
+  },
+  "scripts": {
+    "start": "build-scripts start",
+    "build": "build-scripts build"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -45,39 +49,13 @@
     "universal-env": "^3.0.0",
     "universal-panresponder": "^0.6.5"
   },
-  "peerDependencies": {
-    "rax": "^1.0.0"
-  },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
-    "@types/ali-app": "^1.0.0",
-    "@types/classnames": "^2.2.9",
-    "@types/jest": "^24.0.12",
-    "@typescript-eslint/eslint-plugin": "^1.7.0",
-    "@typescript-eslint/parser": "^1.7.0",
-    "babel-eslint": "^10.0.3",
-    "csstype": "^2.6.4",
-    "driver-universal": "^1.0.0",
-    "eslint": "^5.10.0",
-    "eslint-config-rax": "^0.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-react": "~7.11.1",
-    "jest-localstorage-mock": "^2.3.0",
-    "rax": "^1.0.0",
-    "rax-image": "^2.1.0",
-    "rax-plugin-component": "^0.1.9",
-    "rax-scripts": "^2.0.0",
-    "rax-test-renderer": "^1.0.0",
-    "typescript": "^3.5.2"
-  },
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp/index",
-    "subComponents": {
-      "Item": {
-        "tagNameMap": "swiper-item"
-      }
-    },
-    "main:quickapp": "lib/quickapp/index"
+    "typescript": "^3.7.5",
+    "@types/rax": "^1.0.0",
+    "@alib/build-scripts": "^0.1.0",
+    "build-plugin-rax-component": "^0.2.0",
+    "driver-universal": "^3.1.0",
+    "rax": "^1.1.0",
+    "rax-test-renderer": "^1.0.0"
   }
 }

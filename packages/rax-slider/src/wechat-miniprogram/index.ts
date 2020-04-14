@@ -3,6 +3,7 @@ import fmtEvent from './fmtEvent';
 Component({
   data: {
     current: 0,
+    children: []
   },
   properties: {
     className: {
@@ -23,7 +24,7 @@ Component({
     },
     showsPagination: {
       type: Boolean,
-      value: false,
+      value: true,
     },
     loop: {
       type: Boolean,
@@ -48,6 +49,20 @@ Component({
         itemSelectedColor: 'rgb(255, 80, 0)',
       },
     },
+    __length: {
+      type: Number,
+      observer(newLength) {
+        if (this.data.children.length !== newLength) {
+          this.data.children.length = newLength;
+          this.setData({
+            children: this.data.children
+          })
+        }
+      }
+    }
+  },
+  options: {
+    multipleSlots: true
   },
   attached() {
     this.setData({

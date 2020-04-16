@@ -7,6 +7,7 @@ import {
 import View from 'rax-view';
 import Image from 'rax-image';
 import { isNode } from 'universal-env';
+import { devicePixelRatio } from 'universal-device';
 
 import optimizer from './optimizer/index';
 import { isSupport } from './webp';
@@ -111,8 +112,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     );
 
     if (uri) {
-      if (!isNode && autoPixelRatio && window.devicePixelRatio > 1) {
-        // devicePixelRatio >= 2 for web
+      if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
+        // devicePixelRatio >= 2
         if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
           sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
         }

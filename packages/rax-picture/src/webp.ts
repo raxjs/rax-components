@@ -5,7 +5,7 @@
  * animation : example gif
  */
 
-import { isWeex, isNode } from 'universal-env';
+import { isWeex, isNode, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 
 let isIOS: boolean;
 if (!isWeex && !isNode) {
@@ -38,7 +38,9 @@ function isSupportTest(callback: (isSupport: boolean) => void, type: string) {
 
 export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
   if ('function' === typeof callback) {
-    if (isWeex || window.navigator.userAgent.match(/PHA/)) {
+    if (isMiniApp || isWeChatMiniProgram) {
+      callback(true);
+    } else if (isWeex || window.navigator.userAgent.match(/PHA/)) {
       callback(true);
     } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
       callback(false);

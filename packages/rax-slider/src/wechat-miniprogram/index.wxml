@@ -11,5 +11,9 @@
   vertical="{{direaction === 'vertical'}}"
   onChange="onChange"
 >
-  <slot />
+  <block wx:for="{{children}}" wx:for-index="index" wx:key="index">
+    <swiper-item>
+      <slot name="slider-item-{{index}}"></slot>
+    </swiper-item>
+  </block>
 </swiper>

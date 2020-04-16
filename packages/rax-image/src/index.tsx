@@ -36,7 +36,7 @@ function Image({
 
   nativeProps.onLoad = useCallback(
     (e: ImageLoadEvent) => {
-      if (e.success !== null) {
+      if (e.success !== null && e.success !== undefined) {
         if (e.success) {
           onLoad && onLoad(e);
         } else {

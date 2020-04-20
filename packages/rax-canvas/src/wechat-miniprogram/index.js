@@ -24,7 +24,8 @@ Component({
     },
     type: {
       type: String,
-      value: '2d'
+      // Compatible with old interface, type should be an empty string
+      value: ''
     }
   },
   options: {
@@ -55,12 +56,7 @@ Component({
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onTouchCancel', event.detail);
     },
-    getContext(type) {
-      if (type && this.data.type !== type) {
-        this.setData({
-          type
-        });
-      }
+    getContext() {
       const context = wx.createCanvasContext(this.properties.componentId, this);
       Object.defineProperty(context, 'fillStyle', {
         get() {

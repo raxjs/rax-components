@@ -34,7 +34,8 @@ $ npm install rax-canvas --save
 ### getContext(type: string)
 返回画布实例。
 
-type 默认值为 `2d`，目前在微信小程序中仅支持 `2d`/`webgl`，在阿里小程序中暂不支持设置。
+type 默认值为 `2d`，目前在小程序中暂不支持设置。
+由于微信小程序新接口获取 `canvas context` 是一个异步行为，如果想获得设置 `2d`/`webgl` 的能力，则不能使用 `getContext` 方法，需要用户自己兼容处理，具体详见微信小程序文档 https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html。
 
 ## 注意
 直接指定 `width` 或者 `height` 的优先级高于在 `style` 和 `className` 中指定的宽高。

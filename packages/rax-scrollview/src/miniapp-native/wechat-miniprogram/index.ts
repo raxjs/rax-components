@@ -45,7 +45,7 @@ Component({
   methods: {
     onEndReached(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onEndReached', event);
+      this.triggerEvent('onEndReached', event.detail);
     },
     onScroll(e) {
       const event = fmtEvent(this.properties, e);
@@ -63,7 +63,7 @@ Component({
           };
         },
       };
-      this.triggerEvent('onScroll', event);
+      this.triggerEvent('onScroll', event.detail);
     },
     scrollTo(param) {
       const { x = 0, y = 0, animated = true, duration = 400 } = param || {};

@@ -35,8 +35,8 @@ Component({
     onTap(e) {
       const event = fmtEvent(this.properties, e);
       // onPress for  backward compatibility
-      this.triggerEvent('onPress', event);
-      this.triggerEvent('onClick', event);
+      this.triggerEvent('onPress', event.detail);
+      this.triggerEvent('onClick', event.detail);
       const miniappHref = this.properties.miniappHref || this.properties.mpHref;
       if (miniappHref) {
         const splits = miniappHref.split(':');

@@ -47,15 +47,15 @@ Component({
   methods: {
     onError(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onError', event);
+      this.triggerEvent('onError', event.detail);
     },
     onLoad(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onLoad', event);
+      this.triggerEvent('onLoad', event.detail);
     },
     onTap(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onClick', event);
+      this.triggerEvent('onClick', event.detail);
     },
     initImage(type, newValue) {
       const { width = null, height = null } = type === 'source' ? newValue : this.properties.source || {};

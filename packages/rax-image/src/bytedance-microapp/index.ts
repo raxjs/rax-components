@@ -17,6 +17,10 @@ Component({
       type: String,
       value: 'scaleToFill'
     },
+    src: {
+      type: String,
+      value: ''
+    },
     source: {
       type: Object,
       value: {

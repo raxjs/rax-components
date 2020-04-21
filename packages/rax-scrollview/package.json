@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -21,6 +21,7 @@
   "miniappConfig": {
     "main": "lib/miniapp-native/miniapp/index",
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
     "propsMap": {
       "onEndReachedThreshold": "endReachedThreshold"
     },

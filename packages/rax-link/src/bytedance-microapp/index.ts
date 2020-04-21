@@ -1,6 +1,7 @@
 import fmtEvent from './fmtEvent';
 
-declare const wx: any;
+declare const tt: any;
+const noop = () => {};
 /**
  * miniappHref value：navigate:abc?a=1 redirect:abc?a=1 switchTab:a/b/c navigateBack:2
  * mpHref for  backward compatibility
@@ -25,6 +26,7 @@ Component({
       type: String,
       value: ''
     },
+    onPress: noop
   },
   options: {
     styleIsolation: 'apply-shared',
@@ -42,17 +44,17 @@ Component({
         const target = splits[1] || actionName;
         switch (actionName) {
           case 'redirect':
-            wx.redirectTo({ url: target });
+            tt.redirectTo({ url: target });
             break;
           case 'switchTab':
-            wx.switchTab({ url: target });
+            tt.switchTab({ url: target });
             break;
           case 'navigateBack':
-            wx.navigateBack({ delta: target });
+            tt.navigateBack({ delta: target });
             break;
           case 'navigate':
           default:
-            wx.navigateTo({ url: target });
+            tt.navigateTo({ url: target });
         }
       }
     },

@@ -1,6 +1,6 @@
 {
   "name": "rax-link",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -35,6 +35,7 @@
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index",
+    "main:bytedance": "lib/bytedance-microapp/index",
     "main:quickapp": "lib/quickapp/index"
   },
   "quickappConfig": {

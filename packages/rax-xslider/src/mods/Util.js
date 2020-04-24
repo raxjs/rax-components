@@ -150,36 +150,10 @@ let Emitter = {
 
 function formatTransformValue(num, noUnit) {
   const unit = noUnit ? '' : 'rpx';
-  if (isWeex) {
-    return num + unit;
-  } else {
-    const ratio = document.documentElement.style.fontSize;
-    if (ratio) {
-      return num / (parseInt(ratio) * 2) + unit;
-    } else {
-      return num + unit;
-    }
-  }
+  return num + unit;
 }
 
 export default {
-  find,
-  uuid,
-  forEach,
-  map,
-  findIndex,
-  isLoop,
-  clamp,
-  noop,
-  getEl,
-  transformExpression,
-  transformRangeSpec,
-  getLast,
-  Emitter,
-  formatTransformValue
-};
-
-export {
   find,
   uuid,
   forEach,

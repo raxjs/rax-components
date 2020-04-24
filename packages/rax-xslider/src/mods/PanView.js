@@ -4,11 +4,12 @@
 
 import {createElement, Component} from 'rax';
 import View from 'rax-view';
-import {Emitter} from './Util';
+import Util from './Util';
 import {EVENT_PAN_VIEW_PAN_START} from './Constant';
 import Detection from './Detection';
 import PropTypes from 'prop-types';
 
+const {Emitter} = Util;
 
 class PanView extends Component {
   isPanning = false;

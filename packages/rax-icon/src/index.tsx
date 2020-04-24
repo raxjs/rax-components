@@ -10,20 +10,20 @@ import Text from 'rax-text';
 import Image from 'rax-image';
 
 declare const __weex_require__: any;
-export interface IconProps
-  extends RefAttributes<HTMLSpanElement>,
-  HTMLAttributes<HTMLSpanElement> {
-  source: {
-    uri: string;
-    codePoint: string;
-  };
-  fontFamily: string;
-}
 
 export interface IconFontProps
   extends RefAttributes<HTMLSpanElement>,
   HTMLAttributes<HTMLSpanElement> {
   name: string;
+}
+
+export interface IconProps {
+  source: {
+    uri?: string;
+    codePoint?: string;
+  };
+  fontFamily?: string;
+  [key: string]: any;
 }
 
 let domModule = null;
@@ -33,10 +33,10 @@ try {
   console.log('require @weex-module/dom error');
 }
 const fontCache = new Map();
-const Icon: ForwardRefExoticComponent<IconProps> = forwardRef(
+const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
   ({ source: { uri, codePoint }, fontFamily, style = {}, ...rest }, ref) => {
     if (uri && !codePoint) {
-      return <Image source={{ uri }} style={style} />;
+      return <Image {...rest} source={{ uri }} style={style} />;
     }
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {

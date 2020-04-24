@@ -6,6 +6,8 @@
 import {createElement, Component, createRef} from 'rax';
 import DefaultView from './views/DefaultView';
 import {FULL_WIDTH} from './Constant';
+import {isWeex} from 'universal-env';
+import ListView from './views/ListView';
 
 
 const styles = {
@@ -27,7 +29,7 @@ class Slider extends Component {
   }
 
   render() {
-    let {style = {}} = this.props;
+    let {style = {}, useListView} = this.props;
 
     let commonProps = {
       ...this.props,
@@ -36,23 +38,17 @@ class Slider extends Component {
     };
     //  window.__weex_tag_supports__('vslider')
 
-    return <DefaultView
+    return isWeex && useListView ? <ListView
       {...commonProps}
-      ref={this.content}
-    />;
-    // list View is not ready for 1.x
-    // force vertical in list mode
-    // return isWeex && useListView ? <ListView
-    //   {...commonProps}
-    //   loop={false}
-    //   vertical={true}
-    //   startGap={0}
-    //   endGap={0}
-    //   />
-    //   : <DefaultView
-    //     {...commonProps}
-    //     ref={this.content}
-    //   />;
+      loop={false}
+      vertical={true}
+      startGap={0}
+      endGap={0}
+      />
+      : <DefaultView
+        {...commonProps}
+        ref={this.content}
+      />;
   }
 }
 

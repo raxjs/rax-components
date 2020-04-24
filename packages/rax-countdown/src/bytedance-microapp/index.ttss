@@ -1,0 +1,8 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+._count_down_align{
+  display: flex;
+  align-items: center;
+}

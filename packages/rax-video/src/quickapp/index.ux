@@ -1,21 +1,14 @@
 <template>
   <video
-    style="{{ style }}"
-    id="{{ id }}"
-    @fullscreenchange="onFullscreenchange"
-    @timeupdate="onTimeupdate"
-    @seeked="onSeeked"
-    @seeking="onSeeking"
+    id="{{id}}"
+    class="{{className}}"
+    style="{{styleSheet}}"
+    src="{{src}}"
+    muted="{{muted}}"
+    poster="{{poster}}"
+    controls="{{controls}}"
+    autoplay="{{autoPlay}}"
     @finish="onFinish"
-    @prepared="onPrepared"
-    @start="onStart"
-    object-fit="{{ objectFit }}"
-    class="video-container"
-    controls="{{ controls }}"
-    poster="{{ poster }}"
-    muted="{{ muted }}"
-    autoplay="{{ autoPlay }}"
-    src="{{ src }}"
   ></video>
 </template>
 
@@ -23,48 +16,25 @@
   export default {
     props: [
       "id",
-      "onprepared",
-      "onfinish",
-      "onpause",
-      "onstart",
+      "className",
+      "styleSheet",
       "src",
       "muted",
       "poster",
       "controls",
       "autoPlay",
-      "style",
       "loop",
-      "onClick",
-      "onEnded",
-      "objectFit"
+      "bindEnded",
     ],
-    data() {
-      return {
-        onPrepared: this.onprepared,
-        onStart: this.onstart,
-        onPause: this.onpause,
-        onSeeking: this.onseeking,
-        onSeeked: this.onseeked,
-        onTimeupdate: this.ontimeupdate,
-        onFullscreenchange: this.fullscreenchange
-      };
-    },
     onFinish() {
       if (this.loop) {
         const videoEl = this.$element(this.id);
         videoEl.setCurrentTime({ currenttime: 0 });
         videoEl.start();
       }
-      if (this.onEnded) {
-        this.onEnded();
+      if (this.bindEnded) {
+        this.bindEnded();
       }
     }
   };
 </script>
-
-<style>
-  .video-container {
-    width: 750px;
-    height: 375px;
-  }
-</style>

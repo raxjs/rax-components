@@ -49,10 +49,10 @@ $ npm install rax-textinput --save
 | onInput            | `function` | -          | false    | 文本框输入内容时调用此函数                                                                                                                                                                      | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="Weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1jFtVzO_1gK0jSZFqXXcpaXXa-200-200.svg" width="25px" height="25px" /> |
 
 ## 不完全受控
-在Web和支付宝小程序中，存在属性controlled。当controlled不为true时，TextInput处于不完全受控受控状态。
-- 不论是否完全受控，只要value改变，TextInput的内容均会相应改变。
-- 当TextInput不完全受控时，用户仍然可以继续改变内容。即TextInput内容不一定会与value保持一致。
-- 当TextInput完全受控时，TextInput的内容会强制与value保持一致。
+在 Web 和支付宝小程序中，存在属性 controlled。当 controlled 不为 true 时，TextInput 处于不完全受控受控状态。
+- 不论是否完全受控，只要 value 改变，TextInput 的内容均会相应改变。
+- 当 TextInput 不完全受控时，用户仍然可以继续改变内容。即 TextInput 内容不一定会与 value 保持一致。
+- 当 TextInput 完全受控时，TextInput 的内容会强制与 value 保持一致。
 - 完全受控存在一定性能损耗，请自行决定是否使用。
 
 ## 方法

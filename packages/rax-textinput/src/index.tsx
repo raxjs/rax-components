@@ -74,7 +74,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       style,
       placeholderColor = '#999999',
       value,
-      defaultValue
+      defaultValue,
+      controlled
     } = props;
     const type =
       password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
@@ -127,6 +128,14 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
         }
       };
     });
+
+    if (controlled && typeof value !== 'undefined' && value !== null && refEl.current) {
+      const currentValue = refEl.current.value;
+      const newValue = '' + value;
+      if (currentValue !== newValue) {
+        refEl.current.value = newValue;
+      }
+    }
 
     if (multiline) {
       return (

@@ -50,12 +50,12 @@ Component({
             family: fontFamily,
             source: "url('" + uri + "')"
           });
-          this.setData({
-            styleSheet: {...style, fontFamily}
-          });
         } else if (fontFile !== uri) {
           console.error(`font-family ${fontFamily} should be unique!`);
         }
+        this.setData({
+          styleSheet: {...style, fontFamily}
+        });
       }
     },
     onTap(e) {

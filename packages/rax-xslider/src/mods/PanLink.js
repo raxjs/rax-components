@@ -4,7 +4,7 @@
 
 import {createElement, Component} from 'rax';
 import Link from 'rax-link';
-import Util from './Util';
+import Util from './Util'
 import {EVENT_PAN_VIEW_PAN_START} from './Constant';
 import Detection from './Detection';
 import PropTypes from 'prop-types';

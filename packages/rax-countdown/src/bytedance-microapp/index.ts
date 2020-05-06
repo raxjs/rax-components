@@ -1,5 +1,4 @@
 import { DEFAULT_TPL } from '../utils';
-
 const formatObjStyleToString = (obj) => {
   let res = '';
   Object.keys(obj).forEach(item => {

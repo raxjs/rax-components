@@ -4,7 +4,7 @@ import {createElement, createRef} from 'rax';
 import View from 'rax-view';
 import Detection from '../Detection';
 import {isWeex} from 'universal-env';
-import {isLoop, transformRangeSpec, getEl, noop, clamp, Emitter, formatTransformValue} from '../Util';
+import Util from '../Util';
 import {EVENT_PAN_VIEW_PAN_START, FULL_WIDTH} from '../Constant';
 import animate from 'universal-animation';
 import Binding from 'weex-bindingx';
@@ -13,6 +13,8 @@ import Panel from '../Panel';
 import LoadMore from '../LoadMore';
 import GestureView from 'rax-gesture-view';
 import findDOMNode from 'rax-find-dom-node';
+
+const {isLoop, transformRangeSpec, getEl, noop, clamp, Emitter, formatTransformValue} = Util;
 
 // solve for transition duration = 0 bug
 const MIN_DURATION = isWeex ? 0 : 1;

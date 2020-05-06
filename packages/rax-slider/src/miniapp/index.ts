@@ -12,7 +12,7 @@ Component({
     width: '',
     height: '',
     autoPlay: false,
-    showsPagination: false,
+    showsPagination: true,
     loop: false,
     index: 0,
     autoPlayInterval: 1000,

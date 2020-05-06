@@ -5,8 +5,10 @@ import BaseView from './BaseView';
 import View from 'rax-view';
 import {FULL_WIDTH} from '../Constant';
 import Panel from '../Panel';
-import {clamp, isLoop, noop} from '../Util';
+import Util from '../Util';
 import findDOMNode from 'rax-find-dom-node';
+
+const {clamp, isLoop, noop} = Util;
 
 let DOM = null;
 

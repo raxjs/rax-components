@@ -50,7 +50,7 @@ Component({
         set(value) {
           context.setFillStyle(value);
         }
-      })
+      });
       return context;
     }
   }

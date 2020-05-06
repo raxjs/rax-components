@@ -67,5 +67,8 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "name": "rax-components"
+  "name": "rax-components",
+  "dependencies": {
+    "typescript": "^3.5.2"
+  }
 }

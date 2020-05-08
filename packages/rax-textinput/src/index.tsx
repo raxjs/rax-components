@@ -111,7 +111,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
-        forceUpdate(Math.random());
+        forceUpdate(tick => tick + 1);
       },
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus,

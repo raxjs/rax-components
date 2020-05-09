@@ -9,5 +9,6 @@
     loop="{{loop}}"
     onTap="onClick"
     poster="{{poster}}"
+    extraInfo="{{extraInfo}}"
     onEnded="onEnded">
 </video>

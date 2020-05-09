@@ -13,7 +13,8 @@ Component({
     onClick: noop,
     onEnded: noop,
     muted: false,
-    id: ''
+    id: '',
+    extraInfo: {}
   },
   methods: {
     onClick(e) {

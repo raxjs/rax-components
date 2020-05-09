@@ -6,7 +6,7 @@ Component({
   props: {
     className: '',
     style: '',
-    endReachedThreshold: 500,
+    onEndReachedThreshold: 500,
     onEndReached: noop,
     onScroll: noop,
     onTouchStart: noop,

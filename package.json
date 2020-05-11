@@ -13,13 +13,11 @@
     "@babel/preset-env": "7.2.0",
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
-    "rax-types": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "axios": "^0.19.0",
-    "semver": "^6.3.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
@@ -47,8 +45,11 @@
     "minimist": "^1.2.0",
     "rax": "^1.0.0",
     "rax-test-renderer": "^1.0.0",
+    "rax-types": "^1.0.0",
+    "semver": "^6.3.0",
     "semver-regex": "^2.0.0",
-    "shelljs": "0.8.3"
+    "shelljs": "0.8.3",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",

@@ -44,7 +44,7 @@ class Slider extends Component {
       vertical={true}
       startGap={0}
       endGap={0}
-      />
+    />
       : <DefaultView
         {...commonProps}
         ref={this.content}

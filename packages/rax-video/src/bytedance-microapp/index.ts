@@ -78,7 +78,7 @@ Component({
   attached() {
     this.setData({
       _id: this.data.id || randomVideoID()
-    })
+    });
   },
   methods: {
     onClick(e) {

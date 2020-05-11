@@ -56,7 +56,7 @@
     "rax-plugin-component": "^0.1.25",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.8.3"
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",

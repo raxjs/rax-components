@@ -48,7 +48,8 @@
     "rax": "^1.0.0",
     "rax-test-renderer": "^1.0.0",
     "semver-regex": "^2.0.0",
-    "shelljs": "0.8.3"
+    "shelljs": "0.8.3",
+    "typescript": "^3.5.2"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
@@ -67,8 +68,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "name": "rax-components",
-  "dependencies": {
-    "typescript": "^3.5.2"
-  }
+  "name": "rax-components"
 }

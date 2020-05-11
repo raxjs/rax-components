@@ -15,7 +15,7 @@
     'showCount', 'selectionStart', 'selectionEnd', 'bindBlur', 'confirmType',
     'bindFocus', 'bindChange','bindChangeText', 'bindInput', 'defaultValue', 'tagId'],
     data() {
-      let _style = this.styleSheet || {};
+      let style = this.styleSheet || {};
       const autocomplete = this.autoComplete ? 'on' : 'off';
       let keyboardType = 'text';
       if (this.password || this.secureTextEntry) {
@@ -25,17 +25,17 @@
       }
       const value = this.value || this.defaultValue;
       if (this.numberOfLines) {
-        if (typeof _style === 'string') {
-          _style = _style + ';lines: ' + this.numberOfLines + ';';
+        if (typeof style === 'string') {
+          style = style + ';lines: ' + this.numberOfLines + ';';
         } else {
-          _style = Object.assign({}, _style, {
+          style = Object.assign({}, style, {
             lines: this.numberOfLines
           });
         }
       }
       return {
         id: this.id,
-        style: _style || {},
+        style: style || {},
         editable: this.editable || true,
         className: this.className,
         placeholder: this.placeholder,

@@ -37,7 +37,7 @@ Component({
         if (this.counter) clearInterval(this.counter);
       }
 
-      // return the integer
+      // parameter type of `parseInt` is 'string', so need to convert time to string first.
       var seconds = parseInt((timeDuration / 1000 % 60).toString()),
         minutes = parseInt((timeDuration / (1000 * 60) % 60).toString()),
         hours = parseInt((timeDuration / (1000 * 60 * 60) % 24).toString()),

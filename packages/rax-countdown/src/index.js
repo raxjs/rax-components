@@ -9,7 +9,8 @@ function isFunction(functionToCheck) {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 };
 
-function addZero(num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle) {
+function Time(props) {
+  const { num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle } = props;
   const displayNum = num < 0 ? 0 : num;
   const displayFirstNum = displayNum < 10 ? 0 : displayNum.toString().slice(0, 1);
   const displaySecondNum = displayNum < 10 ? displayNum : displayNum.toString().slice(1);
@@ -166,7 +167,7 @@ class Index extends Component {
           if (val === -1) {// don't forget the potential plain text after last matched item
             const lastPlaintext = tpl.slice(lastPlaintextIndex);
             return lastPlaintext ? (
-              <Text style={textStyle}>{lastPlaintext}</Text>
+              <Text style={textStyle} key={`text_${index}`}>{lastPlaintext}</Text>
             ) : null;
           }
 
@@ -181,10 +182,18 @@ class Index extends Component {
                 // eg. in `{d}-{h}`:  text before `{d}` is ``, text before `{h}` is `-`
                 const preText = tpl.slice(lastPlaintextIndex, val);
                 // Do not generate text node if there is no preText
-                return preText ? <Text style={textStyle}>{preText}</Text> : null;
+                return preText ? <Text style={textStyle} key={`text_${index}`}>{preText}</Text> : null;
               } else {// replace current matched item to realtime string
                 lastPlaintextIndex = val + 3;
-                return addZero(timeType[matchedCharacter], timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle);
+                return <Time
+                  num={timeType[matchedCharacter]}
+                  timeWrapStyle={timeWrapStyle}
+                  timeBackground={timeBackground}
+                  timeBackgroundStyle={timeBackgroundStyle}
+                  timeStyle={timeStyle}
+                  secondStyle={secondStyle}
+                  key={`time_${index}`}
+                />;
               }
             default:
               return null;

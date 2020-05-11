@@ -37,10 +37,11 @@ Component({
         if (this.counter) clearInterval(this.counter);
       }
 
-      var seconds = timeDuration / 1000 % 60,
-        minutes = timeDuration / (1000 * 60) % 60,
-        hours = timeDuration / (1000 * 60 * 60) % 24,
-        days = timeDuration / (1000 * 60 * 60 * 24);
+      // return the integer
+      var seconds = parseInt((timeDuration / 1000 % 60).toString()),
+        minutes = parseInt((timeDuration / (1000 * 60) % 60).toString()),
+        hours = parseInt((timeDuration / (1000 * 60 * 60) % 24).toString()),
+        days = parseInt((timeDuration / (1000 * 60 * 60 * 24)).toString());
 
       const timeType = {
         'd': days < 10 ? '0' + days : days + '',

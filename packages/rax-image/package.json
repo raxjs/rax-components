@@ -1,6 +1,6 @@
 {
   "name": "rax-image",
-  "version": "2.0.3",
+  "version": "2.2.0",
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -10,8 +10,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build && rax-scripts test"
   },
   "files": [
     "dist",
@@ -58,6 +57,11 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:bytedance": "lib/bytedance-microapp/index",
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   }
 }

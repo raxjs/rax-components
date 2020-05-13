@@ -1,24 +1,23 @@
 import { createElement, Component, render, createRef } from 'rax';
-import Canvas from '../src/index';
-import DU from 'driver-universal';
+import Canvas from 'rax-canvas';
+import DriverUniversal from 'driver-universal';
 
 class CanvasSample extends Component {
   constructor(props) {
     super(props);
-    this.raxCanvasDemo = createRef();
+    this.canvas = createRef();
   }
   componentDidMount() {
-    const context = this.raxCanvasDemo.current.getContext();
+    const context = this.canvas.current.getContext();
     context.fillStyle = 'red';
-    context.fillRect(0, 0, 100, 100);
+    context.fillRect(0, 0, 300, 300);
   }
-
   render() {
     return <Canvas style={{
-      width: 750,
-      height: 750
-    }} ref={this.raxCanvasDemo} />;
+      width: '300rpx',
+      height: '300rpx'
+    }} ref={this.canvas} />;
   }
 }
 
-render(<CanvasSample />, document.body, { driver: DU });
+render(<CanvasSample />, document.body, { driver: DriverUniversal });

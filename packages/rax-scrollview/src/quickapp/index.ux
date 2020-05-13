@@ -1,0 +1,30 @@
+<template>
+  <list class="{{className}}"  style="{{style}}" onscroll="bindScroll" onscrollbottom="bindEndReached" id="{{id}}"
+    scrollpage="false">
+    <list-item>
+      <slot></slot>
+    </list-item>
+  </list>
+</template>
+
+<script>
+  export default {
+    props: ['className', 'styleSheet', 'id', 'loadMore', 'bindEndReached', 'bindScroll', 
+    'totalSize', 'bindEndReachedThreshold', 'horizontal', 'bindTouchStart', 'bindTouchMove', 
+    'bindTouchEnd', 'bindTouchCancel'],
+    data() {
+      let _style = this.styleSheet || {};
+      let scrollHeight = this.totalSize || this.$page.windowHeight;
+      _style.height = scrollHeight + 'px';
+      if (this.horizontal)  {
+        _style.flexDirection = 'row';
+      }
+      return {
+        id: this.id,
+        className: this.className,
+        style: _style,
+        bindEndReached: this.bindEndReached,
+      }
+    }
+  }
+</script>

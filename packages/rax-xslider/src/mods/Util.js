@@ -148,6 +148,11 @@ let Emitter = {
   }
 };
 
+function formatTransformValue(num, noUnit) {
+  const unit = noUnit ? '' : 'rpx';
+  return num + unit;
+}
+
 export default {
   find,
   uuid,
@@ -161,21 +166,6 @@ export default {
   transformExpression,
   transformRangeSpec,
   getLast,
-  Emitter
-};
-
-export {
-  find,
-  uuid,
-  forEach,
-  map,
-  findIndex,
-  isLoop,
-  clamp,
-  noop,
-  getEl,
-  transformExpression,
-  transformRangeSpec,
-  getLast,
-  Emitter
+  Emitter,
+  formatTransformValue
 };

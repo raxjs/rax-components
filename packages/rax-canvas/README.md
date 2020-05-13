@@ -5,7 +5,6 @@
 
 - 在 Weex 上依赖 [gcanvas](https://github.com/weex-plugins/weex-plugin-gcanvas)
 - 在支付宝小程序中依赖 [canvas](https://docs.alipay.com/mini/component/canvas)
-- 在 Web 和 Weex 中可以通过 ref 获取画布实例，在小程序中需要通过 createCanvasContext 和画布的 id 获取 canvas 上下文
 
 ## 安装
 
@@ -31,7 +30,12 @@ $ npm install rax-canvas --save
 | onTouchCancel | `function` |  -  | ✘ | 触摸事件取消的时候触发的事件 |<img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px">|
 
 ## 方法
-获取到画布实例后，可以使用实例上的方法。
+
+### getContext(type: string)
+返回画布实例。
+
+type 默认值为 `2d`，目前在小程序中暂不支持设置。
+由于微信小程序新接口获取 `canvas context` 是一个异步行为，如果想获得设置 `2d`/`webgl` 的能力，则不能使用 `getContext` 方法，需要用户自己兼容处理，具体详见微信小程序文档 https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html。
 
 ## 注意
 直接指定 `width` 或者 `height` 的优先级高于在 `style` 和 `className` 中指定的宽高。

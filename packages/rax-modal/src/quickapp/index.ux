@@ -1,0 +1,92 @@
+<template>
+  <div @click="hide" class="{{show ? 'rax-modal-mask' : 'rax-modal-mask-none'}}" style="height: {{height}}px; width: {{width}}px">
+    <div @click="stopClick" class="rax-modal-main">
+      <slot></slot>
+    </div>
+  </div> 
+</template>
+
+<script>
+ export default {
+   props: [ 'id', 'styleSheet', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick', 'bindShow'],
+   data() {
+     const height = this.$page && this.$page.windowHeight;
+     const width = this.$page && this.$page.windowWidth;
+     return {
+       id: this.id,
+       style: this.styleSheet || {},
+       width,
+       height,
+       className: this.className,
+       show: this.visible,
+       hide: this.maskCanBeClick ? this.bindHide : ()=> {},
+       eventClick: this.bindClick || this.bindPress,
+       maskCanBeClick: this.maskCanBeClick
+     }
+  },
+  stopClick(e) {
+    e.stopPropagation();
+  },
+  onInit() {
+    this.$watch('styleSheet', 'watchStyleChange')
+    this.$watch('className', 'watchClassChange')
+    this.$watch('id', 'watchIdChange')
+    this.$watch('visible', 'watchVisibleChange')
+  },
+  watchStyleChange(newV, oldV) {
+    this.style = newV;
+  },
+  watchClassChange(newV, oldV) {
+    this.className = newV;
+  },
+  watchIdChange(newV, oldV) {
+    this.id = newV;
+  },
+  watchVisibleChange(newV, oldV) {
+    this.show = newV;
+  }
+ };
+</script>
+
+<style>
+ .rax-modal-mask { 
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 750px;
+   height: 1300px;
+   background-color: rgba(0, 0, 0, 0.2);
+   align-items: center;
+   justify-content: center; 
+ }
+
+ .rax-modal-mask-none { 
+   position: fixed;
+   display: none;
+   top: 0;
+   left: 0;
+   width: 750px;
+   height: 1300px;
+   background-color: rgba(0, 0, 0, 0.2);
+   align-items: center;
+   justify-content: center; 
+ }
+
+ .rax-modal-main {
+   width: 600px;
+   height: 600px;
+   background-color: #ffffff;
+   flex-direction: column;
+   flex-shrink: 0;
+   justify-content:space-between;
+ }
+
+ .modal-footer {
+   height: 100px;
+   bottom: 0px;
+   align-items: center;
+   justify-content: center; 
+   border-top: 1px solid #CCCCCC;
+ }
+
+</style>

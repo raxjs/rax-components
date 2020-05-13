@@ -1,6 +1,6 @@
 {
   "name": "rax-link",
-  "version": "1.1.1",
+  "version": "1.4.0",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -10,8 +10,7 @@
     "build": "npm run clean && rax-scripts build",
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src"
+    "test": "npm run build && rax-scripts test"
   },
   "files": [
     "dist",
@@ -35,7 +34,12 @@
   },
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:bytedance": "lib/bytedance-microapp/index",
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   },
   "dependencies": {
     "rax-text": "^1.0.1",
@@ -45,9 +49,9 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",

@@ -35,6 +35,7 @@ function Modal(props: ModalProps) {
     onShow,
     onHide,
     children,
+    animation,
     delay = 0
   } = props;
 
@@ -45,12 +46,13 @@ function Modal(props: ModalProps) {
   if (typeof duration === 'number') {
     duration = [duration, duration];
   } else if (duration.length === 1) {
-    duration = duration.concat(duration);
+    // If duration's length is one, in and out are the same.
+    duration = [duration[0], duration[0]];
   }
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const [visibleState, setVisibleState] = useState(visible);
+  const [visibleState, setVisibleState] = useState(false);
   const [height, setHeight] = useState(null);
 
   if (isWeex) {
@@ -85,21 +87,33 @@ function Modal(props: ModalProps) {
       bodyEl.style.overflow = 'hidden';
     }
     setVisibleState(true);
-    animate(true, () => {
+    if (animation) {
       onShow && onShow();
-    });
+    } else {
+      animate(true, () => {
+        onShow && onShow();
+      });
+    }
+  };
+
+  const hideAction = () => {
+    if (isWeb) {
+      bodyEl.style.overflow = originalBodyOverflow;
+    }
+    setVisibleState(false);
+    onHide && onHide();
   };
 
   const hide = () => {
     if (visibleState) {
-      // execute hide animation on element that is already hidden will cause bug
-      animate(false, () => {
-        if (isWeb) {
-          bodyEl.style.overflow = originalBodyOverflow;
-        }
-        setVisibleState(false);
-        onHide && onHide();
-      });
+      if (animation) {
+        hideAction();
+      } else {
+        // execute hide animation on element that is already hidden will cause bug
+        animate(false, () => {
+          hideAction();
+        });
+      }
     }
   };
 

@@ -3,13 +3,15 @@
 'use strict';
 
 import {Component} from 'rax';
-import Util, {isLoop, transformExpression, clamp, uuid, getLast} from '../Util';
+import Util from '../Util';
 import Indicator from '../Indicator';
 import Panel from '../Panel';
 import {FULL_WIDTH} from '../Constant';
 import findDOMNode from 'rax-find-dom-node';
 import {isWeex} from 'universal-env';
 import {convertUnit} from 'style-unit';
+
+const {isLoop, transformExpression, clamp, uuid, getLast, formatTransformValue, findIndex} = Util;
 
 const DEFAULT_DURATION = 300;
 const DEFAULT_EASING = 'cubicBezier(.25,.1,.25,1)';
@@ -295,7 +297,7 @@ class BaseView extends Component {
     if (this.refs[`card_${loopIndex}`]) {
       this.setStyles(findDOMNode(this.refs[`card_${loopIndex}`]), {
         transition: 'none', // prevent transition on web
-        ...vertical ? {top: `${destIndex * cardSize}rem`} : {left: `${destIndex * cardSize}rem`}
+        ...vertical ? {top: formatTransformValue(destIndex * cardSize)} : {left: formatTransformValue(destIndex * cardSize)}
       });
     }
   }
@@ -331,7 +333,7 @@ class BaseView extends Component {
   onAppear() {
     let {onAppear} = this.props;
     if (this.isDisappear) {
-      this.switchTo(this.loopIndex, {duration: 0}, () => {
+      this.switchTo(this.loopIndex, {duration: 50}, () => {
         // to solve shark problem
         this.autoPlay();
       });
@@ -369,7 +371,7 @@ class BaseView extends Component {
               case 'translate':
               case 'translateX':
               case 'translateY':
-                transform.push(`${transformKey}(${val}rem)`);
+                transform.push(`${transformKey}(${formatTransformValue(val)})`);
                 break;
             }
           } else {
@@ -386,8 +388,11 @@ class BaseView extends Component {
   }
 
   handleLoadMore(e) {
+    const { minLoadMoreOffset } = this.props;
     if (!this.loadmore.current) return;
-    if (e.index === e.prevIndex && e.index === this.itemCount - 1 && !e.isInitial && this.dist < 0) {
+    const offsetCheck = this.dist <= -(minLoadMoreOffset || 0);
+
+    if (e.index === e.prevIndex && e.index === this.itemCount - 1 && !e.isInitial && offsetCheck) {
       this.loadmore.current.handleLoading();
     }
   }
@@ -439,7 +444,7 @@ class BaseView extends Component {
         visibleIndexes.push(i);
       }
       for (let i = 0; i < itemCount; i++) {
-        if (Util.findIndex(visibleIndexes, (o) => {
+        if (findIndex(visibleIndexes, (o) => {
           return o === i;
         }) === -1) {
           this.destroyPanel(i);

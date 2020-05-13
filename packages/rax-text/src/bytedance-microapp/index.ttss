@@ -1,0 +1,13 @@
+.rax-text {
+  box-sizing: border-box;
+  display: block;
+  font-size: 32rpx;
+}
+._mutilple-lines {
+  overflow: hidden;
+  box-sizing: border-box;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}

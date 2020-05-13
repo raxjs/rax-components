@@ -11,8 +11,7 @@
     "start": "rax-scripts start",
     "prepublishOnly": "npm run build",
     "miniapp": "rax-scripts start --type 'component-miniapp'",
-    "test": "rax-scripts test",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src --fix"
+    "test": "rax-scripts test"
   },
   "repository": {
     "type": "git",

@@ -148,6 +148,8 @@ class Index extends Component {
     };
 
     let rule = new RegExp('\{[d,h,m,s]\}', 'g'); // used to matched all template item, which includes 'd', 'h', 'm' and 's'.
+
+    // Turn {d}-{h}-{m}-{s} to [0, 0, 4, 4, 8, 8, 12, 12, -1]
     const matchlist = [];
     let tmp = null;
     while ( (tmp = rule.exec(tpl)) !== null ) {
@@ -174,14 +176,12 @@ class Index extends Component {
             case 'h':
             case 'm':
             case 's':
-              if (index % 2 === 0) {// insert plain text before current matched item
-                return (
-                  <Text style={textStyle}>
-                    {
-                      tpl.slice(lastPlaintextIndex, val)
-                    }
-                  </Text>
-                );
+              if (index % 2 === 0) {
+                // Insert plain text before current matched item
+                // eg. in `{d}-{h}`:  text before `{d}` is ``, text before `{h}` is `-`
+                const preText = tpl.slice(lastPlaintextIndex, val);
+                // Do not generate text node if there is no preText
+                return preText ? <Text style={textStyle}>{preText}</Text> : null;
               } else {// replace current matched item to realtime string
                 lastPlaintextIndex = val + 3;
                 return addZero(timeType[matchedCharacter], timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle);

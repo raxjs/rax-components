@@ -74,16 +74,16 @@ export interface WaterFallProps extends BaseProps {
 }
 
 declare class Header extends React.PureComponent<any, any> {
-  render(): JSX.Element;
+  public render(): JSX.Element;
 }
 
 
 declare class WaterFall extends React.PureComponent<WaterFallProps, any> {
   public static readonly Header: Header;
 
-  render(): JSX.Element;
+  public render(): JSX.Element;
 
-  restScroll: () => void;
+  public restScroll: () => void;
 }
 
 export default WaterFall;

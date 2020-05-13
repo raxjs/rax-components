@@ -59,6 +59,11 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       maxlength,
       multiline,
       numberOfLines,
+      confirmType,
+      randomNumber,
+      showCount = true,
+      selectionStart,
+      selectionEnd,
       onBlur,
       onFocus,
       onChange,
@@ -69,7 +74,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       style,
       placeholderColor = '#999999',
       value,
-      defaultValue
+      defaultValue,
+      controlled
     } = props;
     const type =
       password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
@@ -123,6 +129,14 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       };
     });
 
+    if (controlled && typeof value !== 'undefined' && value !== null && refEl.current) {
+      const currentValue = refEl.current.value;
+      const newValue = '' + value;
+      if (currentValue !== newValue) {
+        refEl.current.value = newValue;
+      }
+    }
+
     if (multiline) {
       return (
         <Fragment>
@@ -141,8 +155,11 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             disabled={disbaled}
             onChange={handleChange}
             value={value || defaultValue}
-            children={isWeb && propsCommon.value}
-          />
+            confirm-type={confirmType}
+            show-count={showCount}
+          >
+            {isWeb && propsCommon.value}
+          </textarea>
         </Fragment>
       );
     } else {
@@ -160,6 +177,10 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             }}
             type={type}
             disabled={disbaled}
+            confirm-type={confirmType}
+            random-Number={randomNumber}
+            selection-start={selectionStart}
+            selection-end={selectionEnd}
           />
         </Fragment>
       );

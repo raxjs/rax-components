@@ -4,7 +4,7 @@ import {createElement, createRef} from 'rax';
 import View from 'rax-view';
 import Detection from '../Detection';
 import {isWeex} from 'universal-env';
-import {isLoop, transformRangeSpec, getEl, noop, clamp, Emitter} from '../Util';
+import Util from '../Util';
 import {EVENT_PAN_VIEW_PAN_START, FULL_WIDTH} from '../Constant';
 import animate from 'universal-animation';
 import Binding from 'weex-bindingx';
@@ -13,6 +13,8 @@ import Panel from '../Panel';
 import LoadMore from '../LoadMore';
 import GestureView from 'rax-gesture-view';
 import findDOMNode from 'rax-find-dom-node';
+
+const {isLoop, transformRangeSpec, getEl, noop, clamp, Emitter, formatTransformValue} = Util;
 
 // solve for transition duration = 0 bug
 const MIN_DURATION = isWeex ? 0 : 1;
@@ -91,13 +93,12 @@ class DefaultView extends BaseView {
 
 
     this.slideAnimate = animate({
-      forceTransition: true,
       props: [{
         element: wrap,
         property: vertical ? 'transform.translateY' : 'transform.translateX',
         easing,
         duration: Math.max(this.props.isSlideEnabled ? duration : 0, MIN_DURATION),
-        end: offset,
+        end: formatTransformValue(offset, true),
       }, ...transitionProps]
     }, (e) => {
       this.curIndex = index;
@@ -297,7 +298,7 @@ class DefaultView extends BaseView {
             height: contentSize,
             width: panels[0] && panels[0].props.style && panels[0].props.style.width,
             ...offset !== undefined ? {
-              transform: `translateY(${offset}rem) translateZ(0)` // translateZ to resolve transitionEnd can't trigger on web
+              transform: `translateY(${formatTransformValue(offset)}) translateZ(0)` // translateZ to resolve transitionEnd can't trigger on web
             } : {}
           } :
           {
@@ -306,7 +307,7 @@ class DefaultView extends BaseView {
             width: contentSize,
             height: panels[0] && panels[0].props.style && panels[0].props.style.height,
             ...offset !== undefined ? {
-              transform: `translateX(${offset}rem) translateZ(0)`
+              transform: `translateX(${formatTransformValue(offset)}) translateZ(0)`
             } : {}
           }}
         onTouchStart={this.onTouchStart}
@@ -326,6 +327,7 @@ class DefaultView extends BaseView {
               left: loopIndex * cardSize
             };
             return (<Panel ref={`card_${loopIndex}`} {...child.props}
+              key={'panel' + loopIndex}
               cardSize={cardSize}
               viewportSize={viewportSize}
               loopIndex={loopIndex}

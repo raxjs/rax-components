@@ -166,7 +166,7 @@ class Slider extends Component<SliderProps, any> {
     };
     const ActiveDot = activeDot || (
       <View
-        className="rax-slider-dot active"
+        className="rax-slider-dot rax-slider-dot-active"
         style={{ backgroundColor: itemSelectedColor, ...size }}
       />
     );
@@ -220,7 +220,7 @@ class Slider extends Component<SliderProps, any> {
       width: this.width + 'rpx',
       height: this.height + 'rpx'
     };
-    return this.total !== 0 ? (
+    return this.total > 1 ? (
       <SwipeEvent
         className="rax-slider-swipe-wrapper"
         style={style}

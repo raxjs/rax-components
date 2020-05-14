@@ -23,7 +23,7 @@
         "node_modules/@rax-types/rax",
         "../../node_modules/@rax-types/rax"
       ]
-    },
+    }
   },
   "include": [
     "src/**/*"

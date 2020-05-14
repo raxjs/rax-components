@@ -27,11 +27,14 @@ export interface IconProps {
 }
 
 let domModule = null;
-try {
-  domModule = __weex_require__('@weex-module/dom');
-} catch (error) {
-  console.log('require @weex-module/dom error');
+if (isWeex) {
+  try {
+    domModule = __weex_require__('@weex-module/dom');
+  } catch (error) {
+    console.log('require @weex-module/dom error');
+  }
 }
+
 const fontCache = new Map();
 const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
   ({ source: { uri, codePoint }, fontFamily, style = {}, ...rest }, ref) => {

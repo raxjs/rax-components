@@ -1,6 +1,6 @@
 {
   "name": "rax-recyclerview",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "RecyclerView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -88,6 +88,7 @@
     "rax-tab-panel": "^1.0.1",
     "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.0.0",
-    "universal-transition": "^1.0.0"
+    "universal-transition": "^1.0.0",
+    "typescript": "^3.5.3"
   }
 }

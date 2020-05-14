@@ -65,26 +65,29 @@ function publish(pkg, workDir, version, shouldBuild, tag) {
     cwd: workDir,
   });
 
+  let status = 0;
   if (shouldBuild) {
     // npm run build
-    spawnSync('npm', [
+    status = spawnSync('npm', [
       'run',
       'build',
     ], {
       stdio: 'inherit',
       cwd: workDir,
-    });
+    }).status;
   }
 
-  // npm publish
-  spawnSync('npm', [
-    'publish',
-    '--tag=' + tag,
-    // use default registry
-  ], {
-    stdio: 'inherit',
-    cwd: workDir,
-  });
+  if (status === 0) {
+    // npm publish
+    spawnSync('npm', [
+      'publish',
+      '--tag=' + tag,
+      // use default registry
+    ], {
+      stdio: 'inherit',
+      cwd: workDir,
+    });
+  }
 }
 
 function isPrerelease(v) {

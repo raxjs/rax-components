@@ -1,6 +1,6 @@
 {
   "name": "rax-gesture-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gesture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -51,6 +51,7 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
+    "rax-plugin-component": "^0.1.9",
     "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.1.6"

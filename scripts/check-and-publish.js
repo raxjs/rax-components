@@ -57,6 +57,9 @@ function checkVersionExists(pkg, version) {
 function publish(pkg, workDir, version, shouldBuild, tag) {
   console.log('[PUBLISH]', `${pkg}@${version}`);
 
+  console.log(workDir);
+  console.log(1111);
+
   // npm install
   spawnSync('npm', [
     'install',
@@ -77,14 +80,15 @@ function publish(pkg, workDir, version, shouldBuild, tag) {
   }
 
   // npm publish
-  spawnSync('npm', [
-    'publish',
-    '--tag=' + tag,
-    // use default registry
-  ], {
-    stdio: 'inherit',
-    cwd: workDir,
-  });
+  console.log(workDir);
+  // spawnSync('npm', [
+  //   'publish',
+  //   '--tag=' + tag,
+  //   // use default registry
+  // ], {
+  //   stdio: 'inherit',
+  //   cwd: workDir,
+  // });
 }
 
 function isPrerelease(v) {

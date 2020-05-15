@@ -33,8 +33,8 @@ function checkVersion(folder, callback) {
               ret.push({
                 name: packageInfo.name,
                 workDir: join(folder, packageFolderName),
-                local: packageInfo.version,
                 main: packageInfo.main,
+                local: packageInfo.version,
                 // If exists scripts.build, then run it.
                 shouldBuild: !!(packageInfo.scripts && packageInfo.scripts.build),
               });
@@ -110,7 +110,7 @@ function checkVersionAndPublish() {
     }
 
     for (let i = 0; i < ret.length; i++) {
-      const { name, main, workDir, local, shouldBuild } = ret[i];
+      const { name, workDir, main, local, shouldBuild } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';
       console.log(`--- ${name}@${local} current tag: ${tag} ---`);
       publish(name, workDir, main, local, shouldBuild, tag);

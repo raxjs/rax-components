@@ -1,6 +1,6 @@
 {
   "name": "rax-gesture-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gesture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

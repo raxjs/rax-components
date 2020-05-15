@@ -91,6 +91,8 @@ function publish(pkg, workDir, main, version, shouldBuild, tag) {
       stdio: 'inherit',
       cwd: workDir,
     });
+  } else {
+    console.log(`[PUBLISH] ${pkg}@${version} failed, Please check build script.`);
   }
 }
 

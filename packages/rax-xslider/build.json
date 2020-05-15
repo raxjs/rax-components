@@ -1,5 +1,14 @@
 {
   "plugins": [
-    ["rax-plugin-component", { "targets": ["web", "weex"]}]
+    [
+      "../../node_modules/build-plugin-rax-component/",
+      {
+        "type": "rax",
+        "targets": [
+          "web",
+          "weex"
+        ]
+      }
+    ]
   ]
 }

@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
+    "start": "../../node_modules/.bin/build-scripts start",
     "miniapp": "rax-scripts start --type 'component-miniapp'",
     "prepublishOnly": "npm run build",
     "test": "rax-scripts test"
@@ -67,8 +67,6 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
-    "rax-plugin-component": "^0.1.25",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0"
   }
 }

@@ -9,8 +9,8 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
+    "start": "../../node_modules/.bin/build-scripts start",
     "prepublishOnly": "npm run build",
     "test": "npm run build && rax-scripts test"
   },
@@ -51,8 +51,6 @@
     "jest-transform-css": "^2.0.0",
     "lerna": "^3.16.4",
     "rax": "^1.0.4",
-    "rax-plugin-component": "^0.1.25",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.6.2"
   },

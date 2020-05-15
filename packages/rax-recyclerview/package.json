@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
+    "start": "../../node_modules/.bin/build-scripts start",
     "prepublishOnly": "npm run build",
     "test": "rax-scripts test"
   },
@@ -82,8 +82,6 @@
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
     "rax-picture": "^1.0.1",
-    "rax-plugin-component": "^0.1.10",
-    "rax-scripts": "2.0.0",
     "rax-slider": "^1.1.0-0",
     "rax-tab-panel": "^1.0.1",
     "rax-test-renderer": "^1.0.0",

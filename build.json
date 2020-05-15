@@ -1,7 +1,7 @@
 {
   "plugins": [
     [
-      "../../node_modules/build-plugin-rax-component/",
+      "build-plugin-rax-component",
       {
         "type": "rax",
         "targets": [

@@ -27,8 +27,8 @@
     "rax": "^1.1.0"
   },
   "scripts": {
-    "build": "../../node_modules/.bin/build-scripts build",
-    "start": "../../node_modules/.bin/build-scripts start"
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
   },
   "bugs": {
     "url": "https://github.com/raxjs/rax-components/issues"

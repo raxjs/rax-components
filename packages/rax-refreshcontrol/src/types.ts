@@ -23,7 +23,7 @@ export interface RecyclerViewProps extends Rax.Attributes {
    * listen for pullingdown event
    * （监听下拉事件）
    */
-  onPullingdown?: (event: WeexPulldownEvent) => void;
+  onPullingdown?: (event: WeexPullingdownEvent) => void;
 
   children?: Rax.RaxElement;
 }
@@ -35,7 +35,7 @@ export interface WeexRefreshEvent {
 /**
  * reference documents(参考文档)：https://weex.apache.org/cn/references/components/refresh.html
  */
-export interface WeexPulldownEvent {
+export interface WeexPullingdownEvent {
 
   /**
    * two times before and after the callback sliding distance difference

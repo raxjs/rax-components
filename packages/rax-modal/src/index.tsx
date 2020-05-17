@@ -134,7 +134,7 @@ function Modal(props: ModalProps) {
     // Record mask action state
     maskRef.__pendingAction = false;
     return () => {
-      maskRef.__pendingAction = true;
+      maskRef.__pendingAction = false;
     }
   }, [visibleState])
 

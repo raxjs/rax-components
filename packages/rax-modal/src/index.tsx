@@ -82,17 +82,20 @@ function Modal(props: ModalProps) {
   };
 
   const show = () => {
-    if (isWeb) {
-      originalBodyOverflow = bodyEl.style.overflow;
-      bodyEl.style.overflow = 'hidden';
-    }
-    setVisibleState(true);
-    if (animation) {
-      onShow && onShow();
-    } else {
-      animate(true, () => {
+    if (!maskRef.__pendingShow) {
+      maskRef.__pendingShow = true;
+      if (isWeb) {
+        originalBodyOverflow = bodyEl.style.overflow;
+        bodyEl.style.overflow = 'hidden';
+      }
+      setVisibleState(true);
+      if (animation) {
         onShow && onShow();
-      });
+      } else {
+        animate(true, () => {
+          onShow && onShow();
+        });
+      }
     }
   };
 
@@ -105,7 +108,8 @@ function Modal(props: ModalProps) {
   };
 
   const hide = () => {
-    if (visibleState) {
+    if (visibleState && !maskRef.__pendingHide) {
+      maskRef.__pendingHide = true;
       if (animation) {
         hideAction();
       } else {
@@ -119,8 +123,7 @@ function Modal(props: ModalProps) {
 
   useEffect(() => {
     // if state is unequal to props trigger show or hide
-    if (visible !== visibleState && !maskRef.__pendingAction) {
-      maskRef.__pendingAction = true;
+    if (visible !== visibleState) {
       visible ? show() : hide();
     }
     return () => {
@@ -131,11 +134,10 @@ function Modal(props: ModalProps) {
   }, [visible]);
 
   useEffect(() => {
-    // Record mask action state
-    maskRef.__pendingAction = false;
-    return () => {
-      maskRef.__pendingAction = false;
-    }
+    // Record mask show state
+    maskRef.__pendingShow = false;
+    // Record mask hide state
+    maskRef.__pendingHide = false;
   }, [visibleState])
 
   return (
@@ -149,8 +151,7 @@ function Modal(props: ModalProps) {
       }}
       onTouchMove={stopEventEffect}
       onClick={() => {
-        if (maskCanBeClick && !maskRef.__pendingAction) {
-          maskRef.__pendingAction = true;
+        if (maskCanBeClick) {
           hide();
         }
       }}

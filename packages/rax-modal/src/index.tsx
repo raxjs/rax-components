@@ -2,7 +2,7 @@ import { createElement, useState, useRef, useEffect } from 'rax';
 import View from 'rax-view';
 import transition from 'universal-transition';
 import { isWeb, isWeex } from 'universal-env';
-import { ModalProps } from './types';
+import { ModalProps, MaskRef } from './types';
 import './index.css';
 
 declare function __weex_require__(s: string): any;
@@ -50,7 +50,7 @@ function Modal(props: ModalProps) {
     duration = [duration[0], duration[0]];
   }
 
-  const maskRef = useRef<HTMLDivElement>(null);
+  const maskRef: MaskRef = useRef<HTMLDivElement>(null) as MaskRef;
 
   const [visibleState, setVisibleState] = useState(false);
   const [height, setHeight] = useState(null);
@@ -119,10 +119,24 @@ function Modal(props: ModalProps) {
 
   useEffect(() => {
     // if state is unequal to props trigger show or hide
-    if (visible !== visibleState) {
+    if (visible !== visibleState && !maskRef.__pendingAction) {
+      maskRef.__pendingAction = true;
       visible ? show() : hide();
     }
+    return () => {
+      if (isWeb) {
+        bodyEl.style.overflow = originalBodyOverflow;
+      }
+    }
   }, [visible]);
+
+  useEffect(() => {
+    // Record mask action state
+    maskRef.__pendingAction = false;
+    return () => {
+      maskRef.__pendingAction = true;
+    }
+  }, [visibleState])
 
   return (
     <View
@@ -135,7 +149,8 @@ function Modal(props: ModalProps) {
       }}
       onTouchMove={stopEventEffect}
       onClick={() => {
-        if (maskCanBeClick) {
+        if (maskCanBeClick && !maskRef.__pendingAction) {
+          maskRef.__pendingAction = true;
           hide();
         }
       }}

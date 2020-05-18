@@ -24,6 +24,9 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
       common.controls = isWeex ? 'nocontrols' : false;
     }
     common.autoPlay = playControl === 'play' || autoPlay;
+    if (!isWeex && common.autoPlay === false) {
+      delete common.autoPlay;
+    }
     useEffect(() => {
       if (!isWeex) {
         const node = refEl.current;

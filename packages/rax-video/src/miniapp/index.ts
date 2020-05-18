@@ -21,12 +21,12 @@ const supportMethods = [
   'onUserAction',
 ];
 
-const cmptProps = supportMethods.reduce((prev, current) => {
+const componentProps = supportMethods.reduce((prev, current) => {
   prev[current] = noop;
   return prev;
 }, {});
 
-const cmptMethods = supportMethods.reduce((prev, current) => {
+const componentMethods = supportMethods.reduce((prev, current) => {
   prev[current] = function(e) {
     const event = fmtEvent(this.props, e);
     this.props[current](event);
@@ -47,9 +47,9 @@ Component({
     id: '',
     extraInfo: {},
     mobilenetHintType: 1,
-    ...cmptProps,
+    ...componentProps,
   },
   methods: {
-    ...cmptMethods,
+    ...componentMethods,
   },
 });

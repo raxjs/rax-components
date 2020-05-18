@@ -5,8 +5,7 @@ const noop = () => {};
 Component({
   data: {
     styleSheet: '',
-    isImage: false,
-    fontCache: new Map()
+    isImage: false
   },
   // @ts-ignore
   props: {
@@ -43,19 +42,14 @@ Component({
           styleSheet: style
         });
       } else {
-        const fontFile = this.data.fontCache.get(fontFamily);
-        if (!fontFile) {
-          this.data.fontCache.set(fontFamily, uri);
-          my.loadFontFace({
-            family: fontFamily,
-            source: "url('" + uri + "')"
-          });
-          this.setData({
-            styleSheet: {...style, fontFamily}
-          });
-        } else if (fontFile !== uri) {
-          console.error(`font-family ${fontFamily} should be unique!`);
-        }
+        // loadFontFace only work for current page
+        my.loadFontFace({
+          family: fontFamily,
+          source: "url('" + uri + "')"
+        });
+        this.setData({
+          styleSheet: {...style, fontFamily}
+        });
       }
     },
     onTap(e) {

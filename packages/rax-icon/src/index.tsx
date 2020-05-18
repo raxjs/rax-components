@@ -38,7 +38,7 @@ if (isWeex) {
 const fontCache = new Map();
 const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
   ({ source: { uri, codePoint }, fontFamily, style = {}, ...rest }, ref) => {
-    if (uri && !codePoint) {
+    if (uri && !codePoint && !fontFamily) {
       return <Image {...rest} source={{ uri }} style={style} />;
     }
     const fontFile = fontCache.get(fontFamily);

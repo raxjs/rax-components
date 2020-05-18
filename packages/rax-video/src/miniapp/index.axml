@@ -7,8 +7,19 @@
     autoplay="{{autoPlay}}"
     style="{{style}}" 
     loop="{{loop}}"
-    onTap="onClick"
     poster="{{poster}}"
     extraInfo="{{extraInfo}}"
-    onEnded="onEnded">
+    mobilenetHintType="{{mobilenetHintType}}"
+    onPlay="onPlay"
+    onPause="onPause"
+    onEnded="onEnded"
+    onTimeUpdate="onTimeUpdate"
+    onLoading="onLoading"
+    onStop="onStop"
+    onRenderStart="onRenderStart"
+    onError="onError"
+    onFullScreenChange="onFullScreenChange"
+    onTap="onClick"
+    onUserAction="onUserAction"
+    >
 </video>

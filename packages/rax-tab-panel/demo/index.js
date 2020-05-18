@@ -8,11 +8,9 @@ import {
   TabController,
   TabPanel,
   TabPanelView,
-  TabPanelLink
 } from '../src/index.js';
 import transition from 'universal-transition';
 import ScrollView from 'rax-scrollview';
-import { isWeex } from 'universal-env';
 
 function combineStyle(style1, style2) {
   return Object.assign({}, style1, style2);
@@ -276,6 +274,7 @@ class App extends Component {
           ref={this.tabBar}
           beforeSwitch={this.beforeTabBarSwitch}
           afterSwitch={this.afterTabBarSwitch}
+          defaultFocusIndex={1}
         >
           <TabPanel style={styles.page}>
             <TabPanelView style={{ flex: 1 }}>{1}</TabPanelView>

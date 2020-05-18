@@ -65,12 +65,12 @@ Component({
               family: fontFamily,
               source: "url('" + uri + "')"
             });
-            this.setData({
-              style: `font-family: ${fontFamily};${style}`
-            });
           } else if (fontFile !== uri) {
             console.error(`font-family ${fontFamily} should be unique!`);
           }
+          this.setData({
+            style: `font-family: ${fontFamily};${style}`
+          });
         }
       }
     },

@@ -11,7 +11,7 @@ import './index.css';
 
 function Thumb({ index }) {
   return (
-    <View id={"id_" + index} className="button">
+    <View id={'id_' + index} className="button">
       <View className="box">{index}</View>
     </View>
   );

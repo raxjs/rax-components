@@ -94,6 +94,7 @@ Component({
       if (maskCanBeClick) {
         this.triggerEvent('onHide');
       }
+      this.triggerEvent('onMaskClick');
     }
   }
 });

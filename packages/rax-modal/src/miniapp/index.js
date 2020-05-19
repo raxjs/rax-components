@@ -46,7 +46,8 @@ Component({
     onHide: noop,
     maskCanBeClick: true,
     delay: 0,
-    duration: 300
+    duration: 300,
+    onMaskClick: noop
   },
   didUpdate() {
     // eslint-disable-next-line no-undef
@@ -58,9 +59,12 @@ Component({
     updateData(this, nextProps);
   },
   onClick() {
-    const { maskCanBeClick, onHide } = this.props;
+    const { maskCanBeClick, onHide, onMaskClick } = this.props;
     if (maskCanBeClick) {
       onHide && onHide();
+    }
+    if (typeof onMaskClick === 'function' && onMaskClick !== noop) {
+      onMaskClick();
     }
   }
 });

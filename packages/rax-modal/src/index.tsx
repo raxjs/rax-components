@@ -31,7 +31,7 @@ function Modal(props: ModalProps) {
   const {
     visible,
     onMaskClick,
-    maskCanBeClick,
+    maskCanBeClick = true,
     maskStyle = {},
     contentStyle = {},
     onShow,

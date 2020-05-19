@@ -57,6 +57,7 @@ Component({
       this.triggerEvent('onTouchCancel', event.detail);
     },
     getContext() {
+      /* global tt */
       const context = tt.createCanvasContext(this.properties.componentId, this);
       Object.defineProperty(context, 'fillStyle', {
         get() {

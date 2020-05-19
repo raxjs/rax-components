@@ -167,11 +167,12 @@ function Modal(props: ModalProps) {
       }}
       onTouchMove={stopEventEffect}
       onClick={() => {
-        if (maskCanBeClick) {
+        if (props.hasOwnProperty('onMaskClick')) {
+          onMaskClick && onMaskClick();
+        } else if (maskCanBeClick) {
           // When maskCanBeClick is true, should trigger hide
           hide();
         }
-        onMaskClick && onMaskClick();
       }}
       ref={maskRef}
     >

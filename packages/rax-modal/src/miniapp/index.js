@@ -60,11 +60,10 @@ Component({
   },
   onClick() {
     const { maskCanBeClick, onHide, onMaskClick } = this.props;
-    if (maskCanBeClick) {
-      onHide && onHide();
-    }
     if (typeof onMaskClick === 'function' && onMaskClick !== noop) {
       onMaskClick();
+    } else if (maskCanBeClick) {
+      onHide && onHide();
     }
   }
 });

@@ -20,11 +20,10 @@
        className: this.className,
        show: this.visible,
        hide: () => {
-         if (this.maskCanBeClick) {
-           this.bindClick();
-         }
          if (typeof this.bindMaskClick === 'function') {
            this.bindMaskClick();
+         } else if (this.maskCanBeClick) {
+           this.bindClick();
          }
        },
        eventClick: this.bindClick || this.bindPress,

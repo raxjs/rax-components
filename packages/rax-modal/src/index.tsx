@@ -2,12 +2,13 @@ import { createElement, useState, useRef, useEffect } from 'rax';
 import View from 'rax-view';
 import transition from 'universal-transition';
 import { isWeb, isWeex } from 'universal-env';
-import { ModalProps } from './types';
+import { ModalProps, MaskRef } from './types';
 import './index.css';
 
 declare function __weex_require__(s: string): any;
 
 let bodyEl, originalBodyOverflow;
+let modalCount = 0;
 
 if (isWeb) {
   bodyEl = document.body;
@@ -29,13 +30,14 @@ function stopEventEffect(event) {
 function Modal(props: ModalProps) {
   const {
     visible,
+    onMaskClick,
     maskCanBeClick = true,
     maskStyle = {},
     contentStyle = {},
     onShow,
     onHide,
     children,
-    animation,
+    animation = true,
     delay = 0
   } = props;
 
@@ -50,7 +52,7 @@ function Modal(props: ModalProps) {
     duration = [duration[0], duration[0]];
   }
 
-  const maskRef = useRef<HTMLDivElement>(null);
+  const maskRef: MaskRef = useRef<HTMLDivElement>(null) as MaskRef;
 
   const [visibleState, setVisibleState] = useState(false);
   const [height, setHeight] = useState(null);
@@ -82,22 +84,28 @@ function Modal(props: ModalProps) {
   };
 
   const show = () => {
-    if (isWeb) {
-      originalBodyOverflow = bodyEl.style.overflow;
-      bodyEl.style.overflow = 'hidden';
-    }
-    setVisibleState(true);
-    if (animation) {
-      onShow && onShow();
-    } else {
-      animate(true, () => {
+    if (!maskRef.__pendingShow) {
+      maskRef.__pendingShow = true;
+      if (isWeb) {
+        // Only when current modal count is 1, it need record origin body overflow
+        if (modalCount === 1) {
+          originalBodyOverflow = bodyEl.style.overflow;
+        }
+        bodyEl.style.overflow = 'hidden';
+      }
+      setVisibleState(true);
+      if (animation) {
+        animate(true, () => {
+          onShow && onShow();
+        });
+      } else {
         onShow && onShow();
-      });
+      }
     }
   };
 
   const hideAction = () => {
-    if (isWeb) {
+    if (isWeb && modalCount === 1) {
       bodyEl.style.overflow = originalBodyOverflow;
     }
     setVisibleState(false);
@@ -105,17 +113,34 @@ function Modal(props: ModalProps) {
   };
 
   const hide = () => {
-    if (visibleState) {
+    if (visibleState && !maskRef.__pendingHide) {
+      maskRef.__pendingHide = true;
       if (animation) {
-        hideAction();
-      } else {
         // execute hide animation on element that is already hidden will cause bug
         animate(false, () => {
           hideAction();
         });
+      } else {
+        hideAction();
       }
     }
   };
+
+
+  useEffect(() => {
+    // When a new modal mounted, modal count ++
+    modalCount++;
+    return () => {
+      // When the modal unmounted modal mount --
+      modalCount--;
+      if (isWeb && modalCount === 0) {
+        bodyEl.style.overflow = originalBodyOverflow;
+      }
+      if (!maskRef.__pendingHide) {
+        onHide && onHide();
+      }
+    }
+  }, [])
 
   useEffect(() => {
     // if state is unequal to props trigger show or hide
@@ -124,18 +149,28 @@ function Modal(props: ModalProps) {
     }
   }, [visible]);
 
+  useEffect(() => {
+    // Record mask show state
+    maskRef.__pendingShow = false;
+    // Record mask hide state
+    maskRef.__pendingHide = false;
+  }, [visibleState])
+
+
   return (
     <View
       className="rax-modal-mask"
       style={{
         ...maskStyle,
-        // @ts-ignore
         visibility: visibleState ? 'visible' : 'hidden',
         height: height || 0
       }}
       onTouchMove={stopEventEffect}
       onClick={() => {
-        if (maskCanBeClick) {
+        if (props.hasOwnProperty('onMaskClick')) {
+          onMaskClick && onMaskClick();
+        } else if (maskCanBeClick) {
+          // When maskCanBeClick is true, should trigger hide
           hide();
         }
       }}

@@ -128,13 +128,13 @@ function Modal(props: ModalProps) {
 
 
   useEffect(() => {
+    // When a new modal mounted, modal count ++
     modalCount++;
     return () => {
+      // When the modal unmounted modal mount --
       modalCount--;
-      if (isWeb) {
-        if (modalCount === 0) {
-          bodyEl.style.overflow = originalBodyOverflow;
-        }
+      if (isWeb && modalCount === 0) {
+        bodyEl.style.overflow = originalBodyOverflow;
       }
       if (!maskRef.__pendingHide) {
         onHide && onHide();

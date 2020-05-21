@@ -1,43 +1,46 @@
 import { createElement, Component } from 'rax';
 import View from 'rax-view';
+import { GestureViewProps, PanEvent, PanType } from './types';
 
 const threshold = 5;
 
 const touchActionRatio = 1 / 1;
 
-class GestureViewOnWeb extends Component {
-  startX = undefined;
+class GestureViewOnWeb extends Component<GestureViewProps> {
+  private startX = 0;
 
-  startY = undefined;
+  private startY = 0;
 
-  isStartX = false;
+  private isStartX = false;
 
-  isStartY = false;
+  private isStartY = false;
 
-  maxDy = 0;
+  private maxDy = 0;
 
-  maxDx = 0;
+  private maxDx = 0;
 
-  panType;
+  private panType: PanType = 'x';
+  private isPropagationStoppedX: boolean;
+  private isPropagationStoppedY: boolean;
 
-  onTouchStart = (e) => {
+  private onTouchStart = (e: PanEvent) => {
     this.startX = e.changedTouches[0].clientX;
     this.startY = e.changedTouches[0].clientY;
-  }
+  };
 
-  reset() {
+  private reset() {
     this.startX = undefined;
     this.startY = undefined;
     this.maxDy = 0;
     this.maxDx = 0;
     this.isStartX = false;
     this.isStartY = false;
-    this.panType = undefined;
+    this.panType = 'x';
     this.isPropagationStoppedX = false;
     this.isPropagationStoppedY = false;
   }
 
-  onTouchMove = (e) => {
+  private onTouchMove = (e: PanEvent) => {
     let { onHorizontalPan, onVerticalPan } = this.props;
     let deltaX = e.changedTouches[0].clientX - this.startX;
     let deltaY = e.changedTouches[0].clientY - this.startY;
@@ -50,7 +53,12 @@ class GestureViewOnWeb extends Component {
     }
 
     // horizontal pan
-    if (onHorizontalPan && Math.abs(deltaX) >= threshold && Math.abs(deltaY / deltaX) < touchActionRatio && Math.abs(this.maxDy) < threshold) {
+    if (
+      onHorizontalPan &&
+      Math.abs(deltaX) >= threshold &&
+      Math.abs(deltaY / deltaX) < touchActionRatio &&
+      Math.abs(this.maxDy) < threshold
+    ) {
       e.preventDefault();
       this.isPropagationStoppedX = true;
       this.panType = 'x';
@@ -63,7 +71,12 @@ class GestureViewOnWeb extends Component {
         e.changedTouches[0].deltaX = deltaX;
       }
       onHorizontalPan && onHorizontalPan(e);
-    } else if (onVerticalPan && Math.abs(deltaY) >= threshold && Math.abs(deltaX / deltaY) < touchActionRatio && Math.abs(this.maxDx) < threshold) {
+    } else if (
+      onVerticalPan &&
+      Math.abs(deltaY) >= threshold &&
+      Math.abs(deltaX / deltaY) < touchActionRatio &&
+      Math.abs(this.maxDx) < threshold
+    ) {
       e.preventDefault();
       this.isPropagationStoppedY = true;
       this.panType = 'y';
@@ -77,9 +90,9 @@ class GestureViewOnWeb extends Component {
       }
       onVerticalPan && onVerticalPan(e);
     }
-  }
+  };
 
-  onTouchEnd = (e) => {
+  private onTouchEnd = (e: PanEvent) => {
     let { onHorizontalPan, onVerticalPan } = this.props;
     e.state = 'end';
     e.changedTouches[0].deltaX = e.changedTouches[0].clientX - this.startX;
@@ -90,9 +103,9 @@ class GestureViewOnWeb extends Component {
       onVerticalPan && onVerticalPan(e);
     }
     this.reset();
-  }
+  };
 
-  onTouchCancel = (e) => {
+  private onTouchCancel = (e: PanEvent) => {
     let { onHorizontalPan, onVerticalPan } = this.props;
     e.state = 'cancel';
     e.changedTouches[0].deltaX = e.changedTouches[0].clientX - this.startX;
@@ -103,15 +116,18 @@ class GestureViewOnWeb extends Component {
       onVerticalPan && onVerticalPan(e);
     }
     this.reset();
-  }
+  };
 
-  render() {
-    return (<View {...this.props}
-      onTouchStart={this.onTouchStart}
-      onTouchMove={this.onTouchMove}
-      onTouchEnd={this.onTouchEnd}
-      onTouchCancel={this.onTouchCancel}
-    />);
+  public render() {
+    return (
+      <View
+        {...this.props}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
+        onTouchEnd={this.onTouchEnd}
+        onTouchCancel={this.onTouchCancel}
+      />
+    );
   }
 }
 

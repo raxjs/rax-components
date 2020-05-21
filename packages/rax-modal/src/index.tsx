@@ -67,6 +67,19 @@ function Modal(props: ModalProps) {
   }
 
   const animate = (show: boolean, callback: Function) => {
+    const animateDuration = show ? duration[0] : duration[1];
+    // Record animation execute timer
+    const timer = setTimeout(() => {
+      // Only when target value unequal to visible trigger callback
+      if (show !== visible) {
+        if (show) {
+           // When target state is show, it need set modal opacity to 1
+          maskRef.current.style.opacity = '1';
+        }
+        callback && callback();
+      }
+    }, animateDuration)
+
     transition(
       maskRef.current,
       {
@@ -75,10 +88,17 @@ function Modal(props: ModalProps) {
       {
         timingFunction: 'ease',
         delay,
-        duration: show ? duration[0] : duration[1]
+        duration: animateDuration
       },
       () => {
-        callback && callback();
+        clearTimeout(timer);
+        if (show) {
+          // When target state is show, it need set modal opacity to 1
+          maskRef.current.style.opacity = '1';
+        }
+        if (show !== visible) {
+          callback && callback();
+        }
       }
     );
   };
@@ -95,6 +115,7 @@ function Modal(props: ModalProps) {
       }
       setVisibleState(true);
       if (animation) {
+        maskRef.current.style.opacity = '0';
         animate(true, () => {
           onShow && onShow();
         });
@@ -145,7 +166,14 @@ function Modal(props: ModalProps) {
   useEffect(() => {
     // if state is unequal to props trigger show or hide
     if (visible !== visibleState) {
-      visible ? show() : hide();
+      if (!maskRef.__rendered) {
+        // Modal first render, visibleState initial value is false. However, when props'visible is false, it need execute show
+        visible && show();
+      } else {
+        visible ? show() : hide();
+      }
+      // Mark the modal has been rendered
+      maskRef.__rendered = true;
     }
   }, [visible]);
 

@@ -70,7 +70,7 @@ function Modal(props: ModalProps) {
     const animateDuration = show ? duration[0] : duration[1];
     // Record animation execute timer
     maskRef.__timer = setTimeout(() => {
-      if (show) {
+      if (show && maskRef.current) {
         // When target state is show, it need set modal opacity to 1
        maskRef.current.style.opacity = '1';
      }
@@ -88,7 +88,7 @@ function Modal(props: ModalProps) {
       },
       () => {
         clearTimeout(maskRef.__timer);
-        if (show) {
+        if (show && maskRef.current) {
           // When target state is show, it need set modal opacity to 1
           maskRef.current.style.opacity = '1';
         }
@@ -114,6 +114,7 @@ function Modal(props: ModalProps) {
           onShow && onShow();
         });
       } else {
+        maskRef.current.style.opacity = '1';
         onShow && onShow();
       }
     }
@@ -148,14 +149,14 @@ function Modal(props: ModalProps) {
     return () => {
       // When the modal unmounted modal mount --
       modalCount--;
+      // Clear timer
+      clearTimeout(maskRef.__timer);
       if (isWeb && modalCount === 0) {
         bodyEl.style.overflow = originalBodyOverflow;
       }
       if (!maskRef.__pendingHide) {
         onHide && onHide();
       }
-      // Clear timer
-      clearTimeout(maskRef.__timer);
     }
   }, [])
 

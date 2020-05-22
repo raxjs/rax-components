@@ -69,7 +69,7 @@ function Modal(props: ModalProps) {
   const animate = (show: boolean, callback: Function) => {
     const animateDuration = show ? duration[0] : duration[1];
     // Record animation execute timer
-    const timer = setTimeout(() => {
+    maskRef.__timer = setTimeout(() => {
       if (show) {
         // When target state is show, it need set modal opacity to 1
        maskRef.current.style.opacity = '1';
@@ -87,7 +87,7 @@ function Modal(props: ModalProps) {
         duration: animateDuration
       },
       () => {
-        clearTimeout(timer);
+        clearTimeout(maskRef.__timer);
         if (show) {
           // When target state is show, it need set modal opacity to 1
           maskRef.current.style.opacity = '1';
@@ -154,6 +154,8 @@ function Modal(props: ModalProps) {
       if (!maskRef.__pendingHide) {
         onHide && onHide();
       }
+      // Clear timer
+      clearTimeout(maskRef.__timer);
     }
   }, [])
 

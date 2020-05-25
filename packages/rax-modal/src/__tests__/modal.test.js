@@ -108,4 +108,34 @@ describe('render modal', () => {
     jest.runAllTimers();
     expect(showModal).toBe(false);
   });
+
+  it('onMaskClick should valid', () => {
+    let showModal = false;
+    function App() {
+      const [visible, setVisible] = useState(true);
+      showModal = true;
+      return (
+        <View>
+          <Modal
+            visible={visible}
+            onHide={() => {
+              showModal = false;
+              setVisible(false);
+            }}
+            animation={true}
+            onMaskClick={() => {
+              setVisible(false);
+            }}
+          >
+            <View>这里是弹窗内容</View>
+          </Modal>
+        </View>
+      );
+    }
+    const wrapper = mount(<App />);
+    expect(showModal).toBe(true);
+    wrapper.find('.rax-modal-mask').at(1).simulate('click');
+    jest.runAllTimers();
+    expect(showModal).toBe(false);
+  });
 });

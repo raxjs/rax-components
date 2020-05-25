@@ -67,13 +67,16 @@ function Modal(props: ModalProps) {
   }
 
   const animate = (show: boolean, callback: Function) => {
+    maskRef.__animationValid = true;
     const animateDuration = show ? duration[0] : duration[1];
     // Record animation execute timer
     maskRef.__timer = setTimeout(() => {
+      maskRef.__animationValid = false;
       if (show && maskRef.current) {
         // When target state is show, it need set modal opacity to 1
        maskRef.current.style.opacity = '1';
-     }
+      }
+      callback && callback();
     }, animateDuration)
 
     transition(
@@ -87,12 +90,15 @@ function Modal(props: ModalProps) {
         duration: animateDuration
       },
       () => {
-        clearTimeout(maskRef.__timer);
-        if (show && maskRef.current) {
-          // When target state is show, it need set modal opacity to 1
-          maskRef.current.style.opacity = '1';
+        // Ensure animation timer hasn't been executed
+        if (maskRef.__animationValid) {
+          clearTimeout(maskRef.__timer);
+          if (show && maskRef.current) {
+            // When target state is show, it need set modal opacity to 1
+            maskRef.current.style.opacity = '1';
+          }
+          callback && callback();
         }
-        callback && callback();
       }
     );
   };

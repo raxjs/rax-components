@@ -13,6 +13,7 @@ export interface ModalProps extends RefAttributes<HTMLDivElement>, HTMLAttribute
 }
 
 export interface MaskRef extends MutableRefObject<HTMLDivElement> {
+  __animationValid: boolean;
   __timer: ReturnType<typeof setTimeout>;
   __pendingShow: boolean;
   __pendingHide: boolean;

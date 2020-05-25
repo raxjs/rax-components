@@ -27,7 +27,7 @@ Component({
     },
     loop: {
       type: Boolean,
-      value: false,
+      value: true,
     },
     direaction: {
       type: String,

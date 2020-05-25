@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Rax Embed Component",
+  "usingComponents": {
+    "rax-embed": "../../src/miniapp/index"
+  }
+}

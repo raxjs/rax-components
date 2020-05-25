@@ -27,7 +27,7 @@ Component({
     },
     loop: {
       type: Boolean,
-      value: false,
+      value: true,
     },
     direaction: {
       type: String,
@@ -77,5 +77,17 @@ Component({
         });
       }
     },
+    onAnimationFinish(e) {
+      const event = fmtEvent(this.properties, e);
+      this.triggerEvent('onAnimationFinish', {
+        index: event.detail.current
+      });
+    },
+    onTransition(e) {
+      const event = fmtEvent(this.properties, e);
+      this.triggerEvent('onTransition', {
+        index: event.detail.current
+      });
+    }
   },
 });

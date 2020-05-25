@@ -1,0 +1,9 @@
+<text class="rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
+    style="-webkit-line-clamp: {{numberOfLines + 1}};{{styleSheet}}"
+    number-of-lines="{{numberOfLines}}"
+    selectable="{{selectable}}"
+    space="{{space}}"
+    decode="{{decode}}"
+    onTap="onClick">
+    <slot />
+</text>

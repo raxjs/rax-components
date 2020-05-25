@@ -3,13 +3,15 @@
 'use strict';
 
 import {Component} from 'rax';
-import Util, {isLoop, transformExpression, clamp, uuid, getLast, formatTransformValue} from '../Util';
+import Util from '../Util';
 import Indicator from '../Indicator';
 import Panel from '../Panel';
 import {FULL_WIDTH} from '../Constant';
 import findDOMNode from 'rax-find-dom-node';
 import {isWeex} from 'universal-env';
 import {convertUnit} from 'style-unit';
+
+const {isLoop, transformExpression, clamp, uuid, getLast, formatTransformValue, findIndex} = Util;
 
 const DEFAULT_DURATION = 300;
 const DEFAULT_EASING = 'cubicBezier(.25,.1,.25,1)';
@@ -442,7 +444,7 @@ class BaseView extends Component {
         visibleIndexes.push(i);
       }
       for (let i = 0; i < itemCount; i++) {
-        if (Util.findIndex(visibleIndexes, (o) => {
+        if (findIndex(visibleIndexes, (o) => {
           return o === i;
         }) === -1) {
           this.destroyPanel(i);

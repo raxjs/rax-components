@@ -8,7 +8,7 @@
 
 <script>
  export default {
-   props: [ 'id', 'styleSheet', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick', 'bindShow'],
+   props: [ 'id', 'styleSheet', 'className', 'bindClick', 'bindPress', 'bindHide', 'visible', 'maskStyle', 'contentStyle', 'maskCanBeClick', 'bindShow', 'bindMaskClick'],
    data() {
      const height = this.$page && this.$page.windowHeight;
      const width = this.$page && this.$page.windowWidth;
@@ -19,9 +19,15 @@
        height,
        className: this.className,
        show: this.visible,
-       hide: this.maskCanBeClick ? this.bindHide : ()=> {},
+       hide: () => {
+         if (typeof this.bindMaskClick === 'function') {
+           this.bindMaskClick();
+         } else if (this.maskCanBeClick) {
+           this.bindClick();
+         }
+       },
        eventClick: this.bindClick || this.bindPress,
-       maskCanBeClick: this.maskCanBeClick
+       maskCanBeClick: typeof this.maskCanBeClick === 'undefined' ? true : this.maskCanBeClick
      }
   },
   stopClick(e) {

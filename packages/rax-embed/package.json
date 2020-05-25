@@ -1,5 +1,5 @@
 {
-  "name": "rax-text",
+  "name": "rax-embed",
   "version": "1.0.1",
   "description": "Embed container for Rax.",
   "main": "lib/index.js",

@@ -24,6 +24,14 @@
     "Rax",
     "rax-component"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "jest-transform-css"
+    },
+    "setupFilesAfterEnv": [
+      "./setup.js"
+    ]
+  },
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"
@@ -44,21 +52,23 @@
     "rax": "^1.1.0"
   },
   "devDependencies": {
-    "typescript": "^3.7.5",
     "@alib/build-scripts": "^0.1.0",
-    "build-plugin-rax-component": "^0.2.0",
-    "@types/rax": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "build-plugin-rax-component": "^0.2.0",
     "csstype": "^2.6.4",
     "driver-universal": "^3.0.0",
     "driver-weex": "^1.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-rax": "^1.0.3",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "miniprogram-api-typings": "^2.9.3",
     "mini-types": "^0.1.1",
+    "miniprogram-api-typings": "^2.9.3",
     "rax-test-renderer": "^1.0.0",
-    "rax-view": "^1.0.1"
+    "rax-view": "^1.0.1",
+    "typescript": "^3.7.5"
   }
 }

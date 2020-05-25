@@ -8,9 +8,7 @@
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
-    "miniapp": "rax-scripts start --type 'component-miniapp'",
-    "prepublishOnly": "npm run build",
-    "test": "rax-scripts test"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",

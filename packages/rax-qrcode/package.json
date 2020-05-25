@@ -38,7 +38,6 @@
   "dependencies": {
     "qr.js": "0.0.0",
     "rax-canvas": "^2.0.0",
-    "rax-plugin-component": "^0.1.25",
     "universal-unit-tool": "^1.0.0"
   },
   "peerDependencies": {

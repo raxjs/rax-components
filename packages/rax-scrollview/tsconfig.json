@@ -17,9 +17,6 @@
     "noImplicitThis": false,
     "outDir": "lib",
     "rootDir": "src",
-    "baseUrl": ".",
-    "typeRoots": [
-      "types",
-    ]
+    "baseUrl": "."
   }
 }

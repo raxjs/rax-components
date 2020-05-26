@@ -8,7 +8,7 @@
 import { isWeex, isNode, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 
 let isIOS: boolean;
-if (!isWeex && !isNode) {
+if (!isWeex && !isNode && !isMiniApp && !isWeChatMiniProgram) {
   isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 }
 

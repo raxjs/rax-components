@@ -3,7 +3,9 @@ import {
   useRef,
   useImperativeHandle,
   createElement,
-  ForwardRefExoticComponent
+  ForwardRefExoticComponent,
+  useEffect,
+  useState
 } from 'rax';
 import { isWeex, isWeb } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
@@ -46,6 +48,7 @@ function genEventObject(event): EventObject {
 const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
   (props, ref) => {
     const refEl = useRef<TextInputElement>(null);
+    const [, forceUpdate] = useState(0);
     const styleClassName = `rax-textinput-placeholder-${inputId++}`;
 
     const {
@@ -106,7 +109,10 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       maxlength: maxlength || maxLength,
       readOnly: editable !== undefined && !editable,
       onChange: (onChange || onChangeText) && handleChange,
-      onInput: onInput && handleInput,
+      onInput: (e: InputEvent) => {
+        onInput && handleInput(e);
+        forceUpdate(tick => tick + 1);
+      },
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus,
       ref: refEl
@@ -128,14 +134,15 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
         }
       };
     });
-
-    if (controlled && typeof value !== 'undefined' && value !== null && refEl.current) {
-      const currentValue = refEl.current.value;
-      const newValue = '' + value;
-      if (currentValue !== newValue) {
-        refEl.current.value = newValue;
+    useEffect(() => {
+      if (controlled && typeof value !== 'undefined' && value !== null && refEl.current) {
+        const currentValue = refEl.current.value;
+        const newValue = '' + value;
+        if (currentValue !== newValue) {
+          refEl.current.value = newValue;
+        }
       }
-    }
+    });
 
     if (multiline) {
       return (

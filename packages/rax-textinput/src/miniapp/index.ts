@@ -2,6 +2,17 @@ import fmtEvent from './fmtEvent';
 
 function noop() {}
 
+const supportKeyboardTypes = [
+  'text',
+  'number',
+  'idcard',
+  'digit',
+  'numberpad',
+  'digitpad',
+  'idcardpad',
+];
+const defaultKeyboardType = 'text';
+
 Component({
   data: {
     previousValue: ''
@@ -13,7 +24,7 @@ Component({
     multiline: false,
     autoFocus: false,
     editable: true,
-    keyboardType: 'default',
+    keyboardType: defaultKeyboardType,
     maxLength: '',
     placeholder: '',
     password: false,
@@ -35,10 +46,27 @@ Component({
     onConfirm: noop
   },
   didMount() {
-    const { value, defaultValue } = this.props;
-    this.setData({
-      previousValue: value || defaultValue
-    });
+    const { value, defaultValue, keyboardType } = this.props;
+    const currentKeyboardType = this.getKeyboardType(keyboardType);
+    const data = {
+      previousValue: value || defaultValue,
+    };
+    if (currentKeyboardType !== keyboardType) {
+      Object.assign(data, {
+        keyboardType: currentKeyboardType,
+      });
+    }
+    this.setData(data);
+  },
+  didUpdate(preProps) {
+    const preKeyboardType = this.getKeyboardType(preProps.keyboardType);
+    const currentKeyboardType = this.getKeyboardType(this.props.keyboardType);
+
+    if (preKeyboardType !== currentKeyboardType) {
+      this.setData({
+        keyboardType: currentKeyboardType,
+      });
+    }
   },
   methods: {
     trigger(type, value) {
@@ -66,6 +94,10 @@ Component({
     onInput(e) {
       const event = fmtEvent(this.props, e);
       this.trigger('onInput', event);
-    }
+    },
+    getKeyboardType(keyboardType) {
+      return supportKeyboardTypes.indexOf(keyboardType) !== -1 ?
+        keyboardType : defaultKeyboardType;
+    },
   }
 });

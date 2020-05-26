@@ -94,6 +94,8 @@ Component({
       if (maskCanBeClick) {
         this.triggerEvent('onHide');
       }
+      // In wechat miniprogram couldn't check function props wheather exist
+      this.triggerEvent('onMaskClick');
     }
   }
 });

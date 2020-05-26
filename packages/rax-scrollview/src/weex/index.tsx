@@ -123,8 +123,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           child.type == RefreshControl
         ) {
           refreshContainer = child;
+          return null;
+        } else {
+          return child;
         }
-        return child;
       });
     } else {
       contentChild = children;

@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
-    "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "build-plugin-rax-component": "^0.1.0",
@@ -55,6 +55,8 @@
     "universal-env": "^3.0.0"
   },
   "miniappConfig": {
-    "main": "lib/miniapp/index"
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:bytedance": "lib/bytedance-microapp/index"
   }
 }

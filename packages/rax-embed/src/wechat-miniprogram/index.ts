@@ -27,31 +27,31 @@ Component({
   data: {
     url: '',
   },
-  properties: {
-    src: {
-      type: String,
-      value: ''
-    },
-    urlParam: {
-      type: String,
-      optionalTypes: [Object]
-    }
+  props: {
+    src: '',
+    urlParam: '',
+    onMessage: () => {}
   },
-  attached() {
+  onInit() {
     this.setData({
       url: genFixedUrl(this.props)
     });
   },
-  observers: {
-    'src, urlParam': function(src, urlParam) {
+  deriveDataFromProps(nextProps) {
+    this.setData({
+      url: genFixedUrl(nextProps)
+    });
+  },
+  didMount() {
+    if(!my.canIUse('components2')) {
       this.setData({
-        url: genFixedUrl({src, urlParam})
+        url: genFixedUrl(this.props)
       });
     }
   },
   methods: {
     onMessage(e) {
-      this.props.onMessage(e);
+      this.triggerEvent('onMessage', e.detail);
     }
   }
 });

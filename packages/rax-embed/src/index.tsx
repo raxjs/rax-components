@@ -1,5 +1,5 @@
 import { createElement } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import { Props } from './types';
 
 function isWeexUrl(url) {
@@ -48,6 +48,16 @@ const Embed = (props: Props) => {
   props = { ...defaultProps, ...props };
   let { useIframeInWeb } = props;
   let url = genFixedUrl(props);
+
+  if (isMiniApp || isWeChatMiniProgram) {
+    return (
+      <web-view
+        src={url}
+        onMessage={props.onMessage}
+      >
+      </web-view>
+    )
+  }
 
   if (useIframeInWeb && isWeb) {
     return (

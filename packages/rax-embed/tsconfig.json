@@ -18,7 +18,7 @@
     "outDir": "lib",
     "baseUrl": ".",
     "paths": {
-      "rax": ["node_modules/@rax-types/rax"]
+      "rax": ["node_modules/@types/rax"]
     }
   },
   "include": [

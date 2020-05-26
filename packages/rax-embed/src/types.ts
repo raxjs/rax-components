@@ -8,6 +8,7 @@ export interface Props extends Rax.Attributes {
   };
   urlParam?: { [key: string]: any } | string;
   src?: string;
+  onMessage?: Function;
   useIframeInWeb?: boolean;
   style?: Rax.CSSProperties;
 }

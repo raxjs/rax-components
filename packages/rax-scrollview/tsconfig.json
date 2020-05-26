@@ -20,9 +20,6 @@
     "baseUrl": ".",
     "typeRoots": [
       "types",
-    ],
-    "paths": {
-      "rax": ["node_modules/@types/rax"]
-    }
+    ]
   }
 }

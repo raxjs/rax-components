@@ -17,11 +17,12 @@
     "noImplicitThis": false,
     "outDir": "lib",
     "rootDir": "src",
-    "baseUrl": "."
-  },
-  "include": ["src/**/*", "index.d.ts"],
-  "exclude": [
-    "node_modules",
-    "lib"
-  ]
+    "baseUrl": ".",
+    "typeRoots": [
+      "types",
+    ],
+    "paths": {
+      "rax": ["node_modules/@types/rax"]
+    }
+  }
 }

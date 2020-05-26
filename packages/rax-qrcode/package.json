@@ -24,14 +24,6 @@
     "Rax",
     "rax-component"
   ],
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "jest-transform-css"
-    },
-    "setupFilesAfterEnv": [
-      "./setup.js"
-    ]
-  },
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/miniapp-wechat/index"
@@ -61,8 +53,6 @@
     "csstype": "^2.6.4",
     "driver-universal": "^3.0.0",
     "driver-weex": "^1.0.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-rax": "^1.0.3",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "mini-types": "^0.1.1",

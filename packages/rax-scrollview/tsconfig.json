@@ -18,10 +18,5 @@
     "outDir": "lib",
     "rootDir": "src",
     "baseUrl": "."
-  },
-  "include": ["src/**/*", "index.d.ts"],
-  "exclude": [
-    "node_modules",
-    "lib"
-  ]
+  }
 }

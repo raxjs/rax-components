@@ -7,10 +7,9 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test"
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "Rax",
@@ -25,10 +24,10 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
-    "rax-find-dom-node": "^1.0.0",
-    "rax-gesture-view": "^1.0.0",
-    "rax-link": "^1.0.1",
     "prop-types": "^15.7.2",
+    "rax-find-dom-node": "^1.0.0",
+    "rax-gesture-view": "^1.0.1",
+    "rax-link": "^1.4.0",
     "rax-recyclerview": "^1.0.0",
     "rax-scrollview": "^1.0.0",
     "rax-text": "^1.0.1",
@@ -42,7 +41,7 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.6",
+    "@types/rax": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
@@ -53,8 +52,6 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
-    "rax-plugin-component": "^0.1.9",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.2"
   }

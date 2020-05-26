@@ -18,10 +18,7 @@
     "outDir": "lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "paths": {
-      "rax": ["node_modules/@rax-types/rax", "../../node_modules/@rax-types/rax"]
-    },
-    "types": ["miniprogram-api-typings", "@rax-types/rax", "@types/ali-app"]
+    "types": ["miniprogram-api-typings", "@types/ali-app"]
   },
   "include": ["src/**/*"],
   "exclude": [

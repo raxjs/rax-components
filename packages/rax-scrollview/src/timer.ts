@@ -48,7 +48,7 @@ class Timer {
     percent?: number;
     now?: number;
   };
-  private _raf: number | NodeJS.Timeout;
+  private _raf: number | ReturnType<typeof setTimeout>;
   public constructor(config) {
     this.config = {
       ...this.config,

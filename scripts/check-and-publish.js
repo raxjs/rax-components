@@ -33,6 +33,7 @@ function checkVersion(folder, callback) {
               ret.push({
                 name: packageInfo.name,
                 workDir: join(folder, packageFolderName),
+                main: packageInfo.main,
                 local: packageInfo.version,
                 // If exists scripts.build, then run it.
                 shouldBuild: !!(packageInfo.scripts && packageInfo.scripts.build),
@@ -54,7 +55,11 @@ function checkVersionExists(pkg, version) {
     .catch(err => false);
 }
 
-function publish(pkg, workDir, version, shouldBuild, tag) {
+function checkBuildSuccess(workDir, main) {
+  return existsSync(join(workDir, main));
+}
+
+function publish(pkg, workDir, main, version, shouldBuild, tag) {
   console.log('[PUBLISH]', `${pkg}@${version}`);
 
   // npm install
@@ -77,14 +82,18 @@ function publish(pkg, workDir, version, shouldBuild, tag) {
   }
 
   // npm publish
-  spawnSync('npm', [
-    'publish',
-    '--tag=' + tag,
-    // use default registry
-  ], {
-    stdio: 'inherit',
-    cwd: workDir,
-  });
+  if (checkBuildSuccess(workDir, main)) {
+    spawnSync('npm', [
+      'publish',
+      '--tag=' + tag,
+      // use default registry
+    ], {
+      stdio: 'inherit',
+      cwd: workDir,
+    });
+  } else {
+    console.log(`[PUBLISH] ${pkg}@${version} failed, Please check build script.`);
+  }
 }
 
 function isPrerelease(v) {
@@ -103,10 +112,10 @@ function checkVersionAndPublish() {
     }
 
     for (let i = 0; i < ret.length; i++) {
-      const { name, workDir, local, shouldBuild } = ret[i];
+      const { name, workDir, main, local, shouldBuild } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';
       console.log(`--- ${name}@${local} current tag: ${tag} ---`);
-      publish(name, workDir, local, shouldBuild, tag);
+      publish(name, workDir, main, local, shouldBuild, tag);
     }
   });
 }

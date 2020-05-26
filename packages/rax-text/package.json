@@ -7,8 +7,8 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && build-scripts build",
-    "start": "build-scripts start",
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
+    "start": "../../node_modules/.bin/build-scripts start",
     "prepublishOnly": "npm run build",
     "test": "npm run build && build-scripts test"
   },
@@ -35,13 +35,11 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@alib/build-scripts": "^0.1.0",
-    "@rax-types/rax": "^1.0.5",
+    "@types/rax": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
-    "build-plugin-rax-component": "^0.1.0",
     "csstype": "^2.6.4",
     "driver-dom": "^1.0.0",
     "driver-universal": "^1.0.1",

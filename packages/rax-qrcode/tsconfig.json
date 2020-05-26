@@ -22,6 +22,7 @@
       "rax": ["node_modules/@types/rax"]
     },
     "types": ["miniprogram-api-typings", "@types/rax", "mini-types"]
+
   },
   "include": [
     "src/**/*"

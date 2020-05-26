@@ -1,6 +1,6 @@
 import { createElement, Component } from 'rax';
 import { mount } from 'enzyme';
-import QrCode from '../../lib';
+import QRCode from '../../lib';
 
 describe('QrCode', () => {
   it('should accpet number of width and height as px value', () => {

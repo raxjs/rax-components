@@ -156,7 +156,7 @@ function Modal(props: ModalProps) {
     return () => {
       // Clear timer
       clearTimeout(maskRef.__timer);
-      hide(true);
+      hide(false);
     }
   }, [])
 

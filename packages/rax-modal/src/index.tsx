@@ -67,6 +67,18 @@ function Modal(props: ModalProps) {
   }
 
   const animate = (show: boolean, callback: Function) => {
+    maskRef.__animationValid = true;
+    const animateDuration = show ? duration[0] : duration[1];
+    // Record animation execute timer
+    maskRef.__timer = setTimeout(() => {
+      maskRef.__animationValid = false;
+      if (show && maskRef.current) {
+        // When target state is show, it need set modal opacity to 1
+       maskRef.current.style.opacity = '1';
+      }
+      callback && callback();
+    }, animateDuration)
+
     transition(
       maskRef.current,
       {
@@ -75,10 +87,18 @@ function Modal(props: ModalProps) {
       {
         timingFunction: 'ease',
         delay,
-        duration: show ? duration[0] : duration[1]
+        duration: animateDuration
       },
       () => {
-        callback && callback();
+        // Ensure animation timer hasn't been executed
+        if (maskRef.__animationValid) {
+          clearTimeout(maskRef.__timer);
+          if (show && maskRef.current) {
+            // When target state is show, it need set modal opacity to 1
+            maskRef.current.style.opacity = '1';
+          }
+          callback && callback();
+        }
       }
     );
   };
@@ -95,10 +115,12 @@ function Modal(props: ModalProps) {
       }
       setVisibleState(true);
       if (animation) {
+        maskRef.current.style.opacity = '0';
         animate(true, () => {
           onShow && onShow();
         });
       } else {
+        maskRef.current.style.opacity = '1';
         onShow && onShow();
       }
     }
@@ -133,6 +155,8 @@ function Modal(props: ModalProps) {
     return () => {
       // When the modal unmounted modal mount --
       modalCount--;
+      // Clear timer
+      clearTimeout(maskRef.__timer);
       if (isWeb && modalCount === 0) {
         bodyEl.style.overflow = originalBodyOverflow;
       }

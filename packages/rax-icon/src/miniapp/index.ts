@@ -43,10 +43,14 @@ Component({
         });
       } else {
         // loadFontFace only work for current page
-        my.loadFontFace({
-          family: fontFamily,
-          source: "url('" + uri + "')"
-        });
+        if (typeof my.loadFontFace === 'function') {
+          my.loadFontFace({
+            family: fontFamily,
+            source: "url('" + uri + "')"
+          });
+        } else {
+          console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
+        }
         this.setData({
           styleSheet: {...style, fontFamily}
         });

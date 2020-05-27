@@ -7,11 +7,9 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "miniapp": "rax-scripts start --type 'component-miniapp'",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test"
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",
@@ -43,7 +41,7 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
+    "@types/rax": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
@@ -56,7 +54,6 @@
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
     "rax-recyclerview": "^1.0.0-beta.2",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1"

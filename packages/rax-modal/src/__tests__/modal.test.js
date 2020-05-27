@@ -1,5 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createElement, useState, useEffect } from 'rax';
-import renderer from 'rax-test-renderer';
+import { mount } from 'enzyme';
 import View from 'rax-view';
 import Modal from '../../lib';
 
@@ -37,7 +38,7 @@ describe('render modal', () => {
         </View>
       );
     }
-    renderer.create(<App />).toJSON();
+    mount(<App />);
     expect(showModal).toBe(false);
     jest.runAllTimers();
     expect(showModal).toBe(true);
@@ -70,7 +71,7 @@ describe('render modal', () => {
         </View>
       );
     }
-    renderer.create(<App />).toJSON();
+    mount(<App />);
     expect(showModal).toBe(false);
     jest.runAllTimers();
     expect(showModal).toBe(true);
@@ -102,8 +103,38 @@ describe('render modal', () => {
         </View>
       );
     }
-    renderer.create(<App />).toJSON();
+    mount(<App />);
     expect(showModal).toBe(true);
+    jest.runAllTimers();
+    expect(showModal).toBe(false);
+  });
+
+  it('onMaskClick should valid', () => {
+    let showModal = false;
+    function App() {
+      const [visible, setVisible] = useState(true);
+      showModal = true;
+      return (
+        <View>
+          <Modal
+            visible={visible}
+            onHide={() => {
+              showModal = false;
+              setVisible(false);
+            }}
+            animation={true}
+            onMaskClick={() => {
+              setVisible(false);
+            }}
+          >
+            <View>这里是弹窗内容</View>
+          </Modal>
+        </View>
+      );
+    }
+    const wrapper = mount(<App />);
+    expect(showModal).toBe(true);
+    wrapper.find('.rax-modal-mask').at(1).simulate('click');
     jest.runAllTimers();
     expect(showModal).toBe(false);
   });

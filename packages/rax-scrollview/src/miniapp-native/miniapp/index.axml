@@ -1,4 +1,5 @@
 <scroll-view
+    id="{{id}}"
     class="rax-scrollview {{className}}"
     style="flex-direction:{{horizontal ? 'row':'column'}};{{style}}"
     scroll-x="{{!disableScroll && horizontal}}"

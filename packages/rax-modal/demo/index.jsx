@@ -17,6 +17,7 @@ const Demo = props => {
       </View>,
       <Modal
         visible={visible}
+        animation={false}
         onHide={() => {
           setVisible(false);
         }}

@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render } from 'rax';
-import * as DriverDOM from 'driver-dom';
-import * as DriverWeex from 'driver-weex';
+import DU from 'driver-universal';
 import { isWeex } from 'universal-env';
 import Embed from '../src/index';
 
@@ -12,4 +11,4 @@ const urlParam = {
 render(<Embed urlParam={urlParam} src={'http://taobao.com'} useIframeInWeb={true} style={{
   height: 750,
   width: 750
-}} />, document.body, { driver: isWeex ? DriverWeex : DriverDOM });
+}} />, document.body, { driver: DU });

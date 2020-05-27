@@ -29,7 +29,7 @@ import Embed from 'rax-embed';
 | _page_home_isweex_     | `boolean` |          |   false           | 子页面的宿主页面是否是 weex 渲染 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /><img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> |
 
 ## 示例
-[在线 Demo](https://jsplayground.taobao.org/raxplayground/c5f33524-1a5c-43ed-866d-411d820cce46)
+
 ```js
 import {createElement, render, Component} from 'rax';
 import * as DriverDOM from 'driver-dom';

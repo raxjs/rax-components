@@ -21,14 +21,6 @@
     "Rax",
     "rax-component"
   ],
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "jest-transform-css"
-    },
-    "setupFilesAfterEnv": [
-      "./setup.js"
-    ]
-  },
   "engines": {
     "npm": ">=3.0.0"
   },
@@ -43,18 +35,13 @@
   },
   "devDependencies": {
     "@types/rax": "^1.0.0",
-    "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.7",
     "driver-universal": "^1.0.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-rax": "^1.0.3",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "jest-transform-css": "^2.0.0",
     "lerna": "^3.16.4",
-    "rax": "^1.0.4",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.6.2"
   },

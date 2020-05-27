@@ -105,6 +105,7 @@ function Modal(props: ModalProps) {
 
   const show = () => {
     if (!maskRef.__pendingShow) {
+      modalCount++;
       maskRef.__pendingShow = true;
       if (isWeb) {
         // Only when current modal count is 1, it need record origin body overflow
@@ -130,14 +131,15 @@ function Modal(props: ModalProps) {
     if (isWeb && modalCount === 1) {
       bodyEl.style.overflow = originalBodyOverflow;
     }
+    modalCount--;
     setVisibleState(false);
     onHide && onHide();
   };
 
-  const hide = () => {
+  const hide = (withAnimate = animation) => {
     if (visibleState && !maskRef.__pendingHide) {
       maskRef.__pendingHide = true;
-      if (animation) {
+      if (withAnimate) {
         // execute hide animation on element that is already hidden will cause bug
         animate(false, () => {
           hideAction();
@@ -151,18 +153,10 @@ function Modal(props: ModalProps) {
 
   useEffect(() => {
     // When a new modal mounted, modal count ++
-    modalCount++;
     return () => {
-      // When the modal unmounted modal mount --
-      modalCount--;
       // Clear timer
       clearTimeout(maskRef.__timer);
-      if (isWeb && modalCount === 0) {
-        bodyEl.style.overflow = originalBodyOverflow;
-      }
-      if (!maskRef.__pendingHide) {
-        onHide && onHide();
-      }
+      hide(true);
     }
   }, [])
 

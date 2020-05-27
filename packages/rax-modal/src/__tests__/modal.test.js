@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { createElement, useState, useEffect } from 'rax';
+import { createElement, useState, useEffect, Fragment } from 'rax';
 import { mount } from 'enzyme';
 import View from 'rax-view';
 import Modal from '../../lib';
@@ -7,6 +7,50 @@ import Modal from '../../lib';
 describe('render modal', () => {
   beforeEach(function() {
     jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    document.body.style.overflow = '';
+  });
+
+  it('render one more modal', () => {
+    function Parent({ showModal }) {
+      const [visible, setVisible] = useState(false);
+      useEffect(() => {
+        if (showModal) {
+          setTimeout(() => {
+            setVisible(true);
+          }, 1000);
+        }
+      }, []);
+      return (
+        <View>
+          <Modal
+            visible={visible}
+            animation={false}
+            onMaskClick={() => {
+              setVisible(false);
+            }}
+          >
+            <View>这里是弹窗内容</View>
+          </Modal>
+        </View>
+      );
+    }
+
+    function App() {
+      return <Fragment>
+        <Parent showModal={true} />
+        <Parent />
+      </Fragment>;
+    }
+    const wrapper = mount(<App />);
+    expect(document.body.style.overflow).toBe('');
+    jest.runAllTimers();
+    expect(document.body.style.overflow).toBe('hidden');
+    wrapper.find('.rax-modal-mask').at(1).simulate('click');
+    jest.runAllTimers();
+    expect(document.body.style.overflow).toBe('');
   });
 
   it('should first render is visible', () => {

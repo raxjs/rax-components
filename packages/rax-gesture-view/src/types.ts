@@ -1,8 +1,8 @@
 import { TouchList, TouchEvent, Touch } from 'rax';
 
 export interface GestureViewProps {
-  onHorizontalPan: (e: PanEvent) => void;
-  onVerticalPan: (e: PanEvent) => void;
+  onHorizontalPan?: (e: PanEvent) => void;
+  onVerticalPan?: (e: PanEvent) => void;
   threshold?: number;
 }
 
@@ -12,7 +12,6 @@ export interface PanEvent extends TouchEvent {
   changedTouches: PanList;
   state?: 'start' | 'move' | 'cancel' | 'pan' | 'end';
 }
-
 
 interface PanList extends TouchList {
   [index: number]: Pan;

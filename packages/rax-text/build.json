@@ -6,7 +6,8 @@
         "type": "rax",
         "targets": [
           "web",
-          "weex"
+          "weex",
+          "node"
         ]
       }
     ]

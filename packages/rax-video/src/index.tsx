@@ -25,7 +25,7 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     }
     common.autoPlay = playControl === 'play' || autoPlay;
     if (isWeb && common.autoPlay === false) {
-      delete common.autoPlay;
+      delete common.autoPlay; // In W3C standard, if the attribute is set, it will be treated as true regardless of its value 
     }
     if (isWeChatMiniProgram || isMiniApp) {
       common.autoplay = common.autoPlay;

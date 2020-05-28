@@ -51,8 +51,9 @@ Component({
         } else {
           console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
         }
+        const styleSheet = `font-family: ${fontFamily};${style}`;
         this.setData({
-          styleSheet: {...style, fontFamily}
+          styleSheet: styleSheet
         });
       }
     },

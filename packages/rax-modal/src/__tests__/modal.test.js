@@ -13,7 +13,7 @@ describe('render modal', () => {
     document.body.style.overflow = '';
   });
 
-  it('render one more modal', () => {
+  it('should render original body style, when render one more modal', () => {
     function Parent({ showModal }) {
       const [visible, setVisible] = useState(false);
       useEffect(() => {
@@ -53,7 +53,7 @@ describe('render modal', () => {
     expect(document.body.style.overflow).toBe('');
   });
 
-  it('should first render is visible', () => {
+  it("should let modal visible, when modal's visible property initial value is true", () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(false);
@@ -153,7 +153,7 @@ describe('render modal', () => {
     expect(showModal).toBe(false);
   });
 
-  it('onMaskClick should valid', () => {
+  it('should close the modal, when pass the onMaskClick function to control visible', () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(true);

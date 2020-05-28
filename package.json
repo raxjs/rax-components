@@ -5,6 +5,7 @@
     "npm": "6.x"
   },
   "devDependencies": {
+    "@alib/build-scripts": "^0.1.22",
     "@babel/core": "7.2.0",
     "@babel/plugin-proposal-class-properties": "7.2.0",
     "@babel/plugin-proposal-decorators": "7.2.0",
@@ -23,6 +24,7 @@
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
     "babel-plugin-transform-jsx-stylesheet": "0.6.5",
+    "build-plugin-rax-component": "^0.2.5",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
     "codecov": "^3.1.0",
@@ -56,7 +58,6 @@
     "build": "node ./scripts/compile-packages.js",
     "lint": "npm run lint:nofix -- --fix",
     "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
-    "test": "rax-scripts test",
     "check-and-publish": "node ./scripts/check-and-publish",
     "clean:compile": "rm -rf ./packages/*/lib"
   },

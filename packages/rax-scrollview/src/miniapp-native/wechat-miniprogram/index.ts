@@ -1,5 +1,7 @@
 import fmtEvent from './fmtEvent';
 
+declare const Component: any;
+
 Component({
   data: {
     direction: 'vertical',
@@ -10,6 +12,10 @@ Component({
     scrollAnimationDuration: 400,
   },
   properties: {
+    componentId: {
+      type: String,
+      value: ''
+    },
     className: {
       type: String,
       value: ''

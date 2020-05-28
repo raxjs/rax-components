@@ -1,16 +1,15 @@
 {
   "name": "rax-picture",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Picture component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && rax-scripts test"
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "jest": {
     "moduleNameMapper": {
@@ -54,7 +53,7 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
+    "@types/rax": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
@@ -65,8 +64,6 @@
     "eslint-config-rax": "^0.0.0",
     "jest-transform-css": "^2.0.0",
     "rax": "^1.0.0",
-    "rax-plugin-component": "^0.1.9-0",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.2"
   }

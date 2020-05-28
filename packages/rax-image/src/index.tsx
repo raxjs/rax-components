@@ -36,21 +36,19 @@ function Image({
 
   nativeProps.onLoad = useCallback(
     (e: ImageLoadEvent) => {
-      if (e.success !== null) {
-        if (e.success) {
-          onLoad && onLoad(e);
-        } else {
-          onError && onError(e);
-        }
-      } else if (e.currentTarget != null) {
-        if (
-          e.currentTarget.naturalWidth > 1 &&
-          e.currentTarget.naturalHeight > 1
-        ) {
-          onLoad && onLoad(e);
-        } else {
-          onError && onError(e);
-        }
+      if (e && e.success) {
+        // weex
+        onLoad && onLoad(e);
+      } else if (
+        e &&
+        e.currentTarget &&
+        e.currentTarget.naturalWidth > 1 &&
+        e.currentTarget.naturalHeight > 1
+      ) {
+        // web
+        onLoad && onLoad(e);
+      } else {
+        onError && onError(e);
       }
     },
     [onLoad, onError]

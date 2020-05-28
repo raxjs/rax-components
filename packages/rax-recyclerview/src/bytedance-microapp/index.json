@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "rax-scrollview": "rax-scrollview/lib/miniapp-native/bytedance-microapp/index"
+  }
+}

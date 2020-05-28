@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "rax-scrollview": "rax-scrollview/lib/miniapp/index"
+    "rax-scrollview": "rax-scrollview/lib/miniapp-native/wechat-miniprogram/index"
   }
 }

@@ -2,8 +2,6 @@ import { createElement, Component } from 'rax';
 import View from 'rax-view';
 import { GestureViewProps, PanEvent, PanType } from './types';
 
-const threshold = 5;
-
 const touchActionRatio = 1 / 1;
 
 class GestureViewOnWeb extends Component<GestureViewProps> {
@@ -41,7 +39,7 @@ class GestureViewOnWeb extends Component<GestureViewProps> {
   }
 
   private onTouchMove = (e: PanEvent) => {
-    let { onHorizontalPan, onVerticalPan } = this.props;
+    let { onHorizontalPan, onVerticalPan, threshold = 5 } = this.props;
     let deltaX = e.changedTouches[0].clientX - this.startX;
     let deltaY = e.changedTouches[0].clientY - this.startY;
 
@@ -56,8 +54,7 @@ class GestureViewOnWeb extends Component<GestureViewProps> {
     if (
       onHorizontalPan &&
       Math.abs(deltaX) >= threshold &&
-      Math.abs(deltaY / deltaX) < touchActionRatio &&
-      Math.abs(this.maxDy) < threshold
+      Math.abs(deltaY / deltaX) < touchActionRatio
     ) {
       e.preventDefault();
       this.isPropagationStoppedX = true;
@@ -74,8 +71,7 @@ class GestureViewOnWeb extends Component<GestureViewProps> {
     } else if (
       onVerticalPan &&
       Math.abs(deltaY) >= threshold &&
-      Math.abs(deltaX / deltaY) < touchActionRatio &&
-      Math.abs(this.maxDx) < threshold
+      Math.abs(deltaX / deltaY) < touchActionRatio
     ) {
       e.preventDefault();
       this.isPropagationStoppedY = true;

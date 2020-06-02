@@ -184,6 +184,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             }}
             type={type}
             disabled={disbaled}
+            value={value || defaultValue}
             confirm-type={confirmType}
             random-Number={randomNumber}
             selection-start={selectionStart}

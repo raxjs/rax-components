@@ -38,6 +38,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "~7.11.1",
     "findup": "^0.1.5",
+    "husky": "^4.2.5",
     "jest": "^23.6.0",
     "jest-diff": "^24.9.0",
     "jest-environment-node": "^23.4.0",

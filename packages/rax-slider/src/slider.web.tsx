@@ -19,6 +19,8 @@ class Slider extends Component<SliderProps, any> {
     loop: true,
     autoPlay: false,
     autoPlayInterval: 3000,
+    speed: 500,
+    cssEase: 'ease',
     index: 0,
     paginationStyle: {},
     initialVelocityThreshold: 0.7,
@@ -41,6 +43,8 @@ class Slider extends Component<SliderProps, any> {
   private childRefs: any[];
   private isAutoPlay: boolean;
   private autoPlayTimer: any;
+  private isInTransition: boolean;
+
   public constructor(props: SliderProps) {
     super(props);
     this.index = props.index;
@@ -86,17 +90,34 @@ class Slider extends Component<SliderProps, any> {
   }
 
   public slideTo(index: number, direction: string) {
+    if (this.isInTransition) return;
     if (this.isSwiping) return;
+    if (this.total < 2) return;
+
     if (direction) {
       this.index = direction === SWIPE_LEFT ? index + 1 : index - 1;
     } else {
       this.index = index;
     }
+
+    // Reset slider container's index when out of edge
+    if (this.index > this.total) {
+      this.index = 1;
+    }
+    if (this.index < -1) {
+      this.index = this.total - 1;
+    }
+
+    const { speed, cssEase } = this.props;
+    this.isInTransition = true;
     this.offsetX = this.index * this.width;
     const realIndex = this.loopedIndex();
     // translate3d for performance optimization
     const swipeView = findDOMNode(this.swipeView.current);
     const styleText = `translate3d(${-1 * this.offsetX}rpx, 0rpx, 0rpx)`;
+    swipeView.style.transitionProperty = 'all';
+    swipeView.style.transitionDuration = `${speed}ms`;
+    swipeView.style.transitionTimingFunction = cssEase;
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
     this.loopIdx = this.index < 0 && realIndex !== 0 ? this.total - realIndex : realIndex;
@@ -239,15 +260,45 @@ class Slider extends Component<SliderProps, any> {
             ...style,
             transform: `translate3d(${-1 * this.offsetX}rpx, 0rpx, 0rpx)`
           }}
+          onTransitionEnd={this.handleTransitionEnd}
         >
           {pages}
         </View>
       </SwipeEvent>
     ) : (
-      <View ref={this.swipeView} className="rax-slider-swipe" style={style}>
+      <View
+        ref={this.swipeView}
+        className="rax-slider-swipe"
+        style={style}
+      >
         {pages}
       </View>
     );
+  }
+
+  private handleTransitionEnd = () => {
+    this.isInTransition = false;
+
+    // Reset container's position when it's out of edge and animation ended
+    if (this.index === this.total) {
+      this.index = 0;
+      this.resetSliderIndex();
+    } else if (this.index === -1) {
+      this.index = this.total - 1;
+      this.resetSliderIndex();
+    }
+  }
+
+  private resetSliderIndex = () => {
+    this.offsetX = this.index * this.width;
+    const swipeView = findDOMNode(this.swipeView.current);
+    const styleText = `translate3d(${-1 * this.offsetX}rpx, 0rpx, 0rpx)`;
+    swipeView.style.transitionDuration = '0s';
+    this.childRefs[this.loopIdx].current.style.left =
+      this.offsetX / 750 * document.documentElement.clientWidth + 'px';
+    swipeView.style.transform = styleText;
+    swipeView.style.webkitTransform = styleText;
+    this.forceUpdate();
   }
 
   public render() {

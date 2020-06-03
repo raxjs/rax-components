@@ -16,28 +16,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        data: [
-          '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
-          '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
-          '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png'
-        ]
-      });
-    }, 1000);
-    // setTimeout(() => {
-    //   this.setState({
-    //     data: []
-    //   });
-    // }, 2000);
+    this.setState({
+      data: [
+        '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
+        '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
+        '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png'
+      ]
+    });
   }
 
   onchange = (e) => {
     console.log('change', e);
   }
 
-  onClick = () => {
-    this.inputRef.current.slideTo(0);
+  onClick = (direction) => {
+    this.inputRef.current.slideTo(this.inputRef.current.index,
+      direction === 'prev' ? 'SWIPE_RIGHT' : 'SWIPE_LEFT');
   }
 
   render() {
@@ -47,9 +41,11 @@ class App extends Component {
           className="slider"
           width={750}
           height={500}
-          autoPlay={false}
-          index={2}
+          autoPlay={true}
+          index={0}
           loop={true}
+          speed={300}
+          cssEase="linear"
           showsPagination={true}
           paginationStyle={{
             position: 'absolute',
@@ -61,7 +57,7 @@ class App extends Component {
             itemSelectedColor: 'rgb(255, 80, 0)',
             itemSize: '16rpx'
           }}
-          autoplayTimeout={3000}
+          autoplayInterval={2000}
           onChange={this.onchange}
           ref={this.inputRef}
         >
@@ -70,7 +66,13 @@ class App extends Component {
               <Image className="image" source={{ uri: item }} />
             </View>))}
         </Slider>
-        <View onClick={this.onClick}>Click</View>
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}>
+          <View onClick={this.onClick.bind(this, 'prev')}>prev</View>
+          <View onClick={this.onClick.bind(this, 'next')}>next</View>
+        </View>
       </View>
     );
   }

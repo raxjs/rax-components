@@ -43,6 +43,7 @@
     "jest": "^26.0.1",
     "jest-diff": "^26.0.1",
     "jest-environment-node": "^26.0.1",
+    "husky": "^4.2.5",
     "jest-localstorage-mock": "^2.3.0",
     "jest-transform-css": "^2.0.0",
     "lerna": "^3.18.2",

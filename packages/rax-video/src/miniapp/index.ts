@@ -47,6 +47,11 @@ Component({
     id: '',
     extraInfo: {},
     mobilenetHintType: 1,
+    showMuteBtn: true,
+    showPlayBtn: true,
+    showFullscreenBtn: true,
+    showCenterPlayBtn: true,
+    showThinProgressBar: false,
     ...componentProps,
   },
   methods: {

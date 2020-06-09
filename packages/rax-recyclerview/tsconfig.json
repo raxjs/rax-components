@@ -17,10 +17,7 @@
     "noImplicitThis": false,
     "outDir": "lib",
     "baseUrl": ".",
-    "rootDir": "src",
-    "paths": {
-      "rax": ["node_modules/@rax-types/rax"]
-    }
+    "rootDir": "src"
   },
   "include": [
     "src/**/*"

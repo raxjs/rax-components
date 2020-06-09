@@ -13,7 +13,7 @@ Component({
     height: '',
     autoPlay: false,
     showsPagination: true,
-    loop: false,
+    loop: true,
     index: 0,
     autoPlayInterval: 1000,
     direaction: 'horizontal',

@@ -164,8 +164,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       if (childLayoutProps.length !== 0) {
         console.warn(
           'ScrollView child layout (' +
-            JSON.stringify(childLayoutProps) +
-            ') must be applied through the contentContainerStyle prop.'
+          JSON.stringify(childLayoutProps) +
+          ') must be applied through the contentContainerStyle prop.'
         );
       }
     }
@@ -186,7 +186,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     const scrollerStyle: CSSProperties = {
       ...style
     };
-    if (scrollerStyle.height === null) {
+
+    if (scrollerStyle.height === null || scrollerStyle.height === undefined) {
       scrollerStyle.flex = 1;
     }
     const cls = cx(
@@ -200,9 +201,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     {
       if (
         !showsScrollIndicator &&
-          typeof document !== 'undefined' &&
-          typeof document.getElementById === 'function' &&
-          !document.getElementById(STYLE_NODE_ID)
+        typeof document !== 'undefined' &&
+        typeof document.getElementById === 'function' &&
+        !document.getElementById(STYLE_NODE_ID)
       ) {
         let styleNode = document.createElement('style');
         styleNode.id = STYLE_NODE_ID;

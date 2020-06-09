@@ -2,7 +2,7 @@ export default function throttle(func: (...args: any[]) => void, wait: number) {
   let ctx: any;
   let args: any;
   let rtn: any;
-  let timeoutID: number | NodeJS.Timeout;
+  let timeoutID: number | ReturnType<typeof setTimeout>;
   let last = 0;
 
   function call() {

@@ -3,6 +3,7 @@ import { TouchList, TouchEvent, Touch } from 'rax';
 export interface GestureViewProps {
   onHorizontalPan: (e: PanEvent) => void;
   onVerticalPan: (e: PanEvent) => void;
+  threshold?: number;
 }
 
 export type PanType = 'x' | 'y';

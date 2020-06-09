@@ -1,5 +1,7 @@
 import fmtEvent from './fmtEvent';
 
+declare const Component: any;
+
 const noop = () => {};
 Component({
   data: {
@@ -8,9 +10,10 @@ Component({
     scrollX: 0,
     scrollIntoViewId: '',
     scrollWithAnimation: true,
-    scrollAnimationDuration: 400,
+    scrollAnimationDuration: 400
   },
   props: {
+    id: '',
     className: '',
     style: '',
     disableScroll: false,

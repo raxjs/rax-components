@@ -66,10 +66,14 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
           src: source // single quotes are required around uri, and double quotes can not work
         });
       } else if (isMiniApp) {
-        my.loadFontFace({
-          family: fontFamily,
-          source
-        });
+        if (typeof my.loadFontFace === 'function') {
+          my.loadFontFace({
+            family: fontFamily,
+            source
+          });
+        } else {
+          console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
+        }
       } else if (isWeChatMiniProgram) {
         wx.loadFontFace({
           family: fontFamily,

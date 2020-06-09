@@ -9,6 +9,7 @@
 .rax-scrollview-content-container-horizontal {
     flex-direction: row;
 }
+
 .rax-scrollview-webcontainer {
-    display: block
+    display: block;
 }

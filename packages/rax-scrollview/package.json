@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "3.2.0",
+  "version": "3.2.3",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -9,10 +9,9 @@
   },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "rax-scripts test"
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",
@@ -55,10 +54,10 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@rax-types/rax": "^1.0.5",
     "@types/ali-app": "^1.0.0",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
@@ -67,8 +66,6 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.1.0",
-    "rax-plugin-component": "^0.1.9",
-    "rax-scripts": "^2.0.0",
     "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.3"
   }

@@ -7,11 +7,9 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && rax-scripts build",
-    "start": "rax-scripts start",
-    "prepublishOnly": "npm run build",
-    "miniapp": "rax-scripts start --type 'component-miniapp'",
-    "test": "rax-scripts test"
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,9 +24,9 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
+    "prop-types": "^15.7.2",
     "rax-find-dom-node": "^1.0.0",
     "rax-link": "^1.0.1",
-    "prop-types": "^15.7.2",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1",
     "universal-env": "^3.0.0",
@@ -39,18 +37,18 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "rax-scrollview": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
     "driver-dom": "^1.0.0",
+    "driver-universal": "^1.0.0",
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "rax": "^1.0.0",
-    "rax-scripts": "^2.0.0",
-    "driver-universal": "^1.0.0",
+    "rax-scrollview": "^1.0.0",
     "rax-test-renderer": "^1.0.0"
   },
   "miniappConfig": {

@@ -70,6 +70,22 @@ Component({
           videoIns.play();
         }
       }
+    },
+    showMuteBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showPlayBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showFullscreenBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showCenterPlayBtn: {
+      type: Boolean,
+      value: true,
     }
   },
   options: {

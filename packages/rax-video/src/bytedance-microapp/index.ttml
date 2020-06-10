@@ -7,6 +7,10 @@
     style="{{styleSheet}}" 
     loop="{{loop}}"
     poster="{{poster}}"
+    show-fullscreen-btn="{{showFullscreenBtn}}"
+    show-play-btn="{{showPlayBtn}}"
+    show-mute-btn="{{showMuteBtn}}"
+    show-center-play-btn="{{showCenterPlayBtn}}"
     bindtap="onClick"
     bindended="onEnded">
 </video>

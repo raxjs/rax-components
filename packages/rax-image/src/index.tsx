@@ -42,8 +42,8 @@ function Image({
       } else if (
         e &&
         e.currentTarget &&
-        e.currentTarget.naturalWidth > 1 &&
-        e.currentTarget.naturalHeight > 1
+        e.currentTarget.naturalWidth > 0 &&
+        e.currentTarget.naturalHeight > 0
       ) {
         // web
         onLoad && onLoad(e);

@@ -1,8 +1,6 @@
 import {
   createElement,
-  useState,
-  forwardRef,
-  ForwardRefExoticComponent
+  useState
 } from 'rax';
 import View from 'rax-view';
 import Image from 'rax-image';
@@ -62,126 +60,122 @@ function getQualitySuffix(highQuality, suffix) {
   return highQuality ? _suffix[0] : _suffix[1];
 }
 
-const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
-  (props, ref) => {
-    let {
-      children,
-      className,
-      style = {},
-      resizeMode,
-      width,
-      height,
-      placeholder = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==',
-      source = {
-        uri: ''
-      },
-      autoRemoveScheme = true,
-      autoReplaceDomain = true,
-      autoScaling = true,
-      autoWebp = true,
-      ignoreGif = true,
-      autoCompress = true,
-      highQuality = true,
-      compressSuffix = ['Q75', 'Q50'],
-      defaultHeight = '750rpx',
-      lazyload = false,
-      autoPixelRatio = true
-    } = props;
-    let { uri } = source;
-    let nativeProps = {
-      ...props
-    };
+const Picture = (props: PictureProps) => {
+  let {
+    children,
+    className,
+    style = {},
+    resizeMode,
+    width,
+    height,
+    placeholder = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==',
+    source = {
+      uri: ''
+    },
+    autoRemoveScheme = true,
+    autoReplaceDomain = true,
+    autoScaling = true,
+    autoWebp = true,
+    ignoreGif = true,
+    autoCompress = true,
+    highQuality = true,
+    compressSuffix = ['Q75', 'Q50'],
+    defaultHeight = '750rpx',
+    lazyload = false,
+    autoPixelRatio = true
+  } = props;
+  let { uri } = source;
+  let nativeProps = {
+    ...props
+  };
 
-    const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-    let sWidth = style.width, // style width of picture
-      sHeight = style.height; // style width of picture
+  let sWidth = style.width, // style width of picture
+    sHeight = style.height; // style width of picture
 
-    // according to the original height and width of the picture
-    if (!sHeight && sWidth && width && height) {
-      const pScaling =
-        width / (typeof sWidth === 'string' ? parseInt(sWidth, 10) : sWidth);
-      sHeight = parseInt(height / pScaling + '', 10);
-    }
+  // according to the original height and width of the picture
+  if (!sHeight && sWidth && width && height) {
+    const pScaling =
+      width / (typeof sWidth === 'string' ? parseInt(sWidth, 10) : sWidth);
+    sHeight = parseInt(height / pScaling + '', 10);
+  }
 
-    let newStyle = Object.assign(
-      {
-        height: sHeight
-      },
-      style
-    );
+  let newStyle = Object.assign(
+    {
+      height: sHeight
+    },
+    style
+  );
 
-    if (uri) {
-      if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
-        // devicePixelRatio >= 2
-        if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
-          sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
-        }
+  if (uri) {
+    if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
+      // devicePixelRatio >= 2
+      if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
+        sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
       }
-      uri = optimizer(uri, {
-        ignoreGif: ignoreGif,
-        ignorePng: true,
-        removeScheme: autoRemoveScheme,
-        replaceDomain: autoReplaceDomain,
-        scalingWidth: autoScaling ? sWidth : 0,
-        webp: autoWebp && (isSupportJPG && isSupportPNG),
-        compressSuffix: autoCompress
-          ? getQualitySuffix(highQuality, compressSuffix)
-          : ''
-      });
     }
+    uri = optimizer(uri, {
+      ignoreGif: ignoreGif,
+      ignorePng: true,
+      removeScheme: autoRemoveScheme,
+      replaceDomain: autoReplaceDomain,
+      scalingWidth: autoScaling ? sWidth : 0,
+      webp: autoWebp && (isSupportJPG && isSupportPNG),
+      compressSuffix: autoCompress
+        ? getQualitySuffix(highQuality, compressSuffix)
+        : ''
+    });
+  }
 
-    if (resizeMode) {
-      newStyle.resizeMode = resizeMode;
-    }
+  if (resizeMode) {
+    newStyle.resizeMode = resizeMode;
+  }
 
-    let url = placeholder;
-    if (lazyload) {
-      nativeProps.onAppear = () => setVisible(true);
-      if (visible) {
-        url = uri;
-      }
-    } else {
+  let url = placeholder;
+  if (lazyload) {
+    nativeProps.onAppear = () => setVisible(true);
+    if (visible) {
       url = uri;
     }
-
-    if (children) {
-      return (
-        <View
-          {...nativeProps}
-          className={className}
-          style={{
-            ...newStyle,
-            backgroundImage: 'url(' + url + ')',
-            backgroundSize: resizeMode || 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition:
-              resizeMode === 'cover' || resizeMode === 'contain'
-                ? 'center'
-                : null,
-            height: newStyle.height ? newStyle.height : defaultHeight
-          }}
-          data-once={true}
-        >
-          {children}
-        </View>
-      );
-    } else {
-      return (
-        <Image
-          {...nativeProps}
-          ref={ref}
-          className={className}
-          style={newStyle}
-          data-once={true}
-          source={{
-            uri: url
-          }}
-        />
-      );
-    }
+  } else {
+    url = uri;
   }
-);
-Picture.displayName = 'Picture';
+
+  if (children) {
+    return (
+      <View
+        {...nativeProps}
+        className={className}
+        style={{
+          ...newStyle,
+          backgroundImage: 'url(' + url + ')',
+          backgroundSize: resizeMode || 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition:
+            resizeMode === 'cover' || resizeMode === 'contain'
+              ? 'center'
+              : null,
+          height: newStyle.height ? newStyle.height : defaultHeight
+        }}
+        data-once={true}
+      >
+        {children}
+      </View>
+    );
+  } else {
+    return (
+      <Image
+        {...nativeProps}
+        className={className}
+        style={newStyle}
+        data-once={true}
+        source={{
+          uri: url
+        }}
+      />
+    );
+  }
+}
 
 export default Picture;

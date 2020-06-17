@@ -7,9 +7,12 @@ import {
   useState,
   useImperativeHandle
 } from 'rax';
+import cx from 'classnames';
 import { ScrollViewProps } from '../types';
+import '../index.css';
 
 const ANIMATION_DURATION = 400;
+const baseCls = 'rax-scrollview';
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
@@ -65,8 +68,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
 
-        setScrollTop(y);
-        setScrollLeft(x);
+        if (horizontal) {
+          setScrollLeft(x + Math.random() * 0.1);
+        } else {
+          setScrollTop(y + Math.random() * 0.1);
+        }
         setScrollWithAnimation(animated);
         setScrollAnimationDuration(duration);
       },
@@ -93,11 +99,17 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       scrollerStyle.flex = 1;
     }
 
+    const cls = cx(
+      baseCls,
+      `${baseCls}-${horizontal ? 'horizontal' : 'vertical'}`,
+      className
+    );
+
     return (
       <scroll-view
         {...props}
         ref={scrollerRef}
-        className={className}
+        className={cls}
         style={scrollerStyle}
         scroll-top={scrollTop}
         scroll-left={scrollLeft}

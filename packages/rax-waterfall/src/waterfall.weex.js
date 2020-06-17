@@ -17,6 +17,7 @@ class Waterfall extends Component {
       loadmoreretry: 0,
     };
     this.waterfall = createRef();
+    this.testRef = createRef();
   }
 
   resetScroll = () => {
@@ -26,6 +27,19 @@ class Waterfall extends Component {
       });
       this.waterfall.current.resetLoadmore && this.waterfall.current.resetLoadmore(); // for weex 0.9+.
     }
+  }
+
+  scrollTo(options) {
+    const { x = 0, y = 0, animated = true } = options || {};
+
+    const dom = __weex_require__('@weex-module/dom');
+    const contentContainer = this.testRef.current;
+
+    contentContainer &&
+      dom.scrollToElement(contentContainer, {
+        offset: x || y || 0,
+        animated
+      });
   }
 
   render() {
@@ -54,7 +68,11 @@ class Waterfall extends Component {
     });
 
     dataSource && dataSource.forEach((item, index) => {
-      cells.push(<cell key={'waterfall_cell_' + index} {...cellProps}>{renderItem(item, index)}</cell>);
+      if (index === 0) {
+        cells.push(<cell key={'waterfall_cell_' + index} ref={this.testRef} {...cellProps} >{renderItem(item, index)}</cell>);
+      } else {
+        cells.push(<cell key={'waterfall_cell_' + index} {...cellProps} >{renderItem(item, index)}</cell>);
+      }
     });
 
     cells = cells.concat(footer.map((child, index) => {

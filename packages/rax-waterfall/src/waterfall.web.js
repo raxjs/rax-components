@@ -20,7 +20,7 @@ class WebFall extends PureComponent {
   };
 
   render() {
-    const {renderItem = () => {}, dataSource, columnCount = 1} = this.props;
+    const {renderItem = () => {}, dataSource, columnCount = 1, leftGap = 0, rightGap = 0} = this.props;
     let columns = [];
     let moduleHeights = [];
 
@@ -44,7 +44,12 @@ class WebFall extends PureComponent {
       columns[targetColumnIndex].push(item);
     });
 
-    return (<View style={styles.waterfallWrap}>
+    const wrapStyle = Object.assign({}, styles.waterfallWrap, {
+      marginLeft: leftGap + 'rpx',
+      marginRight: rightGap + 'rpx'
+    });
+
+    return (<View style={wrapStyle}>
       {columns.map((column, index) => {
         return (<View key={'column' + index} style={styles.waterfallColumn}>
           {column.map((item, j) => {
@@ -69,6 +74,10 @@ class Waterfall extends Component {
 
   resetScroll = () => {
     this.scrollview.current && this.scrollview.current.resetScroll();
+  }
+
+  scrollTo = (options) => {
+    this.scrollview.current && this.scrollview.current.scrollTo(options);
   }
 
   render() {

@@ -27,10 +27,7 @@ function Time(props) {
         null
     }
     {
-      numList.map((time, index) => <Text style={index == numListLength ? timeStyle : secondStyle}>
-        {time}
-      </Text>
-      )
+      numList.map((time, index) => <Text style={index === numListLength ? secondStyle : timeStyle}>{time}</Text>)
     }
   </View>;
 };

@@ -1,2 +1,3 @@
-<web-view src="{{url}}" onMessage="onMessage">
+<wxs src="./tools.wxs" module="tools" />
+<web-view src="{{tools.genFixedUrl(src, urlParam)}}" onMessage="onMessage">
 </web-view>

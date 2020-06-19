@@ -1,2 +1,3 @@
-<web-view src="{{url}}" onMessage="onMessage">
+<import-sjs name="genFixedUrl" from="./genFixedUrl.sjs"/>
+<web-view src="{{genFixedUrl(src, urlParam)}}" onMessage="onMessage">
 </web-view>

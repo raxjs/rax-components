@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render } from 'rax';
-import DU from 'driver-universal';
-import { isWeex } from 'universal-env';
+import DriverUniversal from 'driver-universal';
 import Embed from '../src/index';
 
 const urlParam = {
@@ -9,6 +8,6 @@ const urlParam = {
   paramTwo: 456
 };
 render(<Embed urlParam={urlParam} src={'http://taobao.com'} useIframeInWeb={true} style={{
-  height: 750,
-  width: 750
-}} />, document.body, { driver: DU });
+  height: '750rpx',
+  width: '750rpx'
+}} />, document.body, { driver: DriverUniversal });

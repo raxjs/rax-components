@@ -11,7 +11,6 @@ module.exports = {
     'jest-localstorage-mock'
   ],
   'setupFilesAfterEnv': [
-    './scripts/jest/setupTests.js',
     './scripts/jest/setupEnzyme.js',
   ],
   'moduleNameMapper': {
@@ -24,7 +23,6 @@ module.exports = {
     '/__files__/',
     '/lib/',
     '/dist/',
-    '/es/',
   ]
 };
 

@@ -17,7 +17,7 @@ class Waterfall extends Component {
       loadmoreretry: 0,
     };
     this.waterfall = createRef();
-    this.testRef = createRef();
+    this.topRef = createRef();
   }
 
   resetScroll = () => {
@@ -33,7 +33,7 @@ class Waterfall extends Component {
     const { x = 0, y = 0, animated = true } = options || {};
 
     const dom = __weex_require__('@weex-module/dom');
-    const contentContainer = this.testRef.current;
+    const contentContainer = this.topRef.current;
 
     contentContainer &&
       dom.scrollToElement(contentContainer, {
@@ -69,7 +69,7 @@ class Waterfall extends Component {
 
     dataSource && dataSource.forEach((item, index) => {
       if (index === 0) {
-        cells.push(<cell key={'waterfall_cell_' + index} ref={this.testRef} {...cellProps} >{renderItem(item, index)}</cell>);
+        cells.push(<cell key={'waterfall_cell_' + index} ref={this.topRef} {...cellProps} >{renderItem(item, index)}</cell>);
       } else {
         cells.push(<cell key={'waterfall_cell_' + index} {...cellProps} >{renderItem(item, index)}</cell>);
       }

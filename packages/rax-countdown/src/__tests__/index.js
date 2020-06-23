@@ -3,17 +3,6 @@ import renderer from 'rax-test-renderer';
 import Countdown from '../';
 
 describe('CountDown', () => {
-  function createNodeElement(tagName) {
-    return {
-      nodeType: 1,
-      tagName: tagName.toUpperCase(),
-      attributes: {},
-      style: {},
-      childNodes: [],
-      parentNode: null
-    };
-  }
-
   beforeEach(function() {
     jest.useFakeTimers();
   });

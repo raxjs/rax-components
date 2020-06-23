@@ -6,12 +6,17 @@
 module.exports = {
   'collectCoverage': true,
   'verbose': true,
-  'transform': {
-    '^.+\\.js$': 'babel-jest'
-  },
   'setupFiles': [
+    './scripts/jest/setupEnvironment.js',
     'jest-localstorage-mock'
   ],
+  'setupFilesAfterEnv': [
+    './scripts/jest/setupTests.js',
+    './scripts/jest/setupEnzyme.js',
+  ],
+  'moduleNameMapper': {
+    '\\.(css|less|scss|sass)$': 'jest-transform-css'
+  },
   'testPathIgnorePatterns': [
     '/node_modules/',
     '/fixtures/',
@@ -19,5 +24,7 @@ module.exports = {
     '/__files__/',
     '/lib/',
     '/dist/',
+    '/es/',
   ]
 };
+

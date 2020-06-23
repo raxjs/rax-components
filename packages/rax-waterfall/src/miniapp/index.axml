@@ -6,7 +6,7 @@
   scroll-left="{{scrollX}}"
   scroll-with-animation="{{scrollWithAnimation}}"
   scroll-animation-duration="{{scrollAnimationDuration}}"
-  lower-threshold="{{endReachedThreshold}}">
+  lower-threshold="{{onEndReachedThreshold}}">
   <slot name="renderHeader"/>
   <view class="waterfall-wrap" style="margin-left:{{leftGap}}rpx;margin-right:{{rightGap}}rpx;">
     <view a:for="{{columns}}" a:for-index="index_c" a:for-item="column" style="width:{{columnWidth}}rpx">

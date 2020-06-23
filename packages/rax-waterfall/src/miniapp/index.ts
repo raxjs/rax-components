@@ -11,7 +11,7 @@ Component({
   },
   props: {
     onEndReached: () => { },
-    endReachedThreshold: 500,
+    onEndReachedThreshold: 500,
     columnWidth: '750rpx',
     columnCount: 1,
     dataSource: [],

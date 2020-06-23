@@ -19,7 +19,7 @@ class App extends Component {
         </View>
         <View style={styles.container}>
           <Countdown
-            timeRemaining={100000000000}
+            timeRemaining={100000000}
             timeStyle={{
               'color': '#007457',
               'backgroundColor': 'red',

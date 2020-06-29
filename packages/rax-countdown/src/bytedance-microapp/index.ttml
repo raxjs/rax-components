@@ -2,14 +2,13 @@
     <block tt:for="{{parsedTime}}">
       <view class="_count_down_align" style="{{item.style}}">
         <block tt:if="{{item && item.value && item.isTime}}">
-          <image class="background" tt:if="{{ timeBackground && timeBackground.uri }}" mode="scaleToFill" src="{{ timeBackground.uri }}" style="{{_timeBackgroundStyle}}" />
-          <text 
-            style="{{_timeStyle}}">{{item.value[0]}}</text>
+          <block tt:for="{{item.value}}" tt:for-item="time" tt:for-index="idx" >
+            <image class="background" tt:if="{{ timeBackground && timeBackground.uri }}" mode="scaleToFill" src="{{ timeBackground.uri }}" style="{{_timeBackgroundStyle}}" />
+            <text tt:if="{{idx == item.value.length - 1 && index == parsedTime.length - 2}}" style="{{_secondStyle || _timeStyle}}">{{time}}</text>
+            <text tt:else style="{{_timeStyle}}">{{time}}</text>
+          </block>
         </block>
         <text tt:else> {{ item.value }}</text>
-        <block tt:if="{{item && item.value && item.value[1]}}">
-          <text tt:if="{{item.isTime}}" style="{{_secondStyle || _timeStyle}}">{{item.value[1]}}</text>
-        </block>
       </view>
     </block>
 </view>

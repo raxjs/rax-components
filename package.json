@@ -63,7 +63,8 @@
     "lint": "npm run lint:nofix -- --fix",
     "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
     "check-and-publish": "node ./scripts/check-and-publish",
-    "clean:compile": "rm -rf ./packages/*/lib"
+    "clean:compile": "rm -rf ./packages/*/lib",
+    "test": "jest --logHeapUsage --detectOpenHandles"
   },
   "config": {
     "ghooks": {
@@ -73,13 +74,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "name": "rax-components",
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "jest-transform-css"
-    },
-    "setupFilesAfterEnv": [
-      "./setup.js"
-    ]
-  }
+  "name": "rax-components"
 }

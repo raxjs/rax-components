@@ -11,21 +11,24 @@ function isFunction(functionToCheck) {
 
 function Time(props) {
   const { num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle } = props;
-  const displayNum = num < 0 ? 0 : num;
-  const displayFirstNum = displayNum < 10 ? 0 : displayNum.toString().slice(0, 1);
-  const displaySecondNum = displayNum < 10 ? displayNum : displayNum.toString().slice(1);
+  let displayNum = num.toString();
+  if (num < 0) {
+    displayNum = '00';
+  } else if (num < 10) {
+    displayNum = '0' + num;
+  }
+
+  const numList = displayNum.split('');
+  const numListLength = numList.length - 1;
   return <View className="item" style={{...styles.item, ...timeWrapStyle}}>
     {
       timeBackground ?
         <Image className="background" source={timeBackground} style={{...styles.background, ...timeBackgroundStyle}} /> :
         null
     }
-    <Text style={timeStyle}>
-      {'' + displayFirstNum}
-    </Text>
-    <Text style={secondStyle}>
-      {'' + displaySecondNum}
-    </Text>
+    {
+      numList.map((time, index) => <Text key={`time_${index}`} style={index === numListLength ? secondStyle : timeStyle}>{time}</Text>)
+    }
   </View>;
 };
 

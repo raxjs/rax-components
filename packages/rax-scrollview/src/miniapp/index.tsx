@@ -67,7 +67,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-
+        
+        // Scroll event caused by users can not change scroll-top or scroll-left, so here we add some slight random element to force update 
         if (horizontal) {
           setScrollLeft(x + Math.random() * 0.1);
         } else {

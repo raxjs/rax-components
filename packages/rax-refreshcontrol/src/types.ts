@@ -14,19 +14,28 @@ export interface RecyclerViewProps extends Rax.Attributes {
    */
   refreshing: boolean;
   /**
-   * listen for drop-down refresh behavior
-   * (监听下拉刷新的行为)
+   * listen for drop-down refresh behavior, trigger when drop-down finish
+   * (监听下拉刷新的行为，下拉完成时触发)
    * @param {WeexRefreshEvent} event
    */
   onRefresh?: (event: WeexRefreshEvent) => void;
+  /**
+   * listen for pullingdown event
+   * （监听下拉事件）
+   */
+  onPullingdown?: (event: WeexPullingdownEvent) => void;
 
   children?: Rax.RaxElement;
+}
+
+export interface WeexRefreshEvent {
+  type: string;
 }
 
 /**
  * reference documents(参考文档)：https://weex.apache.org/cn/references/components/refresh.html
  */
-export interface WeexRefreshEvent {
+export interface WeexPullingdownEvent {
 
   /**
    * two times before and after the callback sliding distance difference

@@ -1,6 +1,6 @@
 {
   "name": "rax-refreshcontrol",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RefreshControl component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

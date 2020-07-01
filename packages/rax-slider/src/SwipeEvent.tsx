@@ -13,11 +13,11 @@ const directions = {
 };
 
 class SwipeEvent extends Component<
-SwipeEventProps,
-{
-  swipe: any;
-}
-> {
+  SwipeEventProps,
+  {
+    swipe: any;
+  }
+  > {
   public static propTypes = {
     onSwipeBegin: PropTypes.func,
     onSwipe: PropTypes.func,
@@ -109,7 +109,8 @@ SwipeEventProps,
             : false;
 
           if (validHorizontal) {
-            evt.cancelable && evt.preventDefault && evt.preventDefault();
+            // https://caniuse.com/#search=cancelable
+            (evt.cancelable === undefined || evt.cancelable) && evt.preventDefault && evt.preventDefault();
             this.velocityProp = 'vx';
             this.distanceProp = 'dx';
             // left

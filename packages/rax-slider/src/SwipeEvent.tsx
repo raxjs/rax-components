@@ -13,11 +13,11 @@ const directions = {
 };
 
 class SwipeEvent extends Component<
-  SwipeEventProps,
-  {
-    swipe: any;
-  }
-  > {
+SwipeEventProps,
+{
+  swipe: any;
+}
+> {
   public static propTypes = {
     onSwipeBegin: PropTypes.func,
     onSwipe: PropTypes.func,

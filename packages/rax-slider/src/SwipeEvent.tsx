@@ -109,7 +109,7 @@ SwipeEventProps,
             : false;
 
           if (validHorizontal) {
-            evt.preventDefault && evt.preventDefault();
+            evt.cancelable && evt.preventDefault && evt.preventDefault();
             this.velocityProp = 'vx';
             this.distanceProp = 'dx';
             // left

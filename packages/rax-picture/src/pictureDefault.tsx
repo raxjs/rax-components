@@ -8,6 +8,7 @@ import View from 'rax-view';
 import Image from 'rax-image';
 import { isNode } from 'universal-env';
 import { devicePixelRatio } from 'universal-device';
+import useMountedState from 'rax-use-mounted-state';
 
 import optimizer from './optimizer/index';
 import { isSupport } from './webp';
@@ -93,6 +94,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     };
 
     const [visible, setVisible] = useState(false);
+    const isMounted = useMountedState();
 
     let sWidth = style.width, // style width of picture
       sHeight = style.height; // style width of picture
@@ -137,7 +139,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
 
     let url = placeholder;
     if (lazyload) {
-      nativeProps.onAppear = () => setVisible(true);
+      nativeProps.onAppear = () => isMounted() && setVisible(true);
       if (visible) {
         url = uri;
       }

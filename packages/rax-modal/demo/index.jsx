@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { createElement, render, useState } from 'rax';
+import { createElement, render, useState, useEffect } from 'rax';
 import DriverUniversal from 'driver-universal';
 import Modal from '../src/index';
 import Text from 'rax-text';
@@ -7,6 +7,12 @@ import View from 'rax-view';
 
 const Demo = props => {
   const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('show');
+      setVisible(true);
+    }, 2000)
+  }, [])
   return (
     [
       <View style={{
@@ -17,7 +23,8 @@ const Demo = props => {
       </View>,
       <Modal
         visible={visible}
-        animation={false}
+        animation={true}
+        duration={[100, 10000]}
         onHide={() => {
           setVisible(false);
         }}

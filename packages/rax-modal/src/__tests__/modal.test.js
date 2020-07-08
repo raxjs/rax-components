@@ -157,7 +157,9 @@ describe('render modal', () => {
     let showModal = false;
     function App() {
       const [visible, setVisible] = useState(true);
-      showModal = true;
+      useEffect(() => {
+        showModal = true;
+      }, []);
       return (
         <View>
           <Modal
@@ -177,9 +179,41 @@ describe('render modal', () => {
       );
     }
     const wrapper = mount(<App />);
+    jest.runAllTimers();
     expect(showModal).toBe(true);
     wrapper.find('.rax-modal-mask').at(1).simulate('click');
     jest.runAllTimers();
     expect(showModal).toBe(false);
+  });
+
+  it('should show the modal, when the hide animation is not over yet', () => {
+    let showModal = false;
+    function App(props) {
+      const [visible, setVisible] = useState(true);
+      return (
+        <Modal
+          visible={visible}
+          maskCanBeClick={true}
+          animation={true}
+        >
+          <View
+            id="view"
+            onClick={() => {
+              setVisible(false);
+              setTimeout(() => {
+                setVisible(true);
+              }, 200);
+            }}
+          >
+            点击我
+          </View>
+        </Modal>
+      );
+    }
+    const wrapper = mount(<App />);
+    jest.runAllTimers();
+    wrapper.find('#view').at(1).simulate('click');
+    jest.runAllTimers();
+    expect(document.body.style.overflow).toBe('hidden');
   });
 });

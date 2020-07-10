@@ -53,31 +53,34 @@ Component({
         const { uri, codePoint } = newValue || this.properties.source || {};
         const { fontFamily, style = '' } = this.properties;
         if (uri && !codePoint && !fontFamily) {
+          // use uri as image url
           this.setData({
             isImage: true,
             style
           });
           return;
         }
-        if (fontFamily) {
-          const fontFile = this.data.fontCache[fontFamily];
-          if (!fontFile) {
-            this.data.fontCache[fontFamily] = uri;
-            wx.loadFontFace({
-              family: fontFamily,
-              source: "url('" + uri + "')"
-            });
-          } else if (fontFile !== uri) {
-            console.error(`font-family ${fontFamily} should be unique!`);
-          }
+        if (!fontFamily) {
+          // need't load font, just set style
           this.setData({
-            style: `font-family: ${fontFamily};${style}`
+            style
           });
-        } else {
-          this.setData({
-            style: style
-          });
+          return;
         }
+        // load font and set style prop with new font-family
+        const fontFile = this.data.fontCache[fontFamily];
+        if (!fontFile) {
+          this.data.fontCache[fontFamily] = uri;
+          wx.loadFontFace({
+            family: fontFamily,
+            source: "url('" + uri + "')"
+          });
+        } else if (fontFile !== uri) {
+          console.error(`font-family ${fontFamily} should be unique!`);
+        }
+        this.setData({
+          style: `font-family:${fontFamily};${style}`
+        });
       }
     },
     onTap(e) {

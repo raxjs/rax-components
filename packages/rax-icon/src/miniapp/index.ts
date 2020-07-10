@@ -37,31 +37,35 @@ Component({
       const { uri, codePoint } = props.source || {};
       const { fontFamily, style = '' } = props;
       if (uri && !codePoint && !fontFamily) {
+        // use uri as image url
         this.setData({
           isImage: true,
           styleSheet: style
         });
         return;
       }
-      if (fontFamily) {
-        // loadFontFace only work for current page
-        if (typeof my.loadFontFace === 'function') {
-          my.loadFontFace({
-            family: fontFamily,
-            source: "url('" + uri + "')"
-          });
-        } else {
-          console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
-        }
-        // styleSheet receives string, and style is formated to string in compile stage.
-        this.setData({
-          styleSheet: `font-family: ${fontFamily};${style}`
-        });
-      } else {
+      if (!fontFamily) {
+        // need't load font, just set style
         this.setData({
           styleSheet: style
         });
+        return;
       }
+      // load font and set style prop with new font-family
+      if (typeof my.loadFontFace === 'function') {
+        // loadFontFace only work for current page
+        my.loadFontFace({
+          family: fontFamily,
+          source: "url('" + uri + "')"
+        });
+      } else {
+        // some container (such as dingtalk's v1 engine) not support loadFontFace
+        console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
+      }
+      // styleSheet receives string, and style is formated to string in compile stage.
+      this.setData({
+        styleSheet: `font-family:${fontFamily};${style}`
+      });
     },
     onTap(e) {
       const event = fmtEvent(this.props, e);

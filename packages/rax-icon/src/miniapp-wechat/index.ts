@@ -75,7 +75,7 @@ Component({
           });
         } else {
           this.setData({
-            styleSheet: style
+            style: style
           });
         }
       }

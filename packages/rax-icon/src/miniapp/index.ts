@@ -36,12 +36,14 @@ Component({
       const props = nextProps || this.props;
       const { uri, codePoint } = props.source || {};
       const { fontFamily, style = '' } = props;
-      if (uri && !codePoint) {
+      if (uri && !codePoint && !fontFamily) {
         this.setData({
           isImage: true,
           styleSheet: style
         });
-      } else {
+        return;
+      }
+      if (fontFamily) {
         // loadFontFace only work for current page
         if (typeof my.loadFontFace === 'function') {
           my.loadFontFace({

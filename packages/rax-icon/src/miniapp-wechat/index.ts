@@ -52,12 +52,14 @@ Component({
       } else {
         const { uri, codePoint } = newValue || this.properties.source || {};
         const { fontFamily, style = '' } = this.properties;
-        if (uri && !codePoint) {
+        if (uri && !codePoint && !fontFamily) {
           this.setData({
             isImage: true,
             style
           });
-        } else {
+          return;
+        }
+        if (fontFamily) {
           const fontFile = this.data.fontCache[fontFamily];
           if (!fontFile) {
             this.data.fontCache[fontFamily] = uri;

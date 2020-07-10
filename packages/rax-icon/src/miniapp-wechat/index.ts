@@ -73,6 +73,10 @@ Component({
           this.setData({
             style: `font-family: ${fontFamily};${style}`
           });
+        } else {
+          this.setData({
+            styleSheet: style
+          });
         }
       }
     },

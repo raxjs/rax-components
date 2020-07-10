@@ -41,51 +41,57 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
     if (uri && !codePoint && !fontFamily) {
       return <Image {...rest} source={{ uri }} style={style} />;
     }
-    const fontFile = fontCache.get(fontFamily);
-    if (!fontFile) {
-      fontCache.set(fontFamily, uri);
-      const source = `url('${uri}')`;
-      if (isWeb) {
-        if (window.FontFace) {
-          const iconfont = new window.FontFace(fontFamily, source);
-          document.fonts.add(iconfont);
-        } else {
-          const iconFontStyles = `@font-face {
-                src: ${source};
-                font-family: ${fontFamily};
-              }`;
-          // Create stylesheet
-          const style = document.createElement('style');
-          style.type = 'text/css';
-          style.appendChild(document.createTextNode(iconFontStyles));
-          document.head.appendChild(style);
-        }
-      } else if (isWeex) {
-        domModule.addRule('fontFace', {
-          fontFamily,
-          src: source // single quotes are required around uri, and double quotes can not work
-        });
-      } else if (isMiniApp) {
-        if (typeof my.loadFontFace === 'function') {
-          my.loadFontFace({
+    const newStyle = {
+      ...style
+    };
+    if (fontFamily) {
+      const fontFile = fontCache.get(fontFamily);
+      if (!fontFile) {
+        fontCache.set(fontFamily, uri);
+        const source = `url('${uri}')`;
+        if (isWeb) {
+          if (window.FontFace) {
+            const iconfont = new window.FontFace(fontFamily, source);
+            document.fonts.add(iconfont);
+          } else {
+            const iconFontStyles = `@font-face {
+                  src: ${source};
+                  font-family: ${fontFamily};
+                }`;
+            // Create stylesheet
+            const style = document.createElement('style');
+            style.type = 'text/css';
+            style.appendChild(document.createTextNode(iconFontStyles));
+            document.head.appendChild(style);
+          }
+        } else if (isWeex) {
+          domModule.addRule('fontFace', {
+            fontFamily,
+            src: source // single quotes are required around uri, and double quotes can not work
+          });
+        } else if (isMiniApp) {
+          if (typeof my.loadFontFace === 'function') {
+            my.loadFontFace({
+              family: fontFamily,
+              source
+            });
+          } else {
+            console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
+          }
+        } else if (isWeChatMiniProgram) {
+          wx.loadFontFace({
             family: fontFamily,
             source
           });
-        } else {
-          console.warn('Your container may not support my.loadFontFace! Please check it and use local fontfamily.');
         }
-      } else if (isWeChatMiniProgram) {
-        wx.loadFontFace({
-          family: fontFamily,
-          source
-        });
+      } else if (fontFile !== uri) {
+        console.error(`font-family ${fontFamily} should be unique!`);
+        return null;
       }
-    } else if (fontFile !== uri) {
-      console.error(`font-family ${fontFamily} should be unique!`);
-      return null;
+      newStyle.fontFamily = fontFamily;
     }
     return (
-      <Text {...rest} ref={ref} style={{ ...style, fontFamily }}>
+      <Text {...rest} ref={ref} style={newStyle}>
         {codePoint}
       </Text>
     );

@@ -41,8 +41,16 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
     if (uri && !codePoint && !fontFamily) {
       return <Image {...rest} source={{ uri }} style={style} />;
     }
+    if (!fontFamily) {
+      return (
+        <Text {...rest} ref={ref} style={style}>
+          {codePoint}
+        </Text>
+      );
+    }
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {
+      // this font not be loaded yet, load now
       fontCache.set(fontFamily, uri);
       const source = `url('${uri}')`;
       if (isWeb) {
@@ -85,7 +93,10 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
       return null;
     }
     return (
-      <Text {...rest} ref={ref} style={{ ...style, fontFamily }}>
+      <Text {...rest} ref={ref} style={{
+        ...style,
+        fontFamily
+      }}>
         {codePoint}
       </Text>
     );

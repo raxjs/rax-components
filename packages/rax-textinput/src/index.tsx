@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isWeChatMiniProgram } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
@@ -111,7 +111,9 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
-        forceUpdate(tick => tick + 1);
+        if (!isWeChatMiniProgram) {
+          forceUpdate(tick => tick + 1);
+        }
       },
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus,

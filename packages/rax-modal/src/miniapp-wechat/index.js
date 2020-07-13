@@ -7,9 +7,9 @@ const triggleVisible = (instance, visible) => {
     },
     () => {
       if (visible) {
-        instance.triggerEvent('onShow');
+        instance.triggerEvent('Show');
       } else {
-        instance.triggerEvent('onHide');
+        instance.triggerEvent('Hide');
       }
     }
   );
@@ -92,10 +92,10 @@ Component({
     onClick() {
       const { maskCanBeClick } = this.properties;
       if (maskCanBeClick) {
-        this.triggerEvent('onHide');
+        this.triggerEvent('Hide');
       }
       // In wechat miniprogram couldn't check function props wheather exist
-      this.triggerEvent('onMaskClick');
+      this.triggerEvent('MaskClick');
     }
   }
 });

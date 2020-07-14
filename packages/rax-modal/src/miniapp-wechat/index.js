@@ -7,8 +7,10 @@ const triggleVisible = (instance, visible) => {
     },
     () => {
       if (visible) {
+        instance.triggerEvent('onShow');
         instance.triggerEvent('Show');
       } else {
+        instance.triggerEvent('onHide');
         instance.triggerEvent('Hide');
       }
     }
@@ -74,7 +76,7 @@ Component({
   },
   observers: {
     visible(visible) {
-      if (this.properties.visible !== visible) {
+      if (this.data.visibility !== visible) {
         if (this.properties.delay) {
           setTimeout(() => {
             triggleVisible(this, visible);
@@ -92,9 +94,11 @@ Component({
     onClick() {
       const { maskCanBeClick } = this.properties;
       if (maskCanBeClick) {
+        this.triggerEvent('onHide');
         this.triggerEvent('Hide');
       }
       // In wechat miniprogram couldn't check function props wheather exist
+      this.triggerEvent('onMaskClick');
       this.triggerEvent('MaskClick');
     }
   }

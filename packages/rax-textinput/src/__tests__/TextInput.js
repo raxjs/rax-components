@@ -55,4 +55,19 @@ describe('TextInput', () => {
     expect(typeof input.eventListeners.blur).toBe('function');
     expect(typeof input.eventListeners.focus).toBe('function');
   });
+
+  it('should render multiline with value ', () => {
+    const mockFunc = jest.fn();
+    const component = renderer.create(
+      <TextInput
+        numberOfLines="2"
+        placeholder="test"
+        value="text"
+        multiline
+      />
+    );
+    let tree = component.toJSON();
+    let input = tree[1];
+    expect(input.children[0]).toBe('text');
+  });
 });

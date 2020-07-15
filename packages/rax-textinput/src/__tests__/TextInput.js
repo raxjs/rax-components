@@ -56,7 +56,7 @@ describe('TextInput', () => {
     expect(typeof input.eventListeners.focus).toBe('function');
   });
 
-  it('should render multiline with value ', () => {
+  it('should render multiline input with value ', () => {
     const mockFunc = jest.fn();
     const component = renderer.create(
       <TextInput

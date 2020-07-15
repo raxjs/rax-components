@@ -19,7 +19,7 @@ describe('TextInput in weex', () => {
     expect(tree.attributes.disabled).toEqual(false);
   });
 
-  it('should render multiline with value ', () => {
+  it('should not render multiline input with value ', () => {
     const mockFunc = jest.fn();
     const component = renderer.create(
       <TextInput

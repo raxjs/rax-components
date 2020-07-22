@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  props: ['width', 'height','autoPlay','showsPagination', 'paginationStyle', 'loop', 
-  'index', 'autoPlayInterval', 'bindChange', 'direaction', 'id', 'styleSheet',
+  props: ['width', 'height','autoPlay','showsPagination', 'paginationStyle', 'loop',
+  'index', 'autoPlayInterval', 'bindChange', 'direction', 'id', 'styleSheet',
    'className', 'bindClick', 'bindPress', 'tagId'],
   data() {
     let _style = this.styleSheet || {};
@@ -25,7 +25,7 @@ export default {
         });
       }
     }
-    if (this.direaction && this.direaction === 'vertical') {
+    if (this.direction && this.direction === 'vertical') {
       vertical = true;
     }
     if (this.width) {

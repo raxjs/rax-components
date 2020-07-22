@@ -8,7 +8,7 @@
   circular="{{loop}}"
   indicator-color="{{paginationStyle.itemColor}}"
   indicator-active-color="{{paginationStyle.itemSelectedColor}}"
-  vertical="{{direaction === 'vertical'}}"
+  vertical="{{direction === 'vertical'}}"
   onChange="onChange"
 >
   <block wx:for="{{children}}" wx:for-index="index" wx:key="index">

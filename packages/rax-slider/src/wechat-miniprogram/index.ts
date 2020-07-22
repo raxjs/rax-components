@@ -30,7 +30,7 @@ Component({
       type: Boolean,
       value: true,
     },
-    direaction: {
+    direction: {
       type: String,
       value: 'horizontal',
     },

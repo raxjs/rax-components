@@ -106,6 +106,7 @@ function Modal(props: ModalProps) {
   const show = () => {
     if (!maskRef.__pendingShow) {
       maskRef.__pendingShow = true;
+      // Stop pending hide action
       if (maskRef.__pendingHide) {
         maskRef.__pendingHide = false;
       } else {

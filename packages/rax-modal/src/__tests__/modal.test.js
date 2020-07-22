@@ -190,30 +190,36 @@ describe('render modal', () => {
     let showModal = false;
     function App(props) {
       const [visible, setVisible] = useState(true);
+      useEffect(() => {
+        showModal = visible;
+      }, [visible]);
       return (
-        <Modal
-          visible={visible}
-          maskCanBeClick={true}
-          animation={true}
-        >
-          <View
-            id="view"
-            onClick={() => {
-              setVisible(false);
-              setTimeout(() => {
-                setVisible(true);
-              }, 200);
-            }}
+        <Fragment>
+          <Modal
+            visible={visible}
+            maskCanBeClick={true}
+            animation={true}
           >
+            <View
+              id="view"
+              onClick={() => {
+                setVisible(false);
+                setTimeout(() => {
+                  setVisible(true);
+                }, 200);
+              }}
+            >
             点击我
-          </View>
-        </Modal>
+            </View>
+          </Modal>
+        </Fragment>
       );
     }
     const wrapper = mount(<App />);
     jest.runAllTimers();
     wrapper.find('#view').at(1).simulate('click');
     jest.runAllTimers();
+    expect(showModal).toBe(true);
     expect(document.body.style.overflow).toBe('hidden');
   });
 });

@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isNode } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
@@ -147,7 +147,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     if (multiline) {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          {/* style should not render in miniapp */}
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <textarea
@@ -165,14 +166,15 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             confirm-type={confirmType}
             show-count={showCount}
           >
-            {isWeb && propsCommon.value}
+            {/* undefined will be rendered to comment node in ssr */}
+            {!isWeex && (propsCommon.value || defaultValue || '')}
           </textarea>
         </Fragment>
       );
     } else {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <input

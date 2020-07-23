@@ -6,7 +6,7 @@ import './index.css';
 const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
   (props, ref) => {
     const {
-      direaction,
+      direction,
       autoPlay,
       showsPagination = true,
       paginationStyle = {
@@ -49,7 +49,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
         interval={autoPlayInterval}
         circular={loop}
         current={index}
-        vertical={direaction === 'vertical'}
+        vertical={direction === 'vertical'}
         indicator-dots={showsPagination}
         indicator-color={paginationStyle.itemColor}
         indicator-active-color={paginationStyle.itemSelectedColor}

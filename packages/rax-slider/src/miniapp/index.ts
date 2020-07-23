@@ -16,7 +16,7 @@ Component({
     loop: true,
     index: 0,
     autoPlayInterval: 1000,
-    direaction: 'horizontal',
+    direction: 'horizontal',
     onChange: noop,
     paginationStyle: {
       itemColor: 'rgba(255, 255, 255, 0.5)',

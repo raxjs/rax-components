@@ -19,8 +19,9 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
        {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
        ref={ref} className={`rax-view ${className}`} style={style} />;
     }
+    let handleAppear = onAppear;
     if (onFirstAppear) {
-      onAppear = (event) => {
+      handleAppear = (event) => {
         onAppear && onAppear(event);
         if (!selfRef.triggeredAppear) {
           onFirstAppear && onFirstAppear(event);
@@ -29,7 +30,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         }
       }
     }
-    return <div {...rest} onAppear={onAppear} ref={ref} className={cx( isWeex ? '' : 'rax-view', className)} style={style} />;
+    return <div {...rest} onAppear={handleAppear} ref={ref} className={cx( isWeex ? '' : 'rax-view', className)} style={style} />;
   }
 );
 

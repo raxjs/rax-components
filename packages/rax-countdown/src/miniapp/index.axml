@@ -12,7 +12,7 @@
             </block>
           </block>
           <!-- render text, eg, {"value":"秒","style":""} -->
-          <text a:else style="{{timeStyle}}">{{item.value[0]}}</text>
+          <text a:else style="{{textStyle}}">{{item.value[0]}}</text>
         </block>
       </view>
     </block>

@@ -1,0 +1,11 @@
+<view class="{{className}}"
+      style="{{defaultStyle}}{{styleSheet}}"
+      bindtap="onClick"
+      bindlongpress="onLongPress"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+      animation="{{animation}}"
+      bindtouchcancel="onTouchCancel">
+  <slot />
+</view>

@@ -9,7 +9,6 @@ const Demo = props => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     setTimeout(() => {
-      console.log('show');
       setVisible(true);
     }, 2000)
   }, [])

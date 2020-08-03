@@ -1,5 +1,5 @@
-
-<input a:if="{{!multiline}}" class="rax-textinput {{className}}" 
+<view class="rax-textinput-container {{className}}">
+  <input a:if="{{!multiline}}" class="rax-textinput rax-textinput-input" 
     style="{{style}}"
     onTap="onClick" 
     focus="{{autoFocus}}"
@@ -19,9 +19,8 @@
     onFocus="onFocus"
     onInput="onInput"
     onConfirm="onConfirm"
-    enableNative="{{enableNative}}">
-</input>
-<textarea a:else class="rax-textinput {{className}}" 
+    enableNative="{{enableNative}}" />
+  <textarea a:else class="rax-textinput rax-textinput-textarea" 
     style="{{style}}"
     placeholder-style="color:{{placeholderColor}}"
     onTap="onClick" 
@@ -41,3 +40,4 @@
     onInput="onInput"
     onConfirm="onConfirm"
     enableNative="{{enableNative}}"/>
+</view>

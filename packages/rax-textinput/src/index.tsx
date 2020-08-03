@@ -7,6 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
+import View from 'rax-view';
 import { isWeex, isWeb, isWeChatMiniProgram, isNode } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
@@ -20,7 +21,6 @@ import {
 } from './types';
 import './index.css';
 
-declare const Fragment;
 let inputId = 0;
 
 function getText(event) {
@@ -52,7 +52,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     const styleClassName = `rax-textinput-placeholder-${inputId++}`;
 
     const {
-      className,
+      className = '',
       accessibilityLabel,
       autoComplete,
       editable,
@@ -146,57 +146,49 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       }
     });
 
-    if (multiline) {
-      return (
-        <Fragment>
-          {/* style should not render in miniapp */}
-          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
-            color: ${placeholderColor}
-          }` }} />
-          <textarea
-            {...propsCommon}
-            className={['rax-textinput', styleClassName, className || ''].join(' ')}
-            style={{
-              ...style,
-              placeholderColor
-            }}
-            row={rows}
-            rows={rows}
-            disabled={disbaled}
-            onChange={handleChange}
-            value={value || defaultValue}
-            confirm-type={confirmType}
-            show-count={showCount}
-          >
-            {/* undefined will be rendered to comment node in ssr */}
-            {!isWeex && (propsCommon.value || defaultValue || '')}
-          </textarea>
-        </Fragment>
-      );
-    } else {
-      return (
-        <Fragment>
-          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
-            color: ${placeholderColor}
-          }` }} />
-          <input
-            {...propsCommon}
-            className={['rax-textinput', styleClassName, className || ''].join(' ')}
-            style={{
-              ...style,
-              placeholderColor
-            }}
-            type={type}
-            disabled={disbaled}
-            value={value || defaultValue}
-            confirm-type={confirmType}
-            random-Number={randomNumber}
-            selection-start={selectionStart}
-            selection-end={selectionEnd}
+    return (
+      <View className={"rax-textinput-container " + className}>
+        {/* style should not render in miniapp */}
+        <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          color: ${placeholderColor}
+        }` }} />
+        <input
+          x-if={!multiline}
+          {...propsCommon}
+          className={['rax-textinput', 'rax-textinput-input', styleClassName].join(' ')}
+          style={{
+            ...style,
+            placeholderColor
+          }}
+          type={type}
+          disabled={disbaled}
+          value={value || defaultValue}
+          confirm-type={confirmType}
+          random-Number={randomNumber}
+          selection-start={selectionStart}
+          selection-end={selectionEnd}
           />
-        </Fragment>
-      );
-    }
+        <textarea
+          x-else
+          {...propsCommon}
+          className={['rax-textinput', 'rax-textinput-textarea', styleClassName].join(' ')}
+          style={{
+            ...style,
+            placeholderColor
+          }}
+          row={rows}
+          rows={rows}
+          disabled={disbaled}
+          onChange={handleChange}
+          value={value || defaultValue}
+          confirm-type={confirmType}
+          show-count={showCount}
+        >
+          {/* undefined will be rendered to comment node in ssr */}
+          {!isWeex && (propsCommon.value || defaultValue || '')}
+        </textarea>
+      </View>
+    );
   }
 );
 TextInput.displayName = 'TextInput';

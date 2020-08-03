@@ -1,13 +1,30 @@
-.rax-textinput{
-    appearance: 'none';
-    background-color: 'transparent';
-    border-color: '#000000';
-    border-width: 0;
-    box-sizing: 'border-box';
-    color: '#000000';
-    padding: 0;
-    padding-left: 24rpx;
-    font-size: 24rpx;
-    line-height: 60rpx;
-    height: 60rpx;
+.rax-textinput-container {
+  border-color: #000000;
+  border-width: 0;
+  box-sizing: border-box;
+  color: #000000;
+  padding: 0;
+  padding-left: 24rpx;
+  height: 60rpx;
+}
+
+.rax-textinput {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  height: 100%;
+  width: 100%;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.rax-textinput-input {
+  padding-bottom: 0;
+}
+
+.rax-textinput .a-textarea-count-wrap {
+  line-height: 1;
 }

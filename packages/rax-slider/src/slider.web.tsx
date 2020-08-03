@@ -107,6 +107,11 @@ class Slider extends Component<SliderProps, any> {
     }
     // forceUpdate
     this.forceUpdate();
+
+    // Reset timer each call slideTo.
+    if (this.props.autoPlay) {
+      this.autoPlay();
+    }
   }
 
   private onSwipeBegin = () => {

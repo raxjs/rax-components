@@ -8,7 +8,7 @@
             <text tt:else style="{{_timeStyle}}">{{time}}</text>
           </block>
         </block>
-        <text tt:else> {{ item.value }}</text>
+        <text tt:else style="{{_textStyle}}"> {{ item.value }}</text>
       </view>
     </block>
 </view>

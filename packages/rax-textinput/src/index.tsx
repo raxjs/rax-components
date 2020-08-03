@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isWeChatMiniProgram, isNode } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
@@ -81,7 +81,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       controlled
     } = props;
     const type =
-      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
+      password || secureTextEntry ? 'password' : (keyboardTypeMap[keyboardType] || keyboardType); // Keyboard type in alibaba miniapp and wechat miniprogram can be passed directly
     const setValue = (value = '') => {
       setNativeProps(refEl.current, { value });
     };
@@ -111,7 +111,9 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
-        forceUpdate(tick => tick + 1);
+        if (!isWeChatMiniProgram) {
+          forceUpdate(tick => tick + 1);
+        }
       },
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus,
@@ -147,7 +149,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     if (multiline) {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          {/* style should not render in miniapp */}
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <textarea
@@ -165,14 +168,15 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             confirm-type={confirmType}
             show-count={showCount}
           >
-            {isWeb && propsCommon.value}
+            {/* undefined will be rendered to comment node in ssr */}
+            {!isWeex && (propsCommon.value || defaultValue || '')}
           </textarea>
         </Fragment>
       );
     } else {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <input

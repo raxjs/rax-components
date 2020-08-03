@@ -1,4 +1,4 @@
-<view onTap="{{onClick}}" style="{{maskStyleState}}" class="rax-modal-mask" a:if="{{visible}}">
+<view onTap="onClick" style="{{maskStyleState}}" class="rax-modal-mask" a:if="{{visibility}}">
   <view style="{{contentStyleState}}" class="rax-modal-main">
     <slot />
   </view>

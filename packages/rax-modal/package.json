@@ -6,6 +6,7 @@
   "quickappConfig": {
     "main": "lib/quickapp/index"
   },
+  "miniprogram": ".",
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",

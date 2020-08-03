@@ -1,5 +1,5 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex } from 'universal-env';
+import { isWeex, isMiniApp } from 'universal-env';
 import { TextProps } from './types';
 import './index.css';
 
@@ -31,6 +31,19 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         className={className}
         style={{ lines, ...style }}
         onClick={handleClick}
+      >
+        {textString}
+      </text>
+    );
+  } else if (isMiniApp) {
+    return (
+      <text
+        {...rest}
+        ref={ref}
+        className={`${prefixCls} ${className}`}
+        style={{ lines, ...style }}
+        onClick={handleClick}
+        number-of-lines={lines}
       >
         {textString}
       </text>

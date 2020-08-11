@@ -12,6 +12,7 @@
     lower-threshold="{{endReachedThreshold}}"
     onScroll="onScroll"
     onScrollToLower="onEndReached"
+    enableFlex="{{true}}"
 >
     <slot/>
 </scroll-view>

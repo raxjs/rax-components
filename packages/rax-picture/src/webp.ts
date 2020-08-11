@@ -5,11 +5,11 @@
  * animation : example gif
  */
 
-import { isWeex, isNode, isMiniApp, isWeChatMiniProgram } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 
 let isIOS: boolean;
-if (!isWeex && !isNode && !isMiniApp && !isWeChatMiniProgram) {
-  isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+if (isWeb) {
+  isIOS = !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 }
 
 function setLocalStorage(isSupport: boolean, type: string) {
@@ -40,19 +40,25 @@ export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
   if ('function' === typeof callback) {
     if (isMiniApp || isWeChatMiniProgram) {
       callback(true);
-    } else if (isWeex || window.navigator.userAgent.match(/PHA/)) {
+    } else if (isWeex) {
       callback(true);
-    } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
-      callback(false);
-    } else if (window.chrome || window.opera) {
-      callback(true);
-    } else {
-      let val = window.localStorage && window.localStorage.getItem('webpsupport-' + type);
-      if (val) {
-        callback(val == 'true');
+    } else if (isWeb) {
+      if (window.navigator.userAgent.match(/PHA/)) {
+        callback(true);
+      } else if (window.navigator.userAgent.match(/windows|win32/i) || isIOS && window.navigator.userAgent.match(/UCBrowser/i)) {
+        callback(false);
+      } else if (window.chrome || window.opera) {
+        callback(true);
       } else {
-        isSupportTest(callback, type);
+        let val = window.localStorage && window.localStorage.getItem('webpsupport-' + type);
+        if (val) {
+          callback(val == 'true');
+        } else {
+          isSupportTest(callback, type);
+        }
       }
+    } else {
+      callback(false)
     }
   }
 }

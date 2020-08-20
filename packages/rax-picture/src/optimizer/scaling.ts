@@ -1,11 +1,3 @@
-import { isWeb } from 'universal-env';
-
-let width;
-if (isWeb) {
-  const screenWidth = window.screen.width;
-  width = screenWidth ? screenWidth : document.documentElement.clientWidth / 750 * screenWidth;
-}
-
 const scalingWidth = [
   // use width
   110,
@@ -66,8 +58,8 @@ export default function(sWidth: string | number, isOSSImg: any): string {
     xWidth = parseFloat(sWidth);
     if (sWidth.indexOf('rpx') > -1) {
       // isRpx
-      if (width) {
-        scaling = visualStandard / width;
+      if (typeof window !== 'undefined' && window.screen && window.screen.width) {
+        scaling = visualStandard / window.screen.width;
       }
     }
   } else {

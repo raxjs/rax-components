@@ -5,6 +5,7 @@ import {
 } from 'rax';
 import Image from 'rax-image';
 import { PictureProps } from './types';
+import formatStyle from './formatStyle';
 
 const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
   (props, ref) => {
@@ -18,8 +19,10 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
       defaultHeight,
       ...rest
     } = props;
-    let styleWidth = style.width; // style width of picture
-    let styleHeight = style.height; // style width of picture
+
+    const formatedStyle = formatStyle(style);
+    let styleWidth = formatedStyle.width; // style width of picture
+    let styleHeight = formatedStyle.height; // style width of picture
 
     // according to the original height and width of the picture
     if (!styleHeight && styleWidth && width && height) {

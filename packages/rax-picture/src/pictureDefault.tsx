@@ -12,6 +12,7 @@ import { devicePixelRatio } from 'universal-device';
 import optimizer from './optimizer/index';
 import { isSupport } from './webp';
 import { PictureProps } from './types';
+import formatStyle from './formatStyle';
 
 let isSupportJPG = false;
 let isSupportPNG = false;
@@ -94,8 +95,9 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
 
     const [visible, setVisible] = useState(false);
 
-    let sWidth = style.width, // style width of picture
-      sHeight = style.height; // style width of picture
+    const formatedStyle = formatStyle(style);
+    let sWidth = formatedStyle.width, // style width of picture
+      sHeight = formatedStyle.height; // style width of picture
 
     // according to the original height and width of the picture
     if (!sHeight && sWidth && width && height) {
@@ -114,8 +116,12 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     if (uri) {
       if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
         // devicePixelRatio >= 2
-        if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
-          sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
+        if (typeof sWidth === 'string') {
+          if (sWidth.indexOf('rpx') > -1) {
+            sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
+          } else if (sWidth.indexOf('rem') > -1) {
+            sWidth = parseInt(sWidth.split('rem')[0]) * 2 + 'rem';
+          }
         }
       }
       uri = optimizer(uri, {

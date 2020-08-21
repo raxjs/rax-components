@@ -112,7 +112,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     );
 
     if (uri) {
-      if (!isNode && autoPixelRatio && devicePixelRatio > 1) {
+      if (isNode || autoPixelRatio && devicePixelRatio > 1) {
         // devicePixelRatio >= 2
         if (typeof sWidth === 'string' && sWidth.indexOf('rpx') > -1) {
           sWidth = parseInt(sWidth.split('rpx')[0]) * 2 + 'rpx';
@@ -123,8 +123,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
         ignorePng: true,
         removeScheme: autoRemoveScheme,
         replaceDomain: autoReplaceDomain,
-        scalingWidth: autoScaling ? sWidth : 0,
-        webp: autoWebp && (isSupportJPG && isSupportPNG),
+        scalingWidth: isNode ? 0 : (autoScaling ? sWidth : 0),
+        webp: (autoWebp && isSupportJPG && isSupportPNG) || isNode,
         compressSuffix: autoCompress
           ? getQualitySuffix(highQuality, compressSuffix)
           : ''
@@ -136,7 +136,7 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
     }
 
     let url = placeholder;
-    if (lazyload) {
+    if (!isNode && lazyload) {
       nativeProps.onAppear = () => setVisible(true);
       if (visible) {
         url = uri;

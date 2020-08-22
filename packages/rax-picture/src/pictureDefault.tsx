@@ -89,8 +89,8 @@ const Picture: ForwardRefExoticComponent<PictureProps> = forwardRef(
 
     const [visible, setVisible] = useState(false);
 
-    let sWidth = style.width, // style width of picture
-      sHeight = style.height; // style width of picture
+    let sWidth :string | number = style.width, // style width of picture
+      sHeight  :string | number = style.height; // style width of picture
 
     // according to the original height and width of the picture
     if (!sHeight && sWidth && width && height) {

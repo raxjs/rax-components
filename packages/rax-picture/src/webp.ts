@@ -5,7 +5,7 @@
  * animation : example gif
  */
 
-import { isWeex, isNode, isMiniApp, isWeChatMiniProgram } from 'universal-env'
+import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env'
 
 function setLocalStorage(isSupport: boolean, type: string) {
   if (window.localStorage && typeof window.localStorage.setItem === 'function') {
@@ -18,6 +18,11 @@ function setLocalStorage(isSupport: boolean, type: string) {
 
 function isSupportTest(callback: (isSupport: boolean) => void, type: string) {
   if ('function' !== typeof callback) return;
+  if (typeof Image === 'undefined') {
+    callback(false);
+    return;
+  }
+  
   let img = new Image();
   img.onload = function() {
     let is = img.width > 0 && img.height > 0;
@@ -37,11 +42,11 @@ function checkWebpByUserAgent(userAgent) {
   }
 
   if (userAgent.match(/windows|win32/i)) {
-    return true;
+    return false;
   }
 
   if (userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && userAgent.match(/UCBrowser/i)) {
-    return true;
+    return false;
   }
 
   return false;
@@ -52,8 +57,6 @@ export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
     if (isMiniApp || isWeChatMiniProgram) {
       callback(true);
     } else if (isWeex) {
-      callback(true);
-    } else if (isNode) {
       callback(true);
     } else if (typeof window !== 'undefined') { 
       if (window.navigator && window.navigator.userAgent && checkWebpByUserAgent(window.navigator.userAgent)) {

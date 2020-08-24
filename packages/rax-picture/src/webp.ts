@@ -41,6 +41,10 @@ function checkWebpByUserAgent(userAgent) {
     return true;
   }
 
+  if (userAgent.match(/AliApp\(TB\//)) {
+    return true;
+  }
+
   if (userAgent.match(/windows|win32/i)) {
     return false;
   }
@@ -61,7 +65,7 @@ export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
     } else if (typeof window !== 'undefined') { 
       if (window.navigator && window.navigator.userAgent && checkWebpByUserAgent(window.navigator.userAgent)) {
         callback(true);
-      } else if (window.chrome || window.opera || window.safari) {
+      } else if (window.chrome || window.opera) {
         callback(true);
       } else if (window.localStorage && window.localStorage.getItem('webpsupport-' + type) == 'true') {
         callback(true);

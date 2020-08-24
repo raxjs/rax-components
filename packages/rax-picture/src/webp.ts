@@ -61,7 +61,7 @@ export function isSupport(callback: (status: boolean) => void, type = 'lossy') {
     } else if (typeof window !== 'undefined') { 
       if (window.navigator && window.navigator.userAgent && checkWebpByUserAgent(window.navigator.userAgent)) {
         callback(true);
-      } else if (window.chrome || window.opera) {
+      } else if (window.chrome || window.opera || window.safari) {
         callback(true);
       } else if (window.localStorage && window.localStorage.getItem('webpsupport-' + type) == 'true') {
         callback(true);

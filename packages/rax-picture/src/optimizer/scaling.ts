@@ -56,7 +56,7 @@ export default function(sWidth: string | number, isOSSImg: any): string {
   let scaling = 1;
   if (typeof sWidth === 'string') {
     xWidth = parseFloat(sWidth);
-    if (sWidth.indexOf('rpx') > -1) {
+    if (sWidth.indexOf('rpx') > -1 || sWidth.indexOf('rem') > -1) {
       // isRpx
       if (typeof window !== 'undefined' && window.screen && window.screen.width) {
         scaling = visualStandard / window.screen.width;

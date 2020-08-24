@@ -53,7 +53,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
         indicator-dots={showsPagination}
         indicator-color={paginationStyle.itemColor}
         indicator-active-color={paginationStyle.itemSelectedColor}
-        onSwiperChange={handleChange}
+        onChange={handleChange}
         style={{ width: Number(width), height: Number(height), ...style }}
       >
         {Children.map(children, child => <swiper-item key={child.key}>{child}</swiper-item>)}

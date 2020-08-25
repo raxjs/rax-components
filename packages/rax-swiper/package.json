@@ -30,15 +30,12 @@
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-clone-element": "^1.0.0",
-    "rax-find-dom-node": "^1.0.0",
     "rax-view": "^1.1.0-0",
     "swiper": "^6.1.2",
-    "universal-env": "^3.2.0",
-    "universal-panresponder": "^0.6.5"
+    "universal-env": "^3.2.0"
   },
   "devDependencies": {
     "@types/rax": "^1.0.0",

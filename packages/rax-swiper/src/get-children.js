@@ -1,4 +1,5 @@
 import { Fragment } from 'rax';
+import Children from 'rax-children';
 
 function getChildren(children) {
   const slides = [];
@@ -10,7 +11,7 @@ function getChildren(children) {
     'wrapper-end': [],
   };
   function processChildren(c) {
-    c.forEach((child) => {
+    Children.toArray(c).forEach((child) => {
       if (child.type === Fragment && child.props.children) {
         processChildren(child.props.children);
         return;

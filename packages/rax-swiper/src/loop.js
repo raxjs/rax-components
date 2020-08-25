@@ -1,3 +1,4 @@
+import { createElement } from 'rax';
 import cloneElement from 'rax-clone-element';
 
 function calcLoopedSlides(slides, swiperParams) {

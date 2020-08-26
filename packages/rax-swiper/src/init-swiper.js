@@ -2,8 +2,7 @@
 import Swiper, { Autoplay, Pagination } from 'swiper';
 import { needsNavigation, needsPagination, needsScrollbar } from './utils';
 
-import 'swiper/swiper.less';
-import 'swiper/components/pagination/pagination.less';
+import './swiper.css';
 
 Swiper.use([Autoplay, Pagination]);
 function initSwiper({ el, nextEl, prevEl, paginationEl, scrollbarEl }, swiperParams) {

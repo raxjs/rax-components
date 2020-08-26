@@ -15,10 +15,6 @@ class App extends Component {
     };
   }
 
-  onchange = (e) => {
-    console.log('change', e);
-  }
-
   onClick = () => {
     swiperEle.slideNext();
   }

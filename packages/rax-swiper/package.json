@@ -5,9 +5,6 @@
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
-  },
   "files": [
     "dist",
     "es",

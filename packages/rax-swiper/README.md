@@ -20,7 +20,7 @@ $ npm install rax-swiper --save
 | pagination  | `boolean|object`  | true       | 否       | 是否显示指示点                         | 
 | loop             | `boolean`  | true       | 否       | 是否是循环播放                         | 
 | initialSlide            | `number`   | 0          | 否       | 指定默认初始化第几页                   |
-| onChange         | `function` | -          | 否       | `index` 改变时会触发                   | 
+| onSlideChange         | `function` | -          | 否       | `index` 改变时会触发                   | 
 | direction         | `string` | horizontal   | 否       |  滚动方向 (`horizontal` / `vertical`)            | 
 
 ## 示例
@@ -41,10 +41,6 @@ class App extends Component {
     this.state = {
       data: [],
     };
-  }
-
-  onchange = (e) => {
-    console.log('change', e);
   }
 
   onClick = () => {

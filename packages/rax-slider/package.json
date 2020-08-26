@@ -38,7 +38,8 @@
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
-    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "classnames": "^2.2.6",

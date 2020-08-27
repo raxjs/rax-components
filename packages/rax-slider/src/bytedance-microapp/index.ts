@@ -69,6 +69,9 @@ Component({
       this.triggerEvent('onChange', {
         index: event.detail.current
       });
+      this.setData({
+        current: event.detail.current
+      });
     },
     slideTo(index) {
       if (index !== undefined) {

@@ -1,4 +1,4 @@
-import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
+import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState, RaxNode } from 'rax';
 import Children from 'rax-children';
 import { SliderProps } from './types';
 import './index.css';
@@ -56,7 +56,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
         onChange={handleChange}
         style={{ width: Number(width), height: Number(height), ...style }}
       >
-        {Children.map(children, child => <swiper-item key={child.key}>{child}</swiper-item>)}
+        {(children as RaxNode[])?.length > 0 && Children.map(children, child => child && <swiper-item key={child.key}>{child}</swiper-item>)}
       </swiper>
     );
   }

@@ -1,7 +1,6 @@
 .rax-view {
    box-sizing: border-box;
    display: flex;
-   position: relative;
    flex-direction: column;
    flex-shrink: 0;
    align-content: flex-start;

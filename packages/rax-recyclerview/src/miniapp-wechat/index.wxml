@@ -2,7 +2,7 @@
     className="{{className}}" 
     styleSheet="{{styleSheet}}" 
     endReachedThreshold="{{endReachedThreshold}}"
-    onEndReached="onEndReached"
-    onScroll="onScroll">
+    bindonEndReached="onEndReached"
+    bindonScroll="onScroll">
     <slot/>
 </rax-scrollview>

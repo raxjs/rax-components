@@ -1,4 +1,4 @@
-import { createElement, useState, useCallback } from 'rax';
+import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
 import { isWeex } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
@@ -8,7 +8,7 @@ interface ErrorState {
   uri?: string;
 }
 
-function Image({
+const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   source,
   fallbackSource,
   onLoad,
@@ -16,7 +16,7 @@ function Image({
   style,
   resizeMode,
   ...otherProps
-}: ImageProps) {
+}: ImageProps, ref) => {
   source = source || EMPTY_SOURCE;
   fallbackSource = fallbackSource || EMPTY_SOURCE;
   const nativeProps: ImageNativeProps = otherProps as any;
@@ -83,10 +83,10 @@ function Image({
 
   // Set default quality to "original" in weex avoid image be optimized unexpect
   return isWeex ? (
-    <image quality="original" {...nativeProps} />
+    <image quality="original" {...nativeProps} ref={ref} />
   ) : (
-    <img {...nativeProps} />
+    <img {...nativeProps} ref={ref} />
   );
-}
+});
 
 export default Image;

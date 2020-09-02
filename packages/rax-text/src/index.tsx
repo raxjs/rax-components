@@ -64,7 +64,8 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         {...rest}
         ref={ref}
         className={classNames.join(' ')}
-        style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
+        // Vendor prefixes should begin with a capital letter.
+        style={{ ...style, WebkitLineClamp: lines > 1 ? lines : undefined }}
         onClick={handleClick}
       >
         {textString}

@@ -3,7 +3,8 @@ import { isWeex, isMiniApp } from 'universal-env';
 import { TextProps } from './types';
 import './index.css';
 
-const prefixCls = 'rax-text';
+// add vesion in style to avoid conflict with older version
+const prefixCls = 'rax-text-v2';
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
     className,

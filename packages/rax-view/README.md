@@ -87,3 +87,21 @@ const App = () => {
 
 render(<App />, document.body, { driver: DU });
 ```
+
+## 默认样式
+
+rax-view 默认样式如下：
+
+```css
+.rax-view-v2 {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   flex-shrink: 0;
+   align-content: flex-start;
+   border: 0 solid black;
+   margin: 0;
+   padding: 0;
+   min-width: 0;
+}
+```

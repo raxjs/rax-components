@@ -18,7 +18,7 @@ describe('Text', () => {
       <Text className={'my-text'}>Example</Text>
     );
     let tree = component.toJSON();
-    expect(tree.attributes.class).toBe('rax-text my-text');
+    expect(tree.attributes.class).toBe('rax-text-v2 my-text');
   });
 
   it('use numberOfLines in Text', () => {

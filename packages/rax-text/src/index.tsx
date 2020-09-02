@@ -3,7 +3,8 @@ import { isWeex, isMiniApp } from 'universal-env';
 import { TextProps } from './types';
 import './index.css';
 
-const prefixCls = 'rax-text';
+// add vesion in style to avoid conflict with older version
+const prefixCls = 'rax-text-v2';
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
     className,
@@ -63,7 +64,8 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         {...rest}
         ref={ref}
         className={classNames.join(' ')}
-        style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
+        // Vendor prefixes should begin with a capital letter.
+        style={{ ...style, WebkitLineClamp: lines > 1 ? lines : undefined }}
         onClick={handleClick}
       >
         {textString}

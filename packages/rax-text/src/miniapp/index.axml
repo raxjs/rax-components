@@ -1,4 +1,4 @@
-<text class="{{className}}" 
+<text class="rax-text-v2 {{className}}" 
     style="{{style}}" 
     number-of-lines="{{numberOfLines}}"
     selectable="{{selectable}}"

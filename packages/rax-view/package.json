@@ -1,6 +1,6 @@
 {
   "name": "rax-view",
-  "version": "1.2.0",
+  "version": "2.0.1",
   "description": "View component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -19,10 +19,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
-  },
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
   },
   "engines": {
     "npm": ">=3.0.0"

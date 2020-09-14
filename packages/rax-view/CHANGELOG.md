@@ -1,7 +1,7 @@
 # Changelog
 
 ## 2.0.3
-- [chore] Update pegasus builder
+- [chore] Upgrade `universal-env` version
 
 ## 2.0.1
 - [refactor] Update className form `.rax-view` to `.rax-view-v2`

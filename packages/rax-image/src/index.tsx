@@ -1,6 +1,6 @@
-import { createElement, useState, useCallback } from 'rax';
-import { isWeex } from 'universal-env';
-import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
+import { createElement, useCallback, useState } from 'rax';
+import { isByteDanceMicroApp, isMiniApp, isWeb, isWeChatMiniProgram, isWeex } from 'universal-env';
+import { ImageLoadEvent, ImageNativeProps, ImageProps, Source } from './types';
 
 const EMPTY_SOURCE = {} as any as Source;
 
@@ -15,6 +15,7 @@ function Image({
   onError,
   style,
   resizeMode,
+  lazyLoad,
   ...otherProps
 }: ImageProps) {
   source = source || EMPTY_SOURCE;
@@ -81,12 +82,22 @@ function Image({
     }
   }
 
+  // For MiniApp runtime
+  if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp) {
+    nativeProps['lazy-load'] = !!lazyLoad;
+  }
+  // For native lazyLoad support on Web
+  // see: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img
+  if (isWeb && lazyLoad) {
+    nativeProps['loading'] = 'lazy';
+  }
+
   // Set default quality to "original" in weex avoid image be optimized unexpect
-  return isWeex ? (
-    <image quality="original" {...nativeProps} />
-  ) : (
-    <img {...nativeProps} />
-  );
+  if (isWeex) {
+    return <image quality="original" {...nativeProps} />;
+  }
+
+  return <img {...nativeProps} />;
 }
 
 export default Image;

@@ -123,6 +123,14 @@ class App extends Component {
 
         <View style={styles.container}>
           <TextInput
+            placeholder="Disabled input"
+            style={styles.default}
+            editable={false}
+          />
+        </View>
+
+        <View style={styles.container}>
+          <TextInput
             placeholder="Enter text to see events"
             placeholderColor="#00E8C6"
             value={this.state.value}

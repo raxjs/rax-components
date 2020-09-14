@@ -107,7 +107,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       'aria-label': accessibilityLabel,
       autoComplete: autoComplete && 'on',
       maxlength: maxlength || maxLength,
-      readOnly: editable !== undefined && !editable,
+      readonly: editable !== undefined && !editable,
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
@@ -120,7 +120,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       ref: refEl
     };
     // Diff with web readonly attr, `disabled` must be boolean value
-    const disbaled = isWeex ? Boolean(propsCommon.readOnly) : false;
+    const disbaled = Boolean(propsCommon.readonly);
     const rows = numberOfLines || maxNumberOfLines;
 
     useImperativeHandle(ref, () => {

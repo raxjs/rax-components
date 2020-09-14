@@ -1,4 +1,4 @@
-<text class="rax-text {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
+<text class="rax-text-v2 {{className}} {{numberOfLines ? '_mutilple-lines' : ''}}"
     style="-webkit-line-clamp: {{numberOfLines + 1}};{{styleSheet}}"
     number-of-lines="{{numberOfLines}}"
     selectable="{{selectable}}"

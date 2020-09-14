@@ -1,6 +1,10 @@
 {
   "name": "rax-image",
+<<<<<<< HEAD
   "version": "2.2.2-1",
+=======
+  "version": "2.2.2",
+>>>>>>> 91f1def61150866509a799a23efaa8c20481e91d
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

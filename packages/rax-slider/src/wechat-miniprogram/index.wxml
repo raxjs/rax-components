@@ -9,7 +9,7 @@
   indicator-color="{{paginationStyle.itemColor}}"
   indicator-active-color="{{paginationStyle.itemSelectedColor}}"
   vertical="{{direction === 'vertical'}}"
-  onChange="onChange"
+  bindchange="onChange"
 >
   <block wx:for="{{children}}" wx:for-index="index" wx:key="index">
     <swiper-item>

@@ -1,5 +1,7 @@
 [![npm](https://img.shields.io/npm/v/rax-slider.svg)](https://www.npmjs.com/package/rax-slider)
 
+> 纯 Web 场景推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)
+
 ## 描述
 
 轮播组件，就是以幻灯片的方式，在页面中横向展示诸多内容的组件。 轮播内容相互独立，前后在内容以及数据上都不存在逻辑关系。

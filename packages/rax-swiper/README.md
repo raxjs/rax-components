@@ -21,7 +21,7 @@ $ npm install rax-swiper --save
 | loop             | `boolean`  | true       | 否       | 是否是循环播放                         |
 | initialSlide            | `number`   | 0          | 否       | 指定默认初始化第几页                   |
 | onSlideChange         | `function` | -          | 否       | `index` 改变时会触发                   |
-| direction         | `string\|horizontal`   | 否       |  滚动方向 (`horizontal` / `vertical`)            |
+| direction         | `string` | horizontal   | 否       |  滚动方向 (`horizontal` / `vertical`)            |
 
 ## 示例
 

@@ -56,7 +56,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
         onChange={handleChange}
         style={{ width: Number(width), height: Number(height), ...style }}
       >
-        {(children as RaxNode[])?.length > 0 && Children.map(children, child => child && <swiper-item key={child.key}>{child}</swiper-item>)}
+        {((children as RaxNode[])?.length > 0 || (children as RaxNode)) && Children.map(children, child => child && <swiper-item key={child.key}>{child}</swiper-item>)}
       </swiper>
     );
   }

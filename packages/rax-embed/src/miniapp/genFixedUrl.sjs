@@ -1,19 +1,16 @@
-export default function genFixedUrl(fixedUrl, urlParam) {
-  // handle android ios
-
+export default function genFixedUrl(fixedUrl, urlParam = {}) {
   const prefix = fixedUrl.indexOf('?') >= 0 ? '&' : '?';
 
   if (typeof urlParam == 'string') {
     fixedUrl += prefix + urlParam;
   } else {
-    let paramsStrArr = [];
-
-    let assignUrlParam = Object.assign({}, urlParam);
-    for (let k in assignUrlParam) {
-      paramsStrArr.push(k + '=' + assignUrlParam[k]);
-    }
-
-    fixedUrl += prefix + paramsStrArr.join('&');
+    Object.keys(urlParam).forEach((key, index) => {
+      if (index === 0) {
+        fixedUrl += prefix + urlParam[key];
+      } else {
+        fixedUrl += '&' + urlParam[key];
+      }
+    });
   }
 
   return fixedUrl;

@@ -1,4 +1,4 @@
-import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState, RaxNode } from 'rax';
+import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
 import Children from 'rax-children';
 import { SliderProps } from './types';
 import './index.css';

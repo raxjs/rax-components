@@ -1,13 +1,13 @@
 .rax-scrollview-vertical {
-    flex-direction: column !important;
+    flex-direction: column;
 }
 
 .rax-scrollview-horizontal {
-    flex-direction: row !important;
+    flex-direction: row;
 }
 
 .rax-scrollview-content-container-horizontal {
-    flex-direction: row !important;
+    flex-direction: row;
 }
 
 .rax-scrollview-webcontainer {

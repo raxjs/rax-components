@@ -15,6 +15,8 @@
     show-mute-btn="{{showMuteBtn}}"
     show-center-play-btn="{{showCenterPlayBtn}}"
     show-thin-progress-bar="{{showThinProgressBar}}"
+    object-fit="{{objectFit}}"
+    enableNative="{{enableNative}}"
     onPlay="onPlay"
     onPause="onPause"
     onEnded="onEnded"

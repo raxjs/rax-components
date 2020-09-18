@@ -1,5 +1,5 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isMiniApp, isWeChatMiniProgram } from 'universal-env';
+import { isMiniApp, isWeChatMiniProgram, isWeb } from 'universal-env';
 import Text from 'rax-text';
 import { LinkProps } from './types';
 
@@ -16,7 +16,8 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     fontFamily: style.fontFamily,
     textOverflow: style.textOverflow
   };
-  if (isMiniApp || isWeChatMiniProgram) {
+  // If miniapp env is web, should use element <a> 
+  if ((isMiniApp || isWeChatMiniProgram) && !isWeb) {
     // miniappHref example: navigate:/pages/index/index
     const [ openType, url ] = miniappHref.split(':');
     return (

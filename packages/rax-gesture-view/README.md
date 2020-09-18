@@ -1,9 +1,11 @@
 [![npm](https://img.shields.io/npm/v/universal-toast.svg)](https://www.npmjs.com/package/universal-toast)
 
+# rax-countdown
+
 ## 支持
 Web / Weex / 小程序
 
-**描述：**
+## 描述
 手势组件，监听组件内触发的横向或纵向滑动，并触发相应事件。
 
 ## 安装
@@ -14,8 +16,6 @@ $ npm install rax-gesture-view --save
 
 
 ## 属性
-注：
-1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序
 
 | **属性**    | **类型**   | **默认值** | **必填** | **描述**           | **支持** |
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |

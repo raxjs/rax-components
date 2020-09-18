@@ -1,7 +1,7 @@
 {
   "name": "rax-slider",
   "author": "rax",
-  "version": "2.3.3",
+  "version": "2.3.9",
   "description": "Slider component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -38,7 +38,8 @@
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
-    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "classnames": "^2.2.6",

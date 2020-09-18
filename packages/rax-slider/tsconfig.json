@@ -20,7 +20,12 @@
     "resolveJsonModule": true,
     "outDir": "lib",
     "rootDir": "src",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "rax": [
+        "node_modules/@types/rax"
+      ]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "lib"]

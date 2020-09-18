@@ -86,6 +86,10 @@ Component({
     showCenterPlayBtn: {
       type: Boolean,
       value: true,
+    },
+    objectFit: {
+      type: String,
+      value: 'contain'
     }
   },
   options: {

@@ -1,10 +1,10 @@
 {
   "name": "rax-canvas",
   "author": "rax",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Canvas for Rax.",
   "main": "lib/index.js",
-  "module": "src/index.js",
+  "module": "es/index.js",
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/wechat-miniprogram/index",

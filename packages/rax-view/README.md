@@ -1,5 +1,11 @@
 [![npm](https://img.shields.io/npm/v/rax-view.svg)](https://www.npmjs.com/package/rax-view)
-**描述：**
+
+# rax-view
+
+## 支持
+Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序
+
+## 描述
 View 是最基础的组件，它支持 Flexbox、touch handling 等功能，并且可以任意嵌套。
 不论在什么容器中，View 都直接对应一个容器的原生视图，就像 web 中的 div 一样。
 支持任意自定义属性的透传。
@@ -11,9 +17,6 @@ $ npm install rax-view --save
 ```
 
 ## 属性
-
-注：
-1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表 h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表 weex <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表阿里小程序 <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"> 代表微信小程序
 
 |**属性**| **类型** | **默认值** | **必填** | **描述** | **支持** |
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |

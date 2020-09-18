@@ -1,17 +1,14 @@
-# Picture
+# rax-picture
 
 [![npm](https://img.shields.io/npm/v/rax-picture.svg)](https://www.npmjs.com/package/rax-picture)
+
+## 支持
+Web / Weex / 阿里小程序 / 微信小程序
 
 ## 安装
 
 ```bash
 $ npm install rax-picture --save
-```
-
-## 引用
-
-```jsx
-import Picture from 'rax-picture';
 ```
 
 ## 属性

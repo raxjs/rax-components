@@ -1,21 +1,19 @@
 [![npm](https://img.shields.io/npm/v/rax-waterfall.svg)](https://www.npmjs.com/package/rax-waterfall)
 
-**描述：**
+# rax-waterfall
+
+## 支持
+Web / Weex
+
+## 描述
 用于实现瀑布流的列表容器
+
 ## 安装
 ```bash
 $ npm install rax-waterfall --save
 ```
-## 引用
-
-```jsx
-import WaterFall from 'rax-waterfall';
-```
 
 ## 属性
-注：
-1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序;
-2、weex 版本 v0.11.0+ 开始支持
 
 |**属性**| **类型** | **默认值** | **必填** | **描述**           | **支持** |
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |

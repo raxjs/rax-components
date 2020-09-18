@@ -1,5 +1,10 @@
 [![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
 
+# rax-swiper
+
+## 支持
+Web
+
 ## 描述
 
 轮播组件，体验远远好于 rax-slider.

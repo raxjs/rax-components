@@ -25,7 +25,7 @@ $ npm install rax-picture --save
 | resizeMode | `String： 'contain' 'cover' 'stretch'` | - | false | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小 | ALL |
 | quality | `String: 'original' 'normal' 'low' 'high' 'auto'` | - | false | 图片质量 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 | placeholder | `String` | - | false | 懒加载时的占位 URL，在图片下载过程中将展示占位图，图片下载完成后将显示source中指定的图片。 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
-| lazyload | `Boolean` | true | false | web端有效，根据图像是否在可视范围内延迟加载图像，Web 端需引入 `//g.alicdn.com/kg/appear/0.2.2/appear.min.js` 脚本 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
+| lazyload | `Boolean` | true | false | web端有效，根据图像是否在可视范围内延迟加载图像，Web 端需引入 [appear-polyfill](https://www.npmjs.com/package/appear-polyfill) 脚本 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
 | autoPixelRatio | `Boolean` | true | false | web端有效，在高分辨率下使用二倍图 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
 | autoRemoveScheme | `Boolean` | true | false | web端有效,图像 URL 自动删除协议头 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|
 | autoReplaceDomain | `Boolean` | true | false | web端有效 图像 URL 域名替换成 gw.alicdn.com | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />|

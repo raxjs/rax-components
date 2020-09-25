@@ -1,10 +1,10 @@
-import {createElement, Component, render} from 'rax';
+import { createElement, Component, render } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
-import {isWeex} from 'universal-env';
+import DriverUniversal from 'driver-universal';
 import RecyclerView from '../src/index';
 
-const vwh = isWeex ? 667 * 2 : document.documentElement.clientHeight * 750 / document.documentElement.clientWidth;
+const vwh = document.documentElement.clientWidth;
 
 class Thumb extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -13,7 +13,7 @@ class Thumb extends Component {
 
   render() {
     return (
-      <RecyclerView.Cell style={this.props.style}>
+      <RecyclerView.Cell >
         <View style={styles.button}>
           <View style={styles.box}>
             <Text>{this.props.index}</Text>
@@ -60,7 +60,7 @@ export default class App extends Component {
 
           <View
             style={styles.topIcon}
-            onClick={() => this.scrollView.scrollTo({y: 0})}>
+            onClick={() => this.scrollView.scrollTo({ y: 0 })}>
             <Text>Top</Text>
           </View>
         </View>
@@ -156,3 +156,5 @@ let styles = {
     cursor: 'pointer',
   }
 };
+
+render(<App />, document.body, { driver: DriverUniversal });

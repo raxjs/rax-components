@@ -100,8 +100,8 @@ class Slider extends Component<SliderProps, any> {
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
     this.loopIdx = this.index < 0 && realIndex !== 0 ? this.total - realIndex : realIndex;
-    this.childRefs[this.loopIdx].current.style.left =
-      this.offsetX / 750 * document.documentElement.clientWidth + 'px';
+    this.childRefs[this.loopIdx].current.style.transform =
+      `transformX(${this.offsetX / 750 * document.documentElement.clientWidth + 'px'})`;
     if (this.props.onChange) {
       this.props.onChange({ index: this.loopIdx });
     }

@@ -101,7 +101,7 @@ class Slider extends Component<SliderProps, any> {
     swipeView.style.webkitTransform = styleText;
     this.loopIdx = this.index < 0 && realIndex !== 0 ? this.total - realIndex : realIndex;
     this.childRefs[this.loopIdx].current.style.transform =
-      `transformX(${this.offsetX / 750 * document.documentElement.clientWidth + 'px'})`;
+      `translateX(${this.offsetX / 750 * document.documentElement.clientWidth + 'px'})`;
     if (this.props.onChange) {
       this.props.onChange({ index: this.loopIdx });
     }
@@ -198,7 +198,6 @@ class Slider extends Component<SliderProps, any> {
       const translateStyle = {
         width: this.width + 'rpx',
         height: this.height + 'rpx',
-        left: i * this.width + 'rpx'
       };
       this.childRefs[i] = ref;
       return (

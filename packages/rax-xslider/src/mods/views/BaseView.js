@@ -122,7 +122,7 @@ class BaseView extends Component {
     let panels = [];
     let {children} = props || this.props;
     if (!children) return panels;
-    if (!(children instanceof Array)) {
+    if (!(Array.isArray(children))) {
       children = [children];
     }
     children.forEach((child) => {

@@ -20,10 +20,10 @@ function Time(props) {
 
   const numList = displayNum.split('');
   const numListLength = numList.length - 1;
-  return <View className="rax-countdown-item" style={{...timeWrapStyle}}>
+  return <View className="rax-countdown-item" style={timeWrapStyle}>
     {
       timeBackground ?
-        <Image className="rax-countdown-background" source={timeBackground} style={{...timeBackgroundStyle}} /> :
+        <Image className="rax-countdown-background" source={timeBackground} style={timeBackgroundStyle} /> :
         null
     }
     {

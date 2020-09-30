@@ -1,11 +1,11 @@
-.main {
+.rax-countdown-main {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.item {
+.rax-countdown-item {
   flex-direction: row;
 }
-.background {
+.rax-countdown-background {
   position: absolute;
 }

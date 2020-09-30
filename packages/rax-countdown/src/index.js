@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Text from 'rax-text';
 import View from 'rax-view';
 import Image from 'rax-image';
-import styles from './index.css';
+import './index.css';
 
 function isFunction(functionToCheck) {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';

@@ -1,5 +1,5 @@
 <!-- [{"value":["3","5"],"style":"","isTime":true},{"value":"秒","style":""}] -->
-<view class="main-wrapper">
+<view class="rax-countdown-main-wrapper">
     <block a:for="{{parsedTime}}">
       <view style="{{item.style}}">
         <block a:if="{{item && item.value && item.value[0]}}">

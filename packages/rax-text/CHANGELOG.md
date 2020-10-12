@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.4
+- [chore] Sync from rax-pkg-rax-text
+
 ## 2.0.3
 - [chore] Upgrade `universal-env` version
 

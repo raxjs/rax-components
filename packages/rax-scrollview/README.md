@@ -1,5 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-scrollview.svg)](https://www.npmjs.com/package/rax-scrollview)
 # rax-scrollview
+
+[![npm](https://img.shields.io/npm/v/rax-scrollview.svg)](https://www.npmjs.com/package/rax-scrollview)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序

@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-textinput.svg)](https://www.npmjs.com/package/rax-textinput)
-
 # rax-textinput
+
+[![npm](https://img.shields.io/npm/v/rax-textinput.svg)](https://www.npmjs.com/package/rax-textinput)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序

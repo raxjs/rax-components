@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-icon.svg)](https://www.npmjs.com/package/rax-icon)
-
 # rax-icon
+
+[![npm](https://img.shields.io/npm/v/rax-icon.svg)](https://www.npmjs.com/package/rax-icon)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序

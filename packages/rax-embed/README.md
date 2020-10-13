@@ -1,5 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-embed.svg)](https://www.npmjs.com/package/rax-embed)
 # rax-embed
+
+[![npm](https://img.shields.io/npm/v/rax-embed.svg)](https://www.npmjs.com/package/rax-embed)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序

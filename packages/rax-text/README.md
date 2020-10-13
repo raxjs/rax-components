@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-text.svg)](https://www.npmjs.com/package/rax-text)
-
 # rax-text
+
+[![npm](https://img.shields.io/npm/v/rax-text.svg)](https://www.npmjs.com/package/rax-text)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序

@@ -1,5 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-modal.svg)](https://www.npmjs.com/package/rax-modal)
 # rax-modal
+
+[![npm](https://img.shields.io/npm/v/rax-modal.svg)](https://www.npmjs.com/package/rax-modal)
 
 ## 支持
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序

@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/universal-toast.svg)](https://www.npmjs.com/package/universal-toast)
-
 # rax-countdown
+
+[![npm](https://img.shields.io/npm/v/universal-toast.svg)](https://www.npmjs.com/package/universal-toast)
 
 ## 支持
 Web / Weex / 小程序

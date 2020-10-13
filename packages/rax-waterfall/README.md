@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-waterfall.svg)](https://www.npmjs.com/package/rax-waterfall)
-
 # rax-waterfall
+
+[![npm](https://img.shields.io/npm/v/rax-waterfall.svg)](https://www.npmjs.com/package/rax-waterfall)
 
 ## 支持
 Web / Weex

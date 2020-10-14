@@ -81,7 +81,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       controlled
     } = props;
     const type =
-      password || secureTextEntry ? 'password' : (keyboardTypeMap[keyboardType] || keyboardType); // Keyboard type in alibaba miniapp and wechat miniprogram can be passed directly
+      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
     const setValue = (value = '') => {
       setNativeProps(refEl.current, { value });
     };

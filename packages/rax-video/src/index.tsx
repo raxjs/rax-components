@@ -11,6 +11,15 @@ import cx from 'classnames/dedupe';
 import omit from 'omit.js';
 import { VideoProps } from './types';
 
+const miniappVideoPropsMap = {
+  showMuteBtn: 'show-mute-btn',
+  showPlayBtn: 'show-play-btn',
+  showFullscreenBtn: 'show-fullscreen-btn',
+  showCenterPlayBtn: 'show-center-play-btn',
+  showThinProgressBar: 'show-thin-progress-bar',
+  objectFit: 'object-fit'
+};
+
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
   (props, ref) => {
     const { className, style, controls, playControl, autoPlay } = props;
@@ -30,6 +39,12 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     if (isWeChatMiniProgram || isMiniApp) {
       common.autoplay = common.autoPlay;
       delete common.autoPlay;
+
+      Object.keys(miniappVideoPropsMap).forEach(prop => {
+        common[miniappVideoPropsMap[prop]] = common[prop];
+        delete common[prop];
+      })
+
     }
 
     useEffect(() => {

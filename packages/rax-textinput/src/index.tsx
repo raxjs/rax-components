@@ -124,6 +124,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     const rows = numberOfLines || maxNumberOfLines;
     useImperativeHandle(ref, () => {
       return {
+        _nativeNode: refEl.current,
         focus() {
           refEl.current.focus();
         },

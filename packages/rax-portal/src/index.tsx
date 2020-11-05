@@ -1,15 +1,19 @@
 import { FunctionComponent, useEffect, useRef } from "rax";
 import createPortal from "rax-create-portal";
 
-const Portal: FunctionComponent<any> = (props) => {
-  const { children } = props;
+interface PortalProps {
+  container?: any;
+}
+
+const Portal: FunctionComponent<PortalProps> = (props) => {
+  const { children, container = document.body } = props;
   const el = useRef(document.createElement("div"));
 
   useEffect(() => {
-    document.body.appendChild(el.current);
+    container.appendChild(el.current);
 
     return () => {
-      document.body.removeChild(el.current);
+      container.removeChild(el.current);
     };
   }, []);
 

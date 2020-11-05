@@ -18,6 +18,12 @@ Web / 阿里小程序
 $ npm install rax-portal --save
 ```
 
+## 属性
+
+| **属性**    | **类型**   | **默认值** | **必填** | **描述**           | **支持** |
+| ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
+| container | HTMLElement | document.body | false | 将内容渲染至此节点 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> |
+
 ## 示例
 
 ```jsx
@@ -35,6 +41,11 @@ const Demo = (props) => {
       <Portal>
         <View>
           <Text>Portal content</Text>
+        </View>
+      </Portal>
+      <Portal container={document.body}>
+        <View>
+          <Text>Portal with custom container content</Text>
         </View>
       </Portal>
     </Fragment>

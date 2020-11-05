@@ -5,7 +5,7 @@
 ## 支持
 Web / 阿里小程序
 
-1. 阿里小程序 仅支持 [Rax 运行时]()
+1. 阿里小程序 仅支持 [Rax 运行时](https://www.yuque.com/hedgqh/de046s/lrqgn6)
 
 ## 描述
 

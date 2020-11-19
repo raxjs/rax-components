@@ -80,7 +80,7 @@ class ListView extends BaseView {
   render() {
     let {vertical, indicatorStyle, indicatorItemStyle, children, indicatorActiveItemStyle, defaultIndex} = this.props;
 
-    if (!(children instanceof Array)) {
+    if (!(Array.isArray(children))) {
       children = [children];
     }
 

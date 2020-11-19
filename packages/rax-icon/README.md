@@ -1,4 +1,9 @@
+# rax-icon
+
 [![npm](https://img.shields.io/npm/v/rax-icon.svg)](https://www.npmjs.com/package/rax-icon)
+
+## 支持
+Web / Weex / 阿里小程序 / 微信小程序
 
 ## 描述
 
@@ -12,9 +17,8 @@ $ npm install rax-icon --save
 
 ## 属性
 
-1、**支持**列表中的 <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />代表h5 <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />代表weex  <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />代表小程序  <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px">微信小程序  <img alt="quickApp" src="https://gw.alicdn.com/tfs/TB1MP7EwQT2gK0jSZPcXXcKkpXa-200-200.svg" width="25px" height="25px">代表快应用 
-2. 小程序存在两种构建模式：编译时和运行时。如无说明，该属性支持小程序即指两种构建模式均支持
-3. 如果没有传入fontFamily和codePoint，但传入了source.uri，则source.uri会被认为是图片型icon的url，否则source.uri会被认为是iconfont的url。
+1. 小程序存在两种构建模式：编译时和运行时。如无说明，该属性支持小程序即指两种构建模式均支持
+2. 如果没有传入 fontFamily 和 codePoint，但传入了 source.uri，则 source.uri 会被认为是图片型 icon 的 url，否则 source.uri 会被认为是 iconfont 的 url。
 
 | **属性**    | **类型**   | **默认值** | **必填** | **描述**           | **支持** |
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
@@ -47,7 +51,7 @@ $ npm install rax-icon --save
 ## 示例
 ```js
 import { createElement, render, Component } from 'rax';
-import DU from 'driver-universal';
+import DriverUniversal from 'driver-universal';
 import View from 'rax-view';
 import Icon, { createIconSet } from '../src/index';
 
@@ -70,5 +74,5 @@ class Demo extends Component {
   }
 }
 
-render(<Demo />, document.body, { driver: DU });
+render(<Demo />, document.body, { driver: DriverUniversal });
 ```

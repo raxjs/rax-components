@@ -1,6 +1,6 @@
 {
   "name": "rax-video",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Video component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

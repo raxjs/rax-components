@@ -1,4 +1,9 @@
+# rax-swiper
+
 [![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
+
+## 支持
+Web
 
 ## 描述
 
@@ -12,16 +17,16 @@ $ npm install rax-swiper --save
 
 ## 属性
 
-注：只支持 Web
+> 注：只支持 Web，该组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到
 
-| **属性**         | **类型**   | **默认值** | **必填** | **描述**                               | 
+| **属性**         | **类型**   | **默认值** | **必填** | **描述**                               |
 | ---------------- | ---------- | ---------- | -------- | -------------------------------------- |
-| autoplay         | `boolean|object`  | false      | 否       | 是否自动播放                           |
-| pagination  | `boolean|object`  | true       | 否       | 是否显示指示点                         | 
-| loop             | `boolean`  | true       | 否       | 是否是循环播放                         | 
+| autoplay         | `boolean\|object`  | false      | 否       | 是否自动播放                           |
+| pagination  | `boolean\|object`  | true       | 否       | 是否显示指示点                         |
+| loop             | `boolean`  | true       | 否       | 是否是循环播放                         |
 | initialSlide            | `number`   | 0          | 否       | 指定默认初始化第几页                   |
-| onSlideChange         | `function` | -          | 否       | `index` 改变时会触发                   | 
-| direction         | `string` | horizontal   | 否       |  滚动方向 (`horizontal` / `vertical`)            | 
+| onSlideChange         | `function` | -          | 否       | `index` 改变时会触发                   |
+| direction         | `string` | horizontal   | 否       |  滚动方向 (`horizontal` / `vertical`)            |
 
 ## 示例
 

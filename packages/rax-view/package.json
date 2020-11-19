@@ -1,6 +1,6 @@
 {
   "name": "rax-view",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "View component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

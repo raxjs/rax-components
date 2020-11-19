@@ -10,7 +10,16 @@ const keyboardTypeMap = {
   'decimal-pad': 'number',
   twitter: 'text',
   'web-search': 'search',
-  numeric: 'number'
+  numeric: 'number',
+
+  // Alibaba MiniApp and WeChat MiniProgram
+  number: 'number',
+  text: 'text',
+  idcard: 'idcard',
+  digit: 'digit',
+  numberpad: 'numberpad',
+  digitpad: 'digitpad',
+  idcardpad: 'idcardpad'
 };
 
 export default keyboardTypeMap;

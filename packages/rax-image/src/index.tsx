@@ -37,7 +37,10 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
 
   nativeProps.onLoad = useCallback(
     (e: ImageLoadEvent) => {
-      if (e && e.success) {
+      // onLoad is triggered by native, so no need to judge
+      if (isMiniApp || isWeChatMiniProgram) {
+        onLoad && onLoad(e);
+      } else if (e && e.success) {
         // weex
         onLoad && onLoad(e);
       } else if (

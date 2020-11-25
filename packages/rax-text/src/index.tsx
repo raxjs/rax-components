@@ -59,13 +59,22 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         classNames.push(`${prefixCls}--multiline`);
       }
     }
+    const lineClamp = lines > 1 ? lines : undefined;
     return (
       <span
         {...rest}
         ref={ref}
         className={classNames.join(' ')}
         // Vendor prefixes should begin with a capital letter.
-        style={{ ...style, WebkitLineClamp: lines > 1 ? lines : undefined }}
+        style={{
+          ...style,
+          // Currently only -webkit-line-clamp is supported in browsers
+          // https://www.w3.org/TR/css-overflow-3/#webkit-line-clamp
+          WebkitLineClamp: lineClamp,
+          // Add line-clamp for standard compatibility and engines which
+          // has already support it such as Kraken
+          lineClamp: lineClamp,
+        }}
         onClick={handleClick}
       >
         {textString}

@@ -1,3 +1,5 @@
+# rax-parallax
+
 [![npm](https://img.shields.io/npm/v/rax-parallax.svg)](https://www.npmjs.com/package/rax-parallax)
 
 ## 描述

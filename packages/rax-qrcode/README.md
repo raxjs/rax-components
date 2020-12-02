@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-qrcode.svg)](https://www.npmjs.com/package/rax-qrcode)
+# rax-qrcode
 
-# rax-qrcode 
+[![npm](https://img.shields.io/npm/v/rax-qrcode.svg)](https://www.npmjs.com/package/rax-qrcode) 
 
 ## 描述
 QRCode 是一个用于生成二维码的 Rax 组件

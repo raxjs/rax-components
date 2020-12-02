@@ -1,5 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-recyclerview.svg)](https://www.npmjs.com/package/rax-recyclerview)
 # rax-recyclerview
+
+[![npm](https://img.shields.io/npm/v/rax-recyclerview.svg)](https://www.npmjs.com/package/rax-recyclerview)
 
 ## 描述
 
@@ -28,6 +29,7 @@ npm install rax-recyclerview --save
 | onTouchMove                      | `function` | -          | false    | touchMove触发的事件，返回触摸点数据（touches、changedTouches）                      | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />  |
 | onTouchEnd                     | `function` | -          | false    | touchEnd触发的事件，返回触摸点数据（touches、changedTouches）                      | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /><img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />  |
 | onTouchCancel                    | `function` | -          | false    | touchCancel触发的事件，返回触摸点数据（touches、changedTouches）                      | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />  |
+| disableScroll                  | `boolean`  | -          | false    | 是否禁止滚动，是否禁止滚动, rax-recyclerview@1.3.4 及以上版本支                             | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />      |
 
 ## 方法
 ### scrollTo({x:number,y:number})

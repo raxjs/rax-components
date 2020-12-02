@@ -1,5 +1,5 @@
 import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex } from 'universal-env';
+import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
 const EMPTY_SOURCE = {} as any as Source;
@@ -36,7 +36,10 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
 
   nativeProps.onLoad = useCallback(
     (e: ImageLoadEvent) => {
-      if (e && e.success) {
+      // onLoad is triggered by native, so no need to judge
+      if (isMiniApp || isWeChatMiniProgram) {
+        onLoad && onLoad(e);
+      } else if (e && e.success) {
         // weex
         onLoad && onLoad(e);
       } else if (

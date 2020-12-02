@@ -81,7 +81,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       controlled
     } = props;
     const type =
-      password || secureTextEntry ? 'password' : (keyboardTypeMap[keyboardType] || keyboardType); // Keyboard type in alibaba miniapp and wechat miniprogram can be passed directly
+      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
     const setValue = (value = '') => {
       setNativeProps(refEl.current, { value });
     };
@@ -107,7 +107,6 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       'aria-label': accessibilityLabel,
       autoComplete: autoComplete && 'on',
       maxlength: maxlength || maxLength,
-      readonly: editable !== undefined && !editable,
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
@@ -119,12 +118,13 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       onFocus: onFocus && handleFocus,
       ref: refEl
     };
+       
     // Diff with web readonly attr, `disabled` must be boolean value
-    const disbaled = Boolean(propsCommon.readonly);
+    const disbaled = Boolean(editable !== undefined && !editable);
     const rows = numberOfLines || maxNumberOfLines;
-
     useImperativeHandle(ref, () => {
       return {
+        _nativeNode: refEl.current,
         focus() {
           refEl.current.focus();
         },

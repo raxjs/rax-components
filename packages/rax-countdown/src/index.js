@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Text from 'rax-text';
 import View from 'rax-view';
 import Image from 'rax-image';
-import styles from './index.css';
+import './index.css';
 
 function isFunction(functionToCheck) {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
@@ -20,10 +20,10 @@ function Time(props) {
 
   const numList = displayNum.split('');
   const numListLength = numList.length - 1;
-  return <View className="item" style={{...styles.item, ...timeWrapStyle}}>
+  return <View className="rax-countdown-item" style={timeWrapStyle}>
     {
       timeBackground ?
-        <Image className="background" source={timeBackground} style={{...styles.background, ...timeBackgroundStyle}} /> :
+        <Image className="rax-countdown-background" source={timeBackground} style={timeBackgroundStyle} /> :
         null
     }
     {
@@ -164,7 +164,7 @@ class Index extends Component {
     }
     let lastPlaintextIndex = 0;
 
-    return <View className="main" style={styles.main}>
+    return <View className="rax-countdown-main">
       {
         matchlist.map((val, index) => {
           if (val === -1) {// don't forget the potential plain text after last matched item

@@ -1,4 +1,5 @@
-import {createElement, Component, render, createRef} from 'rax';
+import { createElement, Component, render, createRef } from 'rax';
+import DriverUniversal from 'driver-universal';
 import findDOMNode from 'rax-find-dom-node';
 import View from 'rax-view';
 import Text from 'rax-text';
@@ -86,7 +87,7 @@ export default class App extends Component {
     });
   };
 
-  afterTabBarSwitch = e => {};
+  afterTabBarSwitch = e => { };
 
   render() {
     const { listHeight } = this.state;
@@ -131,7 +132,7 @@ export default class App extends Component {
             >
               {CHILD_GROUP.map((data, childIndex) => {
                 return (
-                  <TabPanel style={styles.page}>
+                  <TabPanel key={`tab${childIndex}`} style={styles.page}>
                     <TabPanelView>
                       <RecyclerView.NestedList
                         itemSize={270}
@@ -149,7 +150,7 @@ export default class App extends Component {
 
           <View
             style={styles.topIcon}
-            onClick={() => this.scrollView.scrollTo({y: 0})}
+            onClick={() => this.scrollView.scrollTo({ y: 0 })}
           >
             <Text>Top</Text>
           </View>
@@ -178,11 +179,11 @@ class Tab extends Component {
     this.block = createRef();
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   switchTo(index, options = { duration: DURATION }) {
     let { type, duration } = options;
-    let { beforeSwitch = () => {}, afterSwitch = () => {} } = this.props;
+    let { beforeSwitch = () => { }, afterSwitch = () => { } } = this.props;
     let block = findDOMNode(this.block.current);
     let left = getLeft(tabItemWidth, index);
     let itemWidth = tabItemWidth[index];
@@ -244,6 +245,7 @@ class Tab extends Component {
           {itemData.map((item, i) => {
             return (
               <View
+                key={`item${i}`}
                 style={combineStyle(tabStyles.item, { width: itemWidths[i] })}
                 onClick={() => this.switchTo(i, { type: 'click' })}
               >
@@ -380,3 +382,5 @@ let styles = {
     textAlign: 'center'
   }
 };
+
+render(<App />, document.body, { driver: DriverUniversal });

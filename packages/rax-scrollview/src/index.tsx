@@ -1,6 +1,6 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
-import ScrollViewMiniApp from './miniapp';
 import ScrollViewWeb from './web';
+import ScrollViewMiniApp from './miniapp';
 import ScrollViewWeex from './weex';
 
 const DEFAULT_END_REACHED_THRESHOLD = 500;

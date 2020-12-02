@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
-
 # rax-swiper
+
+[![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
 
 ## 支持
 Web

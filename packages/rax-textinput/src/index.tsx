@@ -88,7 +88,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       : keyboardTypeMap[keyboardType];
 
     // Check is type supported or not
-    if (isMiniApp && typeof my !== 'undefined') {
+    // Use isWeb to exclude web-view
+    if (isMiniApp && !isWeb) {
       const basicSupportTypes = ['text', 'number', 'idcard', 'digit'];
       // Other types, like numberpad, we can check it with canIUse
       if (!basicSupportTypes.includes(type) && !my.canIUse(`input.type.${type}`)) {

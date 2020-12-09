@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-12-09
+
+### rax-textinput [1.3.8]
+
+#### Changed
+- In Alibaba Miniapp runtime, TextInput will check is `type` supported or not
+
 ## 2020-12-03
 
 ### rax-portal [1.0.0]

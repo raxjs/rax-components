@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
-import { isWeex, isWeb, isWeChatMiniProgram, isNode } from 'universal-env';
+import { isWeex, isWeb, isWeChatMiniProgram, isNode, isMiniApp } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
@@ -80,8 +80,23 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       defaultValue,
       controlled
     } = props;
-    const type =
-      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
+    let type =
+      password || secureTextEntry
+      ? "password"
+      : typeof keyboardTypeMap[keyboardType] === "undefined"
+      ? keyboardType
+      : keyboardTypeMap[keyboardType];
+
+    // Check is type supported or not
+    if (isMiniApp && typeof my !== 'undefined') {
+      const basicSupportTypes = ['text', 'number', 'idcard', 'digit'];
+      // Other types, like numberpad, we can check it with canIUse
+      if (!basicSupportTypes.includes(type) && !my.canIUse(`input.type.${type}`)) {
+        // If not support, fallback to text
+        type = 'text';
+      }
+    }
+
     const setValue = (value = '') => {
       setNativeProps(refEl.current, { value });
     };

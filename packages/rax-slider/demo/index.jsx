@@ -30,8 +30,11 @@ class App extends Component {
   }
 
   onClick = (direction) => {
-    this.inputRef.current.slideTo(this.inputRef.current.index,
-      direction === 'prev' ? 'SWIPE_RIGHT' : 'SWIPE_LEFT');
+    if (direction === 'go(0)') {
+      this.inputRef.current.slideTo(0);
+    } else {
+      this.inputRef.current.slideTo(this.inputRef.current.index + (direction === 'prev' ? -1 : 1));
+    }
   }
 
   render() {
@@ -42,7 +45,7 @@ class App extends Component {
           width={750}
           height={500}
           autoPlay={true}
-          index={0}
+          index={2}
           loop={true}
           speed={300}
           cssEase="linear"
@@ -72,6 +75,7 @@ class App extends Component {
         }}>
           <View onClick={this.onClick.bind(this, 'prev')}>prev</View>
           <View onClick={this.onClick.bind(this, 'next')}>next</View>
+          <View onClick={this.onClick.bind(this, 'go(0)')}>go(0)</View>
         </View>
       </View>
     );

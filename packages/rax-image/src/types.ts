@@ -51,6 +51,10 @@ export interface ImageProps extends HTMLAttributes<HTMLImageElement>, RefAttribu
    */
   quality?: 'original' | 'normal' | 'low' | 'high' | 'auto';
   /**
+   * loading: how the client should load the image
+   */
+  loading?: 'eager' | 'lazy';
+  /**
    * callback of success
    */
   onLoad?: (e: ImageLoadEvent) => void;

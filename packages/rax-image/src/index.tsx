@@ -1,5 +1,5 @@
 import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
+import { isWeex, isMiniApp, isWeChatMiniProgram, isWeb, isByteDanceMicroApp } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
 const EMPTY_SOURCE = {} as any as Source;
@@ -15,6 +15,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   onError,
   style,
   resizeMode,
+  loading,
   ...otherProps
 }: ImageProps, ref) => {
   source = source || EMPTY_SOURCE;
@@ -73,6 +74,14 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
     ...style,
   };
 
+  if (loading) {
+    if (isWeb) {
+      nativeProps.loading = loading;
+    } else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp) {
+      nativeProps['lazy-load'] = loading === 'lazy';
+    }
+  }
+
   // for cover and contain
   resizeMode = resizeMode || nativeProps.style.resizeMode;
   if (resizeMode) {
@@ -85,11 +94,11 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   }
 
   // Set default quality to "original" in weex avoid image be optimized unexpect
-  return isWeex ? (
-    <image quality="original" {...nativeProps} ref={ref} />
-  ) : (
-    <img {...nativeProps} ref={ref} />
-  );
+  if (isWeex) {
+    return <image quality="original" {...nativeProps} ref={ref} />;
+  }
+
+  return <img {...nativeProps} ref={ref} />;
 });
 
 export default Image;

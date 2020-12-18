@@ -1,5 +1,5 @@
 
-import {createElement, Component, render} from 'rax';
+import {createElement, Component, render, createRef} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import DU from 'driver-universal';
@@ -24,6 +24,12 @@ let dataSource = [
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.waterfallRef = createRef();
+  }
+ 
   state = {
     refreshing: false,
     dataSource: dataSource
@@ -52,9 +58,15 @@ class App extends Component {
       this.setState({
         dataSource: this.state.dataSource.concat(dataSource)
       });
-    }, 1000);
+    }, 500);
   }
 
+  scrollToTop = () => {
+    this.waterfallRef.current.scrollTo({
+      x: 0,
+      y: 0
+    });
+  }
 
   render() {
     return (<View style={{position: 'absolute', top: 0, bottom: 0, left: 0, right: 0}}>
@@ -63,6 +75,9 @@ class App extends Component {
         columnWidth={150}
         columnCount={4}
         columnGap={50}
+        leftGap={20}
+        rightGap={20}
+        ref={this.waterfallRef}
         dataSource={this.state.dataSource}
         renderHeader={() => {
           return [
@@ -72,20 +87,21 @@ class App extends Component {
               onRefresh={this.handleRefresh}>
               <Text>下拉刷新</Text>
             </RefreshControl>,
-            <View key="1" style={{width: 750, height: 100, backgroundColor: 'yellow', marginBottom: 20}}>header1</View>,
-            <View key="2" style={{width: 750, height: 100, backgroundColor: 'green', marginBottom: 20}}>header2</View>
+            <View key="1" style={{width: 750, height: 100, backgroundColor: 'yellow', marginBottom: 20}}><Text>header1</Text></View>,
+            <View key="2" style={{width: 750, height: 100, backgroundColor: 'green', marginBottom: 20}}><Text>header2</Text></View>,
           ];
         }}
         renderFooter={() => {
           return <View key="3" style={{width: 750, height: 300, backgroundColor: 'blue', marginTop: 20}}>footer1</View>;
         }}
         renderItem={(item, index) => {
-          return (<View style={{height: item.height, backgroundColor: 'red', marginBottom: 20}}>
+          return (<View style={{height: item.height, backgroundColor: 'red', marginBottom: 20}} key={index}>
             <Text>{index}</Text>
             {/* {index} */}
           </View>);
         }}
         onEndReached={this.loadMore} />
+        <View onClick={this.scrollToTop} style={{position: 'absolute', zIndex: 100, bottom: 100, right: 10, backgroundColor: 'yellow'}}><Text>scroll to top</Text></View>
     </View>);
   }
 }

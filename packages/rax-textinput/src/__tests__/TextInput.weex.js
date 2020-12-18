@@ -18,4 +18,18 @@ describe('TextInput in weex', () => {
     expect(tree.tagName).toEqual('INPUT');
     expect(tree.attributes.disabled).toEqual(false);
   });
+
+  it('should not render multiline input with value ', () => {
+    const mockFunc = jest.fn();
+    const component = renderer.create(
+      <TextInput
+        numberOfLines="2"
+        placeholder="test"
+        value="text"
+        multiline
+      />
+    );
+    let tree = component.toJSON();
+    expect(tree.children).toBe(undefined);
+  });
 });

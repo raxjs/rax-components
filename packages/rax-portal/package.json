@@ -1,0 +1,45 @@
+{
+  "name": "rax-portal",
+  "version": "1.0.0",
+  "description": "rax-portal",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
+  "keywords": [
+    "Rax",
+    "rax-component"
+  ],
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "rax-create-portal": "^1.0.0",
+    "universal-env": "^3.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/rax": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "csstype": "^2.6.7",
+    "driver-universal": "^1.0.2",
+    "eslint": "^5.16.0",
+    "eslint-config-rax": "^0.0.0",
+    "lerna": "^3.16.4",
+    "rax-test-renderer": "^1.0.0",
+    "rax-text": "^1.1.0",
+    "rax-view": "^1.1.0",
+    "typescript": "^3.6.2"
+  }
+}

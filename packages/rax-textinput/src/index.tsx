@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'rax';
-import { isWeex, isWeb } from 'universal-env';
+import { isWeex, isWeb, isWeChatMiniProgram, isNode, isMiniApp } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
@@ -80,8 +80,24 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       defaultValue,
       controlled
     } = props;
-    const type =
-      password || secureTextEntry ? 'password' : keyboardTypeMap[keyboardType];
+    let type =
+      password || secureTextEntry
+      ? "password"
+      : typeof keyboardTypeMap[keyboardType] === "undefined"
+      ? keyboardType
+      : keyboardTypeMap[keyboardType];
+
+    // Check is type supported or not
+    // Use isWeb to exclude web-view
+    if (isMiniApp && !isWeb) {
+      const basicSupportTypes = ['text', 'number', 'idcard', 'digit'];
+      // Other types, like numberpad, we can check it with canIUse
+      if (!basicSupportTypes.includes(type) && !my.canIUse(`input.type.${type}`)) {
+        // If not support, fallback to text
+        type = 'text';
+      }
+    }
+
     const setValue = (value = '') => {
       setNativeProps(refEl.current, { value });
     };
@@ -107,22 +123,24 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       'aria-label': accessibilityLabel,
       autoComplete: autoComplete && 'on',
       maxlength: maxlength || maxLength,
-      readOnly: editable !== undefined && !editable,
       onChange: (onChange || onChangeText) && handleChange,
       onInput: (e: InputEvent) => {
         onInput && handleInput(e);
-        forceUpdate(tick => tick + 1);
+        if (!isWeChatMiniProgram) {
+          forceUpdate(tick => tick + 1);
+        }
       },
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus,
       ref: refEl
     };
+       
     // Diff with web readonly attr, `disabled` must be boolean value
-    const disbaled = isWeex ? Boolean(propsCommon.readOnly) : false;
+    const disbaled = Boolean(editable !== undefined && !editable);
     const rows = numberOfLines || maxNumberOfLines;
-
     useImperativeHandle(ref, () => {
       return {
+        _nativeNode: refEl.current,
         focus() {
           refEl.current.focus();
         },
@@ -147,7 +165,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     if (multiline) {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          {/* style should not render in miniapp */}
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <textarea
@@ -165,14 +184,15 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             confirm-type={confirmType}
             show-count={showCount}
           >
-            {isWeb && propsCommon.value}
+            {/* undefined will be rendered to comment node in ssr */}
+            {!isWeex && (propsCommon.value || defaultValue || '')}
           </textarea>
         </Fragment>
       );
     } else {
       return (
         <Fragment>
-          <style x-if={isWeb && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
+          <style x-if={(isWeb || isNode) && placeholderColor} dangerouslySetInnerHTML={{ __html: `.${styleClassName}::placeholder {
             color: ${placeholderColor}
           }` }} />
           <input
@@ -184,6 +204,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             }}
             type={type}
             disabled={disbaled}
+            value={value || defaultValue}
             confirm-type={confirmType}
             random-Number={randomNumber}
             selection-start={selectionStart}

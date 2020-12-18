@@ -58,12 +58,14 @@ Component({
   deriveDataFromProps(nextProps) {
     updateData(this, nextProps);
   },
-  onClick() {
-    const { maskCanBeClick, onHide, onMaskClick } = this.props;
-    if (typeof onMaskClick === 'function' && onMaskClick !== noop) {
-      onMaskClick();
-    } else if (maskCanBeClick) {
-      onHide && onHide();
+  methods: {
+    onClick() {
+      const { maskCanBeClick, onHide, onMaskClick } = this.props;
+      if (typeof onMaskClick === 'function' && onMaskClick !== noop) {
+        onMaskClick();
+      } else if (maskCanBeClick) {
+        onHide && onHide();
+      }
     }
   }
 });

@@ -18,4 +18,6 @@ if (Slider.default) {
 
 Slider.Item = Fragment;
 
-export default Slider as ForwardRefExoticComponent<SliderProps>;
+type SliderType = ForwardRefExoticComponent<SliderProps> & { Item: typeof Fragment };
+
+export default Slider as SliderType;

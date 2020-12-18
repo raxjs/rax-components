@@ -50,6 +50,12 @@ npm run build rax-view
 npm run test
 ```
 
+run test for specific component
+
+```
+npm run test -- packages/rax-countdown
+```
+
 ## Run Lint
 
 ```

@@ -63,6 +63,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       style,
       horizontal,
       contentContainerStyle,
+      disableScroll,
       scrollEventThrottle,
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
@@ -219,6 +220,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scrollerStyle.overflowX = 'hidden';
         scrollerStyle.overflowY = 'scroll';
       }
+
+      if (disableScroll) {
+        scrollerStyle.overflow = 'hidden';
+      }
+
       const webProps = {
         ...props
       };

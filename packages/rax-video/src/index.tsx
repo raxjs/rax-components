@@ -6,10 +6,19 @@ import {
   ForwardRefExoticComponent,
   useImperativeHandle
 } from 'rax';
-import { isWeex } from 'universal-env';
+import { isWeex, isWeb, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import cx from 'classnames/dedupe';
 import omit from 'omit.js';
 import { VideoProps } from './types';
+
+const miniappVideoPropsMap = {
+  showMuteBtn: 'show-mute-btn',
+  showPlayBtn: 'show-play-btn',
+  showFullscreenBtn: 'show-fullscreen-btn',
+  showCenterPlayBtn: 'show-center-play-btn',
+  showThinProgressBar: 'show-thin-progress-bar',
+  objectFit: 'object-fit'
+};
 
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
   (props, ref) => {
@@ -24,6 +33,20 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
       common.controls = isWeex ? 'nocontrols' : false;
     }
     common.autoPlay = playControl === 'play' || autoPlay;
+    if (isWeb && common.autoPlay === false) {
+      delete common.autoPlay; // In W3C standard, if the attribute is set, it will be treated as true regardless of its value 
+    }
+    if (isWeChatMiniProgram || isMiniApp) {
+      common.autoplay = common.autoPlay;
+      delete common.autoPlay;
+
+      Object.keys(miniappVideoPropsMap).forEach(prop => {
+        common[miniappVideoPropsMap[prop]] = common[prop];
+        delete common[prop];
+      })
+
+    }
+
     useEffect(() => {
       if (!isWeex) {
         const node = refEl.current;

@@ -118,13 +118,18 @@ class Slider extends Component<SliderProps, any> {
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
     this.loopIdx = this.index < 0 && realIndex !== 0 ? this.total - realIndex : realIndex;
-    this.childRefs[this.loopIdx].current.style.left =
-      this.offsetX / 750 * document.documentElement.clientWidth + 'px';
+    this.childRefs[this.loopIdx].current.style.transform =
+      `translateX(${this.offsetX / 750 * document.documentElement.clientWidth + 'px'})`;
     if (this.props.onChange) {
       this.props.onChange({ index: this.loopIdx });
     }
     // forceUpdate
     this.forceUpdate();
+
+    // Reset timer each call slideTo.
+    if (this.props.autoPlay) {
+      this.autoPlay();
+    }
   }
 
   private onSwipeBegin = () => {
@@ -211,7 +216,6 @@ class Slider extends Component<SliderProps, any> {
       const translateStyle = {
         width: this.width + 'rpx',
         height: this.height + 'rpx',
-        left: i * this.width + 'rpx'
       };
       this.childRefs[i] = ref;
       return (

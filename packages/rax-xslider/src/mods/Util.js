@@ -19,7 +19,7 @@ import findDOMNode from 'rax-find-dom-node';
  */
 
 function forEach(o, fn) {
-  if (o instanceof Array) {
+  if (Array.isArray(o)) {
     return Array.prototype.forEach.call(o, fn);
   }
   Object.keys(o).forEach((key) => {
@@ -57,7 +57,7 @@ function findIndex(o, condition) {
 }
 
 function map(o, fn) {
-  if (o instanceof Array) {
+  if (Array.isArray(o)) {
     return Array.prototype.map.call(o, fn);
   } else {
     var result = [];

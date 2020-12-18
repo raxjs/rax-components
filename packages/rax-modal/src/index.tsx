@@ -106,6 +106,12 @@ function Modal(props: ModalProps) {
   const show = () => {
     if (!maskRef.__pendingShow) {
       maskRef.__pendingShow = true;
+      // Stop pending hide action
+      if (maskRef.__pendingHide) {
+        maskRef.__pendingHide = false;
+      } else {
+        modalCount++;
+      }
       if (isWeb) {
         // Only when current modal count is 1, it need record origin body overflow
         if (modalCount === 1) {
@@ -130,17 +136,22 @@ function Modal(props: ModalProps) {
     if (isWeb && modalCount === 1) {
       bodyEl.style.overflow = originalBodyOverflow;
     }
+    modalCount--;
     setVisibleState(false);
     onHide && onHide();
   };
 
-  const hide = () => {
+  const hide = (withAnimate = animation) => {
     if (visibleState && !maskRef.__pendingHide) {
       maskRef.__pendingHide = true;
-      if (animation) {
+      maskRef.__pendingShow = false;
+      if (withAnimate) {
         // execute hide animation on element that is already hidden will cause bug
         animate(false, () => {
-          hideAction();
+          // Only when pending hide execute hide action
+          if (maskRef.__pendingHide) {
+            hideAction();
+          }
         });
       } else {
         hideAction();
@@ -151,18 +162,10 @@ function Modal(props: ModalProps) {
 
   useEffect(() => {
     // When a new modal mounted, modal count ++
-    modalCount++;
     return () => {
-      // When the modal unmounted modal mount --
-      modalCount--;
       // Clear timer
       clearTimeout(maskRef.__timer);
-      if (isWeb && modalCount === 0) {
-        bodyEl.style.overflow = originalBodyOverflow;
-      }
-      if (!maskRef.__pendingHide) {
-        onHide && onHide();
-      }
+      hide(false);
     }
   }, [])
 
@@ -170,6 +173,9 @@ function Modal(props: ModalProps) {
     // if state is unequal to props trigger show or hide
     if (visible !== visibleState) {
       visible ? show() : hide();
+    } else if (visible) {
+      // When visible changed to true, while visibleState didn't change, it should trigger show
+      show();
     }
   }, [visible]);
 

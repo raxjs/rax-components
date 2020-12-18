@@ -12,7 +12,7 @@ class App extends Component {
       <View style={styles.root}>
         <View style={styles.container}>
           <Countdown
-            timeRemaining={100000}
+            timeRemaining={100000000000}
             tpl={'{d}天{h}时{m}分{s}秒'}
             onComplete={this.onComplete}
           />

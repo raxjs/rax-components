@@ -25,7 +25,7 @@ Component({
     },
     onScroll(e) {
       const event = fmtEvent(this.properties, e);
-      this.triggerEvent('onEndReached', event);
+      this.triggerEvent('onScroll', event);
     }
   }
 });

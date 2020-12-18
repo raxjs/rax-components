@@ -1,8 +1,10 @@
 .rax-scrollview-vertical {
+    display: flex;
     flex-direction: column;
 }
 
 .rax-scrollview-horizontal {
+    display: flex;
     flex-direction: row;
 }
 

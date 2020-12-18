@@ -109,7 +109,10 @@ SwipeEventProps,
             : false;
 
           if (validHorizontal) {
-            evt.preventDefault && evt.preventDefault();
+            // Use event cancelable(https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable)
+            // Fix error `Ignored attempt to cancel a touchmove event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.`
+            // Not all browser support it(https://caniuse.com/#search=cancelable)
+            (evt.cancelable === undefined || evt.cancelable) && evt.preventDefault && evt.preventDefault();
             this.velocityProp = 'vx';
             this.distanceProp = 'dx';
             // left

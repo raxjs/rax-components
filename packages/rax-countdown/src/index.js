@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Text from 'rax-text';
 import View from 'rax-view';
 import Image from 'rax-image';
-import styles from './index.css';
+import './index.css';
 
 function isFunction(functionToCheck) {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
@@ -11,21 +11,24 @@ function isFunction(functionToCheck) {
 
 function Time(props) {
   const { num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle } = props;
-  const displayNum = num < 0 ? 0 : num;
-  const displayFirstNum = displayNum < 10 ? 0 : displayNum.toString().slice(0, 1);
-  const displaySecondNum = displayNum < 10 ? displayNum : displayNum.toString().slice(1);
-  return <View className="item" style={{...styles.item, ...timeWrapStyle}}>
+  let displayNum = num.toString();
+  if (num < 0) {
+    displayNum = '00';
+  } else if (num < 10) {
+    displayNum = '0' + num;
+  }
+
+  const numList = displayNum.split('');
+  const numListLength = numList.length - 1;
+  return <View className="rax-countdown-item" style={timeWrapStyle}>
     {
       timeBackground ?
-        <Image className="background" source={timeBackground} style={{...styles.background, ...timeBackgroundStyle}} /> :
+        <Image className="rax-countdown-background" source={timeBackground} style={timeBackgroundStyle} /> :
         null
     }
-    <Text style={timeStyle}>
-      {'' + displayFirstNum}
-    </Text>
-    <Text style={secondStyle}>
-      {'' + displaySecondNum}
-    </Text>
+    {
+      numList.map((time, index) => <Text key={`time_${index}`} style={index === numListLength ? secondStyle : timeStyle}>{time}</Text>)
+    }
   </View>;
 };
 
@@ -161,7 +164,7 @@ class Index extends Component {
     }
     let lastPlaintextIndex = 0;
 
-    return <View className="main" style={styles.main}>
+    return <View className="rax-countdown-main">
       {
         matchlist.map((val, index) => {
           if (val === -1) {// don't forget the potential plain text after last matched item

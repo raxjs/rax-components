@@ -84,25 +84,22 @@ class Slider extends Component<SliderProps, any> {
     this.autoPlayTimer && clearInterval(this.autoPlayTimer);
     const interval = () => {
       if (this.isLoopEnd()) return;
-      this.slideTo(this.index, SWIPE_LEFT);
+      this.slideTo(this.index + 1);
     };
     this.autoPlayTimer = setInterval(interval, autoPlayInterval);
   }
 
-  public slideTo(index: number, direction: string) {
+  public slideTo(index: number) {
+    if (this.index === index) return;
     if (this.isInTransition) return;
     if (this.isSwiping) return;
     if (this.total < 2) return;
 
-    if (direction) {
-      this.index = direction === SWIPE_LEFT ? index + 1 : index - 1;
-    } else {
-      this.index = index;
-    }
+    this.index = index;
 
     // Reset slider container's index when out of edge
     if (this.index > this.total) {
-      this.index = 1;
+      this.index = 0;
     }
     if (this.index < -1) {
       this.index = this.total - 1;
@@ -164,7 +161,7 @@ class Slider extends Component<SliderProps, any> {
           realIndex === 0 && direction === SWIPE_RIGHT)
       )
     ) {
-      this.slideTo(this.index, direction);
+      this.slideTo(this.index + (direction === 'SWIPE_LEFT' ? 1 : -1));
     }
     if (this.props.autoPlay) {
       this.autoPlay();

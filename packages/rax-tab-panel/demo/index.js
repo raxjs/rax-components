@@ -276,19 +276,19 @@ class App extends Component {
           afterSwitch={this.afterTabBarSwitch}
           defaultFocusIndex={1}
         >
-          <TabPanel style={styles.page}>
+          <TabPanel key="1" style={styles.page}>
             <TabPanelView style={{ flex: 1 }}>{1}</TabPanelView>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="2" style={styles.page}>
             <Text>2</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="3" style={styles.page}>
             <Text>3</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="4" style={styles.page}>
             <Text>4</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="5" style={styles.page}>
             <Text>5</Text>
           </TabPanel>
         </TabController>

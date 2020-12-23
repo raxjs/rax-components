@@ -1,5 +1,10 @@
 # Changelog
 
+## 2020-12-18
+
+### rax-image [2.2.4]
+- Support `loading` property in Web and Miniapp
+
 ## 2020-12-09
 
 ### rax-textinput [1.3.8]

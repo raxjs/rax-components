@@ -1,6 +1,6 @@
 {
   "name": "rax-portal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "rax-portal",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -22,7 +22,7 @@
     "npm": ">=3.0.0"
   },
   "dependencies": {
-    "rax-create-portal": "^1.0.0",
+    "rax-create-portal": "1.0.0",
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {

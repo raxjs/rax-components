@@ -215,6 +215,7 @@ class Tab extends Component {
           {itemData.map((item, i) => {
             return (
               <View
+                key={i}
                 style={combineStyle(tabStyles.item, { width: itemWidths[i] })}
                 onClick={() => this.switchTo(i, { type: 'click' })}
               >

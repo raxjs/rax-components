@@ -18,6 +18,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       data: [
+        // 红蓝灰
         '//gw.alicdn.com/tfs/TB19NbqKFXXXXXLXVXXXXXXXXXX-750-500.png',
         '//gw.alicdn.com/tfs/TB1tWYBKFXXXXatXpXXXXXXXXXX-750-500.png',
         '//gw.alicdn.com/tfs/TB1SX_vKFXXXXbyXFXXXXXXXXXX-750-500.png'
@@ -64,8 +65,9 @@ class App extends Component {
           onChange={this.onchange}
           ref={this.inputRef}
         >
-          {this.state.data.map((item) => (
+          {this.state.data.map((item, index) => (
             <View key={item} className="itemWrap">
+              <p className="text">index: {index}</p>
               <Image className="image" source={{ uri: item }} />
             </View>))}
         </Slider>

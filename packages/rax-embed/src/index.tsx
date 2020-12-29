@@ -52,6 +52,7 @@ const Embed = (props: Props) => {
   if (isMiniApp || isWeChatMiniProgram) {
     return (
       <web-view
+        id={props.id || ''}
         src={url}
         onMessage={props.onMessage}
       >

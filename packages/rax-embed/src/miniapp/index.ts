@@ -3,6 +3,7 @@ Component({
     url: '',
   },
   props: {
+    id: '',
     src: '',
     urlParam: '',
   },

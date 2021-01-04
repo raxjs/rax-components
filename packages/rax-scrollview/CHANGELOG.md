@@ -1,5 +1,7 @@
 # Changelog
 
+## 3.3.5
+- [chore] Sync Pegasus Component
 ## 3.3.3
 - [feat] Support `disableScroll`
 

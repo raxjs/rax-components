@@ -1,5 +1,5 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex, isMiniApp } from 'universal-env';
+import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import { TextProps } from './types';
 import './index.css';
 
@@ -36,7 +36,7 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         {textString}
       </text>
     );
-  } else if (isMiniApp) {
+  } else if (isMiniApp || isWeChatMiniProgram) {
     return (
       <text
         {...rest}

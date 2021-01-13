@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-01-13
+
+### rax-text [2.0.5]
+
+#### Changed
+
+- Use text component in WeChat MiniProgram
+
 ## 2020-12-18
 
 ### rax-image [2.2.4]

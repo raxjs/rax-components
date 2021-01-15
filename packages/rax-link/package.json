@@ -1,9 +1,10 @@
 {
   "name": "rax-link",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "miniprogram": ".",
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",

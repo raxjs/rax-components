@@ -129,6 +129,7 @@ class Slider extends Component<SliderProps, any> {
 
   private onSwipeBegin = () => {
     this.isSwiping = true;
+    this.isInTransition = true;
     clearInterval(this.autoPlayTimer);
   };
 
@@ -145,13 +146,22 @@ class Slider extends Component<SliderProps, any> {
     if (this.isLoopEnd()) return;
     const changeX = distance / document.documentElement.clientWidth * 750 - this.offsetX;
     const swipeView = findDOMNode(this.swipeView.current);
-    const styleText = `translate3d(${changeX}rpx, 0rpx, 0rpx)`;
+    const styleText = `translate3d(${changeX / 750 * document.documentElement.clientWidth}px, 0px, 0px)`;
+
+    // move next page
+    this.childRefs[this.index === this.total - 1 ? 0 : this.index + 1].current.style.left = (this.index + 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+
+    // move pre page
+    this.childRefs[this.index === 0 ? this.total - 1 : this.index - 1].current.style.left = (this.index - 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+
+    swipeView.style.transitionDuration = '0s';
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
   };
 
   private onSwipeEnd = ({ direction, distance, velocity }) => {
     this.isSwiping = false;
+    this.isInTransition = false;
     const num = this.total;
     const realIndex = this.loopedIndex();
     if (

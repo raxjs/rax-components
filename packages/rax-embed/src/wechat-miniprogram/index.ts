@@ -10,6 +10,10 @@ Component({
     urlParam: {
       type: String,
       optionalTypes: [Object]
+    },
+    id: {
+      type: String,
+      value: ''
     }
   },
   methods: {

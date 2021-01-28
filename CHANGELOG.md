@@ -18,6 +18,13 @@
 ### rax-portal [1.0.1]
 - Fix: not re-render when the container changes
 
+## 2020-12-29
+
+### rax-embed [1.1.2]
+
+#### Added
+- Support passing `id` prop to web-view component in miniapp
+
 ## 2020-12-18
 
 ### rax-image [2.2.4]

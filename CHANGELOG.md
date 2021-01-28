@@ -8,6 +8,16 @@
 
 - Use text component in WeChat MiniProgram
 
+### rax-countdown [1.1.5]
+
+#### Fixed
+- not clear interval when the component unmounted
+
+## 2020-01-12
+
+### rax-portal [1.0.1]
+- Fix: not re-render when the container changes
+
 ## 2020-12-18
 
 ### rax-image [2.2.4]

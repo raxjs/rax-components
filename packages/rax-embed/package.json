@@ -1,9 +1,10 @@
 {
   "name": "rax-embed",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Embed container for Rax.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "miniprogram": ".",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",

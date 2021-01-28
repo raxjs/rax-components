@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-01-13
+
+### rax-countdown [1.1.5]
+
+#### Fixed
+- not clear interval when the component unmounted
+
 ## 2020-01-12
 
 ### rax-portal [1.0.1]

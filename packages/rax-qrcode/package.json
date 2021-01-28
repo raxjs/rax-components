@@ -1,9 +1,10 @@
 {
   "name": "rax-qrcode",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "QRCode component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "miniprogram": ".",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",

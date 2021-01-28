@@ -10,6 +10,11 @@ const Portal: FunctionComponent<PortalProps> = (props) => {
   const el = useRef(document.createElement("div"));
 
   useEffect(() => {
+    // no container, skip render
+    if (!container) {
+      return undefined;
+    }
+
     if (isWeChatMiniProgram) {
       setTimeout(() => container.appendChild(el.current));
     } else {
@@ -19,7 +24,7 @@ const Portal: FunctionComponent<PortalProps> = (props) => {
     return () => {
       container.removeChild(el.current);
     };
-  }, []);
+  }, [container]);
 
   return createPortal(children, el.current);
 };

@@ -118,22 +118,18 @@ class Slider extends Component<SliderProps, any> {
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
     this.loopIdx = this.index < 0 && realIndex !== 0 ? this.total - realIndex : realIndex;
-    this.childRefs[this.loopIdx].current.style.transform =
-      `translateX(${this.offsetX / 750 * document.documentElement.clientWidth + 'px'})`;
+    this.childRefs[this.loopIdx].current.style.left =
+      this.offsetX / 750 * document.documentElement.clientWidth + 'px';
     if (this.props.onChange) {
       this.props.onChange({ index: this.loopIdx });
     }
     // forceUpdate
     this.forceUpdate();
-
-    // Reset timer each call slideTo.
-    if (this.props.autoPlay) {
-      this.autoPlay();
-    }
   }
 
   private onSwipeBegin = () => {
     this.isSwiping = true;
+    this.isInTransition = true;
     clearInterval(this.autoPlayTimer);
   };
 
@@ -150,13 +146,22 @@ class Slider extends Component<SliderProps, any> {
     if (this.isLoopEnd()) return;
     const changeX = distance / document.documentElement.clientWidth * 750 - this.offsetX;
     const swipeView = findDOMNode(this.swipeView.current);
-    const styleText = `translate3d(${changeX}rpx, 0rpx, 0rpx)`;
+    const styleText = `translate3d(${changeX / 750 * document.documentElement.clientWidth}px, 0px, 0px)`;
+
+    // move next page
+    this.childRefs[this.index === this.total - 1 ? 0 : this.index + 1].current.style.left = (this.index + 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+
+    // move pre page
+    this.childRefs[this.index === 0 ? this.total - 1 : this.index - 1].current.style.left = (this.index - 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+
+    swipeView.style.transitionDuration = '0s';
     swipeView.style.transform = styleText;
     swipeView.style.webkitTransform = styleText;
   };
 
   private onSwipeEnd = ({ direction, distance, velocity }) => {
     this.isSwiping = false;
+    this.isInTransition = false;
     const num = this.total;
     const realIndex = this.loopedIndex();
     if (
@@ -216,6 +221,7 @@ class Slider extends Component<SliderProps, any> {
       const translateStyle = {
         width: this.width + 'rpx',
         height: this.height + 'rpx',
+        left: i * this.width + 'rpx'
       };
       this.childRefs[i] = ref;
       return (

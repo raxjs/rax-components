@@ -1,9 +1,10 @@
 {
   "name": "rax-video",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Video component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "miniprogram": ".",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",

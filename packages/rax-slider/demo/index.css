@@ -7,14 +7,22 @@
   align-items: center;
   justify-content: center;
 }
+
 .image {
   width: 750rpx;
   height: 500rpx;
 }
 
 .itemWrap {
+  position: relative;
   width: 750rpx;
   height: 500rpx;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .button {

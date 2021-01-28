@@ -1,5 +1,23 @@
 # Changelog
 
+## 2020-01-13
+
+### rax-text [2.0.5]
+
+#### Changed
+
+- Use text component in WeChat MiniProgram
+
+### rax-countdown [1.1.5]
+
+#### Fixed
+- not clear interval when the component unmounted
+
+## 2020-01-12
+
+### rax-portal [1.0.1]
+- Fix: not re-render when the container changes
+
 ## 2020-12-29
 
 ### rax-embed [1.1.2]

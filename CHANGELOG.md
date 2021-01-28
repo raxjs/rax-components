@@ -2,6 +2,12 @@
 
 ## 2020-01-13
 
+### rax-text [2.0.5]
+
+#### Changed
+
+- Use text component in WeChat MiniProgram
+
 ### rax-countdown [1.1.5]
 
 #### Fixed

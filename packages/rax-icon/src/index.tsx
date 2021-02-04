@@ -50,7 +50,8 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
     }
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {
-      // this font not be loaded yet, load now
+      // In Web and Weex, this font not be loaded yet, load now
+      // In Miniapp, iconfont must be loaded every time when page changes
       const source = `url('${uri}')`;
       if (isWeb) {
         fontCache.set(fontFamily, uri);

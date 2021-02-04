@@ -1,5 +1,12 @@
 # Changelog
 
+## 2021-02-03
+
+### rax-icon [1.3.8]
+
+#### Fixed
+
+- can't load fontface after first loading
 ## 2021-01-28
 
 ### rax-modal [1.5.6]

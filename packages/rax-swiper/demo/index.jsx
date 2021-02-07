@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   render() {
+    const menu = ['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4'];
     return (
       <View style={{
         width: 750
@@ -33,7 +34,12 @@ class App extends Component {
           }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => swiperEle = swiper}
-          pagination={{ clickable: true }}
+          pagination={{
+            clickable: true,
+            renderBullet: (index, className) => {
+              return '<span class="' + className + '">' + (menu[index]) + '</span>';
+            },
+          }}
           initialSlide={2}
         >
           <SwiperSlide key="1">Slide 1</SwiperSlide>

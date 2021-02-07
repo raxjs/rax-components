@@ -1,6 +1,6 @@
-import { createElement, useRef, forwardRef, ForwardRefExoticComponent, RefAttributes, HTMLAttributes, MutableRefObject } from 'rax';
+import { createElement, useRef, forwardRef, ForwardRefExoticComponent, RefAttributes, HTMLAttributes, MutableRefObject, useEffect } from 'rax';
 import cx from 'classnames/dedupe';
-import { isWeex, isMiniApp } from 'universal-env';
+import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import './index.css';
 
 export type ViewProps = RefAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>;
@@ -20,6 +20,32 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
        ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
     }
     let handleAppear = onAppear;
+    let _observer;
+    if (isWeChatMiniProgram) {
+      useEffect(() => {
+        if (onAppear) {
+          const customComponentInstance = document.getElementById(props.id);
+          if (!customComponentInstance) {
+            console.warn('id is required if using onAppear in wechat miniprogram!');
+            return undefined;
+          }
+          //@ts-ignore
+          _observer = customComponentInstance._internal.createIntersectionObserver();
+          _observer
+            .relativeToViewport()
+            .observe('.rax-view-v2', res => {
+              if (res.intersectionRatio > 0) {
+                handleAppear && handleAppear(res);
+              }
+            });
+          return () => {
+            if (_observer) _observer.disconnect();
+          }
+        } else {
+          return undefined;
+        }
+      }, []);
+    }
     if (onFirstAppear) {
       handleAppear = (event) => {
         onAppear && onAppear(event);

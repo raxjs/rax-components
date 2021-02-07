@@ -24,13 +24,13 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
     if (isWeChatMiniProgram) {
       useEffect(() => {
         if (onAppear) {
-          const customComponentInstance = document.getElementById(props.id);
-          if (!customComponentInstance) {
+          const element = document.getElementById(props.id);
+          if (!element) {
             console.warn('id is required if using onAppear in wechat miniprogram!');
             return undefined;
           }
           //@ts-ignore
-          _observer = customComponentInstance._internal.createIntersectionObserver();
+          _observer = element._internal.createIntersectionObserver();
           _observer
             .relativeToViewport()
             .observe('.rax-view-v2', res => {

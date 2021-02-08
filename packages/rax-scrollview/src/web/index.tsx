@@ -35,11 +35,11 @@ function scrollTo(scrollerRef, x, y, animated, duration) {
       duration,
       easing: 'easeOutSine',
       onRun: e => {
-        if (x >= 0) {
+        if (x >= 0 && scrollerRef && scrollerRef.current) {
           scrollerRef.current.scrollLeft =
             scrollLeft + e.percent * (x - scrollLeft);
         }
-        if (y >= 0) {
+        if (y >= 0 && scrollerRef && scrollerRef.current) {
           scrollerRef.current.scrollTop =
             scrollTop + e.percent * (y - scrollTop);
         }

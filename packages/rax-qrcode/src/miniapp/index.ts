@@ -8,7 +8,7 @@ enum ErrorCorrectLevelMap {
   H = 2
 }
 
-const SCREEN_WIDTH = my.getSystemInfoSync().screenWidth;
+const WINDOW_WIDTH = my.getSystemInfoSync().windowWidth;
 
 Component({
   // @ts-ignore
@@ -31,8 +31,8 @@ Component({
     if (data === '') {
       return;
     }
-    this.width = getStyleNumber(getStyleProps('width', style), SCREEN_WIDTH) || 300;
-    this.height = getStyleNumber(getStyleProps('height', style), SCREEN_WIDTH) || 300;
+    this.width = getStyleNumber(getStyleProps('width', style), WINDOW_WIDTH) || 300;
+    this.height = getStyleNumber(getStyleProps('height', style), WINDOW_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {

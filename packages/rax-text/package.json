@@ -1,10 +1,11 @@
 {
   "name": "rax-text",
-  "version": "2.0.4",
+  "version": "2.0.6",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "miniprogram": ".",
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build",

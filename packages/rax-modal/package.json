@@ -1,6 +1,6 @@
 {
   "name": "rax-modal",
-  "version": "1.5.4",
+  "version": "1.5.6",
   "description": "rax-modal",
   "main": "lib/index.js",
   "quickappConfig": {

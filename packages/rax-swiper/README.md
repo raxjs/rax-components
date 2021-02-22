@@ -3,7 +3,10 @@
 [![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
 
 ## 支持
+
 Web
+
+> 使用 rax-swiper 必须用非内联，也就是在 build.json 里配置 inlineStyle 为 false
 
 ## 描述
 

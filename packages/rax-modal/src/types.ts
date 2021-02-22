@@ -3,6 +3,7 @@ import { RefAttributes, HTMLAttributes, CSSProperties, RaxElement, MutableRefObj
 export interface ModalProps extends RefAttributes<HTMLDivElement>, HTMLAttributes<HTMLDivElement> {
   visible: boolean;
   children?: RaxElement;
+  onMaskClick?: () => void;
   maskCanBeClick?: boolean;
   maskStyle?: CSSProperties;
   contentStyle?: CSSProperties;

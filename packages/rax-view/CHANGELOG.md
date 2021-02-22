@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.5
+- [chore] Sync from rax-pkg-rax-view
+
 ## 2.0.4
 - [chore] Sync from rax-pkg-rax-view
 

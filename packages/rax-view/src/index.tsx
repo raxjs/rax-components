@@ -44,7 +44,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         } else {
           return undefined;
         }
-      }, []);
+      }, [props.id]);
     }
     if (onFirstAppear) {
       handleAppear = (event) => {

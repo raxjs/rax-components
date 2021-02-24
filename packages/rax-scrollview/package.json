@@ -7,21 +7,20 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "miniprogram": ".",
-  "miniappConfig": {	
-    "main": "lib/miniapp-native/miniapp/index",	
-    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",	
-    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",	
-    "propsMap": {	
-      "onEndReachedThreshold": "endReachedThreshold"	
-    },	
-    "main:quickapp": "lib/quickapp/index"	
+  "miniappConfig": {
+    "main": "lib/miniapp-native/miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
+    "propsMap": {
+      "onEndReachedThreshold": "endReachedThreshold"
+    },
+    "main:quickapp": "lib/quickapp/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"
   },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },

@@ -6,17 +6,16 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "miniappConfig": {	
-    "main": "lib/miniapp/index",	
-    "main:quickapp": "lib/quickapp/index",	
-    "main:bytedance": "lib/bytedance-microapp/index"	
-  },	
-  "quickappConfig": {	
-    "main": "lib/quickapp/index"	
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:quickapp": "lib/quickapp/index",
+    "main:bytedance": "lib/bytedance-microapp/index"
+  },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
   },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },

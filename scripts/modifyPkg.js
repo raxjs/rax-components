@@ -28,69 +28,16 @@ names.forEach((dirname) => {
   const pkgPath = path.join(dirPath, 'package.json');
 
   let pkgData = JSON.parse(fs.readFileSync(pkgPath));
-  let newData = {};
+  let newData = pkgData;
 
-  pkgData = {...pkgData, ...{
-    "license": "BSD-3-Clause",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "types": "lib/index.d.ts",
-    "miniprogram": ".",
-    "miniappConfig": {
-      "main": "lib/miniapp/index",
-      "main:wechat": "lib/miniapp-wechat/index"
-    },
-    "scripts": {
-      "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-      "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
-      "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
-      "prepublishOnly": "npm run build"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/raxjs/rax-components.git"
-    },
-    "bugs": {
-      "url": "https://github.com/raxjs/rax-components/issues"
-    },
-    "homepage": "https://github.com/raxjs/rax-components#readme",
-    "keywords": [
-      "Rax",
-      "rax-component",
-      "react-component"
-    ],
-  }};
-
-  [
-    'name',
-    'version',
-    'description',
-    'license',
-    'main',
-    'module',
-    'types',
-    'miniprogram',
-    'miniappConfig',
-    'scripts',
-    'repository',
-    'bugs',
-    'homepage',
-    'keywords',
-    'dependencies',
-    'peerDependencies',
-    'devDependencies',
-  ].forEach((item) => {
-    newData[item] = pkgData[item];
-  });
-
-  // newData = Object.assign({}, pkgData, newData);
-
+  delete newData.scripts.clean;
+  newData.scripts.build = "../../node_modules/.bin/build-scripts build --config ../../build.json";
   // delete pkgData.files;
   // pkgData.types = 'lib/index.d.ts';
   // pkgData.module = 'es/index.js';
   fs.writeFileSync(pkgPath, JSON.stringify(newData, null, 2));
 
-  fs.writeFileSync(path.join(dirPath, 'CHANGELOG.md'), '# Changelog');
+  // fs.writeFileSync(path.join(dirPath, 'CHANGELOG.md'), '# Changelog');
 
   // ['.editorconfig', '.gitignore', '.npmignore', 'babel.config.js', 'jest.config.js'].forEach(item => {
   //   try {

@@ -6,20 +6,19 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "miniappConfig": {	
-    "main": "lib/miniapp/index",	
-    "propsMap": {	
-      "onEndReachedThreshold": "endReachedThreshold"	
-    },	
-    "renderSlotProps": [	
-      "renderFooter",	
-      "renderHeader",	
-      "renderItem"	
-    ]	
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "propsMap": {
+      "onEndReachedThreshold": "endReachedThreshold"
+    },
+    "renderSlotProps": [
+      "renderFooter",
+      "renderHeader",
+      "renderItem"
+    ]
   },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },

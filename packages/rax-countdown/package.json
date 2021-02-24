@@ -12,8 +12,7 @@
     "main:bytedance": "lib/bytedance-microapp/index"
   },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },

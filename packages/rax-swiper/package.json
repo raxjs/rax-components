@@ -1,6 +1,6 @@
 {
   "name": "rax-swiper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -28,7 +28,7 @@
     "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-clone-element": "^1.0.0",
-    "rax-view": "^1.1.0-0",
+    "rax-view": "^2.0.0",
     "swiper": "^6.1.2",
     "universal-env": "^3.2.0"
   },

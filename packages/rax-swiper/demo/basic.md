@@ -1,12 +1,17 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { createElement, Component, render, createRef } from 'rax';
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+import { createElement, Component, createRef } from 'rax';
 import View from 'rax-view';
-import {Swiper, SwiperSlide} from '../src/index';
-import DU from 'driver-universal';
-import './index.css';
+import { Swiper, SwiperSlide } from '../src/index';
 
 let swiperEle;
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.inputRef = createRef();
@@ -22,14 +27,14 @@ class App extends Component {
   render() {
     return (
       <View style={{
-        width: 750
+        width: '750rpx'
       }}>
         <Swiper
           autoplay={true}
           loop={true}
           style={{
-            height: 300,
-            width: 750
+            height: '300rpx',
+            width: '750rpx'
           }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => swiperEle = swiper}
@@ -46,5 +51,4 @@ class App extends Component {
     );
   }
 }
-
-render(<App />, document.body, { driver: DU });
+```

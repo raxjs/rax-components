@@ -4,34 +4,32 @@
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "miniprogram": ".",
+  "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "miniprogram": ".",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
+  },
   "scripts": {
-    "clean": "rm -rf ./lib ./package-lock.json ./demo/miniapp/lib ",
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },
-  "files": [
-    "dist",
-    "lib",
-    "src"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
-    "rax-component"
+    "rax-component",
+    "react-component"
   ],
-  "bugs": {
-    "url": "https://github.com/alibaba/rax/issues"
-  },
-  "homepage": "https://github.com/alibaba/rax#readme",
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "universal-env": "^3.0.0"
   },
@@ -52,14 +50,5 @@
     "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.0.1",
     "typescript": "^3.5.3"
-  },
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:bytedance": "lib/bytedance-microapp/index",
-    "main:quickapp": "lib/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
   }
 }

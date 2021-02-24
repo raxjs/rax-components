@@ -4,57 +4,32 @@
   "description": "RecyclerView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "miniprogram": ".",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
+  },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },
-  "files": [
-    "dist",
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
     "rax-component",
     "react-component"
   ],
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:bytedance": "lib/bytedance-microapp/index",
-    "main:quickapp": "lib/quickapp/index",
-    "subComponents": {
-      "Header": {
-        "tagNameMap": "view",
-        "tagNameMap:quickapp": "list-item",
-        "attributes": {
-          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
-        }
-      },
-      "Cell": {
-        "tagNameMap": "view",
-        "tagNameMap:quickapp": "list-item",
-        "attributes": {
-          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"
-        }
-      }
-    },
-    "propsMap": {
-      "onEndReachedThreshold": "endReachedThreshold"
-    }
-  },
-  "bugs": {
-    "url": "https://github.com/alibaba/rax/issues"
-  },
-  "homepage": "https://github.com/alibaba/rax#readme",
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "rax-children": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",

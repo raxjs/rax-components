@@ -2,26 +2,34 @@
   "name": "rax-xslider",
   "version": "1.0.8",
   "description": "advanced slider",
-  "author": "john.yy",
+  "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "miniprogram": ".",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
+  },
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -f ./yarn.lock && rm -rf demo/miniapp/lib",
+    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [
-    "Rax",
-    "rax-component"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
-  "engines": {
-    "npm": ">=3.0.0"
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
   },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
   "dependencies": {
     "object-assign": "^4.1.1",
     "prop-types": "^15.7.2",

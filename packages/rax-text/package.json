@@ -4,31 +4,32 @@
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "lib/index.d.ts",
   "miniprogram": ".",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/miniapp-wechat/index"
+  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
-    "start": "../../node_modules/.bin/build-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && build-scripts test"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^.+\\.css$": "jest-transform-css"
-    }
+    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
-    "rax-component"
+    "rax-component",
+    "react-component"
   ],
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "universal-env": "^3.0.0"
   },
@@ -53,13 +54,5 @@
     "rax-test-renderer": "^1.0.0",
     "rax-view": "^1.1.0",
     "universal-env": "^3.0.0"
-  },
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
   }
 }

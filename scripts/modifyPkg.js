@@ -22,7 +22,7 @@ let names = fs.readdirSync(pkgsDir).filter(item => {
   },
  */
 
-names = [ 'rax-barcode' ];
+// names = [ 'rax-barcode' ];
 names.forEach((dirname) => {
   const dirPath = path.join(pkgsDir, dirname);
   const pkgPath = path.join(dirPath, 'package.json');
@@ -83,7 +83,7 @@ names.forEach((dirname) => {
     newData[item] = pkgData[item];
   });
 
-  newData = Object.assign({}, pkgData, newData);
+  // newData = Object.assign({}, pkgData, newData);
 
   // delete pkgData.files;
   // pkgData.types = 'lib/index.d.ts';

@@ -7,11 +7,8 @@
   "types": "lib/index.d.ts",
   "miniprogram": ".",
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
-    "start": "../../node_modules/.bin/build-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && build-scripts test"
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
   },
   "jest": {
     "moduleNameMapper": {
@@ -61,5 +58,6 @@
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"
-  }
+  },
+  "homepage": "https://unpkg.com/rax-text@2.0.7/build/index.html"
 }

@@ -1,9 +1,6 @@
-name: Auto Publisher
+name: CI
 
-on: 
-  push:
-    branches:
-      - all
+on: [push]
 
 jobs:
   build-and-publish:

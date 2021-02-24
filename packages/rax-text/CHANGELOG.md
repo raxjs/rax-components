@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.5
+- [feat] Add line-clamp standard support
+
 ## 2.0.4
 - [chore] Sync from rax-pkg-rax-text
 

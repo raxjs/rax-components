@@ -28,9 +28,9 @@
     "react-component"
   ],
   "bugs": {
-    "url": "https://github.com/alibaba/rax/issues"
+    "url": "https://github.com/raxjs/rax-components/issues"
   },
-  "homepage": "https://github.com/alibaba/rax#readme",
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "engines": {
     "npm": ">=3.0.0"
   },
@@ -57,5 +57,8 @@
     "rax": "^1.0.0",
     "rax-test-renderer": "^1.0.0",
     "rax-view": "^1.0.1"
-  }
+  },
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "miniprogram": "."
 }

@@ -1,8 +1,12 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/**
- * @jsx createElement
- */
-import {createElement, Component} from 'rax';
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+import { createElement, Component } from 'rax';
 import View from 'rax-view';
 import Text from '../../src/index';
 
@@ -86,3 +90,4 @@ class App extends Component {
 }
 
 export default App;
+```

@@ -1,9 +1,10 @@
 {
   "name": "rax-image",
-  "version": "2.2.3",
+  "version": "2.2.5",
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "miniprogram": ".",
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./lib ./package-lock.json ./demo/miniapp/lib ",

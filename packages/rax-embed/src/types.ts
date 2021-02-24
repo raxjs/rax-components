@@ -11,4 +11,5 @@ export interface Props extends Rax.Attributes {
   onMessage?: Function;
   useIframeInWeb?: boolean;
   style?: Rax.CSSProperties;
+  id?: string;
 }

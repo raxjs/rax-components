@@ -25,6 +25,9 @@ Component({
       this.funcToExecute();
     }, this.props.interval);
   },
+  didUnmount: function didUnmount() {
+    if (this.counter) clearInterval(this.counter);
+  },
   methods: {
     msToTime() {
       const { count } = this.data;

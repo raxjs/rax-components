@@ -50,10 +50,11 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
     }
     const fontFile = fontCache.get(fontFamily);
     if (!fontFile) {
-      // this font not be loaded yet, load now
-      fontCache.set(fontFamily, uri);
+      // In Web and Weex, this font not be loaded yet, load now
+      // In Miniapp, iconfont must be loaded every time when page changes
       const source = `url('${uri}')`;
       if (isWeb) {
+        fontCache.set(fontFamily, uri);
         if (window.FontFace) {
           const iconfont = new window.FontFace(fontFamily, source);
           document.fonts.add(iconfont);
@@ -69,6 +70,7 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
           document.head.appendChild(style);
         }
       } else if (isWeex) {
+        fontCache.set(fontFamily, uri);
         domModule.addRule('fontFace', {
           fontFamily,
           src: source // single quotes are required around uri, and double quotes can not work

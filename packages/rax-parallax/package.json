@@ -6,11 +6,6 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "miniprogram": ".",
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
-  },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
     "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",

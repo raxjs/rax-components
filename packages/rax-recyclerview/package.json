@@ -7,9 +7,33 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "miniprogram": ".",
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+  "miniappConfig": {	
+    "main": "lib/miniapp/index",	
+    "main:wechat": "lib/miniapp-wechat/index",	
+    "main:bytedance": "lib/bytedance-microapp/index",	
+    "main:quickapp": "lib/quickapp/index",	
+    "subComponents": {	
+      "Header": {	
+        "tagNameMap": "view",	
+        "tagNameMap:quickapp": "list-item",	
+        "attributes": {	
+          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"	
+        }	
+      },	
+      "Cell": {	
+        "tagNameMap": "view",	
+        "tagNameMap:quickapp": "list-item",	
+        "attributes": {	
+          "style": "display:flex;flex-direction:column;align-content:flex-start;flex-shrink:0;box-sizing:border-box;border:0 solid black"	
+        }	
+      }	
+    },	
+    "propsMap": {	
+      "onEndReachedThreshold": "endReachedThreshold"	
+    }	
+  },
+  "quickappConfig": {	
+    "main": "lib/quickapp/index"	
   },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",

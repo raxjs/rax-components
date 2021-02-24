@@ -5,7 +5,6 @@
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp/index",

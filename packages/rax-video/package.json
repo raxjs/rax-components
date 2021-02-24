@@ -7,9 +7,11 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "miniprogram": ".",
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+  "miniappConfig": {	
+    "main": "lib/miniapp/index",	
+    "main:wechat": "lib/miniapp-wechat/index",	
+    "main:bytedance": "lib/bytedance-microapp/index",	
+    "main:quickapp": "lib/quickapp/index"	
   },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",

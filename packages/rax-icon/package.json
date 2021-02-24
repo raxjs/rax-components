@@ -9,7 +9,11 @@
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+    "main:wechat": "lib/miniapp-wechat/index",
+    "main:quickapp": "lib/quickapp/index"
+  },
+  "quickappConfig": {	
+    "main": "lib/quickapp/index"	
   },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",

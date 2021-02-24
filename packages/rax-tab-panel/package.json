@@ -6,10 +6,16 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "miniprogram": ".",
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index"
+  "miniappConfig": {	
+    "main": "lib/miniapp/index",	
+    "subComponents": {	
+      "TabController": {	
+        "tagNameMap": "rax-tabpanel"	
+      },	
+      "TabPanel": {	
+        "tagNameMap": "rax-tabpanel-item"	
+      }	
+    }	
   },
   "scripts": {
     "clean": "rm -rf ./lib && rm -rf ./package-lock.json",

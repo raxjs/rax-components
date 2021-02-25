@@ -14,7 +14,7 @@
     "main:quickapp": "lib/quickapp/index"
   },
   "scripts": {
-    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },

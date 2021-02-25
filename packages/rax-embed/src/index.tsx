@@ -57,7 +57,7 @@ const Embed = (props: Props) => {
         onMessage={props.onMessage}
       >
       </web-view>
-    )
+    );
   }
 
   if (useIframeInWeb && isWeb) {

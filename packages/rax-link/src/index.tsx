@@ -16,7 +16,7 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     fontFamily: style.fontFamily,
     textOverflow: style.textOverflow
   };
-  // If miniapp env is web, should use element <a> 
+  // If miniapp env is web, should use element <a>
   if ((isMiniApp || isWeChatMiniProgram) && !isWeb) {
     // miniappHref example: navigate:/pages/index/index
     const [ openType, url ] = miniappHref.split(':');

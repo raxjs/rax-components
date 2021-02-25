@@ -121,7 +121,7 @@ const Swiper = forwardRef(
       if (swiperParams.virtual) {
         return renderVirtual(swiperRef.current, slides, virtualData);
       }
-      if (!swiperParams.loop || (swiperRef.current && swiperRef.current.destroyed)) {
+      if (!swiperParams.loop || swiperRef.current && swiperRef.current.destroyed) {
         return slides.map((child) => {
           return cloneElement(child, { swiper: swiperRef.current });
         });

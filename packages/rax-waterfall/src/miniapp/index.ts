@@ -3,11 +3,15 @@ import fmtEvent from './fmtEvent';
 
 Component({
   data: {
-    columns: []
+    columns: [],
+    scrollY: 0,
+    scrollX: 0,
+    scrollWithAnimation: true,
+    scrollAnimationDuration: 400,
   },
   props: {
     onEndReached: () => { },
-    endReachedThreshold: 500,
+    onEndReachedThreshold: 500,
     columnWidth: '750rpx',
     columnCount: 1,
     dataSource: [],
@@ -26,6 +30,15 @@ Component({
         var event = fmtEvent(this.props, e);
         this.props.onEndReached(event);
       }
+    },
+    scrollTo(param) {
+      const { x = 0, y = 0, animated = true, duration = 400 } = param || {};
+      this.setData({
+        scrollY: y,
+        scrollX: x,
+        scrollWithAnimation: animated,
+        scrollAnimationDuration: duration,
+      });
     },
     update() {
       let columns = this.getColunms(this.props.dataSource, this.props.columnCount);

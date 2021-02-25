@@ -3,28 +3,32 @@ import PropTypes from 'prop-types';
 import Text from 'rax-text';
 import View from 'rax-view';
 import Image from 'rax-image';
-import styles from './index.css';
+import './index.css';
 
 function isFunction(functionToCheck) {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 };
 
-function addZero(num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle) {
-  const displayNum = num < 0 ? 0 : num;
-  const displayFirstNum = displayNum < 10 ? 0 : displayNum.toString().slice(0, 1);
-  const displaySecondNum = displayNum < 10 ? displayNum : displayNum.toString().slice(1);
-  return <View className="item" style={{...styles.item, ...timeWrapStyle}}>
+function Time(props) {
+  const { num, timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle } = props;
+  let displayNum = num.toString();
+  if (num < 0) {
+    displayNum = '00';
+  } else if (num < 10) {
+    displayNum = '0' + num;
+  }
+
+  const numList = displayNum.split('');
+  const numListLength = numList.length - 1;
+  return <View className="rax-countdown-item" style={timeWrapStyle}>
     {
       timeBackground ?
-        <Image className="background" source={timeBackground} style={{...styles.background, ...timeBackgroundStyle}} /> :
+        <Image className="rax-countdown-background" source={timeBackground} style={timeBackgroundStyle} /> :
         null
     }
-    <Text style={timeStyle}>
-      {'' + displayFirstNum}
-    </Text>
-    <Text style={secondStyle}>
-      {'' + displaySecondNum}
-    </Text>
+    {
+      numList.map((time, index) => <Text key={`time_${index}`} style={index === numListLength ? secondStyle : timeStyle}>{time}</Text>)
+    }
   </View>;
 };
 
@@ -148,6 +152,8 @@ class Index extends Component {
     };
 
     let rule = new RegExp('\{[d,h,m,s]\}', 'g'); // used to matched all template item, which includes 'd', 'h', 'm' and 's'.
+
+    // Turn {d}-{h}-{m}-{s} to [0, 0, 4, 4, 8, 8, 12, 12, -1]
     const matchlist = [];
     let tmp = null;
     while ( (tmp = rule.exec(tpl)) !== null ) {
@@ -158,13 +164,13 @@ class Index extends Component {
     }
     let lastPlaintextIndex = 0;
 
-    return <View className="main" style={styles.main}>
+    return <View className="rax-countdown-main">
       {
         matchlist.map((val, index) => {
           if (val === -1) {// don't forget the potential plain text after last matched item
             const lastPlaintext = tpl.slice(lastPlaintextIndex);
             return lastPlaintext ? (
-              <Text style={textStyle}>{lastPlaintext}</Text>
+              <Text style={textStyle} key={`text_${index}`}>{lastPlaintext}</Text>
             ) : null;
           }
 
@@ -174,17 +180,23 @@ class Index extends Component {
             case 'h':
             case 'm':
             case 's':
-              if (index % 2 === 0) {// insert plain text before current matched item
-                return (
-                  <Text style={textStyle}>
-                    {
-                      tpl.slice(lastPlaintextIndex, val)
-                    }
-                  </Text>
-                );
+              if (index % 2 === 0) {
+                // Insert plain text before current matched item
+                // eg. in `{d}-{h}`:  text before `{d}` is ``, text before `{h}` is `-`
+                const preText = tpl.slice(lastPlaintextIndex, val);
+                // Do not generate text node if there is no preText
+                return preText ? <Text style={textStyle} key={`text_${index}`}>{preText}</Text> : null;
               } else {// replace current matched item to realtime string
                 lastPlaintextIndex = val + 3;
-                return addZero(timeType[matchedCharacter], timeWrapStyle, timeBackground, timeBackgroundStyle, timeStyle, secondStyle);
+                return <Time
+                  num={timeType[matchedCharacter]}
+                  timeWrapStyle={timeWrapStyle}
+                  timeBackground={timeBackground}
+                  timeBackgroundStyle={timeBackgroundStyle}
+                  timeStyle={timeStyle}
+                  secondStyle={secondStyle}
+                  key={`time_${index}`}
+                />;
               }
             default:
               return null;

@@ -1,12 +1,12 @@
 import { isWeb } from 'universal-env';
 
-const requestAnimationFrame = 
-  isWeb && typeof window.requestAnimationFrame !== 'undefined' 
-  ? window.requestAnimationFrame : (job: (...args: any[]) => void) => setTimeout(job, 16);
+const requestAnimationFrame =
+  isWeb && typeof window.requestAnimationFrame !== 'undefined'
+    ? window.requestAnimationFrame : (job: (...args: any[]) => void) => setTimeout(job, 16);
 
-const cancelAnimationFrame = 
+const cancelAnimationFrame =
   isWeb && typeof window.cancelAnimationFrame !== 'undefined'
-  ? window.cancelAnimationFrame : clearTimeout;
+    ? window.cancelAnimationFrame : clearTimeout;
 
 const TYPES = {
   START: 'start',
@@ -48,7 +48,7 @@ class Timer {
     percent?: number;
     now?: number;
   };
-  private _raf: number | NodeJS.Timeout;
+  private _raf: number | ReturnType<typeof setTimeout>;
   public constructor(config) {
     this.config = {
       ...this.config,

@@ -1,5 +1,5 @@
-<view bindtap="onClick" style="{{mask_style}}" class="rax-modal-mask" wx:if="{{visible}}">
-  <view style="{{content_style}}" class="rax-modal-main">
+<view bindtap="onClick" style="{{maskStyleState}}" class="rax-modal-mask" wx:if="{{visibility}}">
+  <view style="{{contentStyleState}}" class="rax-modal-main">
     <slot />
   </view>
 </view>

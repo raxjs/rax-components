@@ -13,12 +13,19 @@ describe('Text', () => {
     expect(tree.children[0]).toEqual('Example');
   });
 
-  it('style in Text', () => {
+  it('use className in Text', () => {
     const component = renderer.create(
-      <Text>Example</Text>
+      <Text className={'my-text'}>Example</Text>
     );
     let tree = component.toJSON();
+    expect(tree.attributes.class).toBe('rax-text-v2 my-text');
+  });
 
-    expect(tree.style.whiteSpace).toBe('pre-wrap');
+  it('use numberOfLines in Text', () => {
+    const component = renderer.create(
+      <Text numberOfLines={2}>Example</Text>
+    );
+    let tree = component.toJSON();
+    expect(tree.style.webkitLineClamp).toBe(2);
   });
 });

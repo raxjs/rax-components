@@ -1,0 +1,8 @@
+.rax-countdown-main-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.rax-countdown-align{
+  display: flex;
+  align-items: center;
+}

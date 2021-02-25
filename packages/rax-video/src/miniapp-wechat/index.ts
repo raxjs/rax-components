@@ -47,6 +47,26 @@ Component({
     poster: {
       type: String,
       value: ''
+    },
+    showMuteBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showPlayBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showFullscreenBtn: {
+      type: Boolean,
+      value: true,
+    },
+    showCenterPlayBtn: {
+      type: Boolean,
+      value: true,
+    },
+    objectFit: {
+      type: String,
+      value: 'contain'
     }
   },
   options: {

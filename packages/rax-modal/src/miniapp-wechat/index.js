@@ -8,27 +8,29 @@ const triggleVisible = (instance, visible) => {
     () => {
       if (visible) {
         instance.triggerEvent('onShow');
+        instance.triggerEvent('Show');
       } else {
         instance.triggerEvent('onHide');
+        instance.triggerEvent('Hide');
       }
     }
   );
 };
 
 const loadStyle = (instance, maskStyle, contentStyle) => {
-  const mask_style = computeStyle(maskStyle);
-  const content_style = computeStyle(contentStyle);
+  const maskStyleState = computeStyle(maskStyle);
+  const contentStyleState = computeStyle(contentStyle);
   instance.setData({
-    mask_style: mask_style,
-    content_style: content_style
+    maskStyleState: maskStyleState,
+    contentStyleState: contentStyleState
   });
 };
 
 Component({
   data: {
     visibility: false,
-    mask_style: '',
-    content_style: ''
+    maskStyleState: '',
+    contentStyleState: ''
   },
   properties: {
     visible: {
@@ -74,7 +76,7 @@ Component({
   },
   observers: {
     visible(visible) {
-      if (this.properties.visible !== visible) {
+      if (this.data.visibility !== visible) {
         if (this.properties.delay) {
           setTimeout(() => {
             triggleVisible(this, visible);
@@ -93,7 +95,11 @@ Component({
       const { maskCanBeClick } = this.properties;
       if (maskCanBeClick) {
         this.triggerEvent('onHide');
+        this.triggerEvent('Hide');
       }
+      // In wechat miniprogram couldn't check function props wheather exist
+      this.triggerEvent('onMaskClick');
+      this.triggerEvent('MaskClick');
     }
   }
 });

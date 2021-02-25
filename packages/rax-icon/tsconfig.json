@@ -17,9 +17,10 @@
     "noImplicitThis": false,
     "outDir": "lib",
     "baseUrl": ".",
-    "paths": {
-      "rax": ["node_modules/@rax-types/rax"]
-    }
+    "types": [
+      "miniprogram-api-typings",
+      "mini-types"
+    ]
   },
   "include": [
     "src/**/*"

@@ -8,11 +8,9 @@ import {
   TabController,
   TabPanel,
   TabPanelView,
-  TabPanelLink
 } from '../src/index.js';
 import transition from 'universal-transition';
 import ScrollView from 'rax-scrollview';
-import { isWeex } from 'universal-env';
 
 function combineStyle(style1, style2) {
   return Object.assign({}, style1, style2);
@@ -217,6 +215,7 @@ class Tab extends Component {
           {itemData.map((item, i) => {
             return (
               <View
+                key={i}
                 style={combineStyle(tabStyles.item, { width: itemWidths[i] })}
                 onClick={() => this.switchTo(i, { type: 'click' })}
               >
@@ -276,20 +275,21 @@ class App extends Component {
           ref={this.tabBar}
           beforeSwitch={this.beforeTabBarSwitch}
           afterSwitch={this.afterTabBarSwitch}
+          defaultFocusIndex={1}
         >
-          <TabPanel style={styles.page}>
+          <TabPanel key="1" style={styles.page}>
             <TabPanelView style={{ flex: 1 }}>{1}</TabPanelView>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="2" style={styles.page}>
             <Text>2</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="3" style={styles.page}>
             <Text>3</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="4" style={styles.page}>
             <Text>4</Text>
           </TabPanel>
-          <TabPanel style={styles.page}>
+          <TabPanel key="5" style={styles.page}>
             <Text>5</Text>
           </TabPanel>
         </TabController>

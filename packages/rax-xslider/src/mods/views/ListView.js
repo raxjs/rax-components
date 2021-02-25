@@ -5,8 +5,10 @@ import BaseView from './BaseView';
 import View from 'rax-view';
 import {FULL_WIDTH} from '../Constant';
 import Panel from '../Panel';
-import {clamp, isLoop, noop} from '../Util';
+import Util from '../Util';
 import findDOMNode from 'rax-find-dom-node';
+
+const {clamp, isLoop, noop} = Util;
 
 let DOM = null;
 
@@ -78,7 +80,7 @@ class ListView extends BaseView {
   render() {
     let {vertical, indicatorStyle, indicatorItemStyle, children, indicatorActiveItemStyle, defaultIndex} = this.props;
 
-    if (!(children instanceof Array)) {
+    if (!(Array.isArray(children))) {
       children = [children];
     }
 

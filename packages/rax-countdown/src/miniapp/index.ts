@@ -1,8 +1,8 @@
-let count = 0;
-const DEFAULT_TPL = '{d}天{h}时{m}分{s}秒';
+import { DEFAULT_TPL } from '../utils';
 
 Component({
   data: {
+    count: 0
   },
   props: {
     timeRemaining: 0,
@@ -25,19 +25,26 @@ Component({
       this.funcToExecute();
     }, this.props.interval);
   },
+  didUnmount: function didUnmount() {
+    if (this.counter) clearInterval(this.counter);
+  },
   methods: {
     msToTime() {
+      const { count } = this.data;
       const timeDuration = this.props.timeRemaining - count * this.props.interval;
-      count++;
+      this.setData({
+        count: count + 1
+      });
 
       if (!timeDuration || timeDuration <= 0) {
         if (this.counter) clearInterval(this.counter);
       }
 
-      var seconds = timeDuration / 1000 % 60,
-        minutes = timeDuration / (1000 * 60) % 60,
-        hours = timeDuration / (1000 * 60 * 60) % 24,
-        days = timeDuration / (1000 * 60 * 60 * 24);
+      // parameter type of `parseInt` is 'string', so need to convert time to string first.
+      var seconds = parseInt((timeDuration / 1000 % 60).toString()),
+        minutes = parseInt((timeDuration / (1000 * 60) % 60).toString()),
+        hours = parseInt((timeDuration / (1000 * 60 * 60) % 24).toString()),
+        days = parseInt((timeDuration / (1000 * 60 * 60 * 24)).toString());
 
       const timeType = {
         'd': days < 10 ? '0' + days : days + '',

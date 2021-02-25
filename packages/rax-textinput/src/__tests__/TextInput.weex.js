@@ -1,6 +1,6 @@
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import TextInput from '../';
+import TextInput from '../../lib/index';
 
 jest.mock('universal-env', () => {
   return {
@@ -17,5 +17,19 @@ describe('TextInput in weex', () => {
 
     expect(tree.tagName).toEqual('INPUT');
     expect(tree.attributes.disabled).toEqual(false);
+  });
+
+  it('should not render multiline input with value ', () => {
+    const mockFunc = jest.fn();
+    const component = renderer.create(
+      <TextInput
+        numberOfLines="2"
+        placeholder="test"
+        value="text"
+        multiline
+      />
+    );
+    let tree = component.toJSON();
+    expect(tree.children).toBe(undefined);
   });
 });

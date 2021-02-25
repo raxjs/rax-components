@@ -16,11 +16,27 @@ const triggleVisible = (instance, props) => {
   );
 };
 
+const updateData = (instance, props) => {
+  if (props.delay) {
+    setTimeout(() => {
+      triggleVisible(instance, props);
+    }, props.delay);
+  } else {
+    triggleVisible(instance, props);
+  }
+  const maskStyleState = computeStyle(props.maskStyle);
+  const contentStyleState = computeStyle(props.contentStyle);
+  instance.setData({
+    maskStyleState: maskStyleState,
+    contentStyleState: contentStyleState
+  });
+};
+
 Component({
   data: {
     visibility: false,
-    mask_style: '',
-    content_style: ''
+    maskStyleState: '',
+    contentStyleState: ''
   },
   props: {
     visible: false,
@@ -30,27 +46,26 @@ Component({
     onHide: noop,
     maskCanBeClick: true,
     delay: 0,
-    duration: 300
+    duration: 300,
+    onMaskClick: noop
+  },
+  didUpdate() {
+    // eslint-disable-next-line no-undef
+    if (!my.canIUse('component2')) {
+      updateData(this, this.props);
+    }
   },
   deriveDataFromProps(nextProps) {
-    if (nextProps.delay) {
-      setTimeout(() => {
-        triggleVisible(this, nextProps);
-      }, nextProps.delay);
-    } else {
-      triggleVisible(this, nextProps);
-    }
-    const mask_style = computeStyle(nextProps.maskStyle);
-    const content_style = computeStyle(nextProps.contentStyle);
-    this.setData({
-      mask_style: mask_style,
-      content_style: content_style
-    });
+    updateData(this, nextProps);
   },
-  onClick() {
-    const { maskCanBeClick, onHide } = this.props;
-    if (maskCanBeClick) {
-      onHide && onHide();
+  methods: {
+    onClick() {
+      const { maskCanBeClick, onHide, onMaskClick } = this.props;
+      if (typeof onMaskClick === 'function' && onMaskClick !== noop) {
+        onMaskClick();
+      } else if (maskCanBeClick) {
+        onHide && onHide();
+      }
     }
   }
 });

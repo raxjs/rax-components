@@ -1,0 +1,17 @@
+<video
+    id="{{_id}}"
+    src="{{src}}" 
+    class="{{className}}"
+    controls="{{controls}}"
+    autoplay="{{autoPlay}}"
+    style="{{styleSheet}}" 
+    loop="{{loop}}"
+    poster="{{poster}}"
+    show-fullscreen-btn="{{showFullscreenBtn}}"
+    show-play-btn="{{showPlayBtn}}"
+    show-mute-btn="{{showMuteBtn}}"
+    show-center-play-btn="{{showCenterPlayBtn}}"
+    object-fit="{{objectFit}}"
+    bindtap="onClick"
+    bindended="onEnded">
+</video>

@@ -19,7 +19,7 @@ import findDOMNode from 'rax-find-dom-node';
  */
 
 function forEach(o, fn) {
-  if (o instanceof Array) {
+  if (Array.isArray(o)) {
     return Array.prototype.forEach.call(o, fn);
   }
   Object.keys(o).forEach((key) => {
@@ -57,7 +57,7 @@ function findIndex(o, condition) {
 }
 
 function map(o, fn) {
-  if (o instanceof Array) {
+  if (Array.isArray(o)) {
     return Array.prototype.map.call(o, fn);
   } else {
     var result = [];
@@ -148,6 +148,11 @@ let Emitter = {
   }
 };
 
+function formatTransformValue(num, noUnit) {
+  const unit = noUnit ? '' : 'rpx';
+  return num + unit;
+}
+
 export default {
   find,
   uuid,
@@ -161,21 +166,6 @@ export default {
   transformExpression,
   transformRangeSpec,
   getLast,
-  Emitter
-};
-
-export {
-  find,
-  uuid,
-  forEach,
-  map,
-  findIndex,
-  isLoop,
-  clamp,
-  noop,
-  getEl,
-  transformExpression,
-  transformRangeSpec,
-  getLast,
-  Emitter
+  Emitter,
+  formatTransformValue
 };

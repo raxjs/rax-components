@@ -1,0 +1,37 @@
+<template>
+  <text><span id="{{id}}" style="{{style}}" @click="eventClick" class="icon-font-span {{className}}">{{codePoint}}</span></text>
+</template>
+<script>
+  export default {
+    props: [ 'id', 'styleSheet','className', 'source', 'bindClick', 'bindPress', 'fontFamily', 'tagId'],
+    data() {
+      let _style = this.styleSheet || {};
+      let codePoint = this.source.codePoint;
+      return {
+        id: this.id,
+        style: _style || {},
+        className: this.className,
+        eventClick: this.bindClick || this.bindPress,
+        codePoint
+      }
+    },
+    onInit() {
+      this.$watch('styleSheet', 'watchStyleChange')
+      this.$watch('className', 'watchClassChange')
+      this.$watch('id', 'watchIdChange')
+      this.$watch('source', 'watchSourceChange')
+    },
+    watchStyleChange(newStyle, oldStyle) {
+      this.style = newStyle;
+    },
+    watchClassChange(newClassName, oldClassName) {
+      this.className = newV;
+    },
+    watchIdChange(newId, oldId) {
+      this.id = newId;
+    },
+    watchSourceChange(newSource, oldSource) {
+      this.codePoint = newSource.codePoint;
+    },
+  };
+</script>

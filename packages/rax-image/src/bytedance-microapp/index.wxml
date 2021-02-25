@@ -1,0 +1,10 @@
+<image 
+  style="{{style}}"
+  class="{{className}}"
+  src="{{source.uri || src}}"
+  mode="{{mode}}"
+  lazy-load="{{lazyLoad || loading == 'lazy'}}" 
+  binderror="onError"
+  bindload="onLoad"
+  bindtap="onTap"
+/>

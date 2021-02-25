@@ -1,9 +1,10 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex } from 'universal-env';
+import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
 import { TextProps } from './types';
 import './index.css';
 
-const prefixCls = 'rax-text';
+// add vesion in style to avoid conflict with older version
+const prefixCls = 'rax-text-v2';
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {
     className,
@@ -35,6 +36,19 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         {textString}
       </text>
     );
+  } else if (isMiniApp || isWeChatMiniProgram) {
+    return (
+      <text
+        {...rest}
+        ref={ref}
+        className={`${prefixCls} ${className}`}
+        style={{ lines, ...style }}
+        onClick={handleClick}
+        number-of-lines={lines}
+      >
+        {textString}
+      </text>
+    );
   } else {
     const classNames = [prefixCls, className];
     if (lines) {
@@ -45,12 +59,22 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
         classNames.push(`${prefixCls}--multiline`);
       }
     }
+    const lineClamp = lines > 1 ? lines : undefined;
     return (
       <span
         {...rest}
         ref={ref}
         className={classNames.join(' ')}
-        style={{ ...style, webkitLineClamp: lines > 1 ? lines : undefined }}
+        // Vendor prefixes should begin with a capital letter.
+        style={{
+          ...style,
+          // Currently only -webkit-line-clamp is supported in browsers
+          // https://www.w3.org/TR/css-overflow-3/#webkit-line-clamp
+          WebkitLineClamp: lineClamp,
+          // Add line-clamp for standard compatibility and engines which
+          // has already support it such as Kraken
+          lineClamp: lineClamp,
+        }}
         onClick={handleClick}
       >
         {textString}

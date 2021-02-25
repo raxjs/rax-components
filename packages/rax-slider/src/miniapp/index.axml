@@ -8,8 +8,9 @@
   circular="{{loop}}"
   indicator-color="{{paginationStyle.itemColor}}"
   indicator-active-color="{{paginationStyle.itemSelectedColor}}"
-  vertical="{{direaction === 'vertical'}}"
+  vertical="{{direction === 'vertical'}}"
   onChange="onChange"
+  duration="{{duration}}"
 >
   <slot />
 </swiper>

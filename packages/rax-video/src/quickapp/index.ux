@@ -1,0 +1,40 @@
+<template>
+  <video
+    id="{{id}}"
+    class="{{className}}"
+    style="{{styleSheet}}"
+    src="{{src}}"
+    muted="{{muted}}"
+    poster="{{poster}}"
+    controls="{{controls}}"
+    autoplay="{{autoPlay}}"
+    @finish="onFinish"
+  ></video>
+</template>
+
+<script>
+  export default {
+    props: [
+      "id",
+      "className",
+      "styleSheet",
+      "src",
+      "muted",
+      "poster",
+      "controls",
+      "autoPlay",
+      "loop",
+      "bindEnded",
+    ],
+    onFinish() {
+      if (this.loop) {
+        const videoEl = this.$element(this.id);
+        videoEl.setCurrentTime({ currenttime: 0 });
+        videoEl.start();
+      }
+      if (this.bindEnded) {
+        this.bindEnded();
+      }
+    }
+  };
+</script>

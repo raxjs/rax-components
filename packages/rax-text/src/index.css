@@ -1,19 +1,19 @@
-.rax-text {
+.rax-text-v2 {
   box-sizing: border-box;
   display: block;
   font-size: 32rpx;
   white-space: pre-wrap;
 }
 
-.rax-text--overflow-hidden {
+.rax-text-v2--overflow-hidden {
   overflow: hidden;
 }
 
-.rax-text--singleline {
+.rax-text-v2--singleline {
   white-space: nowrap;
 }
 
-.rax-text--multiline {
+.rax-text-v2--multiline {
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }

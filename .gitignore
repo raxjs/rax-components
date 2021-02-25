@@ -4,6 +4,7 @@
 npm-debug.log
 lerna-debug.log
 npm-debug.log*
+es/
 lib/
 dist/
 build/
@@ -11,8 +12,12 @@ coverage/
 node_modules/
 examples/test
 .idea/
+.history/
 packages/**/lib/
 packages/**/dist/
 packages/**/build/
 packages/**/coverage/
 packages/**/node_modules/
+
+package-lock.json
+yarn.lock

@@ -1,0 +1,122 @@
+<template>
+  <div class="swiper-container">
+    <swiper id="{{id}}" @click="eventClick" class="swiper {{className}}" style="{{style}}" autoplay="{{autoPlay}}" interval="{{autoPlayInterval}}"  vertical="{{vertical}}" loop="{{loop}}" onChange="bindChange">
+      <slot />
+    </swiper>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['width', 'height','autoPlay','showsPagination', 'paginationStyle', 'loop',
+  'index', 'autoPlayInterval', 'bindChange', 'direction', 'id', 'styleSheet',
+   'className', 'bindClick', 'bindPress', 'tagId'],
+  data() {
+    let _style = this.styleSheet || {};
+    let vertical = false;
+    if (this.paginationStyle) {
+      if (typeof _style === 'string') {
+        _style = `${_style};item-color: ${this.paginationStyle.itemColor || 'rgba(255, 255, 255, 0.5)'}; item-selected-color: ${this.paginationStyle.itemSelectedColor || 'rgb(255, 80, 0)'}; item-size: ${this.paginationStyle.itemSize || '8rpx'};`
+      } else {
+        _style = Object.assign({}, _style, {
+          itemColor: this.paginationStyle.itemColor || 'rgba(255, 255, 255, 0.5)',
+          itemSelectedColor: this.paginationStyle.itemSelectedColor || 'rgb(255, 80, 0)',
+          itemSize: this.paginationStyle.itemSize || '8rpx'
+        });
+      }
+    }
+    if (this.direction && this.direction === 'vertical') {
+      vertical = true;
+    }
+    if (this.width) {
+      if (typeof _style === 'string') {
+          _style = _style + ';width: ' + this.width + 'px;';
+        } else {
+          _style = Object.assign({}, _style, {
+            width: this.width
+          });
+        }
+    }
+    if (this.height) {
+      if (typeof _style === 'string') {
+          _style = _style + ';height: ' + this.height + 'px;';
+        } else {
+          _style = Object.assign({}, _style, {
+            height: this.height
+          });
+        }
+    }
+    return {
+      id: this.id,
+      style: _style || {},
+      className: this.className,
+      eventClick: this.bindClick || this.bindPress,
+      autoPlay: this.autoPlay || "true",
+      loop: this.loop || "true",
+      vertical,
+    }
+  },
+  onInit() {
+    this.$watch('styleSheet', 'watchStyleChange')
+    this.$watch('className', 'watchClassChange')
+    this.$watch('id', 'watchIdChange')
+    this.$watch('autoPlay', 'watchAutoplayChange')
+    this.$watch('loop', 'watchLoopChange')
+  },
+  watchStyleChange(newStyle, oldStyle) {
+    this.style = newStyle;
+  },
+  watchClassChange(newClassName, oldClassName) {
+    this.className = newClassName;
+  },
+  watchIdChange(newId, oldId) {
+    this.id = newId;
+  },
+  watchAutoplayChange(newAutoplay, oldAutoplay) {
+    this.autoPlay = newAutoplay;
+  },
+  watchLoopChange(newLoop, oldLoop) {
+    this.loop = newLoop;
+  },
+}
+</script>
+
+<style>
+  .swiper-container {
+    flex-direction: column;
+  }
+  .swiper {
+    flex-direction: column;
+  }
+  .item-content_title {
+    flex: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .item_left {
+    padding: 20px;
+  }
+  .switch {
+    height: 50px;
+    width: 320px;
+  }
+  .slider {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .item {
+    height: 250px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .color-1 {
+    background-color: #09ba07;
+  }
+  .color-2 {
+    background-color: #f76160;
+  }
+  .color-3 {
+    background-color: #0faeff;
+  }
+</style>

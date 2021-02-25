@@ -1,0 +1,11 @@
+{
+  "type": "rax",
+  "plugins": [
+    "build-plugin-component"
+  ],
+  "targets": [
+    "web",
+    "weex"
+  ],
+  "inlineStyle": false
+}

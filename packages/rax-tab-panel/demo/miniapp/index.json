@@ -1,7 +1,0 @@
-{
-  "defaultTitle": "Rax Tab Panel Component",
-  "usingComponents": {
-    "rax-tabpanel": "../../src/miniapp/index",
-    "rax-tabpanel-item": "../../src/miniapp/rax-tabpanel-item/index"
-  }
-}

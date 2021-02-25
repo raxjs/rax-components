@@ -1,4 +1,7 @@
+# rax-xslider
+
 [![npm](https://img.shields.io/npm/v/rax-xslider.svg)](https://www.npmjs.com/package/rax-xslider)
+
 ## 描述
 轮播增强，仅支持h5和weex
 ## 安装
@@ -7,13 +10,6 @@
 $ npm install rax-xslider --save
 ```
 
-## 引用
-
-```jsx
-import Slider from 'rax-xslider';
-```
-
-
 ## API说明
 
 属性都是非必填，所有属性h5和weex都支持
@@ -21,8 +17,9 @@ import Slider from 'rax-xslider';
 ### Slider
 
 ### 属性
+
 | **属性** | **类型**  | **默认值** | **描述** |
-| ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
+| ----------- | ---------- | ---------- | ------------ |
 |loop|Boolean|false|是否开启无缝轮播，安卓下无效|
 |autoPlay| Boolean | false | 是否自动轮播|
 |interval|Number |3000|开启`autoPlay`后间隔时间，单位`ms`|
@@ -45,7 +42,7 @@ import Slider from 'rax-xslider';
 |defaultIndex|Number|0|默认聚焦到第几个panel|
 |minOffset|Number||滚动offset边界最小值(仅loop:false下生效)|
 |maxOffset|Number||滚动offset边界最大值(仅loop:false下生效)|
-
+|minLoadMoreOffset|Number||loadMore组件的onLoading触发最小距离|
 ### 方法
 
 |名称|参数|返回值|描述|
@@ -90,7 +87,6 @@ import Slider from 'rax-xslider';
 import {createElement, Component, render, createRef, useEffect} from 'rax';
 import Text from 'rax-text';
 import Slider from 'rax-xslider';
-import DU from 'driver-universal';
 
 const styles = {
   item: {
@@ -99,7 +95,8 @@ const styles = {
     justifyContent: 'center',
     borderRadius: 24,
     borderWidth: 5,
-    borderColor: '#000'
+    borderColor: '#000',
+    borderStyle: 'solid'
   },
   txt: {
     color: '#fff',
@@ -124,7 +121,7 @@ const colors = [
   'yellow'
 ];
 
-const App = () => {
+export default function App() {
   const slider = createRef();
   const getCardTransitionSpec = () => {
     return {
@@ -157,15 +154,13 @@ const App = () => {
       cardTransitionSpec={getCardTransitionSpec}
     >
       {colors.map((color, i) => {
-        return (<Slider.Panel style={{...styles.item, backgroundColor: color}}>
+        return (<Slider.Panel style={{...styles.item, backgroundColor: color}} key={'panel' + i}>
           <Slider.PanView style={styles.panView}><Text style={styles.txt}>{i}</Text></Slider.PanView>
         </Slider.Panel>);
       })}
     </Slider>
   );
 }
-
-render(<App />, document.body, { driver: DU });
 
 ```
 

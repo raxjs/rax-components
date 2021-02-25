@@ -9,19 +9,26 @@ import binding from 'weex-bindingx';
 import transition from 'universal-transition';
 import Detection from './Detection';
 import TabPanel from './TabPanel';
-import { clamp, noop, forbidSwipeBack, Event as Emitter, combineStyle } from './Utils';
+import {
+  clamp,
+  noop,
+  forbidSwipeBack,
+  Event as Emitter,
+  combineStyle,
+} from './Utils';
 import BaseView from './BaseView';
 import PanView from './PanView';
 import PropTypes from 'prop-types';
 import findDOMNode from 'rax-find-dom-node';
+import { convertUnit } from 'style-unit';
 
 function setStyles(node, styles) {
   for (let key in styles) {
     let val = styles[key];
     if (isWeex) {
-      node.setStyle(key, val);
+      node.setStyle(key, convertUnit(val, key, 'weex'));
     } else {
-      node.style[key] = val;
+      node.style[key] = convertUnit(val, key, 'web');
     }
   }
 }
@@ -42,14 +49,14 @@ const styles = {
     position: 'absolute',
     top: 0,
     bottom: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   wrap: {
     position: 'absolute',
     flexDirection: 'row',
     top: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 };
 
 class DefaultView extends BaseView {
@@ -77,20 +84,20 @@ class DefaultView extends BaseView {
     beforeExpressionBind: noop,
     pageConfig: [],
     defaultFocusIndex: 0,
-    forbidSwipeBackOnIOS: 'auto'
+    forbidSwipeBackOnIOS: 'auto',
   };
 
   static contextTypes = {
     isInATabPanel: PropTypes.bool,
     uuid: PropTypes.number,
     isInATabPanelDefaultView: PropTypes.bool,
-    parentDefaultView: PropTypes.Component
+    parentDefaultView: PropTypes.Component,
   };
 
   getChildContext() {
     return {
       isInATabPanelDefaultView: true,
-      parentDefaultView: this
+      parentDefaultView: this,
     };
   }
 
@@ -113,7 +120,7 @@ class DefaultView extends BaseView {
     }
   }
 
-  bindCellPanExp = e => {
+  bindCellPanExp = (e) => {
     // check uuid
     let { uuid } = this.props;
     if (e.uuid == uuid && e.element) {
@@ -124,7 +131,10 @@ class DefaultView extends BaseView {
   componentDidMount() {
     this.countItems();
     let { defaultFocusIndex = 0 } = this.props;
-    this.switchTo(defaultFocusIndex, { duration: 0, params: { type: 'default' } });
+    this.switchTo(defaultFocusIndex, {
+      duration: 0,
+      params: { type: 'default' },
+    });
   }
 
   componentWillReceiveProps(props) {
@@ -170,7 +180,7 @@ class DefaultView extends BaseView {
     if (duration === 0) {
       setStyles(wrap, {
         transform: `translateX(${end}rpx)`,
-        webkitTransform: `translateX(${end}rpx)`
+        webkitTransform: `translateX(${end}rpx)`,
       });
       return callback();
     }
@@ -179,18 +189,21 @@ class DefaultView extends BaseView {
       wrap,
       {
         transform: `translateX(${end}rpx)`,
-        webkitTransform: `translateX(${end}rpx)`
+        webkitTransform: `translateX(${end}rpx)`,
       },
       {
         timingFunction: this.props.easing,
         delay: 0,
-        duration: Math.max(this.props.isSlideEnabled ? duration : 0, MIN_DURATION)
+        duration: Math.max(
+          this.props.isSlideEnabled ? duration : 0,
+          MIN_DURATION
+        ),
       },
       callback
     );
   };
 
-  bindPanExp = anchor => {
+  bindPanExp = (anchor) => {
     this.anchor = anchor;
 
     if (!Detection.isEnableSlider) return;
@@ -209,28 +222,18 @@ class DefaultView extends BaseView {
 
     let expression = {
       origin: `x+${this.x}`,
-      transformed: `{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
-        this.x
-      }}]}`
+      transformed: `{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${this.x}}]}`,
     };
     if (this.curIndex === 0) {
       // left edge bounce
       expression.origin = `x > 0 ? (x/3+${this.x}) : (x + ${this.x})`;
-      expression.transformed = ` {\"type\":\"?\",\"children\":[{\"type\":\">\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${
-        this.x
-      }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
-        this.x
-      }}]}]}`;
+      expression.transformed = ` {\"type\":\"?\",\"children\":[{\"type\":\">\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${this.x}}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${this.x}}]}]}`;
     }
 
     if (this.curIndex === this.itemCount - 1) {
       // right edge bounce
       expression.origin = `x < 0 ? (x/3+${this.x}) : (x + ${this.x})`;
-      expression.transformed = `{\"type\":\"?\",\"children\":[{\"type\":\"<\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${
-        this.x
-      }}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${
-        this.x
-      }}]}]}`;
+      expression.transformed = `{\"type\":\"?\",\"children\":[{\"type\":\"<\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":0}]},{\"type\":\"+\",\"children\":[{\"type\":\"/\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":3}]},{\"type\":\"NumericLiteral\",\"value\":${this.x}}]},{\"type\":\"+\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${this.x}}]}]}`;
     }
 
     this.startTime = Date.now();
@@ -239,12 +242,12 @@ class DefaultView extends BaseView {
       {
         element: this.wrap.current,
         property: 'transform.translateX',
-        expression: expression
+        expression: expression,
       },
-      ...extraBindingProps
+      ...extraBindingProps,
     ];
 
-    props.forEach(prop => {
+    props.forEach((prop) => {
       if (prop && prop.element) {
         prop.element = getEl(prop.element);
       }
@@ -255,18 +258,18 @@ class DefaultView extends BaseView {
         anchor: getEl(anchor),
         eventType: 'pan',
         options: {
-          touchAction: 'pan-x'
+          touchAction: 'pan-x',
         },
-        props
+        props,
       },
-      e => {
+      (e) => {
         if (e.state == 'end') {
           // unbind bindingx
           if (this.token) {
             binding.unbind({
               token: this.token,
               eventType: 'pan',
-              anchor: getEl(anchor)
+              anchor: getEl(anchor),
             });
           }
         }
@@ -277,13 +280,18 @@ class DefaultView extends BaseView {
     this.token = res && res.token;
   };
 
-  onPanCallback = e => {
+  onPanCallback = (e) => {
     if (e.state === 'end' && Math.abs(e.deltaX) > 0) {
       let duration = Date.now() - this.startTime;
       const dist = e.deltaX;
-      const panDist = this.props.panDist ? this.props.panDist : this.itemWidth / 2;
+      const panDist = this.props.panDist
+        ? this.props.panDist
+        : this.itemWidth / 2;
       let newIndex = this.curIndex;
-      if (Math.abs(dist) > panDist || Math.abs(dist) / duration > 0.5 && duration < 200) {
+      if (
+        Math.abs(dist) > panDist ||
+        Math.abs(dist) / duration > 0.5 && duration < 200
+      ) {
         if (dist > 0) {
           newIndex--;
         } else {
@@ -300,7 +308,7 @@ class DefaultView extends BaseView {
     }
   };
 
-  onHorizontalPan = e => {
+  onHorizontalPan = (e) => {
     if (e.state === 'end') {
       this.isPropagationStopped = false;
     }
@@ -311,24 +319,28 @@ class DefaultView extends BaseView {
   };
 
   render() {
-    let { isPanEnabled } = this.props;
+    let { isPanEnabled, children } = this.props;
 
     let curIndex = this.curIndex;
 
-    if (this.props.children && !(this.props.children instanceof Array)) {
-      this.props.children = [this.props.children];
+    if (children && !(children instanceof Array)) {
+      children = [children];
     }
 
-    let children =
-      this.props.children &&
-      this.props.children.map((child, index) => {
+    children =
+      children &&
+      children.map((child, index) => {
         if (child && child.type === TabPanel) {
           return (
             <TabPanel
+              key={child.key}
               index={index}
               curIndex={curIndex}
               {...child.props}
-              style={combineStyle({ width: this.itemWidth }, { ...child.props.style })}
+              style={combineStyle(
+                { width: this.itemWidth },
+                { ...child.props.style }
+              )}
               ref={`panel_${index}`}
             />
           );
@@ -343,7 +355,10 @@ class DefaultView extends BaseView {
         : {};
 
     return (
-      <View {...this.props} style={combineStyle(styles.container, this.props.style)}>
+      <View
+        {...this.props}
+        style={combineStyle(styles.container, this.props.style)}
+      >
         <PanView ref={this.wrap} {...wrapProps} style={styles.wrap}>
           {children}
         </PanView>

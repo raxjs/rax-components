@@ -1,3 +1,5 @@
+# rax-refreshcontrol
+
 [![npm](https://img.shields.io/npm/v/rax-refreshcontrol.svg)](https://www.npmjs.com/package/rax-refreshcontrol)
 
 **描述：**
@@ -23,6 +25,7 @@ import RefreshControl from 'rax-refreshcontrol';
 | ----------- | ---------- | ---------- | ------------ | ------------------ | ------------ |
 | refreshing     | `string` | -         |   false           | 是否显示 | <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 | onRefresh     | `function` | -         |   false           | 监听下拉刷新的行为 |<img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
+| onPullingdown     | `function` | -         |   false           | 监听下拉事件 |<img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" />|
 ## 示例
 ```jsx
 import {createElement, Component, render} from 'rax';

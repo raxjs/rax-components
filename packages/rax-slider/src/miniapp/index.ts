@@ -4,6 +4,7 @@ const noop = () => {};
 Component({
   data: {
     current: 0,
+    duration: 0
   },
   props: {
     className: '',
@@ -11,11 +12,11 @@ Component({
     width: '',
     height: '',
     autoPlay: false,
-    showsPagination: false,
-    loop: false,
+    showsPagination: true,
+    loop: true,
     index: 0,
     autoPlayInterval: 1000,
-    direaction: 'horizontal',
+    direction: 'horizontal',
     onChange: noop,
     paginationStyle: {
       itemColor: 'rgba(255, 255, 255, 0.5)',
@@ -25,12 +26,42 @@ Component({
   onInit() {
     this.setData({
       current: this.props.index,
+      duration: 500
     });
+  },
+  didMount() {
+    if (!my.canIUse('component2')) {
+      /**
+       * The default duration is 500.
+       * There should be no transition animation when the current is initialized,
+       * so the initial duration is 0.
+       * After initialization, the value is set to the default value.
+       */
+      this.setData({
+        current: this.props.index,
+      }, () => {
+        this.setData({
+          duration: 500
+        });
+      });
+    }
+  },
+  didUpdate(prevProps) {
+    if (prevProps.index !== this.props.index) {
+      this.setData({
+        current: this.props.index
+      });
+    }
   },
   methods: {
     onChange(e) {
       const event = fmtEvent(this.props, e);
-      this.props.onChange(event);
+      this.props.onChange({
+        index: event.detail.current
+      });
+      this.setData({
+        current: event.detail.current
+      });
     },
     slideTo(index) {
       if (index !== undefined) {

@@ -6,5 +6,5 @@
   onError="onError"
   onLoad="onLoad"
   mode="{{mode}}"
-  lazy-load="{{lazyLoad}}"
+  lazy-load="{{lazyLoad || loading == 'lazy'}}"
 />

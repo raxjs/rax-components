@@ -1,10 +1,10 @@
 const CALCULATION_ACCURACY = 8;
 
-function getStyleNumber(styleProp: string, screenWidth: number) {
+function getStyleNumber(styleProp: string, windowWidth: number) {
   const rpxEndIndex = styleProp.indexOf('rpx');
   if (rpxEndIndex > 0) {
     const value = Number(styleProp.substring(0, rpxEndIndex));
-    return Number((screenWidth / 750 * value).toFixed(CALCULATION_ACCURACY));
+    return Number((windowWidth / 750 * value).toFixed(CALCULATION_ACCURACY));
   } else {
     const pxEndIndex = styleProp.indexOf('px');
     if (pxEndIndex > 0) {

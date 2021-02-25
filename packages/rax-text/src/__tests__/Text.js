@@ -26,6 +26,6 @@ describe('Text', () => {
       <Text numberOfLines={2}>Example</Text>
     );
     let tree = component.toJSON();
-    expect(tree.style.webkitLineClamp).toBe(2);
+    expect(tree.style.WebkitLineClamp).toBe(2);
   });
 });

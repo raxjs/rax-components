@@ -1,4 +1,5 @@
 {
+  "name": "rax-components",
   "private": true,
   "devEngines": {
     "node": "8.x || 9.x || 10.x || 11.x",
@@ -8,9 +9,8 @@
     "@alib/build-scripts": "^0.1.22",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
-    "@typescript-eslint/eslint-plugin": "^1.7.0",
-    "@typescript-eslint/parser": "^1.7.0",
     "axios": "^0.21.0",
+    "babel-jest": "23.6.0",
     "build-plugin-component": "^1.0.0",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
@@ -21,11 +21,7 @@
     "driver-universal": "^1.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-rax": "^1.0.3",
-    "eslint": "^5.16.0",
-    "eslint-config-rax": "^0.0.2",
-    "eslint-plugin-ejs": "0.0.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-react": "~7.11.1",
+    "eslint": "^6.0.0",
     "findup": "^0.1.5",
     "jest": "^26.0.1",
     "jest-diff": "^26.0.1",
@@ -38,7 +34,7 @@
     "minimist": "^1.2.0",
     "rax": "^1.0.0",
     "rax-test-renderer": "^1.0.0",
-    "rax-types": "^1.0.0",
+    "@types/rax": "^1.0.0",
     "semver": "^6.3.0",
     "semver-regex": "^2.0.0",
     "shelljs": "0.8.3",
@@ -47,8 +43,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
     "build": "node ./scripts/compile.js",
-    "lint": "npm run lint:nofix -- --fix",
-    "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
+    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
     "check-and-publish": "node ./scripts/check-and-publish",
     "clean:compile": "rm -rf ./packages/*/lib",
     "test": "jest --logHeapUsage --detectOpenHandles"
@@ -60,6 +56,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "name": "rax-components"
+  }
 }

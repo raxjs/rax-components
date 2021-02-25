@@ -1,6 +1,6 @@
 import { createElement, Component } from 'rax';
 import renderer from 'rax-test-renderer';
-import ScrollView from '../';
+import ScrollView from '../../lib';
 
 class ScrollViewTest extends Component {
   renderBody() {

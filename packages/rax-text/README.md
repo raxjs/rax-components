@@ -22,6 +22,7 @@ $ npm install rax-text --save
 | space     | `string` |         |         false     | 以何种方式显示连续空格 | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />  |
 | decode     | `boolean` |         |   false           | 是否解码。为 true 时表示对文本内容进行解码，可解析的 HTML 实体字符有：&nbsp; &lt; &gt; &amp; &apos; &ensp; &emsp; | <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />  |
 ## 示例
+
 ```js
 import {createElement, render, Component} from 'rax';
 import DU from 'driver-universal';
@@ -108,7 +109,4 @@ class App extends Component {
 }
 
 render(<App/>, document.body, {driver: DU});
-
 ```
-
-

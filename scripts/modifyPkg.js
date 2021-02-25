@@ -31,7 +31,7 @@ names.forEach((dirname) => {
   let newData = pkgData;
 
   delete newData.scripts.clean;
-  newData.scripts.build = "../../node_modules/.bin/build-scripts build --config ../../build.json";
+  newData.scripts.build = "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo";
   // delete pkgData.files;
   // pkgData.types = 'lib/index.d.ts';
   // pkgData.module = 'es/index.js';

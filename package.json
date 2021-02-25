@@ -59,7 +59,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
-    "build": "node ./scripts/compile-packages.js",
+    "build": "node ./scripts/compile.js",
     "lint": "npm run lint:nofix -- --fix",
     "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
     "check-and-publish": "node ./scripts/check-and-publish",

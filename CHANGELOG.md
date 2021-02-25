@@ -1,5 +1,13 @@
 # Changelog
 
+## 2021-02-20
+
+### rax-qrcode [2.0.2]
+
+#### Fixed
+
+- can't get correct screenWidth in some Android Phones, use windowWidth instead
+
 ## 2021-02-03
 
 ### rax-icon [1.3.8]

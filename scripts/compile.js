@@ -43,7 +43,7 @@ function getPackages(packagesDir, customPackages) {
       if (!/^rax-/.test(packageName)) {
         return false;
       } else if (customPackages) {
-        return packageName.indexOf(customPackages) !== -1;
+        return customPackages.indexOf(packageName) !== -1;
       } else {
         return true;
       }

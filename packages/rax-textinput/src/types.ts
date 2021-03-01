@@ -46,7 +46,7 @@ export type TextInputKeyboardType = keyof (typeof keyboardTypeMap);
 
 export interface TextInputProps
   extends Rax.RefAttributes<{
-    _nativeNode: TextInputElement,
+    _nativeNode: TextInputElement;
     focus: () => void;
     blur: () => void;
     clear: () => void;

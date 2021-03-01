@@ -66,9 +66,9 @@ const SwiperSlide = forwardRef(
           >
             {renderChildren()}
           </div>
-        ) : (
+        ) :
           renderChildren()
-        )}
+        }
       </Tag>
     );
   },

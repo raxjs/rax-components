@@ -74,10 +74,10 @@ function Modal(props: ModalProps) {
       maskRef.__animationValid = false;
       if (show && maskRef.current) {
         // When target state is show, it need set modal opacity to 1
-       maskRef.current.style.opacity = '1';
+        maskRef.current.style.opacity = '1';
       }
       callback && callback();
-    }, animateDuration)
+    }, animateDuration);
 
     transition(
       maskRef.current,
@@ -166,8 +166,8 @@ function Modal(props: ModalProps) {
       // Clear timer
       clearTimeout(maskRef.__timer);
       hide(false);
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     // if state is unequal to props trigger show or hide
@@ -184,7 +184,7 @@ function Modal(props: ModalProps) {
     maskRef.__pendingShow = false;
     // Record mask hide state
     maskRef.__pendingHide = false;
-  }, [visibleState])
+  }, [visibleState]);
 
 
   return (

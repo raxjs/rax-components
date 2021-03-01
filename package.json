@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "rax-components",
   "devEngines": {
     "node": "8.x || 9.x || 10.x || 11.x",
     "npm": "6.x"
@@ -59,9 +60,9 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
-    "build": "node ./scripts/compile-packages.js",
-    "lint": "npm run lint:nofix -- --fix",
-    "lint:nofix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
+    "build": "node ./scripts/compile.js",
+    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
     "check-and-publish": "node ./scripts/check-and-publish",
     "clean:compile": "rm -rf ./packages/*/lib",
     "test": "jest --logHeapUsage --detectOpenHandles"
@@ -73,6 +74,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "name": "rax-components"
+  }
 }

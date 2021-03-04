@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.4
+- [chore] Rename wechat native code to miniapp-wechat
+
 ## 3.0.3
 - [chore] Sync from rax-pkg-rax-slider
 

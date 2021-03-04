@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.3
+- [chore] Sync from rax-pkg-rax-slider
+
 ## 3.0.2
 - [fix] the page follow touch move when onSwipe 
 

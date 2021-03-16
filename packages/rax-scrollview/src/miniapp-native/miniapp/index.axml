@@ -10,6 +10,8 @@
     scroll-with-animation="{{scrollWithAnimation}}"
     scroll-animation-duration="{{scrollAnimationDuration}}"
     lower-threshold="{{endReachedThreshold}}"
+    trap-scroll="{{trapScroll}}"
+    enable-back-to-top="{{enableBackToTop}}"
     onScroll="onScroll"
     onScrollToLower="onEndReached"
     onTouchStart="onTouchStart"

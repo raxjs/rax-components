@@ -38,7 +38,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       setIndex(currentIndex);
       result.index = currentIndex;
       onChange && onChange(result);
-    }, [props.index]);
+    }, [props.index, onChange]);
 
     return (
       <swiper

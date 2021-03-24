@@ -20,7 +20,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
     if (isMiniApp) {
       // For miniapp runtime pre-compile
       return <view
-        {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
+        {...rest} onAppear={onAppear} onDisappear={onDisappear} onFirstAppear={onFirstAppear}
         ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
     }
     useEffect(() => {
@@ -39,6 +39,12 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
             const { intersectionRatio = 0 } = res;
             if (intersectionRatio > 0) {
               typeof onAppear === 'function' && onAppear(res);
+              if (typeof onFirstAppear === 'function') {
+                if (!selfRef.triggeredAppear) {
+                  onFirstAppear(res);
+                  selfRef.triggeredAppear = true;
+                } 
+              }
             } else {
               typeof onDisappear === 'function' && onDisappear(res);
             }
@@ -61,7 +67,6 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         onAppear && onAppear(event);
         if (!selfRef.triggeredAppear) {
           onFirstAppear && onFirstAppear(event);
-        } else {
           selfRef.triggeredAppear = true;
         }
       };

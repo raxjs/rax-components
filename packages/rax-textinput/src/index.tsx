@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   forwardRef,
   useRef,
@@ -179,6 +180,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             row={rows}
             rows={rows}
             disabled={disbaled}
+            // @ts-ignore
             onChange={handleChange}
             value={value || defaultValue}
             confirm-type={confirmType}

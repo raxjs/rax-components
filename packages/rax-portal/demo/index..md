@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import DriverUniversal from "driver-universal";
 import { createElement, render, Fragment, useEffect, useState } from "rax";
 import View from "rax-view";
@@ -13,7 +21,7 @@ const basicStyle = {
 let container1 = null;
 let container2 = null;
 
-const Demo = (props) => {
+const App = (props) => {
   const [container, setContainer] = useState(null);
 
   useEffect(() => {
@@ -58,4 +66,5 @@ const Demo = (props) => {
   );
 };
 
-render(<Demo />, document.body, { driver: DriverUniversal });
+export default App;
+```

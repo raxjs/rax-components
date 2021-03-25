@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import { createElement, Component, render, createRef } from 'rax';
 import findDOMNode from 'rax-find-dom-node';
 import View from 'rax-view';
@@ -297,4 +305,6 @@ class App extends Component {
     );
   }
 }
-render(<App />, document.body, { driver: DU });
+
+export default App;
+```

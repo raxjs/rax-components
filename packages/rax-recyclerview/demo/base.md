@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import { createElement, Component, render } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
@@ -78,4 +86,5 @@ let styles = {
   }
 };
 
-render(<App />, document.body, { driver: DriverUniversal });
+export default App;
+```

@@ -1,7 +1,14 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import { createElement, render, Component } from 'rax';
 import View from 'rax-view';
-import Countdown from '../src/index';
-import DU from 'driver-universal';
+import Countdown from 'rax-countdown';
 
 class App extends Component {
   onComplete() {
@@ -98,4 +105,5 @@ let styles = {
   },
 };
 
-render(<App />, document.body, { driver: DU });
+export default App;
+```

@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import {createElement, Component, render} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
@@ -206,4 +214,5 @@ const styles = {
   },
 };
 
-render(<RefreshControlDemo/>, document.body, { driver: DU });
+export default App;
+```

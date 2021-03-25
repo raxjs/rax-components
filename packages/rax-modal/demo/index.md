@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, useState, useEffect } from 'rax';
 import DriverUniversal from 'driver-universal';
@@ -44,4 +52,5 @@ const Demo = props => {
   );
 };
 
-render(<Demo />, document.body, { driver: DriverUniversal });
+export default App;
+```

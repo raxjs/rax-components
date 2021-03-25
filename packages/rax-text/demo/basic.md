@@ -8,7 +8,7 @@ basic usage
 ```jsx
 import { createElement, Component } from 'rax';
 import View from 'rax-view';
-import Text from '../../src/index';
+import Text from 'rax-text';
 
 const styles = {
   root: {

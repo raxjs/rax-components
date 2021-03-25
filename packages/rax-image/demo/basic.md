@@ -1,6 +1,13 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, useRef, Fragment } from 'rax';
-import DU from 'driver-universal';
 import Image from '../src/index';
 import './index.css';
 
@@ -9,6 +16,7 @@ const App = () => {
   return (
     <Fragment>
       <Image
+        // @ts-ignore
         ref={imageRef}
         className="demo-image"
         source={{
@@ -17,6 +25,7 @@ const App = () => {
       />
       <Image
         loading="lazy"
+        // @ts-ignore
         ref={imageRef}
         className="demo-image"
         source={{
@@ -27,4 +36,5 @@ const App = () => {
   );
 };
 
-render(<App />, document.body, { driver: DU });
+export default App;
+```

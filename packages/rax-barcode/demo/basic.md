@@ -1,7 +1,15 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import { createElement, render, Component } from 'rax';
 import DU from 'driver-universal';
 import View from 'rax-view';
-import BarCode from '../src/index';
+import BarCode from 'rax-barcode';
 
 class App extends Component {
   constructor() {
@@ -21,4 +29,6 @@ class App extends Component {
   }
 }
 
-render(<App />, document.body, { driver: DU });
+// render(<App />, document.body, { driver: DU });
+export default App;
+```

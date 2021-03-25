@@ -28,9 +28,11 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     return (
       <text
         {...rest}
+        // @ts-ignore
         ref={ref}
         className={className}
         style={{ lines, ...style }}
+        // @ts-ignore
         onClick={handleClick}
       >
         {textString}
@@ -40,9 +42,11 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     return (
       <text
         {...rest}
+        // @ts-ignore
         ref={ref}
         className={`${prefixCls} ${className}`}
         style={{ lines, ...style }}
+        // @ts-ignore
         onClick={handleClick}
         number-of-lines={lines}
       >

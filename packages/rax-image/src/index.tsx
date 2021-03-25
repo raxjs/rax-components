@@ -2,6 +2,7 @@ import { createElement, useState, useCallback, forwardRef, ForwardRefExoticCompo
 import { isWeex, isMiniApp, isWeChatMiniProgram, isWeb, isByteDanceMicroApp } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
+// @ts-ignore
 const EMPTY_SOURCE = {} as any as Source;
 
 interface ErrorState {
@@ -95,6 +96,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
 
   // Set default quality to "original" in weex avoid image be optimized unexpect
   if (isWeex) {
+    // @ts-ignore
     return <image quality="original" {...nativeProps} ref={ref} />;
   }
 

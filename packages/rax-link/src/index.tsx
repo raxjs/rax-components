@@ -21,6 +21,7 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     // miniappHref example: navigate:/pages/index/index
     const [ openType, url ] = miniappHref.split(':');
     return (
+      // @ts-ignore
       <view onClick={onClick || onPress}>
         <navigator
           open-type={openType}
@@ -37,9 +38,11 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
   return (
     <a
       {...rest}
+      // @ts-ignore
       ref={ref}
       className={className}
       style={style}
+      // @ts-ignore
       onClick={onClick || onPress}
     >
       {typeof children === 'string' ? (

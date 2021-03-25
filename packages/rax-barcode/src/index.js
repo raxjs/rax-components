@@ -34,6 +34,7 @@ class BarCode extends Component {
     const barCodeData = new Encoder(data, options);
     const { fillColor = '#000000', barWidth = 2 } = options;
     const ctx = this.canvasNode.current.getContext();
+    console.log('bbbbb', this.canvasNode.current);
     const binary = barCodeData.encode().data;
     ctx.clearRect(0, 0, this.width, this.height);
     ctx.fillStyle = fillColor;

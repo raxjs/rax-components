@@ -8,7 +8,7 @@ basic usage
 ```jsx
 import { createElement, Component, createRef } from 'rax';
 import View from 'rax-view';
-import { Swiper, SwiperSlide } from '../src/index';
+import { Swiper, SwiperSlide } from 'rax-swiper';
 
 let swiperEle;
 export default class App extends Component {

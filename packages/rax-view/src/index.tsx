@@ -16,7 +16,9 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
     if (isMiniApp) {
       // For miniapp runtime pre-compile
       return <view
+        // @ts-ignore
         {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
+        // @ts-ignore
         ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
     }
     let handleAppear = onAppear;

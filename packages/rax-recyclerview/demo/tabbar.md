@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 import { createElement, Component, render, createRef } from 'rax';
 import DriverUniversal from 'driver-universal';
 import findDOMNode from 'rax-find-dom-node';
@@ -382,5 +390,4 @@ let styles = {
     textAlign: 'center'
   }
 };
-
-render(<App />, document.body, { driver: DriverUniversal });
+```

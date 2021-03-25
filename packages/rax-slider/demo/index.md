@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, Component, render, createRef } from 'rax';
 import View from 'rax-view';
@@ -84,4 +92,5 @@ class App extends Component {
   }
 }
 
-render(<App />, document.body, { driver: DU });
+export default App;
+```

@@ -1,8 +1,15 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
-import { createElement, render, Component } from 'rax';
-import DU from 'driver-universal';
+import { createElement, Component } from 'rax';
 import View from 'rax-view';
-import Icon, { createIconSet } from '../src/index';
+import Icon, { createIconSet } from 'rax-icon';
 
 const IconFont = createIconSet({
   'square_check': '\ue6d6',
@@ -26,5 +33,5 @@ class Demo extends Component {
     );
   }
 }
-
-render(<Demo />, document.body, { driver: DU });
+export default Demo;
+```

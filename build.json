@@ -1,11 +1,16 @@
 {
   "type": "rax",
   "plugins": [
-    "build-plugin-component"
+    "build-plugin-component",
+    "@ali/build-plugin-miniapp-preview"
   ],
   "targets": [
     "web",
-    "weex"
+    "weex",
+    "miniapp"
   ],
+  "miniapp": {
+    "buildType": "runtime"
+  },
   "inlineStyle": false
 }

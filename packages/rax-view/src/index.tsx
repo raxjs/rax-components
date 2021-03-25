@@ -24,7 +24,11 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
     }
     useEffect(() => {
-      if (isWeChatMiniProgram && (typeof onAppear === 'function' || typeof onDisappear === 'function')) {
+      if (isWeChatMiniProgram) {
+        const withAppear = typeof onAppear === 'function' || typeof onFirstAppear === 'function' || typeof onDisappear === 'function';
+        if (!withAppear) {
+          return undefined;
+        }
         if (!props.id) {
           console.warn('id is required if using onAppear in wechat miniprogram!');
           return undefined;
@@ -43,6 +47,10 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
                 if (!selfRef.triggeredAppear) {
                   onFirstAppear(res);
                   selfRef.triggeredAppear = true;
+                  const withFirstAppearOnly = typeof onFirstAppear === 'function' && typeof onAppear !== 'function' && typeof onDisappear !== 'function';
+                  if (withFirstAppearOnly) {
+                    selfRef.observer.disconnect();
+                  }
                 } 
               }
             } else {

@@ -1,11 +1,16 @@
 {
   "name": "rax-xslider",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "advanced slider",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniappConfig": {
     "main": "lib/miniapp/index"
   },

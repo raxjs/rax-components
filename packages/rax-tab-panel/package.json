@@ -1,11 +1,16 @@
 {
   "name": "rax-tab-panel",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "rax",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "subComponents": {

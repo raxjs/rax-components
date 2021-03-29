@@ -1,4 +1,13 @@
 
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import {createElement, Component, render, createRef} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
@@ -107,3 +116,4 @@ class App extends Component {
 }
 
 render(<App />, document.body, { driver: DU });
+```

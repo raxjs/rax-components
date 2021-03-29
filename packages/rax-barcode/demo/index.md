@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import { createElement, render, Component } from 'rax';
 import DU from 'driver-universal';
 import View from 'rax-view';
@@ -22,3 +31,4 @@ class App extends Component {
 }
 
 render(<App />, document.body, { driver: DU });
+```

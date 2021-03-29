@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, useRef, Fragment } from 'rax';
 import DU from 'driver-universal';
@@ -28,3 +37,4 @@ const App = () => {
 };
 
 render(<App />, document.body, { driver: DU });
+```

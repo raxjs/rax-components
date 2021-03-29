@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, useState } from 'rax';
 import Video from '../src/index';
@@ -35,3 +44,4 @@ const App = () => {
 };
 
 render(<App />, document.body, { driver: DU });
+```

@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import DriverUniversal from "driver-universal";
 import { createElement, render, Fragment, useEffect, useState } from "rax";
 import View from "rax-view";
@@ -59,3 +68,4 @@ const Demo = (props) => {
 };
 
 render(<Demo />, document.body, { driver: DriverUniversal });
+```

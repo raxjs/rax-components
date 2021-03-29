@@ -27,6 +27,10 @@ Component({
         uri: ''
       }
     },
+    loading: {
+      type: String,
+      value: 'eager'
+    },
     lazyLoad: {
       type: Boolean,
       value: false

@@ -1,33 +1,37 @@
 {
   "name": "rax-text",
-  "version": "1.3.1",
+  "version": "2.0.7",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build",
-    "start": "../../node_modules/.bin/build-scripts start",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && build-scripts test"
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:quickapp": "lib/quickapp/index",
+    "main:bytedance": "lib/bytedance-microapp/index"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^.+\\.css$": "jest-transform-css"
-    }
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
-    "rax-component"
+    "rax-component",
+    "react-component"
   ],
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "universal-env": "^3.0.0"
   },
@@ -41,8 +45,8 @@
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",
-    "driver-dom": "^1.0.0",
-    "driver-universal": "^1.0.1",
+    "driver-dom": "^2.0.0",
+    "driver-universal": "^3.0.0",
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
@@ -52,14 +56,5 @@
     "rax-test-renderer": "^1.0.0",
     "rax-view": "^1.1.0",
     "universal-env": "^3.0.0"
-  },
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
   }
 }

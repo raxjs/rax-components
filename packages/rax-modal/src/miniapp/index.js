@@ -58,7 +58,7 @@ Component({
   deriveDataFromProps(nextProps) {
     updateData(this, nextProps);
   },
-  methods:{
+  methods: {
     onClick() {
       const { maskCanBeClick, onHide, onMaskClick } = this.props;
       if (typeof onMaskClick === 'function' && onMaskClick !== noop) {

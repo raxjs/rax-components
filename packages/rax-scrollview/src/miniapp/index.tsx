@@ -26,11 +26,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       disableScroll = false,
       onEndReachedThreshold
     } = props;
-    const [scrollTop, setScrollTop] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+    const [scrollTop] = useState(0);
+    const [scrollLeft] = useState(0);
     const [scrollWithAnimation, setScrollWithAnimation] = useState(false);
     const [scrollAnimationDuration, setScrollAnimationDuration] = useState(ANIMATION_DURATION);
-    const [scrollIntoViewId, setScrollIntoViewId] = useState(null);
+    const [scrollIntoViewId] = useState(null);
     const scrollerRef = useRef<HTMLDivElement>(null);
     const handleScroll = e => {
       if (onScroll) {
@@ -55,9 +55,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       _nativeNode: scrollerRef.current,
       resetScroll() {
         if (horizontal) {
-          setScrollLeft(0);
+          scrollerRef.current.setAttribute('scroll-left', '0');
         } else {
-          setScrollTop(0);
+          scrollerRef.current.setAttribute('scroll-top', '0');
         }
       },
       scrollTo(options?: {
@@ -67,12 +67,12 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-        
-        // Scroll event caused by users can not change scroll-top or scroll-left, so here we add some slight random element to force update 
+
+        // Scroll event caused by users can not change scroll-top or scroll-left, so here we add some slight random element to force update
         if (horizontal) {
-          setScrollLeft(x + Math.random() * 0.1);
+          scrollerRef.current.setAttribute('scroll-left', String(x));
         } else {
-          setScrollTop(y + Math.random() * 0.1);
+          scrollerRef.current.setAttribute('scroll-top', String(y));
         }
         setScrollWithAnimation(animated);
         setScrollAnimationDuration(duration);
@@ -86,7 +86,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         if (!id) {
           throw new Error('Params missing id.');
         }
-        setScrollIntoViewId(id);
+        scrollerRef.current.setAttribute('scroll-into-view', id);
         setScrollWithAnimation(animated);
         setScrollAnimationDuration(duration);
       }
@@ -122,6 +122,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scroll-x={!disableScroll && horizontal}
         scroll-y={!disableScroll && !horizontal}
         scroll-into-view={scrollIntoViewId}
+        enable-flex={true}
       >
         {children}
       </scroll-view>

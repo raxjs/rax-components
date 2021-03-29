@@ -35,13 +35,15 @@ function scrollTo(scrollerRef, x, y, animated, duration) {
       duration,
       easing: 'easeOutSine',
       onRun: e => {
-        if (x >= 0) {
-          scrollerRef.current.scrollLeft =
-            scrollLeft + e.percent * (x - scrollLeft);
-        }
-        if (y >= 0) {
-          scrollerRef.current.scrollTop =
-            scrollTop + e.percent * (y - scrollTop);
+        if (scrollerRef && scrollerRef.current) {
+          if (x >= 0) {
+            scrollerRef.current.scrollLeft =
+              scrollLeft + e.percent * (x - scrollLeft);
+          }
+          if (y >= 0) {
+            scrollerRef.current.scrollTop =
+              scrollTop + e.percent * (y - scrollTop);
+          }
         }
       }
     });
@@ -63,6 +65,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       style,
       horizontal,
       contentContainerStyle,
+      disableScroll,
       scrollEventThrottle,
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
@@ -219,6 +222,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scrollerStyle.overflowX = 'hidden';
         scrollerStyle.overflowY = 'scroll';
       }
+
+      if (disableScroll) {
+        scrollerStyle.overflow = 'hidden';
+      }
+
       const webProps = {
         ...props
       };

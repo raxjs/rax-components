@@ -52,6 +52,8 @@ Component({
     showFullscreenBtn: true,
     showCenterPlayBtn: true,
     showThinProgressBar: false,
+    objectFit: 'contain',
+    enableNative: false,
     ...componentProps,
   },
   methods: {

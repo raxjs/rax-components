@@ -1,5 +1,5 @@
-import { createElement, useState, useCallback } from 'rax';
-import { isWeex } from 'universal-env';
+import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
+import { isWeex, isMiniApp, isWeChatMiniProgram, isWeb, isByteDanceMicroApp } from 'universal-env';
 import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
 
 const EMPTY_SOURCE = {} as any as Source;
@@ -8,15 +8,16 @@ interface ErrorState {
   uri?: string;
 }
 
-function Image({
+const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   source,
   fallbackSource,
   onLoad,
   onError,
   style,
   resizeMode,
+  loading,
   ...otherProps
-}: ImageProps) {
+}: ImageProps, ref) => {
   source = source || EMPTY_SOURCE;
   fallbackSource = fallbackSource || EMPTY_SOURCE;
   const nativeProps: ImageNativeProps = otherProps as any;
@@ -36,7 +37,10 @@ function Image({
 
   nativeProps.onLoad = useCallback(
     (e: ImageLoadEvent) => {
-      if (e && e.success) {
+      // onLoad is triggered by native, so no need to judge
+      if (isMiniApp || isWeChatMiniProgram) {
+        onLoad && onLoad(e);
+      } else if (e && e.success) {
         // weex
         onLoad && onLoad(e);
       } else if (
@@ -70,6 +74,14 @@ function Image({
     ...style,
   };
 
+  if (loading) {
+    if (isWeb) {
+      nativeProps.loading = loading;
+    } else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp) {
+      nativeProps['lazy-load'] = loading === 'lazy';
+    }
+  }
+
   // for cover and contain
   resizeMode = resizeMode || nativeProps.style.resizeMode;
   if (resizeMode) {
@@ -82,11 +94,11 @@ function Image({
   }
 
   // Set default quality to "original" in weex avoid image be optimized unexpect
-  return isWeex ? (
-    <image quality="original" {...nativeProps} />
-  ) : (
-    <img {...nativeProps} />
-  );
-}
+  if (isWeex) {
+    return <image quality="original" {...nativeProps} ref={ref} />;
+  }
+
+  return <img {...nativeProps} ref={ref} />;
+});
 
 export default Image;

@@ -22,6 +22,8 @@ module.exports = {
     '/__modules__/',
     '/__files__/',
     '/lib/',
+    '/es/',
+    '/build/',
     '/dist/',
   ]
 };

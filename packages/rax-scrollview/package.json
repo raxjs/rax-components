@@ -1,22 +1,12 @@
 {
   "name": "rax-scrollview",
-  "version": "3.2.4",
+  "version": "3.4.1",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
-  },
-  "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
-    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
-    "prepublishOnly": "npm run build"
-  },
-  "files": [
-    "dist",
-    "lib"
-  ],
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp-native/miniapp/index",
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
@@ -26,28 +16,33 @@
     },
     "main:quickapp": "lib/quickapp/index"
   },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
     "rax-component",
     "react-component"
   ],
-  "bugs": {
-    "url": "https://github.com/raxjs/rax-scrollview/issues"
-  },
-  "homepage": "https://github.com/raxjs/rax-scrollview",
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "classnames": "^2.2.6",
     "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
-    "rax-text": "^1.0.1",
-    "rax-view": "^1.1.0",
+    "rax-text": "^2.0.0",
+    "rax-view": "^2.0.0",
     "universal-env": "^3.0.0"
   },
   "peerDependencies": {

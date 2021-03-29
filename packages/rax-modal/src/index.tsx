@@ -74,10 +74,10 @@ function Modal(props: ModalProps) {
       maskRef.__animationValid = false;
       if (show && maskRef.current) {
         // When target state is show, it need set modal opacity to 1
-       maskRef.current.style.opacity = '1';
+        maskRef.current.style.opacity = '1';
       }
       callback && callback();
-    }, animateDuration)
+    }, animateDuration);
 
     transition(
       maskRef.current,
@@ -105,8 +105,13 @@ function Modal(props: ModalProps) {
 
   const show = () => {
     if (!maskRef.__pendingShow) {
-      modalCount++;
       maskRef.__pendingShow = true;
+      // Stop pending hide action
+      if (maskRef.__pendingHide) {
+        maskRef.__pendingHide = false;
+      } else {
+        modalCount++;
+      }
       if (isWeb) {
         // Only when current modal count is 1, it need record origin body overflow
         if (modalCount === 1) {
@@ -139,10 +144,14 @@ function Modal(props: ModalProps) {
   const hide = (withAnimate = animation) => {
     if (visibleState && !maskRef.__pendingHide) {
       maskRef.__pendingHide = true;
+      maskRef.__pendingShow = false;
       if (withAnimate) {
         // execute hide animation on element that is already hidden will cause bug
         animate(false, () => {
-          hideAction();
+          // Only when pending hide execute hide action
+          if (maskRef.__pendingHide) {
+            hideAction();
+          }
         });
       } else {
         hideAction();
@@ -157,13 +166,16 @@ function Modal(props: ModalProps) {
       // Clear timer
       clearTimeout(maskRef.__timer);
       hide(false);
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     // if state is unequal to props trigger show or hide
     if (visible !== visibleState) {
       visible ? show() : hide();
+    } else if (visible) {
+      // When visible changed to true, while visibleState didn't change, it should trigger show
+      show();
     }
   }, [visible]);
 
@@ -172,7 +184,7 @@ function Modal(props: ModalProps) {
     maskRef.__pendingShow = false;
     // Record mask hide state
     maskRef.__pendingHide = false;
-  }, [visibleState])
+  }, [visibleState]);
 
 
   return (

@@ -1,6 +1,6 @@
-<view class="main-wrapper">
+<view class="rax-countdown-main-wrapper">
     <block tt:for="{{parsedTime}}">
-      <view class="_count_down_align" style="{{item.style}}">
+      <view class="rax-countdown-align" style="{{item.style}}">
         <block tt:if="{{item && item.value && item.isTime}}">
           <block tt:for="{{item.value}}" tt:for-item="time" tt:for-index="idx" >
             <image class="background" tt:if="{{ timeBackground && timeBackground.uri }}" mode="scaleToFill" src="{{ timeBackground.uri }}" style="{{_timeBackgroundStyle}}" />
@@ -8,7 +8,7 @@
             <text tt:else style="{{_timeStyle}}">{{time}}</text>
           </block>
         </block>
-        <text tt:else> {{ item.value }}</text>
+        <text tt:else style="{{_textStyle}}"> {{ item.value }}</text>
       </view>
     </block>
 </view>

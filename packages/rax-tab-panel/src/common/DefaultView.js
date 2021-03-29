@@ -319,20 +319,21 @@ class DefaultView extends BaseView {
   };
 
   render() {
-    let { isPanEnabled } = this.props;
+    let { isPanEnabled, children } = this.props;
 
     let curIndex = this.curIndex;
 
-    if (this.props.children && !(this.props.children instanceof Array)) {
-      this.props.children = [this.props.children];
+    if (children && !(children instanceof Array)) {
+      children = [children];
     }
 
-    let children =
-      this.props.children &&
-      this.props.children.map((child, index) => {
+    children =
+      children &&
+      children.map((child, index) => {
         if (child && child.type === TabPanel) {
           return (
             <TabPanel
+              key={child.key}
               index={index}
               curIndex={curIndex}
               {...child.props}

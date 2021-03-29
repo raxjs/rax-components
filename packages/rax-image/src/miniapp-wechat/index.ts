@@ -27,6 +27,10 @@ Component({
       type: Boolean,
       value: false
     },
+    loading: {
+      type: String,
+      value: 'eager'
+    },
   },
   lifetimes: {
     attached: function() {
@@ -58,7 +62,7 @@ Component({
       this.triggerEvent('onClick', event.detail);
     },
     initImage(type, newValue) {
-      const { width = null, height = null } = type === 'source' ? newValue : this.properties.source || {};
+      const { width = null, height = null } = (type === 'source' ? newValue : this.properties.source) || {};
       let style = type === 'styleSheet' ? newValue : this.properties.styleSheet || '';
       if (width) style += 'width:' + width + 'rpx;';
       if (height) style += 'height:' + height + 'rpx;';

@@ -8,7 +8,7 @@ enum ErrorCorrectLevelMap {
   H = 2
 }
 
-const SCREEN_WIDTH = wx.getSystemInfoSync().screenWidth;
+const WINDOW_WIDTH = wx.getSystemInfoSync().windowWidth;
 
 Component({
   data: {
@@ -37,8 +37,8 @@ Component({
     if (data === '') {
       return;
     }
-    this.width = getStyleNumber(getStyleProps('width', styleSheet), SCREEN_WIDTH) || 300;
-    this.height = getStyleNumber(getStyleProps('height', styleSheet), SCREEN_WIDTH) || 300;
+    this.width = getStyleNumber(getStyleProps('width', styleSheet), WINDOW_WIDTH) || 300;
+    this.height = getStyleNumber(getStyleProps('height', styleSheet), WINDOW_WIDTH) || 300;
     this.drawCode(data, options);
   },
   methods: {

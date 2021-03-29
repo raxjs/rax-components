@@ -12,6 +12,7 @@ Component({
       uri: ''
     },
     mode: 'scaleToFill',
+    loading: 'eager',
     lazyLoad: false,
     onClick: noop,
     onLoad: noop,

@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.6
+
+- [chore] Format npm output files
+
 ## 3.0.5
 - [fix] missing dependency on Slider's `handleChange` function
 

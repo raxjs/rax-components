@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.4.2] - 2021-03-29
+
+- Format npm output files
+
 ## [3.4.1] - 2021-03-23
 
 ### Added

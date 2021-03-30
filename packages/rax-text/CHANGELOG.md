@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.8
+
+- Format npm output files
+
 ## 2.0.7
 - [feat] Add line-clamp standard support
 

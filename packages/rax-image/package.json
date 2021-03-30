@@ -1,11 +1,16 @@
 {
   "name": "rax-image",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp/index",

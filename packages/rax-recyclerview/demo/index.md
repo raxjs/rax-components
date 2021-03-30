@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import {createElement, Component, render} from 'rax';
 import DriverUniversal from 'driver-universal';
 import View from 'rax-view';
@@ -155,3 +164,4 @@ let styles = {
 };
 
 render(<App />, document.body, { driver: DriverUniversal });
+```

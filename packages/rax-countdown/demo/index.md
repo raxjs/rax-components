@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import { createElement, render, Component } from 'rax';
 import View from 'rax-view';
 import Countdown from '../src/index';
@@ -99,3 +108,4 @@ let styles = {
 };
 
 render(<App />, document.body, { driver: DU });
+```

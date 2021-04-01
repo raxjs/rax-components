@@ -51,7 +51,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
                   if (withFirstAppearOnly) {
                     selfRef.observer.disconnect();
                   }
-                } 
+                }
               }
             } else {
               typeof onDisappear === 'function' && onDisappear(res);

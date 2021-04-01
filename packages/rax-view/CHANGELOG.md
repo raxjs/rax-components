@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.1.0
+- [feat] Support onAppear/onDisappear/onFirstAppear in wechat miniprogram
 ## 2.0.5
 - [chore] Sync from rax-pkg-rax-view
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.7
+
+- Fix fallbackSource with error alicdn source uri
+
 ## v2.2.6
 
 - Format npm output files

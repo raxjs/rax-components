@@ -2,11 +2,12 @@
   "name": "rax-portal",
   "version": "1.0.1",
   "description": "rax-portal",
+  "license": "BSD-3-Clause",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },
@@ -14,13 +15,15 @@
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
-    "rax-component"
+    "rax-component",
+    "react-component"
   ],
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "rax-create-portal": "^1.0.0",
     "universal-env": "^3.0.0"

@@ -1,4 +1,5 @@
 # Changelog
 
-## 1.4.1
-- [fix] use element <a> when miniapp env is web
+## [1.4.5] - 2021-03-29
+
+- Format npm output files

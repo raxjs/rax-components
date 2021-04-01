@@ -269,7 +269,7 @@ class DefaultView extends BaseView {
   render() {
     let {vertical, indicatorStyle, indicatorItemStyle, children, indicatorActiveItemStyle, defaultIndex} = this.props;
 
-    if (!(Array.isArray(children))) {
+    if (!Array.isArray(children)) {
       children = [children];
     }
 

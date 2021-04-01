@@ -23,6 +23,8 @@ Component({
     onScroll: noop,
     scrollTop: 0,
     scrollLeft: 0,
+    trapScroll: false,
+    enableBackToTop: false,
     ref: noop,
     onTouchStart: noop,
     onTouchMove: noop,

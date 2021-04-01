@@ -1,14 +1,16 @@
 # Changelog
 
-## 3.3.7
-- [fix] SlideTo scrollLeft of null error
+## [3.4.2] - 2021-03-29
 
-## 3.3.5
-- [chore] Sync Pegasus Component
+- Format npm output files
 
-## 3.3.3
-- [feat] Support `disableScroll`
+## [3.4.1] - 2021-03-23
 
-## 3.3.0
-- [chore] Upgrade `rax-test` and `rex-view` version
+### Added
 
+- Set `enable-flex` in miniapp to true to support horizontal scroll-view in wechat miniprogram
+## [3.4.0] - 2021-03-16
+
+### Added
+
+- Support `trapScroll` and `enableBackToTop` in ali miniapp

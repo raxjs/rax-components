@@ -2,7 +2,7 @@ import {createElement} from 'rax';
 import View from 'rax-view';
 import Image from 'rax-image';
 import renderer from 'rax-test-renderer';
-import Slider from '../slider.weex';
+import Slider from '../../lib/slider.weex';
 
 jest.mock('universal-env', () => {
   return {

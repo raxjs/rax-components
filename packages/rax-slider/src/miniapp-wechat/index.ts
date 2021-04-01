@@ -84,9 +84,12 @@ Component({
       this.triggerEvent('onChange', {
         index: event.detail.current
       });
-      this.setData({
-        current: event.detail.current
-      });
+      // Only setData by user touch action
+      if (e.detail.source === 'touch') {
+        this.setData({
+          current: event.detail.current
+        });
+      }
     },
     slideTo(index) {
       if (index !== undefined) {

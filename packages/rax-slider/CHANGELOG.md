@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.7
+
+- [fix] Only set current value with user touch action in onChange callback
 ## 3.0.6
 
 - [chore] Format npm output files

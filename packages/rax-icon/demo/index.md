@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, Component } from 'rax';
 import DU from 'driver-universal';
@@ -28,3 +37,4 @@ class Demo extends Component {
 }
 
 render(<Demo />, document.body, { driver: DU });
+```

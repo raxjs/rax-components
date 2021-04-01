@@ -1,3 +1,12 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
+
 import { createElement, Component, render, createRef } from 'rax';
 import Canvas from 'rax-canvas';
 import DriverUniversal from 'driver-universal';
@@ -21,3 +30,4 @@ class CanvasSample extends Component {
 }
 
 render(<CanvasSample />, document.body, { driver: DriverUniversal });
+```

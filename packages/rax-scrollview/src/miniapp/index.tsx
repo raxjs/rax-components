@@ -122,6 +122,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scroll-x={!disableScroll && horizontal}
         scroll-y={!disableScroll && !horizontal}
         scroll-into-view={scrollIntoViewId}
+        enable-flex={true}
       >
         {children}
       </scroll-view>

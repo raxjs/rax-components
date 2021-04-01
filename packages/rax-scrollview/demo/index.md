@@ -1,3 +1,11 @@
+---
+title: Baisc
+order: 1
+---
+
+basic usage
+
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
 /**
  * @jsx createElement
@@ -84,3 +92,4 @@ function App() {
 }
 
 render(<App />, document.body, { driver: DriverUniversal });
+```

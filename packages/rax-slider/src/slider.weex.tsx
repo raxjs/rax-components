@@ -40,7 +40,7 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
       }
       setIndex(currentIndex);
       onChange && onChange(result);
-    }, [props.index]);
+    }, [props.index, onChange]);
 
     return (
       <slider

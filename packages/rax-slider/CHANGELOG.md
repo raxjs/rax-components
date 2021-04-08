@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.7
+
+- [fix] Project in MiniApp WebView with `appx/web-view.min.js` render error.
 ## 3.0.6
 
 - [chore] Format npm output files

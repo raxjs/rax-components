@@ -1,5 +1,6 @@
 import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
 import Children from 'rax-children';
+import { isWeChatMiniProgram } from 'universal-env';
 import { SliderProps } from './types';
 import './index.css';
 
@@ -35,7 +36,12 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
 
     const handleChange = useCallback((result: any) => {
       const currentIndex = result.detail.current;
-      setIndex(currentIndex);
+      // Only setState by user touch action in wechat miniprogram
+      if (isWeChatMiniProgram) {
+        result.detail.source === 'touch' && setIndex(currentIndex);
+      } else {
+        setIndex(currentIndex);
+      }
       result.index = currentIndex;
       onChange && onChange(result);
     }, [props.index, onChange]);

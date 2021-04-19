@@ -5,10 +5,16 @@
   indicator-dots="{{showsPagination}}"
   current="{{current}}"
   interval="{{autoPlayInterval}}"
+  duration="{{duration}}"
   circular="{{loop}}"
   indicator-color="{{paginationStyle.itemColor}}"
   indicator-active-color="{{paginationStyle.itemSelectedColor}}"
   vertical="{{direction === 'vertical'}}"
+  previous-margin="{{previousMargin}}"
+  next-margin="{{nextMargin}}"
+  snap-to-edge="{{snapToEdge}}"
+  display-multiple-items="{{displayMultipleItems}}"
+  easing-function="{{easingFunction}}"
   bindchange="onChange"
 >
   <block wx:for="{{children}}" wx:for-index="index" wx:key="index">

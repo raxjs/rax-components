@@ -42,6 +42,30 @@ Component({
       type: Number,
       value: 1000,
     },
+    duration: {
+      type: Number,
+      value: 500,
+    },
+    previousMargin: {
+      type: String,
+      value: '0px',
+    },
+    nextMargin: {
+      type: String,
+      value: '0px',
+    },
+    snapToEdge: {
+      type: Boolean,
+      value: false,
+    },
+    displayMultipleItems: {
+      type: Number,
+      value: 500,
+    },
+    easingFunction: {
+      type: String,
+      value: 'default',
+    },
     paginationStyle: {
       type: Object,
       value: {

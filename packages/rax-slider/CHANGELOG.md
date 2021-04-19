@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+
+- [feat] Supply props that only ali miniapp or wechat miniprogram needs
+
 ## 3.0.7
 
 - [fix] Project in MiniApp WebView with `appx/web-view.min.js` render error.

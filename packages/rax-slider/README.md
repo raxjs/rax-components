@@ -20,7 +20,8 @@ $ npm install rax-slider --save
 ## 属性
 
 1. Web 环境中 slider 内部默认做了节点的懒加载渲染，不再需要使用 picture 的`lazyload`做懒加载
-2. `paginationStyle`中`itemColor` 用来定义分页原点的颜色，`itemSelectedColor` 用来定义分页原点激活时的颜色，`itemSize`用来定义分页圆点的大小，小程序只支持设置 `itemColor` `用来定义分页原点的颜色，itemSelectedColor`。快应用只支持`itemColor`、`itemSelectedColor`、`itemSize`三个用来定义分页圆点的样式。默认样式如下：
+2. 下方未列出的小程序独有属性，在编译时方案中需要按照驼峰式写法传递（如 `previous-margin` 需要写作 `previousMargin`），在运行时方案中则直接按照小程序官方文档提供的属性写法传递即可。
+3. `paginationStyle`中`itemColor` 用来定义分页原点的颜色，`itemSelectedColor` 用来定义分页原点激活时的颜色，`itemSize`用来定义分页圆点的大小，小程序只支持设置 `itemColor` `用来定义分页原点的颜色，itemSelectedColor`。快应用只支持`itemColor`、`itemSelectedColor`、`itemSize`三个用来定义分页圆点的样式。默认样式如下：
 
 ```js
 {

@@ -25,7 +25,7 @@ const Portal: FunctionComponent<PortalProps> = (props) => {
     return () => {
       container.removeChild(el.current);
     };
-  }, [container]);
+  }, []);
 
   return createPortal(children, el.current);
 };

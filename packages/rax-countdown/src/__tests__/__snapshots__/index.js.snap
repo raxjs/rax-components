@@ -3,12 +3,12 @@
 exports[`CountDown basic render 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view main",
+    "class": "rax-view",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -36,6 +36,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -52,7 +56,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -80,6 +84,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -96,7 +104,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -124,6 +132,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -140,7 +152,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -168,6 +180,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -190,12 +206,12 @@ Object {
 exports[`CountDown render days bigger than 99 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view main",
+    "class": "rax-view",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -247,6 +263,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -263,7 +283,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -291,6 +311,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -307,7 +331,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -335,6 +359,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -351,7 +379,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -379,6 +407,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -401,12 +433,12 @@ Object {
 exports[`CountDown render timeRemaining smaller than 0 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view main",
+    "class": "rax-view",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -434,6 +466,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -450,7 +486,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -478,6 +514,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -500,12 +540,12 @@ Object {
 exports[`CountDown render with custom style 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view main",
+    "class": "rax-view",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -538,6 +578,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -555,7 +599,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -588,6 +632,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -605,7 +653,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -638,6 +686,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
     Object {
@@ -655,7 +707,7 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-view item",
+        "class": "rax-view",
       },
       "children": Array [
         Object {
@@ -688,6 +740,10 @@ Object {
           "tagName": "SPAN",
         },
       ],
+      "style": Object {
+        "0": undefined,
+        "1": undefined,
+      },
       "tagName": "DIV",
     },
   ],

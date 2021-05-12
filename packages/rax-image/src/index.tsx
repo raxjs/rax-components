@@ -44,6 +44,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
         // weex
         onLoad && onLoad(e);
       } else if (
+        // alicdn will return an 1x1 img when img is not loaded successfully
         e &&
         e.currentTarget &&
         e.currentTarget.naturalWidth > 1 &&
@@ -52,6 +53,11 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
         // web
         onLoad && onLoad(e);
       } else {
+        if (errorState.uri === undefined) {
+          setErrorState({
+            uri: source.uri,
+          });
+        }
         onError && onError(e);
       }
     },
@@ -95,6 +101,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
 
   // Set default quality to "original" in weex avoid image be optimized unexpect
   if (isWeex) {
+    // @ts-ignore
     return <image quality="original" {...nativeProps} ref={ref} />;
   }
 

@@ -1,23 +1,17 @@
 {
   "name": "rax-scrollview",
-  "version": "3.3.7",
+  "version": "3.4.2",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
-  "miniprogram": ".",
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
-  },
-  "scripts": {
-    "clean": "rm -rf ./lib && rm -rf ./package-lock.json && rm -rf ./demo/miniapp/lib",
-    "build": "npm run clean && ../../node_modules/.bin/build-scripts build --config ../../build.json",
-    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
-    "prepublishOnly": "npm run build"
-  },
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist",
-    "lib"
+    "es",
+    "lib",
+    "dist"
   ],
+  "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp-native/miniapp/index",
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
@@ -27,22 +21,27 @@
     },
     "main:quickapp": "lib/quickapp/index"
   },
+  "quickappConfig": {
+    "main": "lib/quickapp/index"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raxjs/rax-components.git"
   },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "keywords": [
     "Rax",
     "rax-component",
     "react-component"
   ],
-  "bugs": {
-    "url": "https://github.com/raxjs/rax-scrollview/issues"
-  },
-  "homepage": "https://github.com/raxjs/rax-scrollview",
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "dependencies": {
     "classnames": "^2.2.6",
     "rax-get-element-by-id": "^1.0.0",

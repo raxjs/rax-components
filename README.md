@@ -1,62 +1,41 @@
 # rax-components
 
-Basic components
+[Docs](https://rax.js.org/docs/components/about)
 
-* rax-text
-* rax-image
-* rax-view
-* rax-video
-* rax-link
-* rax-icon
-* rax-slider
-* rax-picture
-* rax-textinput
-* rax-scrollview
-* rax-recyclerview
-* rax-waterfall
+## Develop
 
-Interaction component
+Install deps:
 
-* rax-refreshcontrol
-* rax-modal
-* rax-gesture-view
-* rax-parallax
-* rax-tab-panel
-* rax-xslider
-
-Drawing component
-
-* rax-canvas
-* rax-barcode
-* rax-qrcode
-
-## Run Build
-
-Build one
-
-```
-npm run build
+```bash
+$ cd rax-components/
+$ npm install
 ```
 
-Build all
+### Develop package
 
-```
-npm run build rax-view
-```
+```bash
+$ cd packages/rax-text
+$ npm install
+$ npm start
 
-## Run Test
-
-```
-npm run test
+$ npm run build
 ```
 
-run test for specific component
+### Build packages
 
-```
-npm run test -- packages/rax-countdown
+```bash
+$ npm run build # build all packages
+$ npm run build -- --packages=rax-text,rax-view
 ```
 
-## Run Lint
+### Run test
+
+```bash
+$ npm run test
+$ npm run test -- packages/rax-countdown
+```
+
+### Run lint
 
 ```
 npm run lint

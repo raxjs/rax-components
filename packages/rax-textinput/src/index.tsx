@@ -82,10 +82,10 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     } = props;
     let type =
       password || secureTextEntry
-      ? "password"
-      : typeof keyboardTypeMap[keyboardType] === "undefined"
-      ? keyboardType
-      : keyboardTypeMap[keyboardType];
+        ? 'password'
+        : typeof keyboardTypeMap[keyboardType] === 'undefined'
+          ? keyboardType
+          : keyboardTypeMap[keyboardType];
 
     // Check is type supported or not
     // Use isWeb to exclude web-view
@@ -134,7 +134,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       onFocus: onFocus && handleFocus,
       ref: refEl
     };
-       
+
     // Diff with web readonly attr, `disabled` must be boolean value
     const disbaled = Boolean(editable !== undefined && !editable);
     const rows = numberOfLines || maxNumberOfLines;

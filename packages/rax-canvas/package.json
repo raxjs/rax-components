@@ -1,45 +1,41 @@
 {
   "name": "rax-canvas",
-  "author": "rax",
   "version": "2.2.2",
   "description": "Canvas for Rax.",
+  "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp/index",
-    "main:wechat": "lib/wechat-miniprogram/index",
+    "main:wechat": "lib/miniapp-wechat/index",
     "main:bytedance": "lib/bytedance-microapp/index"
   },
-  "files": [
-    "dist",
-    "es",
-    "lib",
-    "src",
-    "types"
-  ],
-  "keywords": [
-    "Rax",
-    "rax-component"
-  ],
-  "engines": {
-    "npm": ">=3.0.0"
-  },
-  "peerDependencies": {
-    "rax": "^1.1.0"
-  },
   "scripts": {
-    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json",
-    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json"
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
   },
   "bugs": {
     "url": "https://github.com/raxjs/rax-components/issues"
   },
   "homepage": "https://github.com/raxjs/rax-components#readme",
+  "keywords": [
+    "Rax",
+    "rax-component",
+    "react-component"
+  ],
   "dependencies": {
     "@gcanvas/core": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",
     "universal-env": "^3.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.1.0"
   },
   "devDependencies": {
     "driver-universal": "^3.1.0",

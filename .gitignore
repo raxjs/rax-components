@@ -22,3 +22,6 @@ packages/**/node_modules/
 
 package-lock.json
 yarn.lock
+
+demo/miniapp/.tea
+demo/miniapp/lib

@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.7
+
+- [fix] Project in MiniApp WebView with `appx/web-view.min.js` render error.
+- [fix] Only set current value with user touch action in onChange callback
+## 3.0.6
+
+- [chore] Format npm output files
+
+## 3.0.5
+- [fix] missing dependency on Slider's `handleChange` function
+
+## 3.0.4
+- [chore] Rename wechat native code to miniapp-wechat
+
+## 3.0.3
+- [chore] Sync from rax-pkg-rax-slider
+
 ## 3.0.2
 - [fix] the page follow touch move when onSwipe 
 

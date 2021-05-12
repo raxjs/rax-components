@@ -16,8 +16,8 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
     if (isMiniApp) {
       // For miniapp runtime pre-compile
       return <view
-       {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
-       ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
+        {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
+        ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
     }
     let handleAppear = onAppear;
     if (onFirstAppear) {
@@ -28,7 +28,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         } else {
           selfRef.triggeredAppear = true;
         }
-      }
+      };
     }
     return <div {...rest} onAppear={handleAppear} ref={ref} className={cx( isWeex ? '' : 'rax-view-v2', className)} style={style} />;
   }

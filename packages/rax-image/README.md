@@ -2,7 +2,10 @@
 
 [![npm](https://img.shields.io/npm/v/rax-image.svg)](https://www.npmjs.com/package/rax-image)
 
+> 阿里内部同学推荐使用 `@ali/rax-picture`，对图片尺寸有很多内置的优化策略
+
 ## 支持
+
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序
 
 ## 描述

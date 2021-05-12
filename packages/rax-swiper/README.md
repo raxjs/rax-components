@@ -4,13 +4,13 @@
 
 ## 支持
 
-Web
+Web / 小程序，不支持 Weex 以及 Kraken。
 
 > 使用 rax-swiper 必须用非内联，也就是在 build.json 里配置 inlineStyle 为 false
 
 ## 描述
 
-轮播组件，体验远远好于 rax-slider.
+轮播组件，功能比 rax-slider 强大很多。
 
 ## 安装
 

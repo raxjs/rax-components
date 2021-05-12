@@ -2,9 +2,10 @@
 
 [![npm](https://img.shields.io/npm/v/rax-slider.svg)](https://www.npmjs.com/package/rax-slider)
 
-> 纯 Web 场景推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)
+> Web 或小程序场景推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)
 
 ## 支持
+
 Web / Weex / 阿里小程序 / 微信小程序 / 字节跳动小程序
 
 ## 描述

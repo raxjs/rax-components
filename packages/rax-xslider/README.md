@@ -1,5 +1,7 @@
 # rax-xslider
 
+该组件已废弃，推荐使用 `rax-swiper`
+
 [![npm](https://img.shields.io/npm/v/rax-xslider.svg)](https://www.npmjs.com/package/rax-xslider)
 
 ## 描述

@@ -1,4 +1,6 @@
-# rax-countdown
+# rax-gesture-view
+
+不推荐使用，建议 Web 场景使用 `a` 标签，小程序场景使用 `navigator` 标签
 
 [![npm](https://img.shields.io/npm/v/universal-toast.svg)](https://www.npmjs.com/package/universal-toast)
 

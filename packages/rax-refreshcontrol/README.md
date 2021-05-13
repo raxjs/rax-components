@@ -1,5 +1,7 @@
 # rax-refreshcontrol
 
+该组件已废弃
+
 [![npm](https://img.shields.io/npm/v/rax-refreshcontrol.svg)](https://www.npmjs.com/package/rax-refreshcontrol)
 
 **描述：**

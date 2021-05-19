@@ -34,10 +34,8 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
           return undefined;
         }
 
-        const ele = document.getElementById(props.id);
-        // @ts-ignore
-        if (ele && ele._internal) {
-          // @ts-ignore
+        const ele = document.getElementById(props.id) as any;
+        if (ele?._internal) {
           selfRef.observer = ele._internal.createIntersectionObserver().relativeToViewport();
           selfRef.observer.observe(`#${props.id}`, (res) => {
             const { intersectionRatio = 0 } = res;
@@ -47,7 +45,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
                 if (!selfRef.triggeredAppear) {
                   onFirstAppear(res);
                   selfRef.triggeredAppear = true;
-                  const withFirstAppearOnly = typeof onFirstAppear === 'function' && typeof onAppear !== 'function' && typeof onDisappear !== 'function';
+                  const withFirstAppearOnly = typeof onAppear !== 'function' && typeof onDisappear !== 'function';
                   if (withFirstAppearOnly) {
                     selfRef.observer.disconnect();
                   }

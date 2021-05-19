@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "3.4.2",
+  "version": "3.5.0-0",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,6 +11,16 @@
     "lib",
     "dist"
   ],
+  "exports": {
+    "web": "./es/web/index.js",
+    "weex": "./es/weex/index.js",
+    "miniapp": "./es/miniapp/index.js",
+    "wechat-miniprogram": "./es/miniapp.js",
+    "bytedance-microapp": "./es/miniapp.js",
+    "baidu-smartprogram": "./es/miniapp.js",
+    "kuaishou-miniprogram": "./es/miniapp.js",
+    "default": "./es/index.js"
+  },
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp-native/miniapp/index",

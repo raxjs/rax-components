@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useRef } from 'rax';
 import createPortal from 'rax-create-portal';
-import { isWeChatMiniProgram } from 'universal-env';
+import { isMiniApp } from 'universal-env';
 
 interface PortalProps {
   container?: any;
@@ -16,10 +16,10 @@ const Portal: FunctionComponent<PortalProps> = (props) => {
       return undefined;
     }
 
-    if (isWeChatMiniProgram) {
-      setTimeout(() => container.appendChild(el.current));
-    } else {
+    if (isMiniApp) {
       container.appendChild(el.current);
+    } else {
+      setTimeout(() => container.appendChild(el.current));
     }
 
     return () => {

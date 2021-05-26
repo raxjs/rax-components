@@ -11,8 +11,18 @@
     "lib",
     "dist"
   ],
+  "exports": {
+    "web": "./es/web/index.js",
+    "weex": "./es/weex/index.js",
+    "miniapp": "./es/miniapp/index.js",
+    "wechat-miniprogram": "./es/miniapp/index.js",
+    "bytedance-microapp": "./es/miniapp/index.js",
+    "baidu-smartprogram": "./es/miniapp/index.js",
+    "kuaishou-miniprogram": "./es/miniapp/index.js",
+    "default": "./es/index.js"
+  },
   "miniappConfig": {
-    "main": "lib/miniapp/index",
+    "main": "lib/miniapp-native/index",
     "main:quickapp": "lib/quickapp/index",
     "main:bytedance": "lib/bytedance-microapp/index"
   },

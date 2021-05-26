@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useRef } from 'rax';
 import createPortal from 'rax-create-portal';
-import { isMiniApp } from 'universal-env';
+import { isMiniApp, isWeb } from 'universal-env';
 
 interface PortalProps {
   container?: any;
@@ -16,7 +16,7 @@ const Portal: FunctionComponent<PortalProps> = (props) => {
       return undefined;
     }
 
-    if (isMiniApp) {
+    if (isMiniApp || isWeb) {
       container.appendChild(el.current);
     } else {
       setTimeout(() => container.appendChild(el.current));

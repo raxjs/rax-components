@@ -1,111 +1,21 @@
-import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isWeex, isMiniApp, isWeChatMiniProgram, isWeb, isByteDanceMicroApp } from 'universal-env';
-import { ImageProps, Source, ImageLoadEvent, ImageNativeProps } from './types';
+import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
+import ImageWeb from './web';
+import ImageMiniApp from './miniapp';
+import ImageWeex from './weex';
 
-const EMPTY_SOURCE = {} as any as Source;
+let Image = null;
 
-interface ErrorState {
-  uri?: string;
+if (isWeb) {
+  Image = ImageWeb;
+} else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) {
+  Image = ImageMiniApp;
+} else if (isWeex) {
+  Image = ImageWeex;
+} else {
+  Image = ImageWeb;
 }
 
-const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
-  source,
-  fallbackSource,
-  onLoad,
-  onError,
-  style,
-  resizeMode,
-  loading,
-  ...otherProps
-}: ImageProps, ref) => {
-  source = source || EMPTY_SOURCE;
-  fallbackSource = fallbackSource || EMPTY_SOURCE;
-  const nativeProps: ImageNativeProps = otherProps as any;
-  const [errorState, setErrorState] = useState<ErrorState>({});
-
-  nativeProps.onError = useCallback(
-    (e: ImageLoadEvent) => {
-      if (errorState.uri === undefined) {
-        setErrorState({
-          uri: source.uri,
-        });
-      }
-      onError && onError(e);
-    },
-    [source.uri, onError, errorState]
-  );
-
-  nativeProps.onLoad = useCallback(
-    (e: ImageLoadEvent) => {
-      // onLoad is triggered by native, so no need to judge
-      if (isMiniApp || isWeChatMiniProgram) {
-        onLoad && onLoad(e);
-      } else if (e && e.success) {
-        // weex
-        onLoad && onLoad(e);
-      } else if (
-        // alicdn will return an 1x1 img when img is not loaded successfully
-        e &&
-        e.currentTarget &&
-        e.currentTarget.naturalWidth > 1 &&
-        e.currentTarget.naturalHeight > 1
-      ) {
-        // web
-        onLoad && onLoad(e);
-      } else {
-        if (errorState.uri === undefined) {
-          setErrorState({
-            uri: source.uri,
-          });
-        }
-        onError && onError(e);
-      }
-    },
-    [onLoad, onError]
-  );
-
-  if (errorState.uri !== undefined) {
-    if (errorState.uri !== source.uri) {
-      errorState.uri = undefined;
-    } else if (fallbackSource.uri != null) {
-      source = fallbackSource;
-    }
-  }
-
-  const { width, height, uri } = source;
-  nativeProps.src = uri;
-  nativeProps.style = {
-    width,
-    height,
-    ...style,
-  };
-
-  if (loading) {
-    if (isWeb) {
-      nativeProps.loading = loading;
-    } else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp) {
-      nativeProps['lazy-load'] = loading === 'lazy';
-    }
-  }
-
-  // for cover and contain
-  resizeMode = resizeMode || nativeProps.style.resizeMode;
-  if (resizeMode) {
-    if (isWeex) {
-      nativeProps.resize = resizeMode;
-      nativeProps.style.resizeMode = resizeMode;
-    } else {
-      nativeProps.style.objectFit = resizeMode as any;
-    }
-  }
-
-  // Set default quality to "original" in weex avoid image be optimized unexpect
-  if (isWeex) {
-    // @ts-ignore
-    return <image quality="original" {...nativeProps} ref={ref} />;
-  }
-
-  return <img {...nativeProps} ref={ref} />;
-});
-
 export default Image;
+export * from './types';
+
+

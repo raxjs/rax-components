@@ -5,6 +5,11 @@
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniprogram": ".",
   "miniappConfig": {
     "main": "lib/miniapp/index",

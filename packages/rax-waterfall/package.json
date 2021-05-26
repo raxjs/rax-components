@@ -6,16 +6,20 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "propsMap": {
-      "onEndReachedThreshold": "endReachedThreshold"
-    },
-    "renderSlotProps": [
-      "renderFooter",
-      "renderHeader",
-      "renderItem"
-    ]
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
+  "exports": {
+    "web": "./es/common/index.js",
+    "miniapp": "./es/common/index.js",
+    "wechat-miniprogram": "./es/common/index.js",
+    "bytedance-microapp": "./es/common/index.js",
+    "baidu-smartprogram": "./es/common/index.js",
+    "kuaishou-miniprogram": "./es/common/index.js",
+    "weex": "./es/weex/index.js",
+    "default": "./es/index.js"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

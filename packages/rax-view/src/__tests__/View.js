@@ -1,7 +1,7 @@
 global.callNative = null;
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import View from '../../lib/';
+import View from '../../lib';
 
 describe('View', () => {
   it('render tag view', () => {

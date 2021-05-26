@@ -1,54 +1,17 @@
-import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import { isMiniApp, isWeChatMiniProgram, isWeb } from 'universal-env';
-import Text from 'rax-text';
-import { LinkProps } from './types';
+import { isWeb, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
+import LinkCommon from './common';
+import LinkMiniApp from './miniapp';
 
-const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
-  const { className, style = {}, onClick, onPress, children, miniappHref = '', ...rest } = props;
-  const textStyle = {
-    color: style.color,
-    lines: style.lines,
-    fontSize: style.fontSize,
-    fontStyle: style.fontStyle,
-    fontWeight: style.fontWeight,
-    textDecoration: style.textDecoration || 'none',
-    textAlign: style.textAlign,
-    fontFamily: style.fontFamily,
-    textOverflow: style.textOverflow
-  };
-  // If miniapp env is web, should use element <a>
-  if ((isMiniApp || isWeChatMiniProgram) && !isWeb) {
-    // miniappHref example: navigate:/pages/index/index
-    const [ openType, url ] = miniappHref.split(':');
-    return (
-      <view onClick={onClick || onPress}>
-        <navigator
-          open-type={openType}
-          url={url}
-          className={className}
-          style={style}
-          {...rest}
-        >
-          {children}
-        </navigator>
-      </view>
-    );
-  }
-  return (
-    <a
-      {...rest}
-      ref={ref}
-      className={className}
-      style={style}
-      onClick={onClick || onPress}
-    >
-      {typeof children === 'string' ? (
-        <Text style={textStyle}>{children}</Text>
-      ) :
-        children
-      }
-    </a>
-  );
-});
-Link.displayName = 'Link';
+let Link = null;
+
+// If miniapp env is web, should use element <a>
+if ((isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) && !isWeb) {
+  Link = LinkMiniApp;
+}  else {
+  Link = LinkCommon;
+}
+
 export default Link;
+export * from './types';
+
+

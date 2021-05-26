@@ -81,8 +81,6 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   // Set default quality to "original" in weex avoid image be optimized unexpect
   // @ts-ignore
   return <image quality="original" {...nativeProps} ref={ref} />;
-
-
 });
 
 export default Image;

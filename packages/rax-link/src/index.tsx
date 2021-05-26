@@ -7,7 +7,7 @@ let Link = null;
 // If miniapp env is web, should use element <a>
 if ((isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) && !isWeb) {
   Link = LinkMiniApp;
-}  else {
+} else {
   Link = LinkCommon;
 }
 

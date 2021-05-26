@@ -23,12 +23,12 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     textString = Array.isArray(children) ? children.join('') : children.toString();
   }
 
-    return (
-      // @ts-ignore
-      <text {...rest} ref={ref} className={className} style={{ lines, ...style }} onClick={handleClick}>
-        {textString}
-      </text>
-    );
+  return (
+    // @ts-ignore
+    <text {...rest} ref={ref} className={className} style={{ lines, ...style }} onClick={handleClick}>
+      {textString}
+    </text>
+  );
 });
 
 export default wrapper(Text);

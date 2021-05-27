@@ -1,6 +1,6 @@
 {
   "name": "rax-portal",
-  "version": "1.1.0-0",
+  "version": "1.0.2",
   "description": "rax-portal",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

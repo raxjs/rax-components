@@ -11,15 +11,18 @@
     "lib",
     "dist"
   ],
-  "exports": {
-    "web": "./es/common/index.js",
-    "weex": "./es/common/index.js",
-    "wechat-miniprogram": "./es/common/index.js",
-    "bytedance-microapp": "./es/common/index.js",
-    "baidu-smartprogram": "./es/common/index.js",
-    "kuaishou-miniprogram": "./es/common/index.js",
-    "miniapp": "./es/miniapp/index.js",
-    "default": "./es/index.js"
+  "exports":{
+    ".":{
+      "web": "./es/common/index.js",
+      "weex": "./es/common/index.js",
+      "wechat-miniprogram": "./es/common/index.js",
+      "bytedance-microapp": "./es/common/index.js",
+      "baidu-smartprogram": "./es/common/index.js",
+      "kuaishou-miniprogram": "./es/common/index.js",
+      "miniapp": "./es/miniapp/index.js",
+      "default": "./es/index.js"
+    },
+    "./*": "./*"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

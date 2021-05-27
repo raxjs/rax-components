@@ -1,7 +1,7 @@
 global.callNative = null;
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import Video from '../../lib';
+import Video from '../lib';
 
 describe('Video', () => {
   it('render tag Video', () => {

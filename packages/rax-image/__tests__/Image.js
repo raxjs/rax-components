@@ -1,6 +1,6 @@
 import {createElement, Component, render} from 'rax';
 import renderer from 'rax-test-renderer';
-import Image from '../../lib/';
+import Image from '../lib/';
 
 describe('Image', () => {
   beforeEach(function() {

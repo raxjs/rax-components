@@ -1,6 +1,6 @@
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import Video from '../';
+import Video from '../lib';
 
 jest.mock('universal-env', () => {
   return {

@@ -1,7 +1,7 @@
 global.callNative = null;
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import Text from '../../lib/';
+import Text from '../lib/';
 
 describe('Text', () => {
   it('render tag Text', () => {

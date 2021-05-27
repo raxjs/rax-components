@@ -2,7 +2,7 @@ import {createElement} from 'rax';
 import View from 'rax-view';
 import Image from 'rax-image';
 import renderer from 'rax-test-renderer';
-import Slider from '../../lib/slider.web';
+import Slider from '../lib/web';
 
 jest.mock('rax-image', () => {
   return function() {

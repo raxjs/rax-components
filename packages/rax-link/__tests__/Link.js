@@ -1,6 +1,6 @@
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import Link from '../../lib/';
+import Link from '../lib/';
 
 jest.mock('universal-env', () => {
   return {

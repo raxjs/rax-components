@@ -1,6 +1,6 @@
 import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import Image from '../../lib/';
+import Image from '../lib/';
 
 jest.mock('universal-env', () => {
   return {

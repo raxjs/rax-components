@@ -1,6 +1,6 @@
 import {createElement, Component} from 'rax';
 import renderer from 'rax-test-renderer';
-import Countdown from '../';
+import Countdown from '../lib';
 
 describe('CountDown', () => {
   beforeEach(function() {

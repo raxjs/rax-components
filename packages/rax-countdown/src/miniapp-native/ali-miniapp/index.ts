@@ -1,89 +1,37 @@
-import { DEFAULT_TPL } from '../utils';
-
-const formatObjStyleToString = (obj) => {
-  let res = '';
-  Object.keys(obj).forEach(item => {
-    res = res + item.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`) + ': ' + obj[item] + ';';
-  });
-  return res;
-};
+import { DEFAULT_TPL } from '../../utils';
 
 Component({
   data: {
     count: 0
   },
-  properties: {
-    timeRemaining: {
-      type: Number,
-      value: 0
-    },
-    interval: {
-      value: 1000,
-      type: Number
-    },
-    tpl: {
-      value: '{d}天{h}时{m}分{s}秒',
-      type: String
-    },
-    onFormatFunc: {
-      value: null,
-      type: Function
-    },
-    onTick: {
-      value: null,
-      type: Function
-    },
-    onComplete: {
-      value: null,
-      type: Function
-    },
-    timeStyle: {
-      value: {},
-      type: Object
-    },
-    secondStyle: {
-      value: {},
-      type: Object
-    },
-    textStyle: {
-      value: {},
-      type: Object
-    },
-    timeWrapStyle: {
-      value: {},
-      type: Object
-    },
-    timeBackground: {
-      value: {},
-      type: Object
-    },
-    timeBackgroundStyle: {
-      value: {},
-      type: Object
-    }
-
+  props: {
+    timeRemaining: 0,
+    interval: 1000,
+    timeWrapStyle: '',
+    textStyle: '',
+    timeStyle: '',
+    secondStyle: '',
+    tpl: '{d}天{h}时{m}分{s}秒',
+    onFormatFunc: null,
+    onTick: null,
+    onComplete: null
   },
-  attached: function attached() {
-    this.setData({
-      _timeStyle: formatObjStyleToString(this.data.timeStyle),
-      _secondStyle: formatObjStyleToString(this.data.secondStyle),
-      _textStyle: formatObjStyleToString(this.data.textStyle),
-      _timeWrapStyle: formatObjStyleToString(this.data.timeWrapStyle),
-      _timeBackground: formatObjStyleToString(this.data.timeBackground),
-      _timeBackgroundStyle: formatObjStyleToString(this.data.timeBackgroundStyle)
-    });
-    const funcToExecute = this.data.onFormatFunc && typeof this.data.onFormatFunc === 'function'
-      ? this.data.onFormatFunc : this.msToTime;
+  didMount: function didMount() {
+    const funcToExecute = this.props.onFormatFunc && typeof this.props.onFormatFunc === 'function'
+      ? this.props.onFormatFunc : this.msToTime;
     this.funcToExecute = funcToExecute.bind(this);
 
     this.counter = setInterval(() => {
       this.funcToExecute();
-    }, this.data.interval);
+    }, this.props.interval);
+  },
+  didUnmount: function didUnmount() {
+    if (this.counter) clearInterval(this.counter);
   },
   methods: {
     msToTime() {
       const { count } = this.data;
-      const timeDuration = this.data.timeRemaining - count * this.data.interval;
+      const timeDuration = this.props.timeRemaining - count * this.props.interval;
       this.setData({
         count: count + 1
       });
@@ -93,7 +41,7 @@ Component({
       }
 
       // parameter type of `parseInt` is 'string', so need to convert time to string first.
-      const seconds = parseInt((timeDuration / 1000 % 60).toString()),
+      var seconds = parseInt((timeDuration / 1000 % 60).toString()),
         minutes = parseInt((timeDuration / (1000 * 60) % 60).toString()),
         hours = parseInt((timeDuration / (1000 * 60 * 60) % 24).toString()),
         days = parseInt((timeDuration / (1000 * 60 * 60 * 24)).toString());
@@ -106,11 +54,11 @@ Component({
       };
 
       // format time
-      const tpl = this.data.tpl || DEFAULT_TPL;
+      const tpl = this.props.tpl || DEFAULT_TPL;
       const rule = new RegExp('\{[d,h,m,s]\}', 'g'); // used to matched all template item, which includes 'd', 'h', 'm' and 's'.
       let matchlist = [];
       let tmp = null;
-      let { _textStyle, _timeWrapStyle } = this.data;
+      let { textStyle, timeWrapStyle } = this.props;
 
       while ((tmp = rule.exec(tpl)) !== null) {
         matchlist.push(tmp.index, tmp.index);
@@ -128,7 +76,7 @@ Component({
           let lastPlaintext = tpl.slice(lastPlaintextIndex);
           return {
             value: lastPlaintext,
-            style: _textStyle
+            style: textStyle
           };
         }
 
@@ -143,14 +91,14 @@ Component({
               // insert plain text before current matched item
               return {
                 value: tpl.slice(lastPlaintextIndex, val),
-                style: _textStyle
+                style: textStyle
               };
             } else {
               // replace current matched item to realtime string
               lastPlaintextIndex = val + 3;
               return {
                 value: this.splitTime(timeType[matchedCharacter]),
-                style: _timeWrapStyle,
+                style: timeWrapStyle,
                 isTime: true
               };
             }
@@ -162,16 +110,16 @@ Component({
       parsedTime = parsedTime.filter((item) => item);
 
       // check if the onTick function needs to be called
-      const callOnTick = this.data.onTick && typeof this.data.onTick === 'function';
+      const callOnTick = this.props.onTick && typeof this.props.onTick === 'function';
 
       this.setData({
         parsedTime
-      }, callOnTick ? this.data.onTick : null);
+      }, callOnTick ? this.props.onTick : null);
 
       // check if onComplete function needs to be called
       if (timeDuration <= 0 &&
-        this.data.onComplete && typeof this.data.onComplete === 'function') {
-        this.data.onComplete();
+        this.props.onComplete && typeof this.props.onComplete === 'function') {
+        this.props.onComplete();
       }
     },
     splitTime(time = '00') {

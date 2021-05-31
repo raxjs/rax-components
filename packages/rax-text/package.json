@@ -25,9 +25,9 @@
     "./*": "./*"
   },
   "miniappConfig": {
-    "main": "lib/miniapp-native/index",
-    "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"

@@ -26,9 +26,9 @@
   },
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp-native/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:quickapp": "lib/quickapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"

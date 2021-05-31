@@ -12,8 +12,8 @@
   ],
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

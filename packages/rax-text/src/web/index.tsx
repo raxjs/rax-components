@@ -3,7 +3,7 @@ import { TextProps } from '../types';
 import wrapper from '../utils/wrapper';
 import '../index.css';
 
-// add vesion in style to avoid conflict with older version
+// add version in style to avoid conflict with older version
 const prefixCls = 'rax-text-v2';
 const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   const {

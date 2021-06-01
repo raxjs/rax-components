@@ -33,7 +33,7 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
       const node = refEl.current;
       if (playControl !== undefined) {
         if (playControl === 'play') {
-          const playPromise = node.play();
+          const playPromise = node.play(); // Should return a Promise https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
           if (playPromise !== undefined) {
             playPromise.catch(error => {
               onPlayError(error);

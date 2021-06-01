@@ -14,7 +14,7 @@ import { VideoProps } from '../types';
 
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
   (props, ref) => {
-    const { className, style, controls, playControl, autoPlay } = props;
+    const { className, style, controls, playControl, autoPlay, onPlayError } = props;
     const refEl = useRef(null);
     useImperativeHandle(ref, () => refEl.current);
     const common = omit(props, ['className', 'controls', 'style', 'playControl']);
@@ -32,7 +32,16 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     useEffect(() => {
       const node = refEl.current;
       if (playControl !== undefined) {
-        playControl === 'play' ? node.play() : node.pause();
+        if (playControl === 'play') {
+          const playPromise = node.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              onPlayError(error);
+            });
+          }
+        } else {
+          node.pause();
+        }
       }
     }, [playControl]);
     return (

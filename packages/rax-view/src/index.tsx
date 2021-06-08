@@ -36,25 +36,29 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
 
         const ele = document.getElementById(props.id) as any;
         if (ele?._internal) {
-          selfRef.observer = ele._internal.createIntersectionObserver().relativeToViewport();
-          selfRef.observer.observe(`#${props.id}`, (res) => {
-            const { intersectionRatio = 0 } = res;
-            if (intersectionRatio > 0) {
-              typeof onAppear === 'function' && onAppear(res);
-              if (typeof onFirstAppear === 'function') {
-                if (!selfRef.triggeredAppear) {
-                  onFirstAppear(res);
-                  selfRef.triggeredAppear = true;
-                  const withFirstAppearOnly = typeof onAppear !== 'function' && typeof onDisappear !== 'function';
-                  if (withFirstAppearOnly) {
-                    selfRef.observer.disconnect();
+          const observe = () => {
+            selfRef.observer = ele._internal.createIntersectionObserver().relativeToViewport();
+            selfRef.observer.observe(`#${props.id}`, (res) => {
+              const { intersectionRatio = 0 } = res;
+              if (intersectionRatio > 0) {
+                typeof onAppear === 'function' && onAppear(res);
+                if (typeof onFirstAppear === 'function') {
+                  if (!selfRef.triggeredAppear) {
+                    onFirstAppear(res);
+                    selfRef.triggeredAppear = true;
+                    const withFirstAppearOnly = typeof onAppear !== 'function' && typeof onDisappear !== 'function';
+                    if (withFirstAppearOnly) {
+                      selfRef.observer.disconnect();
+                    }
                   }
                 }
+              } else {
+                typeof onDisappear === 'function' && onDisappear(res);
               }
-            } else {
-              typeof onDisappear === 'function' && onDisappear(res);
-            }
-          });
+            });
+            window.removeEventListener('setDataFinished', observe);
+          }
+          window.addEventListener('setDataFinished', observe);
         }
 
         return () => {

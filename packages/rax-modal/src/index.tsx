@@ -7,11 +7,11 @@ import './index.css';
 
 declare function __weex_require__(s: string): any;
 
-let htmlEl, originalHtmlStyle;
+let bodyEl, originalBodyOverflow;
 let modalCount = 0;
 
 if (isWeb) {
-  htmlEl = document.documentElement;
+  bodyEl = document.body;
 }
 
 function stopPropagation(event) {
@@ -114,15 +114,9 @@ function Modal(props: ModalProps) {
       if (isWeb) {
         // Only when current modal count is 1, it need record origin body overflow
         if (modalCount === 1) {
-          originalHtmlStyle = {
-            width: htmlEl.style.width,
-            position: htmlEl.style.position,
-            overflow: htmlEl.style.overflow
-          };
+          originalBodyOverflow = bodyEl.style.overflow;
         }
-        htmlEl.style.position = 'fixed';
-        htmlEl.style.width = '100vw';
-        htmlEl.style.overflow = 'hidden';
+        bodyEl.style.overflow = 'hidden';
       }
       setVisibleState(true);
       if (animation) {
@@ -139,9 +133,7 @@ function Modal(props: ModalProps) {
 
   const hideAction = () => {
     if (isWeb && modalCount === 1) {
-      htmlEl.style.position = originalHtmlStyle.position;
-      htmlEl.style.width = originalHtmlStyle.width;
-      htmlEl.style.overflow = originalHtmlStyle.overflow;
+      bodyEl.style.overflow = originalBodyOverflow;
     }
     modalCount--;
     setVisibleState(false);

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6.1
+
+- fix overflow in android web
+
 ## v1.6.0
 
 - update dependencies:

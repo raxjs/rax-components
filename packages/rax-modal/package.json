@@ -1,6 +1,6 @@
 {
   "name": "rax-modal",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "rax-modal",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

@@ -11,6 +11,7 @@
   overflow: hidden;
   pointer-events: auto;
   opacity: 0;
+  touch-action: none;
 }
 
 .rax-modal-main {

@@ -26,7 +26,6 @@ function stopEventEffect(event) {
     event.stopPropagation();
   }
 }
-
 function Modal(props: ModalProps) {
   const {
     visible,

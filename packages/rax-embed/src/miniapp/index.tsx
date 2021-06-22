@@ -4,13 +4,6 @@ import genFixedUrl from '../utils/genFixedUrl';
 import { Props } from '../types';
 
 const defaultProps: Props = {
-  defaultUrlParam: {
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    _page_inside_embed_: 'true',
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    _page_home_isweex_: false,
-    useIframeInWeb: false
-  },
   urlParam: {},
   src: ''
 };

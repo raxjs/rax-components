@@ -1,7 +1,7 @@
 import renderer from 'rax-test-renderer';
-import {createElement} from 'rax';
+import { createElement } from 'rax';
 import View from 'rax-view';
-import Waterfall from '../src/index';
+import Waterfall from '../lib';
 
 describe('waterfall', () => {
   const component = renderer.create(

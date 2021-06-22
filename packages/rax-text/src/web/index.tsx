@@ -1,6 +1,6 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import { TextProps } from '../types';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
 // add version in style to avoid conflict with older version
@@ -57,4 +57,4 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
   );
 });
 
-export default wrapper(Text);
+export default wrapDefaultProperties(Text);

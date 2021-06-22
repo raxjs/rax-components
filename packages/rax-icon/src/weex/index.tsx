@@ -4,7 +4,7 @@ import {
 } from 'rax';
 import Text from 'rax-text';
 import Image from 'rax-image';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { IconProps } from '../types';
 
 declare const __weex_require__: any;
@@ -54,4 +54,4 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
   }
 );
 
-export default wrapper(Icon);
+export default wrapDefaultProperties(Icon);

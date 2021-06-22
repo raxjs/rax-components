@@ -1,6 +1,6 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import Text from 'rax-text';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { LinkProps } from '../types';
 
 const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
@@ -33,4 +33,4 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     </a>
   );
 });
-export default wrapper(Link);
+export default wrapDefaultProperties(Link);

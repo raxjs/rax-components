@@ -12,7 +12,7 @@ import RefreshControl from 'rax-refreshcontrol';
 import getElementById from 'rax-get-element-by-id';
 import cx from 'classnames';
 import { ScrollViewProps } from '../types';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
 const baseCls = 'rax-scrollview';
@@ -180,4 +180,4 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   }
 );
 
-export default wrapper(ScrollView);
+export default wrapDefaultProperties(ScrollView);

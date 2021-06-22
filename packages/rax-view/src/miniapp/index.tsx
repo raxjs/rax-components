@@ -1,6 +1,6 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import cx from 'classnames/dedupe';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { ViewProps } from '../types';
 
 import '../index.css';
@@ -16,4 +16,4 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
   }
 );
 
-export default wrapper(View);
+export default wrapDefaultProperties(View);

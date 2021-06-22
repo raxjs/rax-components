@@ -5,7 +5,7 @@ import {
 import { isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 import Text from 'rax-text';
 import Image from 'rax-image';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { IconProps } from '../types';
 
 declare const tt: any;
@@ -62,4 +62,4 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
   }
 );
 
-export default wrapper(Icon);
+export default wrapDefaultProperties(Icon);

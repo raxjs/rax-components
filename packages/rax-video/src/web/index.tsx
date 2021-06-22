@@ -9,7 +9,7 @@ import {
 
 import cx from 'classnames/dedupe';
 import omit from 'omit.js';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { VideoProps } from '../types';
 
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
@@ -57,4 +57,4 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     );
   }
 );
-export default wrapper(Video);
+export default wrapDefaultProperties(Video);

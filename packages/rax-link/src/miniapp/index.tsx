@@ -1,5 +1,5 @@
 import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
-import wrapper from '../utils/wrapper';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { LinkProps } from '../types';
 
 const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
@@ -22,4 +22,4 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef((props, ref) => {
     </view>
   );
 });
-export default wrapper(Link);
+export default wrapDefaultProperties(Link);

@@ -1,6 +1,6 @@
 {
   "name": "rax-link",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -15,11 +15,11 @@
     ".":{
       "web": "./es/common/index.js",
       "weex": "./es/common/index.js",
-      "miniapp": "./es/miniapp/index.js",
-      "wechat-miniprogram": "./es/miniapp/index.js",
-      "bytedance-microapp": "./es/miniapp/index.js",
-      "baidu-smartprogram": "./es/miniapp/index.js",
-      "kuaishou-miniprogram": "./es/miniapp/index.js",
+      "miniapp": "./es/miniapp-runtime/index.js",
+      "wechat-miniprogram": "./es/miniapp-runtime/index.js",
+      "bytedance-microapp": "./es/miniapp-runtime/index.js",
+      "baidu-smartprogram": "./es/miniapp-runtime/index.js",
+      "kuaishou-miniprogram": "./es/miniapp-runtime/index.js",
       "default": "./es/index.js"
     },
     "./*": "./*"
@@ -33,7 +33,7 @@
     "main:quickapp": "lib/miniapp-native/quickapp/index"
   },
   "quickappConfig": {
-    "main": "lib/quickapp/index"
+    "main": "lib/miniapp-native/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

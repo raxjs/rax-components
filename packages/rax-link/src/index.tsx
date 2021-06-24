@@ -1,6 +1,6 @@
 import { isWeb, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 import LinkCommon from './common';
-import LinkMiniApp from './miniapp';
+import LinkMiniApp from './miniapp-runtime';
 
 let Link = null;
 

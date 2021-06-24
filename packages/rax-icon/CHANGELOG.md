@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Keep miniapp native code in older dir
+
 ## 1.4.0
 
 - Support exports field

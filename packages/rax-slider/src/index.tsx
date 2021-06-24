@@ -7,7 +7,7 @@ let Slider = null;
 if (isWeex) {
   Slider = require('./weex');
 } else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isKuaiShouMiniProgram || isBaiduSmartProgram)) {
-  Slider = require('./miniapp');
+  Slider = require('./miniapp-runtime');
 } else {
   Slider = require('./web');
 }

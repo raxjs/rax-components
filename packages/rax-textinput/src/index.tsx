@@ -124,15 +124,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       autoComplete: autoComplete && 'on',
       maxlength: maxlength || maxLength,
       onChange: (onChange || onChangeText) && handleChange,
-      onInput: (e: InputEvent) => {
-        onInput && handleInput(e);
-        if (isMiniApp) {
-          forceUpdate(tick => tick + 1);
-        }
-      },
       onBlur: onBlur && handleBlur,
-      onFocus: onFocus && handleFocus,
-      ref: refEl
+      onFocus: onFocus && handleFocus
     };
 
     // Diff with web readonly attr, `disabled` must be boolean value
@@ -171,6 +164,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
           }` }} />
           <textarea
             {...propsCommon}
+            ref={refEl as Rax.MutableRefObject<HTMLTextAreaElement>}
             className={['rax-textinput', styleClassName, className || ''].join(' ')}
             style={{
               ...style,
@@ -183,6 +177,12 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             value={value || defaultValue}
             confirm-type={confirmType}
             show-count={showCount}
+            onInput={(e: Rax.ChangeEvent<HTMLTextAreaElement>) => {
+              onInput && handleInput(e);
+              if (isMiniApp) {
+                forceUpdate(tick => tick + 1);
+              }
+            }}
           >
             {/* undefined will be rendered to comment node in ssr */}
             {!isWeex && (propsCommon.value || defaultValue || '')}
@@ -197,6 +197,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
           }` }} />
           <input
             {...propsCommon}
+            ref={refEl as Rax.MutableRefObject<HTMLInputElement>}
             className={['rax-textinput', styleClassName, className || ''].join(' ')}
             style={{
               ...style,
@@ -209,6 +210,12 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             random-Number={randomNumber}
             selection-start={selectionStart}
             selection-end={selectionEnd}
+            onInput={(e: Rax.ChangeEvent<HTMLInputElement>) => {
+              onInput && handleInput(e);
+              if (isMiniApp) {
+                forceUpdate(tick => tick + 1);
+              }
+            }}
           />
         </Fragment>
       );

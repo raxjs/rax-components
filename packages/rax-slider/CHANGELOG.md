@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0
+
+- [feat] Support exports field
+- [feat] Support more miniapp platforms
+- [chore] Adjust miniapp native code
+
 ## 3.0.7
 
 - [fix] Project in MiniApp WebView with `appx/web-view.min.js` render error.

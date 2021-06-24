@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.3
+
+- Reduce npm files
+
 ## v1.0.2
 
 - Fix: useEffect is triggered incorrectly because of the switch of `document` in miniapp runtime page switch action

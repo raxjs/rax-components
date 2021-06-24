@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.7
+
+- Reduce npm files
+- Adjust miniapp native code
+
 ## v1.5.6
 
 - add onMaskClick types

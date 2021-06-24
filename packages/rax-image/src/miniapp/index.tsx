@@ -10,11 +10,11 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   style,
   resizeMode,
   loading,
-  ...otherProps
+  ...rest
 }: ImageProps, ref) => {
   source = source || EMPTY_SOURCE;
   fallbackSource = fallbackSource || EMPTY_SOURCE;
-  const nativeProps: ImageNativeProps = otherProps as any;
+  const nativeProps: ImageNativeProps = rest as any;
   const [errorState, setErrorState] = useState<ErrorState>({});
 
   nativeProps.onError = useCallback(

@@ -7,9 +7,9 @@ export default function genFixedUrl(props) {
   if (typeof props.urlParam == 'string') {
     fixedUrl += prefix + props.urlParam;
   } else {
-    let paramsStrArr = [];
+    const paramsStrArr = [];
 
-    let assignUrlParam = Object.assign(
+    const assignUrlParam = Object.assign(
       {},
       props.urlParam,
       props.defaultUrlParam

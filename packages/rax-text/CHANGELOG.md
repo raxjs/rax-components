@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+- Support exports field
+- Support more miniapp platforms
+- Adjust miniapp native code
+
 ## 2.0.8
 
 - Format npm output files

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+- Support exports field
+- Support more miniapp platforms
+- Reduce npm files
+- Adjust miniapp native code
+
 ## 1.1.3
 
 - Fix wxs module in wechat miniprogram

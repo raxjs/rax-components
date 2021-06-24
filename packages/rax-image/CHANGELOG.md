@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0
+
+- Support exports field
+- Support more miniapp platforms
+- Adjust miniapp native code
+
 ## v2.2.7
 
 - Fix fallbackSource with error alicdn source uri

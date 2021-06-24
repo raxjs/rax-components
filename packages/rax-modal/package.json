@@ -1,17 +1,21 @@
 {
   "name": "rax-modal",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "rax-modal",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:bytedance": "lib/bytedance-microapp/index",
-    "main:quickapp": "lib/quickapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index"
   },
   "quickappConfig": {
     "main": "lib/quickapp/index"

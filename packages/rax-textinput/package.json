@@ -1,6 +1,6 @@
 {
   "name": "rax-textinput",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "description": "TextInput component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -8,10 +8,10 @@
   "types": "lib/index.d.ts",
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

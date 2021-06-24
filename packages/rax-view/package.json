@@ -1,11 +1,29 @@
 {
   "name": "rax-view",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "View component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
+  "exports":{
+    ".":{
+      "web": "./es/common/index.js",
+      "weex": "./es/common/index.js",
+      "wechat-miniprogram": "./es/common/index.js",
+      "bytedance-microapp": "./es/common/index.js",
+      "baidu-smartprogram": "./es/common/index.js",
+      "kuaishou-miniprogram": "./es/common/index.js",
+      "miniapp": "./es/miniapp/index.js",
+      "default": "./es/index.js"
+    },
+    "./*": "./*"
+  },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",

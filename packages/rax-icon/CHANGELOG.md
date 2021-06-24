@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0
+
+- Support exports field
+- Support more miniapp platforms
+- Reduce npm files
+- Adjust miniapp native code
+
 ## v1.3.8
 
 - can't load fontface after first loading

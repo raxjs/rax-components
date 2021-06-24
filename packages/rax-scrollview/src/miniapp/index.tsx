@@ -9,6 +9,7 @@ import {
 } from 'rax';
 import cx from 'classnames';
 import { ScrollViewProps } from '../types';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
 const ANIMATION_DURATION = 400;
@@ -130,4 +131,4 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   }
 );
 
-export default ScrollView;
+export default wrapDefaultProperties(ScrollView);

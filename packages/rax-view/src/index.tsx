@@ -1,38 +1,17 @@
-import { createElement, useRef, forwardRef, ForwardRefExoticComponent, RefAttributes, HTMLAttributes, MutableRefObject } from 'rax';
-import cx from 'classnames/dedupe';
-import { isWeex, isMiniApp } from 'universal-env';
-import './index.css';
+import { isMiniApp, isWeb } from 'universal-env';
+import ViewCommon from './common';
+import ViewMiniApp from './miniapp';
 
-export type ViewProps = RefAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>;
+let View = null;
 
-interface ViewRef extends MutableRefObject<HTMLDivElement> {
-  triggeredAppear: boolean;
+if (isWeb) {
+  View = ViewCommon;
+} else if (isMiniApp) {
+  View = ViewMiniApp;
+} else {
+  View = ViewCommon;
 }
 
-const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
-  (props, ref) => {
-    const selfRef: ViewRef = useRef(null) as ViewRef;
-    let { className, style, onFirstAppear, onAppear, ...rest } = props;
-    if (isMiniApp) {
-      // For miniapp runtime pre-compile
-      return <view
-        {...rest} onAppear={onAppear} onDisappear={rest.onDisappear} onFirstAppear={onFirstAppear}
-        ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
-    }
-    let handleAppear = onAppear;
-    if (onFirstAppear) {
-      handleAppear = (event) => {
-        onAppear && onAppear(event);
-        if (!selfRef.triggeredAppear) {
-          onFirstAppear && onFirstAppear(event);
-        } else {
-          selfRef.triggeredAppear = true;
-        }
-      };
-    }
-    return <div {...rest} onAppear={handleAppear} ref={ref} className={cx( isWeex ? '' : 'rax-view-v2', className)} style={style} />;
-  }
-);
-
-View.displayName = 'View';
 export default View;
+
+

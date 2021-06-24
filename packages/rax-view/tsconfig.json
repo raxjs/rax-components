@@ -16,7 +16,6 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "outDir": "lib",
-    "rootDir": "src",
     "baseUrl": "."
   },
   "include": [

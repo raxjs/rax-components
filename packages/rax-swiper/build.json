@@ -1,0 +1,10 @@
+{
+  "type": "rax",
+  "plugins": [
+    "build-plugin-component"
+  ],
+  "targets": [
+    "web"
+  ],
+  "inlineStyle": false
+}

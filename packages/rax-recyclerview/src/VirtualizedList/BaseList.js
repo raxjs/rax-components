@@ -253,11 +253,19 @@ export default class BaseList extends PureComponent {
     if (stickyIndices != null && stickyIndices.length !== 0) {
       stickyIndices.forEach((index) => {
         const child = children[index];
-        child.props.style = {
-          ...child.props.style,
-          ...this.getStyle(index, true)
-        };
-        items.push(child);
+        /**
+         * child.props.style = newStyle cause: Uncaught TypeError: Cannot add property style, object is not extensible
+         */
+        items.push({
+          ...child,
+          props: {
+            ...child.props,
+            style: {
+              ...child.props.style,
+              ...this.getStyle(index, true)
+            }
+          }
+        });
       });
 
       if (this.scrollDirection === DIRECTION.HORIZONTAL) {
@@ -265,16 +273,27 @@ export default class BaseList extends PureComponent {
       }
     }
 
-    if (typeof start !== 'undefined' && typeof stop !== 'undefined') {
+    /**
+     * solve children is not an array.
+     */
+    if (typeof start !== 'undefined' && typeof stop !== 'undefined' && children.slice) {
       let index = start;
       renderChildren = children.slice(start, stop + 1);
       renderChildren.forEach((child) => {
-        child.props.style = {
-          ...child.props.style,
-          ...this.getStyle(index, false)
-        };
+        /**
+         * child.props.style = newStyle cause: Uncaught TypeError: Cannot add property style, object is not extensible
+         */
+        items.push({
+          ...child,
+          props: {
+            ...child.props,
+            style: {
+              ...child.props.style,
+              ...this.getStyle(index, false)
+            }
+          }
+        });
         index++;
-        items.push(child);
       });
     }
 

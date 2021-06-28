@@ -1,6 +1,6 @@
 {
   "name": "rax-embed",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Embed container for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",

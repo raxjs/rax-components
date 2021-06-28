@@ -1,6 +1,6 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 import TextWeb from './web';
-import TextMiniApp from './miniapp';
+import TextMiniApp from './miniapp-runtime';
 import TextWeex from './weex';
 
 let Text = null;

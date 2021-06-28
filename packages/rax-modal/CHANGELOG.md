@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.4
+
+- Remove `quickappConfig` in package.json
+
+## 1.6.3
+
+- Keep miniapp native code in older dir
+
 ## 1.6.2
 
 - Reduce npm files

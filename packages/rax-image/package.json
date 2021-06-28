@@ -1,6 +1,6 @@
 {
   "name": "rax-image",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Image component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,15 +11,16 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
-      "miniapp": "./es/miniapp/index.js",
-      "wechat-miniprogram": "./es/miniapp/index.js",
-      "bytedance-microapp": "./es/miniapp/index.js",
-      "baidu-smartprogram": "./es/miniapp/index.js",
-      "kuaishou-miniprogram": "./es/miniapp/index.js",
+      "miniapp": "./es/miniapp-runtime/index.js",
+      "wechat-miniprogram": "./es/miniapp-runtime/index.js",
+      "bytedance-microapp": "./es/miniapp-runtime/index.js",
+      "baidu-smartprogram": "./es/miniapp-runtime/index.js",
+      "kuaishou-miniprogram": "./es/miniapp-runtime/index.js",
       "default": "./es/index.js"
     },
     "./*": "./*"
@@ -30,9 +31,6 @@
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
     "main:quickapp": "lib/miniapp-native/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

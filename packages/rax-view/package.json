@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/common/index.js",

@@ -5,7 +5,7 @@ import {
 } from 'rax';
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 import IconWeb from './web';
-import IconMiniApp from './miniapp';
+import IconMiniApp from './miniapp-runtime';
 import IconWeex from './weex';
 import { IconFontProps, IconProps } from './types';
 

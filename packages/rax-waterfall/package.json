@@ -1,6 +1,6 @@
 {
   "name": "rax-waterfall",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "waterfall component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/common/index.js",

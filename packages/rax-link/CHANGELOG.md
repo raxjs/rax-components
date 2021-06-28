@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.1
+
+- Keep miniapp native code in older dir
+- Add `sideEffects: false` in package.json
+- Remove `quickappConfig` in package.json
+
 ## 1.5.0
 
 - Support exports field

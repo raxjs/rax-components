@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- [chore] update swiper version to 6.7.1
+
 ## 0.1.3
 
 - [fix] remove extra space in url source of font-face

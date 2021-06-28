@@ -1,6 +1,6 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 import VideoWeb from './web';
-import VideoMiniApp from './miniapp';
+import VideoMiniApp from './miniapp-runtime';
 import VideoWeex from './weex';
 
 let Video = null;

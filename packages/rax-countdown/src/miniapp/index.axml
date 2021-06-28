@@ -1,0 +1,19 @@
+<!-- [{"value":["3","5"],"style":"","isTime":true},{"value":"秒","style":""}] -->
+<view class="rax-countdown-main-wrapper">
+    <block a:for="{{parsedTime}}">
+      <view style="{{item.style}}">
+        <block a:if="{{item && item.value && item.value[0]}}">
+          <!-- render time, eg. {"value":["3","5"],"style":"","isTime":true} -->
+          <block a:if="{{item.isTime}}">
+            <block a:for="{{item.value}}" a:for-item="time" a:for-index="idx">
+              <!-- set style for second -->
+              <text a:if="{{idx == item.value.length - 1 && index == parsedTime.length - 2}}" style="{{secondStyle || timeStyle}}">{{time}}</text>
+              <text a:else style="{{timeStyle}}">{{time}}</text>
+            </block>
+          </block>
+          <!-- render text, eg, {"value":"秒","style":""} -->
+          <text a:else style="{{textStyle}}">{{item.value[0]}}</text>
+        </block>
+      </view>
+    </block>
+</view>

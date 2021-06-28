@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2
+
+- Keep wechat native code in older dir
+
 ## 1.4.1
 
 - Keep miniapp native code in older dir

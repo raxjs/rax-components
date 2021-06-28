@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",
@@ -30,9 +31,6 @@
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
     "main:quickapp": "lib/miniapp-native/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

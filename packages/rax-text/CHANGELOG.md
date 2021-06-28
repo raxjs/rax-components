@@ -3,6 +3,8 @@
 ## 2.1.1
 
 - Keep miniapp native code in older dir
+- Add `sideEffects: false` in package.json
+- Remove `quickappConfig` in package.json
 
 ## 2.1.0
 

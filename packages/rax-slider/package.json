@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",
@@ -35,9 +36,6 @@
       }
     },
     "main:quickapp": "lib/miniapp-native/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/miniapp-native/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

@@ -11,6 +11,7 @@
     "lib",
     "dist"
   ],
+  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",
@@ -29,9 +30,6 @@
     "main": "lib/miniapp-native/ali-miniapp/index",
     "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
     "main:quickapp": "lib/miniapp-native/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/miniapp-native/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

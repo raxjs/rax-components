@@ -1,6 +1,6 @@
 {
   "name": "rax-text",
-  "version": "2.0.8",
+  "version": "2.1.1",
   "description": "Text component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,13 +11,24 @@
     "lib",
     "dist"
   ],
-  "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:quickapp": "lib/quickapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
+  "sideEffects": false,
+  "exports":{
+    ".":{
+      "web": "./es/web/index.js",
+      "weex": "./es/weex/index.js",
+      "miniapp": "./es/miniapp-runtime/index.js",
+      "wechat-miniprogram": "./es/miniapp-runtime/index.js",
+      "bytedance-microapp": "./es/miniapp-runtime/index.js",
+      "baidu-smartprogram": "./es/miniapp-runtime/index.js",
+      "kuaishou-miniprogram": "./es/miniapp-runtime/index.js",
+      "default": "./es/index.js"
+    },
+    "./*": "./*"
   },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
+  "miniappConfig": {
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

@@ -1,0 +1,16 @@
+<swiper
+  class="{{className}}"
+  style="width:{{width || 0}}rpx;height:{{height || 0}}rpx;{{style}}"
+  autoplay="{{autoPlay}}"
+  indicator-dots="{{showsPagination}}"
+  current="{{current}}"
+  interval="{{autoPlayInterval}}"
+  circular="{{loop}}"
+  indicator-color="{{paginationStyle.itemColor}}"
+  indicator-active-color="{{paginationStyle.itemSelectedColor}}"
+  vertical="{{direction === 'vertical'}}"
+  onChange="onChange"
+  duration="{{duration}}"
+>
+  <slot />
+</swiper>

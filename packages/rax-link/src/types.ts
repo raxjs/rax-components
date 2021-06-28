@@ -1,5 +1,5 @@
 import { RefAttributes, HTMLAttributes, MouseEventHandler } from 'rax';
 
-export interface LinkProps extends RefAttributes<HTMLLinkElement>, HTMLAttributes<HTMLLinkElement> {
-  onPress?: MouseEventHandler<HTMLLinkElement>;
+export interface LinkProps extends RefAttributes<HTMLAnchorElement>, HTMLAttributes<HTMLAnchorElement> {
+  onPress?: MouseEventHandler<HTMLAnchorElement>;
 }

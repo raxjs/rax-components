@@ -1,15 +1,15 @@
 import { ForwardRefExoticComponent, Fragment } from 'rax';
-import { isWeex, isWeb, isWeChatMiniProgram, isMiniApp, isByteDanceMicroApp } from 'universal-env';
+import { isWeex, isWeb, isWeChatMiniProgram, isMiniApp, isByteDanceMicroApp, isKuaiShouMiniProgram, isBaiduSmartProgram } from 'universal-env';
 import { SliderProps } from './types';
 
 let Slider = null;
 
 if (isWeex) {
-  Slider = require('./slider.weex');
-} else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp)) {
-  Slider = require('./slider.miniapp');
+  Slider = require('./weex');
+} else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isKuaiShouMiniProgram || isBaiduSmartProgram)) {
+  Slider = require('./miniapp-runtime');
 } else {
-  Slider = require('./slider.web');
+  Slider = require('./web');
 }
 
 if (Slider.default) {

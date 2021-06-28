@@ -1,14 +1,19 @@
 {
   "name": "rax-countdown",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Countdown component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:bytedance": "lib/bytedance-microapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

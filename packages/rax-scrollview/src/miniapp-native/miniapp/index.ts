@@ -1,7 +1,7 @@
 import fmtEvent from './fmtEvent';
 
 declare const Component: any;
-
+console.warn('组件所依赖的 rax-scrollview 版本较旧，请尽快重新构建发布该组件');
 const noop = () => {};
 Component({
   data: {

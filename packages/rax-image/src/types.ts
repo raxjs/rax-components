@@ -72,3 +72,7 @@ export interface ImageNativeProps extends ImageProps {
   src: string;
   resize?: string;
 }
+
+export interface ErrorState {
+  uri?: string;
+}

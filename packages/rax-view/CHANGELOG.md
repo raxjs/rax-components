@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.0
+
+- [feat] Support exports field
+- [feat] Support more miniapp platforms
+- [chore] Reduce npm files
+- [chore] Add `sideEffects: false` in package.json
+
 ## 2.0.5
 - [chore] Sync from rax-pkg-rax-view
 

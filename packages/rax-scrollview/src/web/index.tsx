@@ -11,6 +11,7 @@ import cx from 'classnames';
 import Timer from '../timer';
 import { ScrollViewProps } from '../types';
 import throttle from '../throttle';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
 const FULL_WIDTH = 750;
@@ -250,4 +251,4 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   }
 );
 
-export default ScrollView;
+export default wrapDefaultProperties(ScrollView);

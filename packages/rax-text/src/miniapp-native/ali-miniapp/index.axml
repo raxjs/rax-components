@@ -1,0 +1,9 @@
+<text class="rax-text-v2 {{className}}" 
+    style="{{style}}" 
+    number-of-lines="{{numberOfLines}}"
+    selectable="{{selectable}}"
+    space="{{space}}"
+    decode="{{decode}}"
+    onTap="onClick">
+    <slot />
+</text>

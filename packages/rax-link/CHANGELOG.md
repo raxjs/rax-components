@@ -1,5 +1,17 @@
 # Changelog
 
-## [1.4.5] - 2021-03-29
+## 1.5.1
+
+- Keep miniapp native code in older dir
+- Add `sideEffects: false` in package.json
+- Remove `quickappConfig` in package.json
+
+## 1.5.0
+
+- Support exports field
+- Support more miniapp platforms
+- Adjust miniapp native code
+
+## 1.4.5
 
 - Format npm output files

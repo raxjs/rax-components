@@ -1,8 +1,8 @@
-import {isWeex} from 'universal-env';
-import WebWaterFall from './waterfall.web';
-import WeexWaterFall from './waterfall.weex';
+import { isWeex } from 'universal-env';
+import CommonWaterFall from './common';
+import WeexWaterFall from './weex';
 
-let WaterFall = WebWaterFall;
+let WaterFall = CommonWaterFall;
 if (isWeex) {
   WaterFall = WeexWaterFall;
 }

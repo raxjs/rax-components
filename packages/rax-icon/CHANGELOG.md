@@ -1,8 +1,8 @@
 # Changelog
-
 ## 1.4.2
 
 - Keep wechat native code in older dir
+- Remove `sideEffects: false` in package.json
 
 ## 1.4.1
 

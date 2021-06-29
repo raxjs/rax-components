@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,7 +11,6 @@
     "lib",
     "dist"
   ],
-  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/web/index.js",

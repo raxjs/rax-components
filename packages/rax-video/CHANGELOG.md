@@ -3,6 +3,7 @@
 ## 1.5.2
 
 - Keep miniapp/wechat native code in older dir
+- Remove `sideEffects: false` in package.json
 
 ## 1.5.1
 

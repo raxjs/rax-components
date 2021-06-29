@@ -3,6 +3,7 @@
 ## 3.1.2
 
 - Keep wechat native code in older dir
+- Remove `sideEffects: false` in package.json
 
 ## 3.1.1
 

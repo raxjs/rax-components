@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+- [chore] Remove `sideEffects: false` in package.json
+
 ## 2.1.0
 
 - [feat] Support exports field

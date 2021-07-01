@@ -1,11 +1,11 @@
 {
   "name": "rax-icon",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "icon component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
+  "types": "es/index.d.ts",
   "files": [
     "es",
     "lib",

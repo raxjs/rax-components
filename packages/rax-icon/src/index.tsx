@@ -7,7 +7,7 @@ import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isB
 import IconWeb from './web';
 import IconMiniApp from './miniapp-runtime';
 import IconWeex from './weex';
-import { IconFontProps, IconProps } from './types';
+import { IconFontProps } from './types';
 
 let Icon = null;
 
@@ -22,7 +22,7 @@ if (isWeb) {
 }
 
 export default Icon;
-export { IconFontProps, IconProps };
+export * from './types';
 
 
 export function createIconSet(

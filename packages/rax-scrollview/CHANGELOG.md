@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.2
+
+- Remove `sideEffects: false` in package.json
+
 ## 3.5.1
 
 - Keep miniapp native code in older dir

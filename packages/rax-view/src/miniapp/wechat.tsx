@@ -51,7 +51,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
             }
           });
           window.removeEventListener('setDataFinished', observe);
-        }
+        };
         window.addEventListener('setDataFinished', observe);
       }
 

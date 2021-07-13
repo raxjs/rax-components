@@ -1,5 +1,6 @@
 import fmtEvent from './fmtEvent';
 
+console.warn('组件所依赖的 rax-slider 版本较旧，请尽快重新构建发布该组件');
 Component({
   data: {
     current: 0,
@@ -84,9 +85,12 @@ Component({
       this.triggerEvent('onChange', {
         index: event.detail.current
       });
-      this.setData({
-        current: event.detail.current
-      });
+      // Only setData by user touch action
+      if (e.detail.source === 'touch') {
+        this.setData({
+          current: event.detail.current
+        });
+      }
     },
     slideTo(index) {
       if (index !== undefined) {

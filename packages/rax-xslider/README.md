@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/rax-xslider.svg)](https://www.npmjs.com/package/rax-xslider)
 
+> Web 或小程序场景推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)
+
 ## 描述
 轮播增强，仅支持h5和weex
 ## 安装

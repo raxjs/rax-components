@@ -4,9 +4,9 @@
 
 ## 支持
 
-Web / 阿里小程序
+Web / 阿里小程序 / 微信小程序
 
-- 阿里小程序 仅支持 [Rax 运行时](https://rax.js.org/docs/guide/runtime-engine)
+- 小程序仅支持 [Rax 运行时](https://rax.js.org/docs/guide/about-miniapp)
 
 ## 描述
 

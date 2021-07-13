@@ -1,5 +1,7 @@
 [![npm](https://img.shields.io/npm/v/rax-tab-panel.svg)](https://www.npmjs.com/package/rax-tab-panel)
 
+该组件已废弃，推荐使用 [fusion mobile Tab 组件](https://unpkg.com/@alifd/meet-docs@2.3.2/build/tab/index.html)
+
 ## 支持
 
 Web / Weex / 小程序

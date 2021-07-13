@@ -1,4 +1,6 @@
-# rax-canvas
+# rax-canvas（废弃）
+
+该组件已废弃，推荐使用 `canvas` 标签
 
 [![npm](https://img.shields.io/npm/v/rax-canvas.svg)](https://www.npmjs.com/package/rax-canvas)
 

@@ -1,11 +1,16 @@
 {
   "name": "rax-portal",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "rax-portal",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",

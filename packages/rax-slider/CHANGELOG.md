@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.1.2
+
+- Keep wechat native code in older dir
+- Remove `sideEffects: false` in package.json
+
+## 3.1.1
+
+- Keep miniapp native code in older dir
+- Add `sideEffects: false` in package.json
+- Remove `quickappConfig` in package.json
+
+## 3.1.0
+
+- [feat] Support exports field
+- [feat] Support more miniapp platforms
+- [chore] Adjust miniapp native code
+
+## 3.0.7
+
+- [fix] Project in MiniApp WebView with `appx/web-view.min.js` render error.
+- [fix] Only set current value with user touch action in onChange callback
 ## 3.0.6
 
 - [chore] Format npm output files

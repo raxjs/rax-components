@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.1.2
+
+- Remove `sideEffects: false` in package.json
+
+## 2.1.1
+
+- Keep miniapp native code in older dir
+- Add `sideEffects: false` in package.json
+- Remove `quickappConfig` in package.json
+
+## 2.1.0
+
+- Support exports field
+- Support more miniapp platforms
+- Adjust miniapp native code
+
 ## 2.0.8
 
 - Format npm output files

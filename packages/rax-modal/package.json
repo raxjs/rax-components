@@ -1,20 +1,21 @@
 {
   "name": "rax-modal",
-  "version": "1.5.6",
+  "version": "1.6.5",
   "description": "rax-modal",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp/index",
-    "main:wechat": "lib/miniapp-wechat/index",
-    "main:bytedance": "lib/bytedance-microapp/index",
-    "main:quickapp": "lib/quickapp/index"
-  },
-  "quickappConfig": {
-    "main": "lib/quickapp/index"
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:quickapp": "lib/miniapp-native/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
@@ -35,8 +36,8 @@
     "react-component"
   ],
   "dependencies": {
-    "rax-text": "^1.1.0",
-    "rax-view": "^1.1.0",
+    "rax-text": "^2.0.0",
+    "rax-view": "^2.0.0",
     "universal-env": "^3.0.0",
     "universal-transition": "^1.0.0"
   },

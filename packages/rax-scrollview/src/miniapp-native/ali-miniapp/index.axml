@@ -1,0 +1,23 @@
+<scroll-view
+    id="{{id}}"
+    class="rax-scrollview {{className}}"
+    style="flex-direction:{{horizontal ? 'row':'column'}};{{style}}"
+    scroll-x="{{!disableScroll && horizontal}}"
+    scroll-y="{{!disableScroll && !horizontal}}"
+    scroll-top="{{scrollTop || scrollY}}"
+    scroll-left="{{scrollLeft || scrollX}}"
+    scroll-into-view="{{scrollIntoViewId}}"
+    scroll-with-animation="{{scrollWithAnimation}}"
+    scroll-animation-duration="{{scrollAnimationDuration}}"
+    lower-threshold="{{endReachedThreshold}}"
+    trap-scroll="{{trapScroll}}"
+    enable-back-to-top="{{enableBackToTop}}"
+    onScroll="onScroll"
+    onScrollToLower="onEndReached"
+    onTouchStart="onTouchStart"
+    onTouchMove="onTouchMove"
+    onTouchEnd="onTouchEnd"
+    onTouchCancel="onTouchCancel"
+>
+    <slot/>
+</scroll-view>

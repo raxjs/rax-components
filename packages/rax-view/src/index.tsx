@@ -1,89 +1,17 @@
-import { createElement, useRef, forwardRef, ForwardRefExoticComponent, RefAttributes, HTMLAttributes, MutableRefObject, useEffect } from 'rax';
-import cx from 'classnames/dedupe';
-import { isWeex, isMiniApp, isWeChatMiniProgram } from 'universal-env';
-import './index.css';
+import { isMiniApp, isWeb } from 'universal-env';
+import ViewCommon from './common';
+import ViewMiniApp from './miniapp';
 
-export type ViewProps = RefAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>;
+let View = null;
 
-interface ViewRef extends MutableRefObject<HTMLDivElement> {
-  triggeredAppear: boolean;
-  observer: {
-    observe: Function;
-    disconnect: Function;
-  };
+if (isWeb) {
+  View = ViewCommon;
+} else if (isMiniApp) {
+  View = ViewMiniApp;
+} else {
+  View = ViewCommon;
 }
 
-const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
-  (props, ref) => {
-    const selfRef: ViewRef = useRef(null) as ViewRef;
-    let { className, style, onFirstAppear, onAppear, onDisappear, ...rest } = props;
-    if (isMiniApp) {
-      // For miniapp runtime pre-compile
-      return <view
-        {...rest} onAppear={onAppear} onDisappear={onDisappear} onFirstAppear={onFirstAppear}
-        ref={ref} className={`rax-view-v2 ${className}`} style={style} />;
-    }
-    useEffect(() => {
-      if (isWeChatMiniProgram) {
-        const withAppear = typeof onAppear === 'function' || typeof onFirstAppear === 'function' || typeof onDisappear === 'function';
-        if (!withAppear) {
-          return undefined;
-        }
-        if (!props.id) {
-          console.warn('id is required if using onAppear in wechat miniprogram!');
-          return undefined;
-        }
-
-        const ele = document.getElementById(props.id) as any;
-        if (ele?._internal) {
-          const observe = () => {
-            selfRef.observer = ele._internal.createIntersectionObserver().relativeToViewport();
-            selfRef.observer.observe(`#${props.id}`, (res) => {
-              const { intersectionRatio = 0 } = res;
-              if (intersectionRatio > 0) {
-                typeof onAppear === 'function' && onAppear(res);
-                if (typeof onFirstAppear === 'function') {
-                  if (!selfRef.triggeredAppear) {
-                    onFirstAppear(res);
-                    selfRef.triggeredAppear = true;
-                    const withFirstAppearOnly = typeof onAppear !== 'function' && typeof onDisappear !== 'function';
-                    if (withFirstAppearOnly) {
-                      selfRef.observer.disconnect();
-                    }
-                  }
-                }
-              } else {
-                typeof onDisappear === 'function' && onDisappear(res);
-              }
-            });
-            window.removeEventListener('setDataFinished', observe);
-          }
-          window.addEventListener('setDataFinished', observe);
-        }
-
-        return () => {
-          if (selfRef.observer) {
-            selfRef.observer.disconnect();
-          }
-        };
-      } else {
-        return undefined;
-      }
-    }, [props.id, onAppear, onDisappear]);
-
-    let handleAppear = onAppear;
-    if (onFirstAppear) {
-      handleAppear = (event) => {
-        onAppear && onAppear(event);
-        if (!selfRef.triggeredAppear) {
-          onFirstAppear && onFirstAppear(event);
-          selfRef.triggeredAppear = true;
-        }
-      };
-    }
-    return <div {...rest} onAppear={handleAppear} onDisappear={onDisappear} ref={ref} className={cx( isWeex ? '' : 'rax-view-v2', className)} style={style} />;
-  }
-);
-
-View.displayName = 'View';
 export default View;
+
+

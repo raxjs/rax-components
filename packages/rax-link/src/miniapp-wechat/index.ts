@@ -5,7 +5,7 @@ declare const wx: any;
  * miniappHref value：navigate:abc?a=1 redirect:abc?a=1 switchTab:a/b/c navigateBack:2
  * mpHref for  backward compatibility
  */
-
+console.warn('组件所依赖的 rax-link 版本较旧，请尽快重新构建发布该组件');
 Component({
   data: {},
   properties: {

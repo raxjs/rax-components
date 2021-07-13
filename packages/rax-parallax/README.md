@@ -1,5 +1,7 @@
 # rax-parallax
 
+该组件已废弃
+
 [![npm](https://img.shields.io/npm/v/rax-parallax.svg)](https://www.npmjs.com/package/rax-parallax)
 
 ## 描述

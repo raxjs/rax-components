@@ -15,11 +15,11 @@
     ".":{
       "web": "./es/common/index.js",
       "weex": "./es/common/index.js",
-      "wechat-miniprogram": "./es/common/index.js",
+      "wechat-miniprogram": "./es/miniapp/wechat.js",
       "bytedance-microapp": "./es/common/index.js",
       "baidu-smartprogram": "./es/common/index.js",
       "kuaishou-miniprogram": "./es/common/index.js",
-      "miniapp": "./es/miniapp/index.js",
+      "miniapp": "./es/miniapp/ali.js",
       "default": "./es/index.js"
     },
     "./*": "./*"

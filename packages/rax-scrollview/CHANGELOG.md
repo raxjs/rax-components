@@ -2,7 +2,7 @@
 
 ## 3.6.0
 
-- Support `string` type in runtime miniapp and web, of scrollEventThrottle, scrollTo, scrollTop, scrollLeft
+- Support `string` type in runtime miniapp and web, of onEndReachedThreshold, scrollTo
 
 ## 3.5.2
 

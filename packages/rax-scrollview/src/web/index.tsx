@@ -142,7 +142,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           : scrollerNode.scrollTop;
 
         const endReachedThreshold = translateToPx(onEndReachedThreshold);
-        
+
         const isEndReached =
           scrollContentSize - scrollDistance - scrollerNodeSize.current <
           endReachedThreshold;

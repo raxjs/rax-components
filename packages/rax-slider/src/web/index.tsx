@@ -48,8 +48,8 @@ class Slider extends Component<SliderProps, any> {
   public constructor(props: SliderProps) {
     super(props);
     this.index = props.index;
-    this.height = parseFloat(props.height);
-    this.width = parseFloat(props.width);
+    this.height = parseFloat(`${props.height}`);
+    this.width = parseFloat(`${props.width}`);
     this.loopIdx = props.index;
     this.offsetX = this.index * this.width;
     this.isSwiping = false;

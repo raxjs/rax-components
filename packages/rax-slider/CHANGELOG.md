@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.3
+
+- [feat] Update types. Support inline style in paginationStyle
+
 ## 3.1.2
 
 - Keep wechat native code in older dir

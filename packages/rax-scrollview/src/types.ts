@@ -4,8 +4,8 @@ export interface ScrollViewRefObject {
   _nativeNode: HTMLDivElement;
   resetScroll: () => void;
   scrollTo: (options?: {
-    x?: number;
-    y?: number;
+    x?: number | string;
+    y?: number | string;
     animated?: boolean;
   }) => void;
 }

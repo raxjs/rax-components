@@ -10,10 +10,41 @@ import {
 import cx from 'classnames';
 import { ScrollViewProps } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
+import { getInfoSync } from '@uni/system-info';
 import '../index.css';
 
+const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
 const baseCls = 'rax-scrollview';
+let pixelRatio;
+
+function getPixelRatio() {
+  if (pixelRatio) {
+    return pixelRatio;
+  }
+  pixelRatio = getInfoSync().windowWidth / FULL_WIDTH;
+  return pixelRatio;
+}
+
+function translateToPx(origin: string | number): number {
+  const pixelRatio = getPixelRatio();
+  if (typeof origin === 'number') {
+    return origin;
+  }
+  const matched = /^(\d+)(r{0,1}px){0,1}$/.exec(origin);
+  if (matched) {
+    if (!matched[2]) {
+      return parseInt(matched[1]);
+    }
+    if (matched[2] === 'rpx') {
+      return parseInt(matched[1]) * pixelRatio;
+    }
+    if (matched[2] === 'px') {
+      return parseInt(matched[1]);
+    }
+  }
+  return 0;
+}
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
@@ -62,8 +93,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         }
       },
       scrollTo(options?: {
-        x?: number;
-        y?: number;
+        x?: number | string;
+        y?: number | string;
         animated?: boolean;
         duration?: number;
       }) {
@@ -71,9 +102,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
         // Scroll event caused by users can not change scroll-top or scroll-left, so here we add some slight random element to force update
         if (horizontal) {
-          scrollerRef.current.setAttribute('scroll-left', String(x));
+          scrollerRef.current.setAttribute('scroll-left', String(translateToPx(x)));
         } else {
-          scrollerRef.current.setAttribute('scroll-top', String(y));
+          scrollerRef.current.setAttribute('scroll-top', String(translateToPx(y)));
         }
         setScrollWithAnimation(animated);
         setScrollAnimationDuration(duration);
@@ -107,6 +138,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       className
     );
 
+    const endReachedThreshold = translateToPx(onEndReachedThreshold);
+
     return (
       <scroll-view
         {...props}
@@ -117,7 +150,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scroll-left={scrollLeft}
         onScroll={onScroll ? handleScroll : null}
         onScrollToLower={onEndReached}
-        lower-threshold={onEndReachedThreshold}
+        lower-threshold={endReachedThreshold}
         scroll-with-animation={scrollWithAnimation}
         scroll-animation-duration={scrollAnimationDuration}
         scroll-x={!disableScroll && horizontal}

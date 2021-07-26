@@ -14,7 +14,7 @@ function getConstantKey(horizontal: boolean) {
   return {
     contentOffset: 'y',
     placeholderStyle: 'height'
-  }
+  };
 }
 
 const Cell = memo(
@@ -44,14 +44,14 @@ const NestedList = memo(
 );
 NestedList.displayName = 'NestedList';
 
-interface IVirtualizedList extends ForwardRefExoticComponent<RecyclerViewRefObject> {
+interface VirtualizedList extends ForwardRefExoticComponent<RecyclerViewRefObject> {
   Header?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
   Cell?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
   NestedList?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
 }
 
-function getVirtualizedList(SizeAndPositionManager): IVirtualizedList {
-  const VirtualizedList: IVirtualizedList = forwardRef((props, ref) => {
+function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
+  const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
     const { itemSize, horizontal, children, size, ...rest } = props;
     const length = children.length;
     const constantKey = getConstantKey(horizontal);
@@ -63,32 +63,32 @@ function getVirtualizedList(SizeAndPositionManager): IVirtualizedList {
         length
       });
     }, [itemSize, horizontal, length, size]);
-  
+
     const [renderedIndex, setRenderedIndex] = useState(() => manager.getRenderedIndex(0));
     const {
       front,
       back
     } = manager.getPlaceholderSize(renderedIndex.startIndex, renderedIndex.endIndex);
-  
+
     function handleScroll(e) {
       const offset = e.nativeEvent.contentOffset[constantKey.contentOffset];
       const newRenderedIndex = manager.getRenderedIndex(offset);
       setRenderedIndex(newRenderedIndex);
-  
+
       props.onScroll && props.onScroll(e);
     }
-  
+
     return (
       <ScrollView
-        className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal': 'rax-recylerview-vertical'}`}
+        className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
         ref={ref}
         {...rest}
         horizontal={horizontal}
         onScroll={handleScroll}
       >
-        <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front }}></View>
+        <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front }} />
         {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
-        <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back }}></View>
+        <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back }} />
       </ScrollView>
     );
   });

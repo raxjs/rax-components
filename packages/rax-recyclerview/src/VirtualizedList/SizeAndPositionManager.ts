@@ -1,36 +1,35 @@
-import { TItemSize } from "./types";
+import { TItemSize } from './types';
 
 type TSizeGetter = (i: number) => number;
-type TRenderedIndexGetter = (distance: number) => { startIndex: number; endIndex: number }; 
-type TPlaceholderSizeGetter = (startIndex: number, endIndex: number) => { front: string; back: string; };
+type TRenderedIndexGetter = (distance: number) => { startIndex: number; endIndex: number };
+type TPlaceholderSizeGetter = (startIndex: number, endIndex: number) => { front: string; back: string };
 
 class SizeAndPositionManager {
-  itemSize: TItemSize;
-  bufferSize: number;
-  pixelRatio: number;
-  length: number;
-  getRenderedIndex: TRenderedIndexGetter;
-  getPlaceholderSize: TPlaceholderSizeGetter;
-  getSize: TSizeGetter;
+  private bufferSize: number;
+  private readonly length: number;
+  private getSize: TSizeGetter;
 
-  static bufferRatio = 3;
-  static clientSize;
-  static pixelRatio;
+  public getRenderedIndex: TRenderedIndexGetter;
+  public getPlaceholderSize: TPlaceholderSizeGetter;
 
-  constructor({ itemSize, horizontal, length, size }: {
+  public static bufferRatio = 3;
+  public static clientSize;
+  public static pixelRatio: number;
+
+  public constructor({ itemSize, horizontal, length, size }: {
     itemSize: TItemSize;
     horizontal: boolean;
     length: number;
     size?: number;
   }) {
     this.length = length;
-    this.bufferSize = this._getBufferSize(size, horizontal);
-    this.getSize = this._initSizeGetter(itemSize);
-    this.getRenderedIndex = this._initRenderedIndexGetter(itemSize);
-    this.getPlaceholderSize = this._initPlaceholderSizeGetter(itemSize);
+    this.bufferSize = this.getBufferSize(size, horizontal);
+    this.getSize = this.initSizeGetter(itemSize);
+    this.getRenderedIndex = this.initRenderedIndexGetter(itemSize);
+    this.getPlaceholderSize = this.initPlaceholderSizeGetter(itemSize);
   }
 
-  _initSizeGetter(itemSize): TSizeGetter {
+  private initSizeGetter(itemSize): TSizeGetter {
     if (typeof itemSize === 'number') {
       return () => {
         return itemSize;
@@ -47,13 +46,13 @@ class SizeAndPositionManager {
           sizeCache.set(i, singleSize);
           return singleSize;
         }
-      }
+      };
     }
-    
-    throw new Error(`itemSize is unValid`);
+
+    throw new Error('itemSize is unValid');
   }
 
-  _initRenderedIndexGetter(itemSize): TRenderedIndexGetter {
+  private initRenderedIndexGetter(itemSize): TRenderedIndexGetter {
     if (typeof itemSize === 'number') {
       return (scrollDistance: number) => {
         const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
@@ -94,18 +93,18 @@ class SizeAndPositionManager {
       return {
         startIndex,
         endIndex
-      }
-    }
+      };
+    };
   }
 
-  _initPlaceholderSizeGetter(itemSize) {
+  private initPlaceholderSizeGetter(itemSize) {
     if (typeof itemSize === 'number') {
       return (startIndex, endIndex) => {
         return {
           front: startIndex * itemSize + 'rpx',
           back: (this.length - endIndex - 1) * itemSize + 'rpx'
         };
-      }
+      };
     }
     return (startIndex, endIndex) => {
       let front = 0;
@@ -120,10 +119,10 @@ class SizeAndPositionManager {
         front: front + 'rpx',
         back: back + 'rpx'
       };
-    }
+    };
   }
 
-  _getBufferSize(size, horizontal) {
+  private getBufferSize(size, horizontal) {
     if (size) {
       return size;
     }

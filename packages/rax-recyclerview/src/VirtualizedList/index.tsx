@@ -1,6 +1,7 @@
 import { createElement, forwardRef, useState, useMemo, memo } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
+import NoRecycleList from './NoRecycleList';
 
 import { VirtualizedList } from './types';
 
@@ -46,17 +47,20 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, size, ...rest } = props;
+    const { itemSize, horizontal, children, bufferSize, ...rest } = props;
+    if (!itemSize) {
+      return (<NoRecycleList {...props}>{children}</NoRecycleList>);
+    }
     const length = children.length;
     const constantKey = getConstantKey(horizontal);
     const manager = useMemo(() => {
       return new SizeAndPositionManager({
         itemSize,
         horizontal,
-        size,
+        bufferSize,
         length
       });
-    }, [itemSize, horizontal, length, size]);
+    }, [itemSize, horizontal, length, bufferSize]);
 
     const [renderedIndex, setRenderedIndex] = useState(() => manager.getRenderedIndex(0));
     const {

@@ -16,14 +16,14 @@ class SizeAndPositionManager {
   public static clientSize;
   public static pixelRatio: number;
 
-  public constructor({ itemSize, horizontal, length, size }: {
+  public constructor({ itemSize, horizontal, length, bufferSize }: {
     itemSize: TItemSize;
     horizontal: boolean;
     length: number;
-    size?: number;
+    bufferSize?: number;
   }) {
     this.length = length;
-    this.bufferSize = this.getBufferSize(size, horizontal);
+    this.bufferSize = this.getBufferSize(bufferSize, horizontal);
     this.getSize = this.initSizeGetter(itemSize);
     this.getRenderedIndex = this.initRenderedIndexGetter(itemSize);
     this.getPlaceholderSize = this.initPlaceholderSizeGetter(itemSize);
@@ -122,14 +122,14 @@ class SizeAndPositionManager {
     };
   }
 
-  private getBufferSize(size, horizontal) {
-    if (size) {
-      return size;
+  private getBufferSize(bufferSize, horizontal) {
+    if (bufferSize) {
+      return bufferSize;
     }
     if (horizontal) {
-      return SizeAndPositionManager.clientSize.height / SizeAndPositionManager.pixelRatio;
+      return SizeAndPositionManager.clientSize.width / SizeAndPositionManager.pixelRatio;
     }
-    return SizeAndPositionManager.clientSize.width / SizeAndPositionManager.pixelRatio;
+    return SizeAndPositionManager.clientSize.height / SizeAndPositionManager.pixelRatio;
   }
 }
 

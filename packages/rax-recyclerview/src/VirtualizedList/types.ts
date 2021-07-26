@@ -1,5 +1,5 @@
 import { ScrollViewProps } from 'rax-scrollview';
-import { RaxNode, RefAttributes, HTMLAttributes } from 'rax';
+import { RaxNode, RefAttributes, HTMLAttributes, ForwardRefExoticComponent } from 'rax';
 
 export type TItemSize = number | ((e: number) => number);
 
@@ -11,3 +11,9 @@ export interface RecyclerViewRefObject extends ScrollViewProps {
 }
 
 export interface LegacyRefObject extends RefAttributes<any>, HTMLAttributes<HTMLDivElement> {}
+
+export interface VirtualizedList extends ForwardRefExoticComponent<RecyclerViewRefObject> {
+  Header?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
+  Cell?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
+  NestedList?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
+}

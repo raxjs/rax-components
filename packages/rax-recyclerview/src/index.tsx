@@ -1,19 +1,19 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
-import ScrollViewWeb from './web';
-import ScrollViewMiniApp from './miniapp-runtime';
-import ScrollViewWeex from './weex';
+import { VirtualizedList } from './VirtualizedList/types';
 
-let ScrollView = null;
+let RecyclerView = null;
 
-if (isWeb) {
-  ScrollView = ScrollViewWeb;
-} else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) {
-  ScrollView = ScrollViewMiniApp;
-} else if (isWeex) {
-  ScrollView = ScrollViewWeex;
+if (isWeex) {
+  RecyclerView = require('./weex');
+} else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram)) {
+  RecyclerView = require('./miniapp-runtime');
 } else {
-  ScrollView = ScrollViewWeb;
+  RecyclerView = require('./web');
 }
 
-export default ScrollView;
+if (RecyclerView.default) {
+  RecyclerView = RecyclerView.default;
+}
+
+export default RecyclerView as VirtualizedList;
 

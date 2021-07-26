@@ -1,5 +1,7 @@
 import {
   createElement,
+  createContext,
+  useContext,
   forwardRef,
   memo,
   useState,
@@ -11,6 +13,7 @@ import findDOMNode from 'rax-find-dom-node';
 import RefreshControl from 'rax-refreshcontrol';
 import Children from 'rax-children';
 
+const Context = createContext(true);
 
 const Cell = memo(
   forwardRef(({ className, style, ...rest }, ref) => {
@@ -23,6 +26,7 @@ Cell.displayName = 'Cell';
 
 const Header = memo(
   forwardRef(({ className, style, ...rest }, ref) => {
+    const isInARecyclerView = useContext(Context);
     return (
       <header {...rest} ref={ref} className={className} style={style} append="tree" />
     );

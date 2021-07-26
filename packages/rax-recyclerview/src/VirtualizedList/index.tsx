@@ -1,8 +1,8 @@
-import { createElement, forwardRef, ForwardRefExoticComponent, useState, useMemo, memo } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 
-import { LegacyRefObject, RecyclerViewRefObject } from './types';
+import { VirtualizedList } from './types';
 
 function getConstantKey(horizontal: boolean) {
   if (horizontal) {
@@ -43,12 +43,6 @@ const NestedList = memo(
   })
 );
 NestedList.displayName = 'NestedList';
-
-interface VirtualizedList extends ForwardRefExoticComponent<RecyclerViewRefObject> {
-  Header?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
-  Cell?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
-  NestedList?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
-}
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {

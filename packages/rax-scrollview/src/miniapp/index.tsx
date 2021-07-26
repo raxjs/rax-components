@@ -27,7 +27,6 @@ function getPixelRatio() {
 }
 
 function translateToPx(origin: string | number): number {
-  const pixelRatio = getPixelRatio();
   if (typeof origin === 'number') {
     return origin;
   }
@@ -37,6 +36,7 @@ function translateToPx(origin: string | number): number {
       return parseInt(matched[1]);
     }
     if (matched[2] === 'rpx') {
+      const pixelRatio = getPixelRatio();
       return parseInt(matched[1]) * pixelRatio;
     }
     if (matched[2] === 'px') {

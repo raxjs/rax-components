@@ -8,14 +8,13 @@ import ScrollView from 'rax-scrollview';
 import { VirtualizedList } from './types';
 
 const NoRecycleList: VirtualizedList = forwardRef((props, ref) => {
-  const { horizontal, children, ...rest } = props;
+  const { children, ...rest } = props;
 
   return (
     <ScrollView
-      className={`rax-no-recyclerview`}
+      className={'rax-no-recyclerview'}
       ref={ref}
       {...rest}
-      horizontal={horizontal}
     >
       {children}
     </ScrollView>

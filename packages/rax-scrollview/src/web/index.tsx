@@ -69,12 +69,12 @@ function getPixelRatio() {
 }
 
 function translateToPx(origin: string | number): number {
+  const pixelRatio = getPixelRatio();
   if (typeof origin === 'number') {
     return origin * pixelRatio;
   }
   const matched = /^(\d+)(r{0,1}px){0,1}$/.exec(origin);
   if (matched) {
-    const pixelRatio = getPixelRatio();
     if (!matched[2]) {
       return parseInt(matched[1]) * pixelRatio;
     }

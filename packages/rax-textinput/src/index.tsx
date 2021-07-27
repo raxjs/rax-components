@@ -92,7 +92,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
 
     useMemo(() => {
       value = propsValue || defaultValue || '';
-    });
+    }, []);
 
     // Check is type supported or not
     // Use isWeb to exclude web-view

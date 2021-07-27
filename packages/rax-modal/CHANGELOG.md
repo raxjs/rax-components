@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.5
+
+- Keep wechat native code in older dir
+
 ## 1.6.4
 
 - Remove `quickappConfig` in package.json

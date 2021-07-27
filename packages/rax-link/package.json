@@ -1,6 +1,6 @@
 {
   "name": "rax-link",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Link component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,7 +11,6 @@
     "lib",
     "dist"
   ],
-  "sideEffects": false,
   "exports":{
     ".":{
       "web": "./es/common/index.js",

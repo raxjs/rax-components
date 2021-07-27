@@ -18,6 +18,7 @@ const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
 const STYLE_NODE_ID = 'rax-scrollview-style';
 const baseCls = 'rax-scrollview';
+let pixelRatio;
 
 /**
  * Scroll to some position method
@@ -57,6 +58,34 @@ function scrollTo(scrollerRef, x, y, animated, duration) {
       scrollerRef.current.scrollTop = y;
     }
   }
+}
+
+function getPixelRatio() {
+  if (pixelRatio) {
+    return pixelRatio;
+  }
+  pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
+  return pixelRatio;
+}
+
+function translateToPx(origin: string | number): number {
+  const pixelRatio = getPixelRatio();
+  if (typeof origin === 'number') {
+    return origin * pixelRatio;
+  }
+  const matched = /^(\d+)(r{0,1}px){0,1}$/.exec(origin);
+  if (matched) {
+    if (!matched[2]) {
+      return parseInt(matched[1]) * pixelRatio;
+    }
+    if (matched[2] === 'rpx') {
+      return parseInt(matched[1]) * pixelRatio;
+    }
+    if (matched[2] === 'px') {
+      return parseInt(matched[1]);
+    }
+  }
+  return 0;
 }
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
@@ -111,9 +140,12 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         const scrollDistance = horizontal
           ? scrollerNode.scrollLeft
           : scrollerNode.scrollTop;
+
+        const endReachedThreshold = translateToPx(onEndReachedThreshold);
+
         const isEndReached =
           scrollContentSize - scrollDistance - scrollerNodeSize.current <
-          onEndReachedThreshold;
+          endReachedThreshold;
 
         const isScrollToEnd = scrollDistance > lastScrollDistance.current;
         const isLoadedMoreContent =
@@ -134,15 +166,14 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         lastScrollDistance.current = 0;
       },
       scrollTo(options?: {
-        x?: number;
-        y?: number;
+        x?: number | string;
+        y?: number | string;
         animated?: boolean;
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-        const pixelRatio = document.documentElement.clientWidth / FULL_WIDTH;
 
-        scrollTo(scrollerRef, x * pixelRatio, y * pixelRatio, animated, duration);
+        scrollTo(scrollerRef, translateToPx(x), translateToPx(y), animated, duration);
       },
       scrollIntoView(options?: {
         id?: string;

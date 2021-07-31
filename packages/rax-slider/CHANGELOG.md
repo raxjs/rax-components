@@ -3,6 +3,7 @@
 ## 3.1.4
 
 - [fix] Edge case on swipe
+
 ## 3.1.3
 
 - [feat] Update types. Support inline style in paginationStyle

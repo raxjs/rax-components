@@ -100,13 +100,12 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
       onEndReached,
-      onEndReachedThreshold,
+      endReachedThreshold,
       onScroll,
       children
     } = props;
     const lastScrollDistance = useRef(0);
-    const lastScrollContentSize = useRef(0);
-    const scrollerNodeSize = useRef(0);
+    const endReachedStatus = useRef(false);
     const scrollerRef = useRef<HTMLDivElement>(null);
     const contentContainerRef = useRef<HTMLDivElement>(null);
     const handleScroll = e => {
@@ -130,7 +129,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       if (onEndReached) {
         const scrollerNode = scrollerRef.current;
-        scrollerNodeSize.current = horizontal
+        const scrollerNodeSize = horizontal
           ? scrollerNode.offsetWidth
           : scrollerNode.offsetHeight;
         // NOTE：in iOS7/8 offsetHeight/Width is is inaccurate （ use scrollHeight/Width ）
@@ -141,18 +140,16 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           ? scrollerNode.scrollLeft
           : scrollerNode.scrollTop;
 
-        const endReachedThreshold = translateToPx(onEndReachedThreshold);
+        const transedEndReachedThreshold = translateToPx(endReachedThreshold);
 
         const isEndReached =
-          scrollContentSize - scrollDistance - scrollerNodeSize.current <
-          endReachedThreshold;
+          scrollContentSize - scrollDistance - scrollerNodeSize <
+          transedEndReachedThreshold;
 
         const isScrollToEnd = scrollDistance > lastScrollDistance.current;
-        const isLoadedMoreContent =
-          scrollContentSize != lastScrollContentSize.current;
 
-        if (isEndReached && isScrollToEnd && isLoadedMoreContent) {
-          lastScrollContentSize.current = scrollContentSize;
+        if (isEndReached && isScrollToEnd && !endReachedStatus.current) {
+          endReachedStatus.current = true;
           props.onEndReached(e);
         }
 
@@ -161,9 +158,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     };
     useImperativeHandle(ref, () => ({
       _nativeNode: scrollerRef.current,
-      resetScroll() {
-        lastScrollContentSize.current = 0;
-        lastScrollDistance.current = 0;
+      resetEndReached() {
+        endReachedStatus.current = false;
       },
       scrollTo(options?: {
         x?: number | string;
@@ -262,7 +258,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       const webProps = {
         ...props
       };
-      delete webProps.onEndReachedThreshold;
+      delete webProps.endReachedThreshold;
       return (
         <View
           {...webProps}

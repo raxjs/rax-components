@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.0
+- Remove `resetScroll` method
+- Add `resetEndReached` method: reset status to trigger `onEndReached`
+- Rename `onEndReachedThreshold`: `endReachedThreshold`
+
 ## 3.6.1
 - Fix `pixelRatio` is not initialized and make onEndReached can not triggered
 

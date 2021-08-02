@@ -56,7 +56,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onScroll,
       children,
       disableScroll = false,
-      onEndReachedThreshold
+      endReachedThreshold
     } = props;
     const [scrollTop] = useState(0);
     const [scrollLeft] = useState(0);
@@ -64,6 +64,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     const [scrollAnimationDuration, setScrollAnimationDuration] = useState(ANIMATION_DURATION);
     const [scrollIntoViewId] = useState(null);
     const scrollerRef = useRef<HTMLDivElement>(null);
+    const endReachedStatus = useRef(false);
     const handleScroll = e => {
       if (onScroll) {
         e.nativeEvent = {
@@ -83,14 +84,16 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         onScroll(e);
       }
     };
+    const handleEndReached = (e) => {
+      if (onEndReached && !endReachedStatus.current) {
+        endReachedStatus.current = true;
+        onEndReached(e);
+      }
+    }
     useImperativeHandle(ref, () => ({
       _nativeNode: scrollerRef.current,
-      resetScroll() {
-        if (horizontal) {
-          scrollerRef.current.setAttribute('scroll-left', '0');
-        } else {
-          scrollerRef.current.setAttribute('scroll-top', '0');
-        }
+      resetEndReached() {
+        endReachedStatus.current = false;
       },
       scrollTo(options?: {
         x?: number | string;
@@ -138,7 +141,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       className
     );
 
-    const endReachedThreshold = translateToPx(onEndReachedThreshold);
+    const transedEndReachedThreshold = translateToPx(endReachedThreshold);
 
     return (
       <scroll-view
@@ -149,8 +152,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scroll-top={scrollTop}
         scroll-left={scrollLeft}
         onScroll={onScroll ? handleScroll : null}
-        onScrollToLower={onEndReached}
-        lower-threshold={endReachedThreshold}
+        onScrollToLower={onEndReached ? handleEndReached : null}
+        lower-threshold={transedEndReachedThreshold}
         scroll-with-animation={scrollWithAnimation}
         scroll-animation-duration={scrollAnimationDuration}
         scroll-x={!disableScroll && horizontal}

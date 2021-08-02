@@ -24,7 +24,8 @@ function App() {
         <RecyclerView
           style={{
             height: 500
-          }}>
+          }}
+          >
 
           <RecyclerView.Header style={styles.sticky}>
             <Text>Sticky view is not header</Text>

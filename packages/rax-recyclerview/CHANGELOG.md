@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0
+## 2.0.0
 
 - Refactor rax-recyclerview
 - upgrade deps: `rax-scrollview: ^3.6.0`

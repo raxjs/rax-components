@@ -1,12 +1,11 @@
 {
   "name": "rax-recyclerview",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "RecyclerView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "sideEffects": false,
   "exports": {
     ".": {
       "web": "./es/web/index.js",
@@ -65,7 +64,7 @@
     "react-component"
   ],
   "dependencies": {
-    "@uni/system-info": "^1.0.5",
+    "@uni/env": "^1.0.7",
     "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",

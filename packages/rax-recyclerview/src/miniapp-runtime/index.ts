@@ -1,4 +1,4 @@
-import { getInfoSync } from '@uni/system-info';
+import getInfoSync from './getInfoSync';
 import getVirtualizedList from '../VirtualizedList';
 import SizeAndPositionManager from '../VirtualizedList/SizeAndPositionManager';
 

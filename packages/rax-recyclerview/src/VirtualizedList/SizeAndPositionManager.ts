@@ -49,7 +49,7 @@ class SizeAndPositionManager {
       };
     }
 
-    throw new Error('itemSize is unValid');
+    throw new Error('itemSize is inValid');
   }
 
   private initRenderedIndexGetter(itemSize): TRenderedIndexGetter {

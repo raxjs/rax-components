@@ -22,14 +22,23 @@ class Thumb extends Component {
   }
 
   render() {
-    return (
-      <RecyclerView.Cell style={this.props.style}>
-        <View style={styles.button}>
-          <View style={styles.box}>
-            <Text>{this.props.index}</Text>
+    if (isWeex) {
+      return (
+        <RecyclerView.Cell style={this.props.style}>
+          <View style={styles.button}>
+            <View style={styles.box}>
+              <Text>{this.props.index}</Text>
+            </View>
           </View>
+        </RecyclerView.Cell>
+      );
+    }
+    return (
+      <View style={styles.button}>
+        <View style={styles.box}>
+          <Text>{this.props.index}</Text>
         </View>
-      </RecyclerView.Cell>
+      </View>
     );
   }
 }
@@ -55,7 +64,8 @@ export default class App extends Component {
             style={{
               height: vwh
             }}
-            onEndReached={() => console.log('reach end')}>
+            onEndReached={() => console.log('reach end')}
+            itemSize={270}>
             <RecyclerView.Header style={styles.header}>
               <Text style={styles.headerText}>Simple Header</Text>
             </RecyclerView.Header>

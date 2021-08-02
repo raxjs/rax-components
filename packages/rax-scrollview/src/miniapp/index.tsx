@@ -89,7 +89,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         endReachedStatus.current = true;
         onEndReached(e);
       }
-    }
+    };
     useImperativeHandle(ref, () => ({
       _nativeNode: scrollerRef.current,
       resetEndReached() {

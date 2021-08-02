@@ -64,8 +64,6 @@
     "react-component"
   ],
   "dependencies": {
-    "@uni/env": "^1.0.7",
-    "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",

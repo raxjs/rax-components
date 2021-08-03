@@ -1,7 +1,7 @@
 import * as Rax from 'rax';
 
 export interface SliderType extends Rax.ForwardRefExoticComponent<SliderProps> {
-  Item?: typeof Rax.Fragment
+  Item?: typeof Rax.Fragment;
 }
 
 export interface SliderProps

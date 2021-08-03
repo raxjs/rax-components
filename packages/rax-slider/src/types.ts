@@ -1,5 +1,9 @@
 import * as Rax from 'rax';
 
+export interface SliderType extends Rax.ForwardRefExoticComponent<SliderProps> {
+  Item?: typeof Rax.Fragment
+}
+
 export interface SliderProps
   extends Rax.RefAttributes<HTMLElement>,
   Rax.HTMLAttributes<HTMLElement> {

@@ -33,14 +33,14 @@ function translateToPx(origin: string | number): number {
   const matched = /^(\d+)(r{0,1}px){0,1}$/.exec(origin);
   if (matched) {
     if (!matched[2]) {
-      return parseInt(matched[1]);
+      return parseInt(matched[1], 10);
     }
     if (matched[2] === 'rpx') {
       const pixelRatio = getPixelRatio();
-      return parseInt(matched[1]) * pixelRatio;
+      return parseInt(matched[1], 10) * pixelRatio;
     }
     if (matched[2] === 'px') {
-      return parseInt(matched[1]);
+      return parseInt(matched[1], 10);
     }
   }
   return 0;

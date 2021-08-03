@@ -16,6 +16,17 @@ import '../index.css';
 
 const baseCls = 'rax-scrollview';
 
+function translateToPx(origin: string | number): number {
+  if (typeof origin === 'number') {
+    return origin;
+  }
+  const mathched = /^(\d+)\.*/.exec(origin);
+  if (mathched) {
+    return parseInt(mathched[1], 10);
+  }
+  return 0;
+}
+
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
     let {
@@ -94,10 +105,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }));
 
     // In weex must be int value
-    endReachedThreshold =
-      typeof endReachedThreshold === 'string'
-        ? parseInt(endReachedThreshold, 10)
-        : endReachedThreshold;
+    const transedEndReachedThreshold = translateToPx(endReachedThreshold);
+
     if (style) {
       const childLayoutProps = ['alignItems', 'justifyContent'].filter(
         prop => style[prop] !== undefined
@@ -168,7 +177,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         showScrollbar={showsScrollIndicator}
         onLoadmore={onEndReached}
         onScroll={onScroll ? handleScroll : null}
-        loadmoreoffset={endReachedThreshold}
+        loadmoreoffset={transedEndReachedThreshold}
         scrollDirection={horizontal ? 'horizontal' : 'vertical'}
       >
         {refreshContainer}

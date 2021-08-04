@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+- [fix] `onFirstAppear` triggered more than once
+
 ## 2.1.0
 
 - [feat] Support exports field

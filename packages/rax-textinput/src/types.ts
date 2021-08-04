@@ -17,22 +17,22 @@ export interface NativeEvent {
 export type TextInputElement = HTMLInputElement | HTMLTextAreaElement;
 
 export interface FocusEvent extends Rax.FocusEvent {
-  readonly sourceCapabilities: InputDeviceCapabilities;
-  readonly path: Element[];
+  readonly sourceCapabilities?: InputDeviceCapabilities;
+  readonly path?: Element[];
 }
 
 export interface ChangeEvent extends Rax.ChangeEvent<TextInputElement> {
-  readonly composed: boolean;
-  readonly path: Element[];
+  readonly composed?: boolean;
+  readonly path?: Element[];
 }
 
 export interface InputEvent extends ChangeEvent {
-  readonly data: string;
-  readonly dataTransfer: string;
-  readonly detail: number;
-  readonly inputType: string;
-  readonly isComposing: boolean;
-  readonly sourceCapabilities: InputDeviceCapabilities;
+  readonly data?: string;
+  readonly dataTransfer?: string;
+  readonly detail?: number;
+  readonly inputType?: string;
+  readonly isComposing?: boolean;
+  readonly sourceCapabilities?: InputDeviceCapabilities;
 }
 
 export interface EventObject {

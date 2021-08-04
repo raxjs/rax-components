@@ -8,6 +8,7 @@ const supportKeyboardTypes = [
 ];
 const defaultKeyboardType = 'text';
 
+console.warn('组件所依赖的 rax-textinput 版本较旧，请尽快重新构建发布该组件');
 Component({
   data: {
     previousValue: ''

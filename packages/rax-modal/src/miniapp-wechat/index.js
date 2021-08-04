@@ -26,6 +26,7 @@ const loadStyle = (instance, maskStyle, contentStyle) => {
   });
 };
 
+console.warn('组件所依赖的 rax-modal 版本较旧，请重新构建发布该组件');
 Component({
   data: {
     visibility: false,

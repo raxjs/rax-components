@@ -1,0 +1,10 @@
+<image
+  style="{{styleSheet}}" 
+  class="{{className}}"
+  src="{{source.uri}}"
+  onTap="onClick"
+  onError="onError"
+  onLoad="onLoad"
+  mode="{{mode}}"
+  lazy-load="{{lazyLoad || loading == 'lazy'}}"
+/>

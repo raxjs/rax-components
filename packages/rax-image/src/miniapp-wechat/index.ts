@@ -1,5 +1,6 @@
 import fmtEvent from './fmtEvent';
 
+console.warn('组件所依赖的 rax-image 版本较旧，请尽快重新构建发布该组件');
 Component({
   data: {
     style: ''

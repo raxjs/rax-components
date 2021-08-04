@@ -1,0 +1,4 @@
+.rax-countdown-main-wrapper {
+  display: flex;
+  flex-direction: row;
+}

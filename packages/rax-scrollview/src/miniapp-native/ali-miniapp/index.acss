@@ -1,0 +1,8 @@
+.rax-scrollview {
+    border:0 solid black;
+    display:flex;
+    align-content:flex-start;
+    flex-shrink:0;
+    box-sizing:
+    border-box;
+}

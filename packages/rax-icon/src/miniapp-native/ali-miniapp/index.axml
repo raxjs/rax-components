@@ -1,0 +1,16 @@
+<image 
+  a:if="{{isImage}}"
+  src="{{source.uri}}"
+  style="{{styleSheet}}" 
+  class="{{className}}"
+  onTap="onTap"
+/>
+<view
+  a:else
+  style="{{styleSheet}}" 
+  class="{{className}}"
+  onTap="onTap"
+>
+{{source.codePoint}}
+</view>
+

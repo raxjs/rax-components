@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/rax-waterfall.svg)](https://www.npmjs.com/package/rax-waterfall)
 
 ## 支持
-Web / Weex
+Web / Weex / 小程序（运行时）
 
 ## 描述
 用于实现瀑布流的列表容器

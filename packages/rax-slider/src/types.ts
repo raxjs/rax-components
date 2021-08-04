@@ -9,14 +9,15 @@ export interface SliderProps
   autoPlay?: boolean;
   showsPagination?: boolean;
   paginationStyle?: {
+    [key: string]: any;
     itemSize?: number;
     itemColor?: string;
     itemSelectedColor?: string;
   };
   autoPlayInterval?: number;
   loop?: boolean;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   activeDot?: Rax.RaxNode;
   normalDot?: Rax.RaxNode;
   initialVelocityThreshold?: number;

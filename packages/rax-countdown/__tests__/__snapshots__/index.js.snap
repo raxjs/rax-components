@@ -1,0 +1,696 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountDown basic render 1`] = `
+Object {
+  "attributes": Object {
+    "class": "rax-view rax-countdown-main",
+  },
+  "children": Array [
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "天",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "时",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "分",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "1",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "秒",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+  ],
+  "tagName": "DIV",
+}
+`;
+
+exports[`CountDown render days bigger than 99 1`] = `
+Object {
+  "attributes": Object {
+    "class": "rax-view rax-countdown-main",
+  },
+  "children": Array [
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "1",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "1",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "5",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "7",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "天",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "9",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "时",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "4",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "6",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "分",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "4",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "秒",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+  ],
+  "tagName": "DIV",
+}
+`;
+
+exports[`CountDown render timeRemaining smaller than 0 1`] = `
+Object {
+  "attributes": Object {
+    "class": "rax-view rax-countdown-main",
+  },
+  "children": Array [
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "分",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "秒",
+      ],
+      "style": Object {
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+  ],
+  "tagName": "DIV",
+}
+`;
+
+exports[`CountDown render with custom style 1`] = `
+Object {
+  "attributes": Object {
+    "class": "rax-view rax-countdown-main",
+  },
+  "children": Array [
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "red",
+            "color": "#007457",
+            "marginLeft": "2rpx",
+            "marginRight": "2rpx",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "yellow",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "-",
+      ],
+      "style": Object {
+        "backgroundColor": "blue",
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "red",
+            "color": "#007457",
+            "marginLeft": "2rpx",
+            "marginRight": "2rpx",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "yellow",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "-",
+      ],
+      "style": Object {
+        "backgroundColor": "blue",
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "red",
+            "color": "#007457",
+            "marginLeft": "2rpx",
+            "marginRight": "2rpx",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "1",
+          ],
+          "style": Object {
+            "backgroundColor": "yellow",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-text ",
+      },
+      "children": Array [
+        "-",
+      ],
+      "style": Object {
+        "backgroundColor": "blue",
+        "webkitLineClamp": undefined,
+      },
+      "tagName": "SPAN",
+    },
+    Object {
+      "attributes": Object {
+        "class": "rax-view rax-countdown-item",
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "4",
+          ],
+          "style": Object {
+            "backgroundColor": "red",
+            "color": "#007457",
+            "marginLeft": "2rpx",
+            "marginRight": "2rpx",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+        Object {
+          "attributes": Object {
+            "class": "rax-text ",
+          },
+          "children": Array [
+            "0",
+          ],
+          "style": Object {
+            "backgroundColor": "yellow",
+            "webkitLineClamp": undefined,
+          },
+          "tagName": "SPAN",
+        },
+      ],
+      "tagName": "DIV",
+    },
+  ],
+  "tagName": "DIV",
+}
+`;

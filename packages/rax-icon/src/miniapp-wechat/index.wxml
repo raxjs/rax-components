@@ -1,0 +1,16 @@
+<image 
+  wx:if="{{isImage}}"
+  src="{{source.uri}}"
+  style="{{style}}" 
+  class="{{className}}"
+  bindtap="onTap"
+/>
+<view
+  wx:else
+  style="{{style}}" 
+  class="{{className}}"
+  bindtap="onTap"
+>
+{{source.codePoint}}
+</view>
+

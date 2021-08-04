@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.4
+
+- [fix] Edge case on swipe
+
+## 3.1.3
+
+- [feat] Update types. Support inline style in paginationStyle
+
+## 3.1.2
+
+- Keep wechat native code in older dir
+- Remove `sideEffects: false` in package.json
+
 ## 3.1.1
 
 - Keep miniapp native code in older dir
@@ -30,7 +43,7 @@
 - [chore] Sync from rax-pkg-rax-slider
 
 ## 3.0.2
-- [fix] the page follow touch move when onSwipe 
+- [fix] the page follow touch move when onSwipe
 
 ## 3.0.1
 

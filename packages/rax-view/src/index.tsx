@@ -16,5 +16,3 @@ if (isWeb) {
 }
 
 export default View;
-
-

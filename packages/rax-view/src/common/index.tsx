@@ -1,4 +1,4 @@
-import { createElement, useRef, forwardRef, ForwardRefExoticComponent, MutableRefObject } from 'rax';
+import { createElement, useRef, forwardRef, ForwardRefExoticComponent } from 'rax';
 import cx from 'classnames/dedupe';
 import { isWeex } from 'universal-env';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
@@ -6,23 +6,24 @@ import { ViewProps } from '../types';
 import '../index.css';
 
 
-interface ViewRef extends MutableRefObject<HTMLDivElement> {
+interface ViewRef {
   triggeredAppear: boolean;
 }
 
 const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
   (props, ref) => {
-    const selfRef: ViewRef = useRef(null) as ViewRef;
+    const selfRef = useRef<ViewRef>(null);
     let { className, style, onFirstAppear, onAppear, ...rest } = props;
 
     let handleAppear = onAppear;
     if (onFirstAppear) {
       handleAppear = (event) => {
         onAppear && onAppear(event);
-        if (!selfRef.triggeredAppear) {
+        if (!selfRef.current || !selfRef.current.triggeredAppear) {
           onFirstAppear && onFirstAppear(event);
-        } else {
-          selfRef.triggeredAppear = true;
+          selfRef.current = {
+            triggeredAppear: true
+          };
         }
       };
     }

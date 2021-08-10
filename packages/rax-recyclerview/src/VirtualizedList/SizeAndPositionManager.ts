@@ -2,12 +2,14 @@ import { TItemSize } from './types';
 
 type TSizeGetter = (i: number) => number;
 type TRenderedIndexGetter = (distance: number) => { startIndex: number; endIndex: number };
-type TPlaceholderSizeGetter = (startIndex: number, endIndex: number) => { front: string; back: string };
+type TPlaceholderSizeGetter = (startIndex: number, endIndex: number) => { front: number; back: number; show?: string };
 
 class SizeAndPositionManager {
   private bufferSize: number;
   private readonly length: number;
   private getSize: TSizeGetter;
+
+  public totalSize: number;
 
   public getRenderedIndex: TRenderedIndexGetter;
   public getPlaceholderSize: TPlaceholderSizeGetter;
@@ -16,17 +18,19 @@ class SizeAndPositionManager {
   public static clientSize;
   public static pixelRatio: number;
 
-  public constructor({ itemSize, horizontal, length, bufferSize }: {
+  public constructor({ itemSize, horizontal, length, bufferSize, totalSize }: {
     itemSize: TItemSize;
     horizontal: boolean;
     length: number;
     bufferSize?: number;
+    totalSize?: number;
   }) {
     this.length = length;
     this.bufferSize = this.getBufferSize(bufferSize, horizontal);
     this.getSize = this.initSizeGetter(itemSize);
     this.getRenderedIndex = this.initRenderedIndexGetter(itemSize);
     this.getPlaceholderSize = this.initPlaceholderSizeGetter(itemSize);
+    this.totalSize = totalSize ? totalSize : this.getTotalSize(itemSize, length);
   }
 
   private initSizeGetter(itemSize): TSizeGetter {
@@ -101,8 +105,8 @@ class SizeAndPositionManager {
     if (typeof itemSize === 'number') {
       return (startIndex, endIndex) => {
         return {
-          front: startIndex * itemSize + 'rpx',
-          back: (this.length - endIndex - 1) * itemSize + 'rpx'
+          front: startIndex * itemSize,
+          back: (this.length - endIndex - 1) * itemSize,
         };
       };
     }
@@ -115,9 +119,10 @@ class SizeAndPositionManager {
       for (let i = endIndex + 1; i < this.length; i++) {
         back += this.getSize(i);
       }
+
       return {
-        front: front + 'rpx',
-        back: back + 'rpx'
+        front: front,
+        back: back,
       };
     };
   }
@@ -130,6 +135,17 @@ class SizeAndPositionManager {
       return SizeAndPositionManager.clientSize.width / SizeAndPositionManager.pixelRatio;
     }
     return SizeAndPositionManager.clientSize.height / SizeAndPositionManager.pixelRatio;
+  }
+
+  private getTotalSize(itemSize: TItemSize, length: number): number {
+    if (typeof itemSize === 'number') {
+      return itemSize * length;
+    }
+    let size;
+    for (let i = 0; i < length; i++) {
+      size += this.getSize(i);
+    }
+    return size;
   }
 }
 

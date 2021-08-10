@@ -47,7 +47,7 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, bufferSize, ...rest } = props;
+    const { itemSize, horizontal, children, bufferSize, totalSize, ...rest } = props;
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
@@ -58,21 +58,22 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         itemSize,
         horizontal,
         bufferSize,
-        length
+        length,
+        totalSize
       });
     }, [itemSize, horizontal, length, bufferSize]);
-
     const [renderedIndex, setRenderedIndex] = useState(() => manager.getRenderedIndex(0));
     const {
       front,
       back
-    } = manager.getPlaceholderSize(renderedIndex.startIndex, renderedIndex.endIndex);
+    } = useMemo(() => {
+      return manager.getPlaceholderSize(renderedIndex.startIndex, renderedIndex.endIndex);
+    }, [renderedIndex.startIndex, renderedIndex.endIndex]);
 
     function handleScroll(e) {
       const offset = e.nativeEvent.contentOffset[constantKey.contentOffset];
       const newRenderedIndex = manager.getRenderedIndex(offset);
       setRenderedIndex(newRenderedIndex);
-
       props.onScroll && props.onScroll(e);
     }
 
@@ -83,10 +84,15 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         {...rest}
         horizontal={horizontal}
         onScroll={handleScroll}
+        scroll-anchoring={true}
       >
-        <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front }} />
-        {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
-        <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back }} />
+        <View style={{ 
+          [constantKey.placeholderStyle]: `${manager.totalSize}rpx`
+        }}>
+          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
+            {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
+          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
+        </View>
       </ScrollView>
     );
   });

@@ -5,6 +5,7 @@ export type TItemSize = number | ((e: number) => number);
 
 export interface RecyclerViewRefObject extends ScrollViewProps {
   itemSize: TItemSize;
+  totalSize?: number;
   children: RaxNode[];
   bufferSize?: number;
   horizontal: boolean;

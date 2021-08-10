@@ -23,11 +23,15 @@ const Text: ForwardRefExoticComponent<TextProps> = forwardRef((props, ref) => {
     textString = Array.isArray(children) ? children.join('') : children.toString();
   }
 
+  let ComponentTag = 'text';
+  if (typeof __weex_v2__ === 'object') {
+    ComponentTag = 'span';
+  }
   return (
     // @ts-ignore
-    <text {...rest} ref={ref} className={className} style={{ lines, ...style }} onClick={handleClick}>
+    <ComponentTag {...rest} ref={ref} className={className} style={{ lines, ...style }} onClick={handleClick}>
       {textString}
-    </text>
+    </ComponentTag>
   );
 });
 

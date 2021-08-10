@@ -78,9 +78,20 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
     nativeProps.style.resizeMode = resizeMode;
   }
 
+  let ComponentTag = 'image';
+  if (typeof __weex_v2__ === 'object') {
+    if (resizeMode) {
+      if (resizeMode === 'stretch') {
+        nativeProps.objectFit = 'fill';
+      } else {
+        nativeProps.objectFit = resizeMode;
+      }
+    }
+    ComponentTag = 'img';
+  }
   // Set default quality to "original" in weex avoid image be optimized unexpect
   // @ts-ignore
-  return <image quality="original" {...nativeProps} ref={ref} />;
+  return <ComponentTag quality="original" {...nativeProps} ref={ref} />;
 });
 
 export default Image;

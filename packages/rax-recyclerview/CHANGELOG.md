@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0
+## 2.0.0
 
 - Refactor `rax-recyclerview` in web and runtime miniapp:
   - Replace `rax-view` with `rax-scrollview`;

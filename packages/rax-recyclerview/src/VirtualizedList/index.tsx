@@ -86,11 +86,11 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         onScroll={handleScroll}
         scroll-anchoring={true}
       >
-        <View style={{ 
+        <View style={{
           [constantKey.placeholderStyle]: `${manager.totalSize}rpx`
         }}>
           <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
-            {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
+          {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
           <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
         </View>
       </ScrollView>

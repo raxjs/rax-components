@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
       "miniapp": "./es/miniapp-runtime/index.js",
@@ -50,6 +50,7 @@
     "react-component"
   ],
   "dependencies": {
+    "@uni/video": "^1.0.3",
     "classnames": "^2.2.6",
     "omit.js": "^1.0.2",
     "universal-env": "^3.0.0"

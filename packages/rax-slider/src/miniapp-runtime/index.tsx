@@ -1,10 +1,11 @@
-import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
+import { createElement, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
 import Children from 'rax-children';
 import { isWeChatMiniProgram } from 'universal-env';
-import { SliderProps } from '../types';
+import { SliderType } from '../types';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
-const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
+const Slider: SliderType = forwardRef(
   (props, ref) => {
     const {
       direction,
@@ -67,5 +68,5 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
     );
   }
 );
-Slider.displayName = 'Slider';
-export default Slider;
+
+export default wrapDefaultProperties(Slider);

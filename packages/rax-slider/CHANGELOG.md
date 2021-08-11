@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.5
+
+- [fix] Miss Item definition in specific target files
+
 ## 3.1.4
 
 - [fix] Edge case on swipe

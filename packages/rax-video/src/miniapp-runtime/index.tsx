@@ -1,7 +1,6 @@
 import {
   createElement,
   useRef,
-  useEffect,
   forwardRef,
   ForwardRefExoticComponent,
   useImperativeHandle
@@ -22,30 +21,19 @@ const miniappVideoPropsMap = {
 
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
   (props, ref) => {
-    const { className, style, controls, playControl, autoPlay } = props;
+    const { className = '', style, controls, autoPlay } = props;
     const refEl = useRef(null);
     useImperativeHandle(ref, () => refEl.current);
-    const common = omit(props, ['className', 'controls', 'style', 'playControl']);
+    const common = omit(props, ['className', 'controls', 'style', 'playControl', 'autoPlay']);
     // Default controls is true
-    if (controls == undefined || controls === true) {
-      common.controls = true;
-    } else {
-      common.controls = false;
-    }
-    common.autoplay = playControl === 'play' || autoPlay;
-    delete common.autoPlay;
+    common.controls = controls === undefined || controls === true;
+    common.autoplay = autoPlay;
 
     Object.keys(miniappVideoPropsMap).forEach(prop => {
       common[miniappVideoPropsMap[prop]] = common[prop];
       delete common[prop];
     });
 
-    useEffect(() => {
-      const node = refEl.current;
-      if (playControl !== undefined) {
-        playControl === 'play' ? node.play() : node.pause();
-      }
-    }, [playControl]);
     return (
       <video
         {...common}

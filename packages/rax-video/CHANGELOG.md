@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.3
+
+- Remove useless logic in miniapp code
+
 ## 1.5.2
 
 - Keep miniapp/wechat native code in older dir

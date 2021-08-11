@@ -54,3 +54,7 @@ function VideoDemo() {
 
 render(<VideoDemo />, document.body, { driver: DriverUniversal });
 ```
+
+## 注意
+
+由于 `playControl` 属性不支持小程序，如果用户期望通过 JS 控制视频的播放与暂停，请使用 `@uni/video` 的 `createVideoContext` 能力，详见[文档](https://rax.js.org/docs/api/createVideoContext)

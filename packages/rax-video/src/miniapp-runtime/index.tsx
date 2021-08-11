@@ -47,7 +47,7 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
           // TODO: check
           // playControl === 'play' ? refEl.current.play() : refEl.current.pause();
           window.removeEventListener('setDataFinished', cacheVideoContext);
-        }
+        };
         window.addEventListener('setDataFinished', cacheVideoContext);
       }
     }, []);

@@ -44,8 +44,6 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
         }
         const cacheVideoContext = () => {
           refEl.current = createVideoContext(id);
-          // TODO: check
-          // playControl === 'play' ? refEl.current.play() : refEl.current.pause();
           window.removeEventListener('setDataFinished', cacheVideoContext);
         };
         window.addEventListener('setDataFinished', cacheVideoContext);

@@ -58,16 +58,12 @@ Component({
     playControl: {
       type: String,
       value: 'pause',
-      observer: function(newVal, oldVal) {
+      observer: function(newVal) {
         if (!(newVal === 'pause' || newVal === 'play')) {
           return;
         }
-        const videoIns = tt.createVideoContext(this.data._id);
-        if (newVal === 'pause') {
-          videoIns.pause();
-        }
-        if (newVal === 'play') {
-          videoIns.play();
+        if (this.videoContext) {
+          this.switchPlayStatus(newVal);
         }
       }
     },
@@ -96,9 +92,13 @@ Component({
     styleIsolation: 'apply-shared',
   },
   attached() {
-    this.setData({
-      _id: this.data.id || randomVideoID()
-    });
+    const { playControl, id } = this.properties;
+    const _id = id || randomVideoID();
+    if (playControl) {
+      this.videoContext = tt.createVideoContext(_id, this);
+      this.switchPlayStatus(playControl);
+    }
+    this.setData({ _id });
   },
   methods: {
     onClick(e) {
@@ -109,5 +109,12 @@ Component({
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onEnded', event);
     },
+    switchPlayStatus(playControl) {
+      if (playControl === 'play') {
+        this.videoContext.play();
+      } else if (playControl === 'pause') {
+        this.videoContext.pause();
+      }
+    }
   },
 });

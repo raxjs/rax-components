@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.5.3
+## 1.6.0
 
-- Remove useless logic in miniapp code
+- Support `playControl` in miniapp
 
 ## 1.5.2
 

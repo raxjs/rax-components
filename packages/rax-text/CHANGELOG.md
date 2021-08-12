@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2
+
+- Support weex v2
+
 ## 2.1.2
 
 - Remove `sideEffects: false` in package.json

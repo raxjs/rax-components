@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2
+
+- Support weex v2
+
 ## 2.3.2
 
 - Keep wechat native code in older dir

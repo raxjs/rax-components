@@ -1,6 +1,11 @@
 # Changelog
 
+## 3.7.1
+
+- Support weex v2
+
 ## 3.6.1
+
 - Fix `pixelRatio` is not initialized and make onEndReached can not triggered
 
 ## 3.6.0

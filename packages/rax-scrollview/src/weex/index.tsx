@@ -19,6 +19,10 @@ const baseCls = 'rax-scrollview';
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
+    /* global __weex_v2__ */
+    if (typeof __weex_v2__ === 'object') {
+      return (<scroller {...props} > {props.children} </scroller>);
+    }
     let {
       className,
       style,

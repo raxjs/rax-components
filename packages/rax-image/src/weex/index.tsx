@@ -2,6 +2,8 @@ import { createElement, useState, useCallback, forwardRef, ForwardRefExoticCompo
 import { ImageProps, ImageLoadEvent, ImageNativeProps, ErrorState } from '../types';
 import EMPTY_SOURCE from '../utils/emptySource';
 
+declare const __weex_v2__: any;
+
 const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   source,
   fallbackSource,
@@ -79,6 +81,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   }
 
   let ComponentTag = 'image';
+  /* global __weex_v2__ */
   if (typeof __weex_v2__ === 'object') {
     if (resizeMode) {
       if (resizeMode === 'stretch') {

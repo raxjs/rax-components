@@ -15,6 +15,8 @@ import { ScrollViewProps } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
+declare const __weex_v2__: any;
+
 const baseCls = 'rax-scrollview';
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
@@ -63,7 +65,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         ? showsHorizontalScrollIndicator
         : showsVerticalScrollIndicator;
 
-      const weexProps = { ...props };
+      const weexProps = { ...props, loadmoreoffset: onEndReachedThreshold };
       delete weexProps.onEndReachedThreshold;
       return (
         <scroller

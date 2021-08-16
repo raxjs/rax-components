@@ -19,12 +19,18 @@ declare const __weex_v2__: any;
 
 const baseCls = 'rax-scrollview';
 
+function scrollTo(scrollerRef, args) {
+  const scrollView = scrollerRef.current;
+  scrollView.scrollTo.apply(scrollView, args);
+}
+
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
     /* global __weex_v2__ */
     if (typeof __weex_v2__ === 'object') {
       let {
         className,
+        style,
         horizontal,
         showsHorizontalScrollIndicator,
         showsVerticalScrollIndicator,
@@ -33,6 +39,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         onScroll,
         children
       } = props;
+      const scrollerRef = useRef<HTMLDivElement>(null);
       const handleScroll = e => {
         e.nativeEvent = {
           contentOffset: {
@@ -49,6 +56,43 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         };
         onScroll(e);
       };
+
+      useImperativeHandle(ref, () => ({
+        _nativeNode: scrollerRef.current,
+        resetScroll() {
+        },
+        scrollTo(options?: {
+          x?: number;
+          y?: number;
+          animated?: boolean;
+          duration?: number;
+        }) {
+          const { x = 0, y = 0, animated = true, duration } = options || {};
+          const args: any[] = [x, y, animated];
+          if (duration) {
+            args.push(duration);
+          }
+          scrollTo(scrollerRef, args);
+        },
+        scrollIntoView(options: {
+          id: string;
+          animated?: boolean;
+          duration?: number;
+        }) {
+          const { id, animated = true, duration } = options || {};
+          if (!id) {
+            throw new Error('Params missing id.');
+          }
+          const targetElement = document.getElementById(id);
+          if (targetElement) {
+            const args: any[] = [targetElement, animated];
+            if (duration) {
+              args.push(duration);
+            }
+            scrollTo(scrollerRef, args);
+          }
+        }
+      }));
 
       // In weex must be int value
       onEndReachedThreshold =
@@ -71,6 +115,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         <scroller
           {...weexProps}
           className={cls}
+          style={style}
+          ref={scrollerRef}
           showScrollbar={showsScrollIndicator}
           onLoadmore={onEndReached}
           onScroll={onScroll ? handleScroll : null}

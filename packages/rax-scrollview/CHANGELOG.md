@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.7.1
+## 3.7.0
 
 - Support weex v2
 

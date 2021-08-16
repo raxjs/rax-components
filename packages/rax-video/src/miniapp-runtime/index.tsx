@@ -40,7 +40,7 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
       if (playControl !== undefined) {
         if (!id) {
           console.warn('id is required if using playControl in miniapp!');
-          return undefined;
+          return;
         }
         const cacheVideoContext = () => {
           refEl.current = createVideoContext(id);

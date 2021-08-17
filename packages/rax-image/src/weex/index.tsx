@@ -1,6 +1,7 @@
 import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
 import { ImageProps, ImageLoadEvent, ImageNativeProps, ErrorState } from '../types';
 import EMPTY_SOURCE from '../utils/emptySource';
+import ImageWeb from '../web';
 
 declare const __weex_v2__: any;
 
@@ -80,21 +81,10 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
     nativeProps.style.resizeMode = resizeMode;
   }
 
-  let ComponentTag = 'image';
-  /* global __weex_v2__ */
-  if (typeof __weex_v2__ === 'object') {
-    if (resizeMode) {
-      if (resizeMode === 'stretch') {
-        nativeProps.objectFit = 'fill';
-      } else {
-        nativeProps.objectFit = resizeMode;
-      }
-    }
-    ComponentTag = 'img';
-  }
   // Set default quality to "original" in weex avoid image be optimized unexpect
   // @ts-ignore
-  return <ComponentTag quality="original" {...nativeProps} ref={ref} />;
+  return <image quality="original" {...nativeProps} ref={ref} />;
 });
 
-export default Image;
+/* global __weex_v2__ */
+export default typeof __weex_v2__ === 'object' ? ImageWeb : Image;

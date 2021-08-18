@@ -4,7 +4,6 @@ import {
   ForwardRefExoticComponent,
   forwardRef,
   useRef,
-  useState,
   useImperativeHandle
 } from 'rax';
 import View from 'rax-view';
@@ -17,6 +16,17 @@ import '../index.css';
 
 const baseCls = 'rax-scrollview';
 
+function translateToPx(origin: string | number): number {
+  if (typeof origin === 'number') {
+    return origin;
+  }
+  const mathched = /^(\d+)\.*/.exec(origin);
+  if (mathched) {
+    return parseInt(mathched[1], 10);
+  }
+  return 0;
+}
+
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
     let {
@@ -27,11 +37,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
       onEndReached,
-      onEndReachedThreshold,
+      endReachedThreshold,
       onScroll,
       children
     } = props;
-    const [loadmoreretry, setLoadmoreretry] = useState(0);
     const scrollerRef = useRef<HTMLDivElement>(null);
     const contentContainerRef = useRef<HTMLDivElement>(null);
     const handleScroll = e => {
@@ -52,8 +61,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     };
     useImperativeHandle(ref, () => ({
       _nativeNode: scrollerRef.current,
-      resetScroll() {
-        setLoadmoreretry(loadmoreretry + 1);
+      resetEndReached() {
+        // @ts-ignore
+        scrollerRef.current.resetLoadmore();
       },
       scrollTo(options?: {
         x?: number;
@@ -95,10 +105,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }));
 
     // In weex must be int value
-    onEndReachedThreshold =
-      typeof onEndReachedThreshold === 'string'
-        ? parseInt(onEndReachedThreshold, 10)
-        : onEndReachedThreshold;
+    const transedEndReachedThreshold = translateToPx(endReachedThreshold);
+
     if (style) {
       const childLayoutProps = ['alignItems', 'justifyContent'].filter(
         prop => style[prop] !== undefined
@@ -169,8 +177,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         showScrollbar={showsScrollIndicator}
         onLoadmore={onEndReached}
         onScroll={onScroll ? handleScroll : null}
-        loadmoreoffset={onEndReachedThreshold}
-        loadmoreretry={loadmoreretry}
+        loadmoreoffset={transedEndReachedThreshold}
         scrollDirection={horizontal ? 'horizontal' : 'vertical'}
       >
         {refreshContainer}

@@ -2,7 +2,7 @@ import { RefAttributes, HTMLAttributes, UIEvent } from 'rax';
 
 export interface ScrollViewRefObject {
   _nativeNode: HTMLDivElement;
-  resetScroll: () => void;
+  resetEndReached: () => void;
   scrollTo: (options?: {
     x?: number | string;
     y?: number | string;
@@ -26,7 +26,7 @@ export interface ScrollViewProps extends RefAttributes<ScrollViewRefObject>, HTM
   horizontal?: boolean;
   showsHorizontalScrollIndicator?: boolean;
   showsVerticalScrollIndicator?: boolean;
-  onEndReachedThreshold?: number | string;
+  endReachedThreshold?: number | string;
   onEndReached?: (e: ScrollEvent) => void;
   onScroll?: (e: ScrollEvent) => void;
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0
+
+- Support `playControl` in miniapp
+
 ## 1.5.2
 
 - Keep miniapp/wechat native code in older dir

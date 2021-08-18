@@ -4,6 +4,10 @@
 
 - Support weex v2
 
+## 2.1.3
+
+- Only bump version
+
 ## 2.1.2
 
 - Remove `sideEffects: false` in package.json

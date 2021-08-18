@@ -1,4 +1,4 @@
-import { createElement, Component, createRef } from 'rax';
+import { createElement, Component, createRef, Fragment } from 'rax';
 import cloneElement from 'rax-clone-element';
 import findDOMNode from 'rax-find-dom-node';
 import Children from 'rax-children';
@@ -32,6 +32,9 @@ class Slider extends Component<SliderProps, any> {
     onChange: PropTypes.func,
     paginationStyle: PropTypes.object
   };
+  public static Item = Fragment;
+  public static displayName = 'Slider';
+
   private index: number;
   private height: number;
   private width: number;

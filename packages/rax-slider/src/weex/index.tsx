@@ -1,8 +1,9 @@
-import { createElement, ForwardRefExoticComponent, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
-import { SliderProps } from '../types';
+import { createElement, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
+import { SliderType } from '../types';
+import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
-const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
+const Slider: SliderType = forwardRef(
   (props, ref) => {
     // This value determines the index of current shown slide in Weex. The default value is 0.
     const [index, setIndex] = useState(props.index || 0);
@@ -65,5 +66,5 @@ const Slider: ForwardRefExoticComponent<SliderProps> = forwardRef(
     );
   }
 );
-Slider.displayName = 'Slider';
-export default Slider;
+
+export default wrapDefaultProperties(Slider);

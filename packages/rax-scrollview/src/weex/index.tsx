@@ -22,8 +22,7 @@ const isWeexV2 = typeof __weex_v2__ === 'object';
 const baseCls = 'rax-scrollview';
 
 function scrollTo(scrollerRef, ...args) {
-  const scrollView = scrollerRef.current;
-  scrollView.scrollTo.apply(scrollView, args);
+  scrollerRef.current.scrollTo(...args);
 }
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
@@ -124,8 +123,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       if (childLayoutProps.length !== 0) {
         console.warn(
           'ScrollView child layout (' +
-            JSON.stringify(childLayoutProps) +
-            ') must be applied through the contentContainerStyle prop.'
+          JSON.stringify(childLayoutProps) +
+          ') must be applied through the contentContainerStyle prop.'
         );
       }
     }
@@ -184,7 +183,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       : showsVerticalScrollIndicator;
 
     const weexProps = { ...props };
-    delete weexProps.onEndReachedThreshold;
+    if (isWeexV2) {
+      delete weexProps.onEndReachedThreshold;
+    }
     return (
       <scroller
         {...weexProps}

@@ -1,4 +1,4 @@
-import { createElement, Component, createRef } from 'rax';
+import { createElement, Component, createRef, Fragment } from 'rax';
 import cloneElement from 'rax-clone-element';
 import findDOMNode from 'rax-find-dom-node';
 import Children from 'rax-children';
@@ -32,6 +32,9 @@ class Slider extends Component<SliderProps, any> {
     onChange: PropTypes.func,
     paginationStyle: PropTypes.object
   };
+  public static Item = Fragment;
+  public static displayName = 'Slider';
+
   private index: number;
   private height: number;
   private width: number;
@@ -48,8 +51,8 @@ class Slider extends Component<SliderProps, any> {
   public constructor(props: SliderProps) {
     super(props);
     this.index = props.index;
-    this.height = parseFloat(props.height);
-    this.width = parseFloat(props.width);
+    this.height = parseFloat(`${props.height}`);
+    this.width = parseFloat(`${props.width}`);
     this.loopIdx = props.index;
     this.offsetX = this.index * this.width;
     this.isSwiping = false;
@@ -136,7 +139,7 @@ class Slider extends Component<SliderProps, any> {
   private isLoopEnd() {
     const realIndex = this.loopedIndex();
     const num = this.total;
-    if (!this.props.loop && (realIndex === num - 1 || realIndex === 0)) {
+    if (!this.props.loop && (realIndex >= num - 1 || realIndex <= 0)) {
       return true;
     }
     return false;
@@ -149,10 +152,10 @@ class Slider extends Component<SliderProps, any> {
     const styleText = `translate3d(${changeX / 750 * document.documentElement.clientWidth}px, 0px, 0px)`;
 
     // move next page
-    this.childRefs[this.index === this.total - 1 ? 0 : this.index + 1].current.style.left = (this.index + 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+    this.childRefs[this.index >= this.total - 1 ? 0 : this.index + 1].current.style.left = (this.index + 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
 
     // move pre page
-    this.childRefs[this.index === 0 ? this.total - 1 : this.index - 1].current.style.left = (this.index - 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
+    this.childRefs[this.index <= 0 ? this.total - 1 : this.index - 1].current.style.left = (this.index - 1) * this.width / 750 * document.documentElement.clientWidth + 'px';
 
     swipeView.style.transitionDuration = '0s';
     swipeView.style.transform = styleText;
@@ -167,8 +170,8 @@ class Slider extends Component<SliderProps, any> {
     if (
       !(
         this.isLoopEnd() &&
-        (realIndex === num - 1 && direction === SWIPE_LEFT ||
-          realIndex === 0 && direction === SWIPE_RIGHT)
+        (realIndex >= num - 1 && direction === SWIPE_LEFT ||
+          realIndex <= 0 && direction === SWIPE_RIGHT)
       )
     ) {
       this.slideTo(this.index + (direction === 'SWIPE_LEFT' ? 1 : -1));

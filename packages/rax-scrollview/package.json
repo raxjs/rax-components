@@ -1,6 +1,6 @@
 {
   "name": "rax-scrollview",
-  "version": "3.5.2",
+  "version": "3.6.1",
   "description": "ScrollView component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
       "miniapp": "./es/miniapp/index.js",
@@ -53,6 +53,7 @@
     "react-component"
   ],
   "dependencies": {
+    "@uni/system-info": "^1.0.5",
     "classnames": "^2.2.6",
     "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",

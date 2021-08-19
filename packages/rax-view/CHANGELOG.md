@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1
+
+- [fix] `onFirstAppear` triggered more than once
+
 ## 2.2.0
 
 - [feat] Support onAppear/onDisappear/onFirstAppear in wechat miniprogram

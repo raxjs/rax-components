@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.6.1
+- Fix `pixelRatio` is not initialized and make onEndReached can not triggered
+
+## 3.6.0
+
+- Support `string` type in runtime miniapp and web, of onEndReachedThreshold, scrollTo
+
 ## 3.5.2
 
 - Remove `sideEffects: false` in package.json

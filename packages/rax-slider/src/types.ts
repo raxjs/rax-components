@@ -1,5 +1,9 @@
 import * as Rax from 'rax';
 
+export interface SliderType extends Rax.ForwardRefExoticComponent<SliderProps> {
+  Item?: typeof Rax.Fragment;
+}
+
 export interface SliderProps
   extends Rax.RefAttributes<HTMLElement>,
   Rax.HTMLAttributes<HTMLElement> {
@@ -9,14 +13,15 @@ export interface SliderProps
   autoPlay?: boolean;
   showsPagination?: boolean;
   paginationStyle?: {
+    [key: string]: any;
     itemSize?: number;
     itemColor?: string;
     itemSelectedColor?: string;
   };
   autoPlayInterval?: number;
   loop?: boolean;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   activeDot?: Rax.RaxNode;
   normalDot?: Rax.RaxNode;
   initialVelocityThreshold?: number;

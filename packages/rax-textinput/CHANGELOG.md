@@ -3,6 +3,7 @@
 ## 1.4.2
 
 - `defaultValue` will only render at first time, in order to avoid that a controlled input can't be cleared
+- Support show value when value is number 0 in non-control mode
 
 ## 1.4.1
 

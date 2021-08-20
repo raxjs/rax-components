@@ -46,6 +46,16 @@ function genEventObject(event): EventObject {
   };
 }
 
+/**
+ * Judge whether the val is truthy or zero value
+ * Because number 0 should be recognized as valid input too
+ * @param val 
+ * @returns 
+ */
+function isTruthyOrZero(val) {
+  return val === 0 ? true : !!val;
+}
+
 const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
   (props, ref) => {
     const refEl = useRef<TextInputElement>(null);
@@ -88,10 +98,12 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
           ? keyboardType
           : keyboardTypeMap[keyboardType];
 
-    let value = propsValue || '';
+    let value = isTruthyOrZero(propsValue) ? propsValue : '';
 
     useMemo(() => {
-      value = propsValue || defaultValue || '';
+      value = 
+        isTruthyOrZero(propsValue) ? propsValue :
+        isTruthyOrZero(defaultValue) ? defaultValue : '';
     }, []);
 
     // Check is type supported or not

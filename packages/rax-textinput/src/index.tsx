@@ -49,8 +49,8 @@ function genEventObject(event): EventObject {
 /**
  * Judge whether the val is truthy or zero value
  * Because number 0 should be recognized as valid input too
- * @param val 
- * @returns 
+ * @param val
+ * @returns
  */
 function isTruthyOrZero(val) {
   return val === 0 ? true : !!val;
@@ -101,8 +101,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     let value = isTruthyOrZero(propsValue) ? propsValue : '';
 
     useMemo(() => {
-      value = 
-        isTruthyOrZero(propsValue) ? propsValue :
+      value = isTruthyOrZero(propsValue) ? propsValue :
         isTruthyOrZero(defaultValue) ? defaultValue : '';
     }, []);
 

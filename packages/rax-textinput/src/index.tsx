@@ -5,7 +5,8 @@ import {
   createElement,
   ForwardRefExoticComponent,
   useEffect,
-  useState
+  useState,
+  useMemo
 } from 'rax';
 import { isWeex, isWeb, isNode, isMiniApp } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
@@ -76,7 +77,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       secureTextEntry,
       style,
       placeholderColor = '#999999',
-      value,
+      value: propsValue,
       defaultValue,
       controlled
     } = props;
@@ -86,6 +87,12 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
         : typeof keyboardTypeMap[keyboardType] === 'undefined'
           ? keyboardType
           : keyboardTypeMap[keyboardType];
+
+    let value = propsValue || '';
+
+    useMemo(() => {
+      value = propsValue || defaultValue || '';
+    }, []);
 
     // Check is type supported or not
     // Use isWeb to exclude web-view
@@ -129,7 +136,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     };
 
     // Diff with web readonly attr, `disabled` must be boolean value
-    const disbaled = Boolean(editable !== undefined && !editable);
+    const disabled = Boolean(editable !== undefined && !editable);
     const rows = numberOfLines || maxNumberOfLines;
     useImperativeHandle(ref, () => {
       return {
@@ -172,9 +179,9 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             }}
             row={rows}
             rows={rows}
-            disabled={disbaled}
+            disabled={disabled}
             onChange={handleChange}
-            value={value || defaultValue}
+            value={value}
             confirm-type={confirmType}
             show-count={showCount}
             onInput={(e: Rax.ChangeEvent<HTMLTextAreaElement>) => {
@@ -204,8 +211,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
               placeholderColor
             }}
             type={type}
-            disabled={disbaled}
-            value={value || defaultValue}
+            disabled={disabled}
+            value={value}
             confirm-type={confirmType}
             random-Number={randomNumber}
             selection-start={selectionStart}

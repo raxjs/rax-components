@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+
+- Support weex v2
+
 ## 2.1.3
 
 - Only bump version

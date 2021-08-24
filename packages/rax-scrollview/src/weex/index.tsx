@@ -15,7 +15,15 @@ import { ScrollViewProps } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
+declare const __weex_v2__: any;
+/* global __weex_v2__ */
+const isWeexV2 = typeof __weex_v2__ === 'object';
+
 const baseCls = 'rax-scrollview';
+
+function scrollTo(scrollerRef, ...args) {
+  scrollerRef.current.scrollTo(...args);
+}
 
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
@@ -61,35 +69,43 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         animated?: boolean;
         duration?: number;
       }) {
-        const { x = 0, y = 0, animated = true } = options || {};
+        const { x = 0, y = 0, animated = true, duration } = options || {};
 
-        const dom = __weex_require__('@weex-module/dom');
-        const contentContainer = contentContainerRef.current;
-        /**
-         * Multiple scrollviews on the first screen need to be automatically scrolled to a default selected location,
-         * but the content may not have been rendered (in the case of contentContainer)
-         */
-        contentContainer &&
-          dom.scrollToElement(contentContainer, {
-            offset: x || y || 0,
-            animated
-          });
+        if (isWeexV2) {
+          scrollTo(scrollerRef, x, y, animated, duration);
+        } else {
+          const dom = __weex_require__('@weex-module/dom');
+          const contentContainer = contentContainerRef.current;
+          /**
+           * Multiple scrollviews on the first screen need to be automatically scrolled to a default selected location,
+           * but the content may not have been rendered (in the case of contentContainer)
+           */
+          contentContainer &&
+            dom.scrollToElement(contentContainer, {
+              offset: x || y || 0,
+              animated
+            });
+        }
       },
       scrollIntoView(options: {
         id: string;
         animated?: boolean;
         duration?: number;
       }) {
-        const { id, animated = true } = options || {};
+        const { id, animated = true, duration } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
         }
         const node = getElementById(id);
         if (node) {
-          const dom = __weex_require__('@weex-module/dom');
-          dom.scrollToElement(node, {
-            animated
-          });
+          if (isWeexV2) {
+            scrollTo(scrollerRef, node, animated, duration);
+          } else {
+            const dom = __weex_require__('@weex-module/dom');
+            dom.scrollToElement(node, {
+              animated
+            });
+          }
         }
       }
     }));
@@ -107,8 +123,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       if (childLayoutProps.length !== 0) {
         console.warn(
           'ScrollView child layout (' +
-            JSON.stringify(childLayoutProps) +
-            ') must be applied through the contentContainerStyle prop.'
+          JSON.stringify(childLayoutProps) +
+          ') must be applied through the contentContainerStyle prop.'
         );
       }
     }
@@ -133,17 +149,23 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       contentChild = children;
     }
 
-    const contentContainer = (
-      <View
-        ref={contentContainerRef}
-        className={cx({
-          [`${baseCls}-content-container-horizontal`]: horizontal
-        })}
-        style={contentContainerStyle}
-      >
-        {contentChild}
-      </View>
-    );
+    let contentContainer;
+    if (isWeexV2) {
+      refreshContainer = null;
+      contentContainer = children;
+    } else {
+      contentContainer = (
+        <View
+          ref={contentContainerRef}
+          className={cx({
+            [`${baseCls}-content-container-horizontal`]: horizontal
+          })}
+          style={contentContainerStyle}
+        >
+          {contentChild}
+        </View>
+      );
+    }
 
     const scrollerStyle: CSSProperties = {
       ...style
@@ -160,9 +182,13 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       ? showsHorizontalScrollIndicator
       : showsVerticalScrollIndicator;
 
+    const weexProps = { ...props };
+    if (isWeexV2) {
+      delete weexProps.onEndReachedThreshold;
+    }
     return (
       <scroller
-        {...props}
+        {...weexProps}
         ref={scrollerRef}
         className={cls}
         style={scrollerStyle}

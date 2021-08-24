@@ -1,6 +1,9 @@
 import { createElement, useState, useCallback, forwardRef, ForwardRefExoticComponent } from 'rax';
 import { ImageProps, ImageLoadEvent, ImageNativeProps, ErrorState } from '../types';
 import EMPTY_SOURCE from '../utils/emptySource';
+import ImageWeb from '../web';
+
+declare const __weex_v2__: any;
 
 const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   source,
@@ -83,4 +86,5 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   return <image quality="original" {...nativeProps} ref={ref} />;
 });
 
-export default Image;
+/* global __weex_v2__ */
+export default typeof __weex_v2__ === 'object' ? ImageWeb : Image;

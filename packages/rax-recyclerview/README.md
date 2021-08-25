@@ -4,7 +4,7 @@
 
 ## 描述
 
-在 `ScrollView` 的基础上实现元素回收，以优化长列表场景下的性能优化。在 H5 和 运行时小程序中，数字单位均为 `rpx`。在 Weex 下是对 `list` 与 `cell` 的包装，其具有复用内部组件来提供性能的机制。
+在 `ScrollView` 的基础上，按需渲染视图内的元素，并回收视图外元素，以优化长列表场景下的性能优化。在 Weex 下是对 `list` 与 `cell` 的包装，其具有复用内部组件来提供性能的机制。
 
 ![](https://gw.alicdn.com/tfs/TB1Cf_ZRVXXXXa8XVXXXXXXXXXX-255-265.gif)
 
@@ -20,8 +20,8 @@ npm install rax-recyclerview --save
 
 | 属性                  | 类型              | 默认值 | 必填 | 描述                                            | 支持                                                         |
 | --------------------- | ----------------- | ------ | ---- | ----------------------------------------------- | ------------------------------------------------------------ |
-| itemSize              | `function/number` | -      |   √  | 返回每个 cell 的高度(节点回收时需要)，若 itemSize 未传，则不进行回收            | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> |
-| onEndReachedThreshold | `number`          | 500    | ✘    | 设置加载更多的偏移                              | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="bytedanceMicroApp" src="https://gw.alicdn.com/tfs/TB1jFtVzO_1gK0jSZFqXXcpaXXa-200-200.svg" width="25px" height="25px"> |
+| itemSize              | `function/number` | -      |   √  | 单位为`rpx`, 返回每个 cell 的高度(节点回收时需要)，若 itemSize 未传，则不进行回收            | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> |
+| onEndReachedThreshold | `string/number`          | 500    | ✘    | 设置加载更多的偏移, 推荐使用 string 格式来指指定尺寸单位，如`100rpx`                              | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /><img alt="bytedanceMicroApp" src="https://gw.alicdn.com/tfs/TB1jFtVzO_1gK0jSZFqXXcpaXXa-200-200.svg" width="25px" height="25px"> |
 | onEndReached          | `function`        | -      | ✘    | 滚动区域还剩`onEndReachedThreshold`的长度时触发 | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />  <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"><img alt="bytedanceMicroApp" src="https://gw.alicdn.com/tfs/TB1jFtVzO_1gK0jSZFqXXcpaXXa-200-200.svg" width="25px" height="25px"> |
 | onScroll              | `function`        | -      | ✘    | 滚动时触发的事件，返回当前滚动的水平垂直距离    | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" />  <img alt="weex" src="https://gw.alicdn.com/tfs/TB1jM0ebMaH3KVjSZFjXXcFWpXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" /> <img alt="wechatMiniprogram" src="https://img.alicdn.com/tfs/TB1slcYdxv1gK0jSZFFXXb0sXXa-200-200.svg" width="25px" height="25px"><img alt="bytedanceMicroApp" src="https://gw.alicdn.com/tfs/TB1jFtVzO_1gK0jSZFqXXcpaXXa-200-200.svg" width="25px" height="25px"> |
 | totalSize             | `number`          | -      | ✘    | 当前列表总高度(在 cell 高度可变的列表中需要传)  | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> |
@@ -32,7 +32,7 @@ npm install rax-recyclerview --save
 | disableScroll                  | `boolean`  | -          | false    | 是否禁止滚动，是否禁止滚动, rax-recyclerview@1.3.4 及以上版本支                             | <img alt="browser" src="https://gw.alicdn.com/tfs/TB1uYFobGSs3KVjSZPiXXcsiVXa-200-200.svg" width="25px" height="25px" /> <img alt="miniApp" src="https://gw.alicdn.com/tfs/TB1bBpmbRCw3KVjSZFuXXcAOpXa-200-200.svg" width="25px" height="25px" />      |
 
 ## 方法
-### scrollTo({x:number,y:number})
+### scrollTo({x:number|string,y:number|string})
 
 #### 参数
 
@@ -40,8 +40,8 @@ npm install rax-recyclerview --save
 
 | **属性** | **类型** | **默认值** | **必填** | **描述**     |
 | -------- | -------- | ---------- | -------- | ------------ |
-| x        | `number` | -          | ✘        | 横向的偏移量 |
-| y        | `number` | -          | ✘        | 纵向的偏移量 |
+| x        | `number/string` | -          | ✘        | 横向的偏移量, 推荐使用 string 格式来指定尺寸单位 |
+| y        | `number/string` | -          | ✘        | 纵向的偏移量, 推荐使用 string 格式来指定尺寸单位 |
 
 ### 示例
 

@@ -1,0 +1,19 @@
+{
+  "type": "rax",
+  "targets": [
+    "web",
+    "miniapp",
+    "wechat-miniprogram"
+  ],
+  "miniapp": {
+    "buildType": "runtime"
+  },
+  "wechat-miniprogram": {
+    "buildType": "runtime"
+  },
+  "plugins": [
+    "build-plugin-component",
+    "@ali/build-plugin-miniapp-preview"
+  ],
+  "enablePlatformLoader": true
+}

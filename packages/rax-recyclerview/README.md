@@ -92,7 +92,7 @@ class Row extends Component {
 
 const THUMBS = [];
 
-for (let i = 0; i < 20; i++) THUMBS.push(i);
+for (let i = 0; i < 100; i++) THUMBS.push(i);
 
 const createThumbRow = (val, i) => <Thumb key={i} />;
 
@@ -113,6 +113,7 @@ class App extends Component {
             style={{
               height: 500
             }}
+            itemSize={80}
             onEndReached={() => alert("reach end")}
           >
             <RecyclerView.Header style={styles.sticky}>

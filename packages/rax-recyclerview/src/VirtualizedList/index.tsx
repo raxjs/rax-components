@@ -80,7 +80,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     return (
       <ScrollView
         className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
-        forwardedRef={ref}
+        forwardRef={ref}
         {...rest}
         horizontal={horizontal}
         onScroll={handleScroll}

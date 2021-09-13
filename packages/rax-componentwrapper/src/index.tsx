@@ -1,8 +1,8 @@
-import { createElement, Fragment } from 'rax';
+import { createElement } from 'rax';
 
 const MyComponent = ({ children }) => {
   return (
-    <Fragment>{children}</Fragment>
+    <div>{children}</div>
   );
 };
 

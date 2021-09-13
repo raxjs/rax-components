@@ -1,18 +1,9 @@
 {
   "name": "rax-componentwrapper",
-  "version": "0.1.0",
+  "version": "1.0.0-0",
   "description": "组件功能描述",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "exports": {
-    ".": {
-      "web": "./es/web/index.js",
-      "miniapp": "./es/miniapp/index.js",
-      "wechat-miniprogram": "./es/wechat-miniprogram/index.js",
-      "default": "./es/index.js"
-    },
-    "./*": "./*"
-  },
   "files": [
     "build",
     "dist",
@@ -35,36 +26,33 @@
     "lint": "npm run eslint && npm run stylelint",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "rax-text": "^2.0.0",
-    "rax-view": "^2.0.0",
-    "universal-env": "^3.0.0"
-  },
   "peerDependencies": {
     "jsx2mp-runtime": "^0.4.8",
     "rax": "^1.1.0"
   },
   "devDependencies": {
-    "@alib/build-scripts": "^0.1.0",
     "@ali/build-plugin-miniapp-preview": "^1.1.0",
+    "@alib/build-scripts": "^0.1.0",
     "@iceworks/spec": "^1.0.0",
     "@types/rax": "^1.0.0",
     "build-plugin-component": "^1.0.0",
     "driver-universal": "^3.1.0",
     "eslint": "^6.8.0",
-    "stylelint": "^13.7.2",
     "rax": "^1.1.0",
     "rax-test-renderer": "^1.0.0",
+    "rax-text": "^2.2.0",
+    "rax-view": "^2.2.1",
+    "stylelint": "^13.7.2",
     "typescript": "^3.7.3"
   },
   "componentConfig": {
-    "name": "rax-example",
-    "title": "示例组件",
+    "name": "rax-componentwrapper",
+    "title": "自定义组件",
     "category": ""
   },
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "homepage": "https://unpkg.com/rax-componentwrapper@0.1.0/build/index.html"
+  "homepage": "https://unpkg.com/rax-componentwrapper@1.0.0-0/build/index.html"
 }

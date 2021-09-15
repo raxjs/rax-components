@@ -9,6 +9,7 @@ export interface RecyclerViewRefObject extends ScrollViewProps {
   children: RaxNode[];
   bufferSize?: number;
   horizontal: boolean;
+  bufferRatio?: number;
 }
 
 export interface LegacyRefObject extends RefAttributes<any>, HTMLAttributes<HTMLDivElement> {}

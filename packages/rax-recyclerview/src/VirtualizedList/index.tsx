@@ -1,9 +1,16 @@
-import { createElement, forwardRef, useState, useMemo, memo } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo, Fragment } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import NoRecycleList from './NoRecycleList';
 
 import { VirtualizedList } from './types';
+
+function createArray(length) {
+  if (length > 0) {
+    return new Array(length).fill(1);
+  }
+  return [];
+}
 
 function getConstantKey(horizontal: boolean) {
   if (horizontal) {
@@ -90,7 +97,9 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
           [constantKey.placeholderStyle]: `${manager.totalSize}rpx`
         }}>
           <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
-          {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1)}
+          {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`}></Fragment>)}
+          {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
+          {createArray(length - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`}></Fragment>)}
           <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
         </View>
       </ScrollView>

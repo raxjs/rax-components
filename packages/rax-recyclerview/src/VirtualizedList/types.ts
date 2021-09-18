@@ -10,6 +10,7 @@ export interface RecyclerViewRefObject extends ScrollViewProps {
   bufferSize?: number;
   horizontal: boolean;
   bufferRatio?: number;
+  scrollEventThrottle?: number;
 }
 
 export interface LegacyRefObject extends RefAttributes<any>, HTMLAttributes<HTMLDivElement> {}

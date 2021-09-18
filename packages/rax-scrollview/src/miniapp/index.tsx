@@ -12,6 +12,7 @@ import { ScrollViewProps } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { getInfoSync } from '@uni/system-info';
 import '../index.css';
+import omit from '../utils/omit';
 
 const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
@@ -143,7 +144,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
     return (
       <scroll-view
-        {...props}
+        {...omit(props, ['forwardRef'])}
         ref={scrollerRef}
         className={cls}
         style={scrollerStyle}

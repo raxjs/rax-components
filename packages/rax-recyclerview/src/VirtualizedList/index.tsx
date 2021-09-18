@@ -2,6 +2,7 @@ import { createElement, forwardRef, useState, useMemo, memo, Fragment } from 'ra
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import NoRecycleList from './NoRecycleList';
+import throttle from './throttle';
 
 import { VirtualizedList } from './types';
 
@@ -54,7 +55,7 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, bufferSize, totalSize, ...rest } = props;
+    const { itemSize, horizontal, children, bufferSize, totalSize, scrollEventThrottle, ...rest } = props;
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
@@ -90,7 +91,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         forwardRef={ref}
         {...rest}
         horizontal={horizontal}
-        onScroll={handleScroll}
+        onScroll={scrollEventThrottle ? throttle(handleScroll, scrollEventThrottle) : handleScroll}
         scroll-anchoring={true}
       >
         <View style={{

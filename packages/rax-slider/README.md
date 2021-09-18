@@ -4,7 +4,7 @@
 
 > Web 或小程序场景推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)
 >
-> rax-slider 由于历史原因，即将退役。遇到问题可能无法得到高优先级支持，非内联样式场景强烈推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)！
+> rax-slider 由于历史原因，可能存在一些问题，非内联样式场景强烈推荐使用 [rax-swiper](https://github.com/raxjs/rax-components/blob/master/packages/rax-swiper/README.md)！
 
 ## 支持
 

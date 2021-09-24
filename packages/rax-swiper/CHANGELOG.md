@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.O
+
+- [chore] update swiper dependency version to 6.8.4
+- [feat] keep the same with Swiper.js 6.8.4
+- [fix] event handler can't update
+
 ## 0.1.4
 
 - [chore] update swiper version to 6.7.1

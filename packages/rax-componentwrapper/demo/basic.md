@@ -9,15 +9,15 @@ basic usage
 import { createElement, useState } from 'rax';
 import ComponentWrapper from 'rax-componentwrapper';
 import View from 'rax-view';
-import Text from 'rax-text';
 
-function App() {
-  const [arr, setArr] = useState([1, 2, 3]);
+const App = () => {
+  const [count, setCount] = useState(1);
+
   return (
     <View>
-      <View onClick={() => setArr([2, 2, 2])}>Click</View>
+      <View onClick={() => setCount(count ++)}>plus</View>
       <ComponentWrapper>
-      {arr.map((item, index) => <Text key={index}>{item}</Text>)}
+        <View>{count}</View>
       </ComponentWrapper>
     </View>
   );

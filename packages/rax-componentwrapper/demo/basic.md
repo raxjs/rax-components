@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <View>
-      <View onClick={() => setCount(count ++)}>plus</View>
+      <View onClick={() => setCount(count + 1)}>plus</View>
       <ComponentWrapper>
         <View>{count}</View>
       </ComponentWrapper>

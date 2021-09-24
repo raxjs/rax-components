@@ -4,8 +4,8 @@
   "description": "组件功能描述",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "build",
     "dist",
     "es",
     "lib"
@@ -17,23 +17,25 @@
   "engines": {
     "npm": ">=3.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raxjs/rax-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raxjs/rax-components/issues"
+  },
+  "homepage": "https://github.com/raxjs/rax-components#readme",
   "scripts": {
-    "start": "build-scripts start",
-    "build": "build-scripts build",
-    "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
-    "eslint:fix": "npm run eslint -- --fix",
-    "stylelint": "stylelint \"**/*.{css,scss,less}\"",
-    "lint": "npm run eslint && npm run stylelint",
+    "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
+    "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "jsx2mp-runtime": "^0.4.8",
     "rax": "^1.1.0"
   },
   "devDependencies": {
     "@ali/build-plugin-miniapp-preview": "^1.1.0",
     "@alib/build-scripts": "^0.1.0",
-    "@iceworks/spec": "^1.0.0",
     "@types/rax": "^1.0.0",
     "build-plugin-component": "^1.0.0",
     "driver-universal": "^3.1.0",
@@ -45,14 +47,5 @@
     "stylelint": "^13.7.2",
     "typescript": "^3.7.3"
   },
-  "componentConfig": {
-    "name": "rax-componentwrapper",
-    "title": "自定义组件",
-    "category": ""
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "homepage": "https://unpkg.com/rax-componentwrapper@1.0.0-0/build/index.html"
+  "license": "BSD-3-Clause"
 }

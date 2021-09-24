@@ -14,6 +14,7 @@ function getChangedParams(swiperParams, oldParams, children, oldChildren) {
   const watchParams = paramsList.filter((key) => key[0] === '_').map((key) => key.replace(/_/, ''));
   watchParams.forEach((key) => {
     if (key in swiperParams && key in oldParams) {
+      // deep watch for changed params
       if (isObject(swiperParams[key]) && isObject(oldParams[key])) {
         const newKeys = Object.keys(swiperParams[key]);
         const oldKeys = Object.keys(oldParams[key]);

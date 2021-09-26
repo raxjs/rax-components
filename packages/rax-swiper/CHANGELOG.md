@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.O
+## 0.1.5
 
 - [chore] update swiper dependency version to 6.8.4
 - [feat] keep the same with Swiper.js 6.8.4

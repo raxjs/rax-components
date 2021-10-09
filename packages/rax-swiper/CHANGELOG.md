@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- [feature] support swiper in miniapp
+
 ## 0.1.4
 
 - [chore] update swiper version to 6.7.1

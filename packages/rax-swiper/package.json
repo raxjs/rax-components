@@ -1,12 +1,24 @@
 {
   "name": "rax-swiper",
   "author": "rax",
-  "version": "0.1.4",
+  "version": "0.2.0-0",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "web": "./es/web/index.js",
+      "miniapp": "./es/miniapp/index.js",
+      "wechat-miniprogram": "./es/miniapp/index.js",
+      "bytedance-microapp": "./es/miniapp/index.js",
+      "baidu-smartprogram": "./es/miniapp/index.js",
+      "kuaishou-miniprogram": "./es/miniapp/index.js",
+      "default": "./es/index.js"
+    },
+    "./*": "./*"
+  },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",
     "start": "../../node_modules/.bin/build-scripts start --config ../../build.json",

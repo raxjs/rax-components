@@ -63,7 +63,7 @@
     "rax": "1.2.3-beta.1"
   },
   "scripts": {
-    "setup": "rm -rf node_modules && ayarn install && npm run clean && npm run build",
+    "setup": "rm -rf node_modules && yarn install && npm run clean && npm run build",
     "build": "node ./scripts/compile.js",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",

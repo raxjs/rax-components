@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 10
           registry-url: https://registry.npmjs.org/
-      - run: npm setup
+      - run: npm run setup
       - run: npm run lint
       - run: npm run build
       - run: npm run test

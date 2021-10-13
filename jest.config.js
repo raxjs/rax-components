@@ -16,4 +16,7 @@ module.exports = {
     '/build/',
     '/dist/',
   ],
+  'moduleNameMapper': {
+    '\\.(css|less|scss|sass)$': 'jest-transform-css'
+  },
 };

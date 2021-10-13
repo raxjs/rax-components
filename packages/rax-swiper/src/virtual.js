@@ -5,7 +5,7 @@ function updateOnVirtualData(swiper) {
     !swiper ||
     swiper.destroyed ||
     !swiper.params.virtual ||
-    (swiper.params.virtual && !swiper.params.virtual.enabled)
+    swiper.params.virtual && !swiper.params.virtual.enabled
   )
     return;
   swiper.updateSlides();

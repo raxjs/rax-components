@@ -36,7 +36,7 @@ function renderLoop(swiper, slides, swiperParams) {
 
   if (swiperParams.loopFillGroupWithBlank) {
     const blankSlidesNum =
-      swiperParams.slidesPerGroup - (modifiedSlides.length % swiperParams.slidesPerGroup);
+      swiperParams.slidesPerGroup - modifiedSlides.length % swiperParams.slidesPerGroup;
     if (blankSlidesNum !== swiperParams.slidesPerGroup) {
       for (let i = 0; i < blankSlidesNum; i += 1) {
         const blankSlide = (

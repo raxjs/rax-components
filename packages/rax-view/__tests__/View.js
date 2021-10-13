@@ -1,13 +1,17 @@
 global.callNative = null;
 import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
-import View from '../lib';
+import View from '../src';
 
 describe('View', () => {
-  it.only('render tag view', () => {
-    const component = renderer.create(<View>Example</View>);
+  beforeEach(function() {
+    jest.useFakeTimers();
+  });
+  it('render tag view', () => {
+    const el = <View>Example</View>;
+    const component = renderer.create(el);
+    jest.runAllTimers();
     let tree = component.toJSON();
-    console.log('==>', tree);
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0]).toEqual('Example');
   });

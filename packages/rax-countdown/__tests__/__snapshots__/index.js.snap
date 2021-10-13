@@ -3,35 +3,37 @@
 exports[`CountDown basic render 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view rax-countdown-main",
+    "class": "rax-view-v2 rax-countdown-main",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -40,42 +42,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "天",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -84,42 +89,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "时",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -128,42 +136,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "分",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "1",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -172,13 +183,14 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "秒",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
@@ -190,59 +202,63 @@ Object {
 exports[`CountDown render days bigger than 99 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view rax-countdown-main",
+    "class": "rax-view-v2 rax-countdown-main",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "1",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "1",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "5",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "7",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -251,42 +267,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "天",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "9",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -295,42 +314,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "时",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "4",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "6",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -339,42 +361,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "分",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "4",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -383,13 +408,14 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "秒",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
@@ -401,35 +427,37 @@ Object {
 exports[`CountDown render timeRemaining smaller than 0 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view rax-countdown-main",
+    "class": "rax-view-v2 rax-countdown-main",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -438,42 +466,45 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "分",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
-            "webkitLineClamp": undefined,
+            "WebkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -482,13 +513,14 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "秒",
       ],
       "style": Object {
-        "webkitLineClamp": undefined,
+        "WebkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
@@ -500,40 +532,42 @@ Object {
 exports[`CountDown render with custom style 1`] = `
 Object {
   "attributes": Object {
-    "class": "rax-view rax-countdown-main",
+    "class": "rax-view-v2 rax-countdown-main",
   },
   "children": Array [
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "red",
             "color": "#007457",
+            "lineClamp": undefined,
             "marginLeft": "2rpx",
             "marginRight": "2rpx",
-            "webkitLineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "yellow",
-            "webkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -542,48 +576,51 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "-",
       ],
       "style": Object {
+        "WebkitLineClamp": undefined,
         "backgroundColor": "blue",
-        "webkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "red",
             "color": "#007457",
+            "lineClamp": undefined,
             "marginLeft": "2rpx",
             "marginRight": "2rpx",
-            "webkitLineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "yellow",
-            "webkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -592,48 +629,51 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "-",
       ],
       "style": Object {
+        "WebkitLineClamp": undefined,
         "backgroundColor": "blue",
-        "webkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "red",
             "color": "#007457",
+            "lineClamp": undefined,
             "marginLeft": "2rpx",
             "marginRight": "2rpx",
-            "webkitLineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "1",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "yellow",
-            "webkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },
@@ -642,48 +682,51 @@ Object {
     },
     Object {
       "attributes": Object {
-        "class": "rax-text ",
+        "class": "rax-text-v2 ",
       },
       "children": Array [
         "-",
       ],
       "style": Object {
+        "WebkitLineClamp": undefined,
         "backgroundColor": "blue",
-        "webkitLineClamp": undefined,
+        "lineClamp": undefined,
       },
       "tagName": "SPAN",
     },
     Object {
       "attributes": Object {
-        "class": "rax-view rax-countdown-item",
+        "class": "rax-view-v2 rax-countdown-item",
       },
       "children": Array [
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "4",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "red",
             "color": "#007457",
+            "lineClamp": undefined,
             "marginLeft": "2rpx",
             "marginRight": "2rpx",
-            "webkitLineClamp": undefined,
           },
           "tagName": "SPAN",
         },
         Object {
           "attributes": Object {
-            "class": "rax-text ",
+            "class": "rax-text-v2 ",
           },
           "children": Array [
             "0",
           ],
           "style": Object {
+            "WebkitLineClamp": undefined,
             "backgroundColor": "yellow",
-            "webkitLineClamp": undefined,
+            "lineClamp": undefined,
           },
           "tagName": "SPAN",
         },

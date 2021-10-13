@@ -1,6 +1,6 @@
 {
   "name": "rax-countdown",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "Countdown component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -34,18 +34,19 @@
     "react-component"
   ],
   "dependencies": {
-    "rax-image": "^1.0.0",
     "prop-types": "^15.7.2",
-    "rax-text": "^1.0.0",
-    "rax-view": "^1.0.0"
+    "rax-image": "^1.0.0",
+    "rax-text": "^2.0.0",
+    "rax-view": "^2.0.0"
   },
   "peerDependencies": {
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@types/rax": "^1.0.0",
+    "rax-test-renderer": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "csstype": "^2.6.4",

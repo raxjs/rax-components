@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
       "miniapp": "./es/miniapp-runtime/index.js",
@@ -70,9 +70,7 @@
   "devDependencies": {
     "@types/rax": "^1.0.0",
     "driver-universal": "^3.1.0",
-    "rax": "^1.1.0",
     "rax-image": "^2.2.0",
-    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.7.5"
   }
 }

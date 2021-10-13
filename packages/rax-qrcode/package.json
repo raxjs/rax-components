@@ -49,7 +49,6 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "miniprogram-api-typings": "^2.9.3",
-    "rax-test-renderer": "^1.0.0",
     "rax-view": "^1.0.1"
   }
 }

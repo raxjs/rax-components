@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "web": "./es/common/index.js",
       "weex": "./es/common/index.js",
       "wechat-miniprogram": "./es/miniapp/wechat.js",
@@ -64,8 +64,6 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "rax": "^1.0.0",
-    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.3"
   }
 }

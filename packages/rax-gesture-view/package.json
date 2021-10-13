@@ -45,8 +45,6 @@
     "driver-universal": "^1.0.2",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "rax": "^1.0.0",
-    "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.1.6"
   }
 }

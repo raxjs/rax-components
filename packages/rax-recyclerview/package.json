@@ -75,9 +75,11 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
+    "rax": "^1.0.0",
     "rax-picture": "^1.0.1",
     "rax-slider": "^1.1.0-0",
     "rax-tab-panel": "^1.0.1",
+    "rax-test-renderer": "^1.0.0",
     "rax-text": "^2.0.0",
     "universal-transition": "^1.0.0",
     "typescript": "^3.5.3"

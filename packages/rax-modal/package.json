@@ -53,6 +53,7 @@
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
     "lerna": "^3.16.4",
+    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.6.2"
   }
 }

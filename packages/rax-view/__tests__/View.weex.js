@@ -1,19 +1,18 @@
-import { createElement } from 'rax';
+import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
-import View from '../lib';
-
-console.log('==>', View);
+import View from '../lib/';
 
 jest.mock('universal-env', () => {
   return {
-    isWeex: true,
+    isWeex: true
   };
 });
 
 describe('View in weex', () => {
   it('render tag view', () => {
-    const component = renderer.create(<View>Example</View>);
-
+    const component = renderer.create(
+      <View>Example</View>
+    );
     let tree = component.toJSON();
 
     expect(tree.tagName).toEqual('DIV');

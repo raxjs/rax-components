@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports": {
-    ".": {
+  "exports":{
+    ".":{
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
       "miniapp": "./es/miniapp-runtime/index.js",
@@ -68,6 +68,8 @@
     "eslint-config-rax": "^0.0.0",
     "mini-types": "^0.1.1",
     "miniprogram-api-typings": "^2.10.1",
+    "rax": "^1.0.0",
+    "rax-test-renderer": "^1.0.0",
     "rax-view": "^1.0.2"
   }
 }

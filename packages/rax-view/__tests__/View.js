@@ -1,27 +1,32 @@
 global.callNative = null;
-import { createElement } from 'rax';
+import {createElement} from 'rax';
 import renderer from 'rax-test-renderer';
 import View from '../lib';
 
 describe('View', () => {
-  it.only('render tag view', () => {
-    const component = renderer.create(<View>Example</View>);
+  it('render tag view', () => {
+    const component = renderer.create(
+      <View>Example</View>
+    );
     let tree = component.toJSON();
-    console.log('==>', tree);
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0]).toEqual('Example');
   });
 
   it('turn onPress to onClick', () => {
     const mockPress = jest.fn();
-    const component = renderer.create(<View onClick={mockPress}>Example</View>);
+    const component = renderer.create(
+      <View onClick={mockPress}>Example</View>
+    );
     let tree = component.toJSON();
     expect(tree.eventListeners.click).toBe(mockPress);
   });
 
   // not work
   it.skip('style in View', () => {
-    const component = renderer.create(<View>Example</View>);
+    const component = renderer.create(
+      <View>Example</View>
+    );
     let tree = component.toJSON();
     expect(tree.style.border).toBe('0 solid black');
     expect(tree.style.boxSizing).toBe('border-box');

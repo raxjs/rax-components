@@ -8,7 +8,7 @@ const axios = require('axios');
 const semver = require('semver');
 
 function checkVersion(folder, callback) {
-  const ret = []; // { name: 'foo', workDir, latest: 'x.x.x', local: 'x.x.x', shouldBuild }
+  const ret = []; // { name: 'foo', workDir, latest: 'x.x.x', local: 'x.x.x' }
   if (existsSync(folder)) {
     const packages = readdirSync(folder);
     console.log('[PUBLISH] Start check with following packages:');
@@ -35,8 +35,6 @@ function checkVersion(folder, callback) {
                 workDir: join(folder, packageFolderName),
                 main: packageInfo.main,
                 local: packageInfo.version,
-                // If exists scripts.build, then run it.
-                shouldBuild: !!(packageInfo.scripts && packageInfo.scripts.build),
               });
             }
 
@@ -59,7 +57,7 @@ function checkBuildSuccess(workDir, main) {
   return existsSync(join(workDir, main));
 }
 
-function publish(pkg, workDir, main, version, shouldBuild, tag) {
+function publish(pkg, workDir, main, version, tag) {
   console.log('[PUBLISH]', `${pkg}@${version}`);
 
   // npm install
@@ -69,17 +67,6 @@ function publish(pkg, workDir, main, version, shouldBuild, tag) {
     stdio: 'inherit',
     cwd: workDir,
   });
-
-  if (shouldBuild) {
-    // npm run build
-    spawnSync('npm', [
-      'run',
-      'build',
-    ], {
-      stdio: 'inherit',
-      cwd: workDir,
-    });
-  }
 
   // npm publish
   if (checkBuildSuccess(workDir, main)) {
@@ -112,10 +99,10 @@ function checkVersionAndPublish() {
     }
 
     for (let i = 0; i < ret.length; i++) {
-      const { name, workDir, main, local, shouldBuild } = ret[i];
+      const { name, workDir, main, local } = ret[i];
       const tag = isPrerelease(local) ? 'beta' : 'latest';
       console.log(`--- ${name}@${local} current tag: ${tag} ---`);
-      publish(name, workDir, main, local, shouldBuild, tag);
+      publish(name, workDir, main, local, tag);
     }
   });
 }

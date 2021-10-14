@@ -5,6 +5,12 @@ module.exports = function(api) {
   return {
     'presets': [
       '@babel/preset-flow',
+      [
+        '@babel/preset-typescript',
+        {
+          'onlyRemoveTypeImports': true,
+        }
+      ],
       ['@babel/preset-env', {
         'loose': true
       }],

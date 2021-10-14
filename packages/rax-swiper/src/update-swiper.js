@@ -1,15 +1,15 @@
 import { isObject, extend } from './utils';
 
 function updateSwiper({
-                        swiper,
-                        slides,
-                        passedParams,
-                        changedParams,
-                        nextEl,
-                        prevEl,
-                        scrollbarEl,
-                        paginationEl,
-                      }) {
+  swiper,
+  slides,
+  passedParams,
+  changedParams,
+  nextEl,
+  prevEl,
+  scrollbarEl,
+  paginationEl,
+}) {
   const updateParams = changedParams.filter((key) => key !== 'children' && key !== 'direction');
   const { params: currentParams, pagination, navigation, scrollbar, virtual, thumbs } = swiper;
   let needThumbsInit;

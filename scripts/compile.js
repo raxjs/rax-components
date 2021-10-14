@@ -27,11 +27,9 @@ const packagesDir = path.resolve(__dirname, '../packages');
 
 function buildPackage(packageName) {
   const packagePath = path.join(packagesDir, packageName);
-  const npm = process.env.NPM || 'npm';
 
   console.log(`\n Start compile ${packageName}`);
   shell.cd(packagePath);
-  shell.exec(npm === 'tnpm' ? 'tnpm update' : `${npm} install`);
   shell.exec('npm run build');
   console.log(`\n Success compile ${packageName}`);
 }

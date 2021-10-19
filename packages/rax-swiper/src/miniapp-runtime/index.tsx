@@ -40,8 +40,10 @@ const Swiper: ForwardRefExoticComponent<SwiperProps> = forwardRef((props, ref) =
       setActiveIndex(activeIndexRef.current);
     },
     slideTo(index) {
-      activeIndexRef.current = index;
-      setActiveIndex(activeIndexRef.current);
+      if (index !== undefined) {
+        activeIndexRef.current = index;
+        setActiveIndex(activeIndexRef.current);
+      }
     }
   };
 

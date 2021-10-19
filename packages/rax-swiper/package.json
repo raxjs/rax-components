@@ -1,7 +1,7 @@
 {
   "name": "rax-swiper",
   "author": "rax",
-  "version": "0.2.0-0",
+  "version": "0.2.0-1",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -10,14 +10,26 @@
   "exports": {
     ".": {
       "web": "./es/web/index.js",
-      "miniapp": "./es/miniapp/index.js",
-      "wechat-miniprogram": "./es/miniapp/index.js",
-      "bytedance-microapp": "./es/miniapp/index.js",
-      "baidu-smartprogram": "./es/miniapp/index.js",
-      "kuaishou-miniprogram": "./es/miniapp/index.js",
+      "miniapp": "./es/miniapp-runtime/index.js",
+      "wechat-miniprogram": "./es/miniapp-runtime/index.js",
+      "bytedance-microapp": "./es/miniapp-runtime/index.js",
+      "baidu-smartprogram": "./es/miniapp-runtime/index.js",
+      "kuaishou-miniprogram": "./es/miniapp-runtime/index.js",
       "default": "./es/index.js"
     },
     "./*": "./*"
+  },
+  "miniprogram": ".",
+  "miniappConfig": {
+    "main": "lib/miniapp-native/ali-miniapp/index",
+    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
+    "subComponents": {
+      "Item": {
+        "tagNameMap": "swiper-item"
+      }
+    },
+    "main:quickapp": "lib/miniapp-native/quickapp/index"
   },
   "scripts": {
     "build": "../../node_modules/.bin/build-scripts build --config ../../build.json --skip-demo",

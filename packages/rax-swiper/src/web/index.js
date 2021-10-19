@@ -1,4 +1,6 @@
 import { Swiper } from './swiper';
 import { SwiperSlide } from './swiper-slide';
 
-export { Swiper, SwiperSlide };
+Swiper.Item = SwiperSlide;
+
+export default Swiper;

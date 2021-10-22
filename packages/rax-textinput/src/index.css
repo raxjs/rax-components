@@ -11,3 +11,7 @@
   line-height: 60rpx;
   height: 60rpx;
 }
+
+.rax-textinput::placeholder{
+  color: #999;
+}

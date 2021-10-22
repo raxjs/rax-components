@@ -1,12 +1,11 @@
 import { ScrollViewProps } from 'rax-scrollview';
-import { RaxNode, RefAttributes, HTMLAttributes, ForwardRefExoticComponent } from 'rax';
+import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent } from 'rax';
 
 export type TItemSize = number | ((e: number) => number);
 
 export interface RecyclerViewRefObject extends ScrollViewProps {
   itemSize: TItemSize;
   totalSize?: number;
-  children: RaxNode[];
   bufferSize?: number;
   horizontal: boolean;
   bufferRatio?: number;

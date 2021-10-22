@@ -1,5 +1,4 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
-import { VirtualizedList } from './VirtualizedList/types';
 
 let RecyclerView = null;
 
@@ -15,5 +14,6 @@ if (RecyclerView.default) {
   RecyclerView = RecyclerView.default;
 }
 
-export default RecyclerView as VirtualizedList;
+export * from './VirtualizedList/types';
+export default RecyclerView;
 

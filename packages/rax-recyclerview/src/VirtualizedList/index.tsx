@@ -1,6 +1,8 @@
 import { createElement, forwardRef, useState, useMemo, memo, Fragment } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
+import Children from 'rax-children';
+
 import NoRecycleList from './NoRecycleList';
 import throttle from './throttle';
 
@@ -59,7 +61,8 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
-    const length = children.length;
+    const flattenChildren = Children.toArray(children);
+    const length = flattenChildren.length;
     const constantKey = getConstantKey(horizontal);
     const manager = useMemo(() => {
       return new SizeAndPositionManager({
@@ -99,7 +102,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         }}>
           <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
           {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`}></Fragment>)}
-          {children.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
+          {flattenChildren.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
           {createArray(length - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`}></Fragment>)}
           <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
         </View>

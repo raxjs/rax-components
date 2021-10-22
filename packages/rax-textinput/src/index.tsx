@@ -86,7 +86,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       password,
       secureTextEntry,
       style,
-      placeholderColor = '#999999',
+      placeholderColor,
       value: propsValue,
       defaultValue,
       controlled
@@ -108,7 +108,8 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     // Check is type supported or not
     // Use isWeb to exclude web-view
     if (isMiniApp && !isWeb) {
-      const basicSupportTypes = ['text', 'number', 'idcard', 'digit'];
+      // in ali miniapp, type="search" is supported
+      const basicSupportTypes = ['text', 'number', 'idcard', 'digit', 'search'];
       // Other types, like numberpad, we can check it with canIUse
       if (!basicSupportTypes.includes(type) && !my.canIUse(`input.type.${type}`)) {
         // If not support, fallback to text

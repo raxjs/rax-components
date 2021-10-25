@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.1
+
+- Replace `ref` with `forwardRef` in `useImperativeHandle` if `forwardRef` exists
+
 ## 3.7.0
 
 - Support weex v2

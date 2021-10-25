@@ -1,6 +1,9 @@
-export default function throttle(func, wait) {
-  var ctx, args, rtn, timeoutID;
-  var last = 0;
+export default function throttle(func: (...args: any[]) => void, wait: number) {
+  let ctx: any;
+  let args: any;
+  let rtn: any;
+  let timeoutID: number | ReturnType<typeof setTimeout>;
+  let last = 0;
 
   function call() {
     timeoutID = 0;
@@ -13,7 +16,7 @@ export default function throttle(func, wait) {
   return function throttled() {
     ctx = this;
     args = arguments;
-    var delta = new Date() - last;
+    var delta = new Date().getTime() - last;
     if (!timeoutID)
       if (delta >= wait) call();
       else timeoutID = setTimeout(call, wait - delta);

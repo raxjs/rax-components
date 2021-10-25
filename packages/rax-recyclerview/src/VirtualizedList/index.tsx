@@ -28,22 +28,14 @@ function getConstantKey(horizontal: boolean) {
   };
 }
 
-const Cell = memo(
-  forwardRef((props, ref) => {
-    return (
-      <View {...props} ref={ref} />
-    );
-  })
-);
+const Cell = memo(({children}) => {
+  return (<>{children}</>);
+});
 Cell.displayName = 'Cell';
 
-const Header = memo(
-  forwardRef((props, ref) => {
-    return (
-      <View {...props} ref={ref} />
-    );
-  })
-);
+const Header = memo(({children}) => {
+  return (<>{children}</>);
+});
 Header.displayName = 'Header';
 
 const NestedList = memo(
@@ -61,18 +53,41 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
-    const flattenChildren = Children.toArray(children);
-    const length = flattenChildren.length;
+    const {
+      headers,
+      cells,
+      cellLength
+    } = useMemo(() => {
+      const flattenChildren = Children.toArray(children);
+
+      // header and cell must list in order
+      let headerIndex = 0;
+      for (let i = 0; i < flattenChildren.length; i ++) {
+        if (flattenChildren[i].type !== Header) {
+          break;
+        }
+        headerIndex++;
+      }
+
+      const headers = flattenChildren.slice(0, headerIndex);
+      const cells = flattenChildren.slice(headerIndex);
+      return {
+        headers,
+        cells,
+        cellLength: cells.length
+      };
+    }, [children]);  
+
     const constantKey = getConstantKey(horizontal);
     const manager = useMemo(() => {
       return new SizeAndPositionManager({
         itemSize,
         horizontal,
         bufferSize,
-        length,
+        length: cellLength,
         totalSize
       });
-    }, [itemSize, horizontal, length, bufferSize]);
+    }, [itemSize, horizontal, cellLength, bufferSize]);
     const [renderedIndex, setRenderedIndex] = useState(() => manager.getRenderedIndex(0));
     const {
       front,
@@ -97,15 +112,12 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         onScroll={scrollEventThrottle ? throttle(handleScroll, scrollEventThrottle) : handleScroll}
         scroll-anchoring={true}
       >
-        <View style={{
-          [constantKey.placeholderStyle]: `${manager.totalSize}rpx`
-        }}>
-          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
-          {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`}></Fragment>)}
-          {flattenChildren.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
-          {createArray(length - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`}></Fragment>)}
-          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
-        </View>
+        {headers}
+        <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
+        {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`}></Fragment>)}
+        {cells.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
+        {createArray(cellLength - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`}></Fragment>)}
+        <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
       </ScrollView>
     );
   });

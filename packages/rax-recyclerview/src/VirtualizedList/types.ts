@@ -15,7 +15,7 @@ export interface RecyclerViewRefObject extends ScrollViewProps {
 export interface LegacyRefObject extends RefAttributes<any>, HTMLAttributes<HTMLDivElement> {}
 
 export interface VirtualizedList extends ForwardRefExoticComponent<RecyclerViewRefObject> {
-  Header?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
-  Cell?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
+  Header?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>> | Rax.NamedExoticComponent<object>;
+  Cell?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>> | Rax.NamedExoticComponent<object>;
   NestedList?: Rax.MemoExoticComponent<ForwardRefExoticComponent<LegacyRefObject>>;
 }

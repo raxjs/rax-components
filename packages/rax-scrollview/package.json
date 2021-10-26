@@ -65,6 +65,7 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
+    "rax-test-renderer": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.12",
@@ -76,8 +77,6 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "rax": "^1.1.0",
-    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.5.3"
   }
 }

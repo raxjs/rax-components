@@ -10,6 +10,8 @@ const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const parseArgs = require('minimist');
+const generateGraph = require('./generateGraph');
+const traverseGraph = require('./traverseGraph');
 
 const args = parseArgs(process.argv);
 const customPackages = args.packages;
@@ -18,20 +20,34 @@ const packagesDir = path.resolve(__dirname, '../packages');
 
 (async function compile() {
   process.stdout.write(chalk.bold.inverse('Compiling packages\n'));
-  const packages = getPackages(packagesDir, customPackages);
+  const packages = getPackages(packagesDir, customPackages)
+    .map((packageName) => {
+      const pkgData = JSON.parse(fs.readFileSync(path.join(packagesDir, packageName, 'package.json')));
+      return {
+        name: pkgData.name,
+        dependencies: pkgData.dependencies,
+        localDependencies: [],
+        localDependents: [],
+      };
+    });
 
-  for (const packageName of packages) {
+  const graph = generateGraph(packages);
+  const needBuildPackages = [];
+
+  graph.forEach((pkgInfo) => {
+    traverseGraph(pkgInfo, needBuildPackages);
+  });
+
+  for (const packageName of needBuildPackages) {
     await buildPackage(packageName);
   }
 })();
 
 function buildPackage(packageName) {
   const packagePath = path.join(packagesDir, packageName);
-  const npm = process.env.NPM || 'npm';
 
   console.log(`\n Start compile ${packageName}`);
   shell.cd(packagePath);
-  shell.exec(npm === 'tnpm' ? 'tnpm update' : `${npm} install`);
   shell.exec('npm run build');
   console.log(`\n Success compile ${packageName}`);
 }

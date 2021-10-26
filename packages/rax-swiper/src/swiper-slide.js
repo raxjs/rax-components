@@ -3,7 +3,10 @@ import { uniqueClasses } from './utils';
 import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect';
 
 const SwiperSlide = forwardRef(
-  ({ tag: Tag = 'div', children, className = '', swiper, zoom, ...rest } = {}, externalRef) => {
+  (
+    { tag: Tag = 'div', children, className = '', swiper, zoom, virtualIndex, ...rest } = {},
+    externalRef,
+  ) => {
     const slideElRef = useRef(null);
     const [slideClasses, setSlideClasses] = useState('swiper-slide');
 
@@ -31,6 +34,11 @@ const SwiperSlide = forwardRef(
         swiper.off('_slideClass', updateClasses);
       };
     });
+    useIsomorphicLayoutEffect(() => {
+      if (swiper && slideElRef.current) {
+        setSlideClasses(swiper.getSlideClasses(slideElRef.current));
+      }
+    }, [swiper]);
 
     let slideData;
     if (typeof children === 'function') {
@@ -45,7 +53,7 @@ const SwiperSlide = forwardRef(
           slideClasses.indexOf('swiper-slide-duplicate-prev') >= 0,
         isNext:
           slideClasses.indexOf('swiper-slide-next') >= 0 ||
-          slideClasses.indexOf('swiper-slide-duplicate next') >= 0,
+          slideClasses.indexOf('swiper-slide-duplicate-next') >= 0,
       };
     }
 
@@ -57,6 +65,7 @@ const SwiperSlide = forwardRef(
       <Tag
         ref={slideElRef}
         className={uniqueClasses(`${slideClasses}${className ? ` ${className}` : ''}`)}
+        data-swiper-slide-index={virtualIndex}
         {...rest}
       >
         {zoom ? (

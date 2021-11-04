@@ -66,7 +66,7 @@ class SizeAndPositionManager {
         } else {
           startIndex = Math.floor((distance - this.bufferSize) / itemSize);
         }
-        endIndex = Math.ceil(this.bufferSize * SizeAndPositionManager.bufferRatio / itemSize) + startIndex;
+        endIndex = Math.ceil(this.bufferSize * SizeAndPositionManager.bufferRatio / itemSize) + startIndex - 1;
 
         return {
           startIndex,
@@ -77,23 +77,29 @@ class SizeAndPositionManager {
     return (scrollDistance: number) => {
       const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
       let startIndex = -1;
-      let endIndex = -1;
+      let endIndex = this.length - 1;
       let size = 0;
-      const frontSize = this.bufferSize + distance;
-      const backSize = this.bufferSize * SizeAndPositionManager.bufferRatio + distance;
-      for (let i = 0; i < this.length; i++) {
-        size += this.getSize(i);
-        if (startIndex === -1 && size >= frontSize) {
-          startIndex = i;
-        }
-        if (size >= backSize) {
-          endIndex = i;
-          return {
-            startIndex,
-            endIndex
-          };
+      if (distance < this.bufferSize) {
+        startIndex = 0;
+      } else {
+        const frontSize = distance - this.bufferSize;
+        for (let i = 0; i < this.length; i++) {
+          size += this.getSize(i);
+          if (size >= frontSize) {
+            startIndex = i;
+            break;
+          }
         }
       }
+      const backSize = this.bufferSize * SizeAndPositionManager.bufferRatio + distance;
+      for (let i = startIndex; i < this.length; i++) {
+        size += this.getSize(i);
+        if (size >= backSize) {
+          endIndex = i;
+          break;
+        }
+      }
+
       return {
         startIndex,
         endIndex

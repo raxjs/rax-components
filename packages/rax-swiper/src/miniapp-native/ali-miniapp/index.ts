@@ -11,15 +11,15 @@ Component({
     className: '',
     style: '',
     autoplay: false,
-    showsPagination: true,
+    pagination: true,
     loop: true,
     initialSlide: 0,
-    autoPlayInterval: 1000,
+    interval: 3000,
     direction: 'horizontal',
     onChange: noop,
     paginationStyle: {
-      itemColor: 'rgba(255, 255, 255, 0.5)',
-      itemActiveColor: 'rgb(255, 80, 0)',
+      itemColor: 'rgba(0, 0, 0, .3)',
+      itemActiveColor: '#000000',
     },
     children: []
   },
@@ -49,7 +49,7 @@ Component({
   didUpdate(prevProps) {
     const newData = Object.create(null);
     let changed = false;
-    if (prevProps.initialSlide !== this.props.initialSlide) {
+    if (prevProps.initialSlide !== this.props.initialSlide && this.props.initialSlide !== this.data.current) {
       newData.current = this.props.initialSlide;
       changed = true;
     }
@@ -80,13 +80,28 @@ Component({
       }
     },
     slideNext() {
-      const current = this.data.current + 1 >= this.data.__length ? 0 : this.data.current + 1;
+      let current = this.data.current + 1;
+      if (current >= this.data.__length) {
+        if (this.data.autoplay) {
+          current = 0;
+        } else {
+          return;
+        }
+      }
       this.setData({
         current
       });
     },
     slidePrev() {
-      const current = this.data.current - 1 >= 0 ? this.data.current - 1 : this.data.__length - 1;
+      let current = this.data.current - 1;
+      if (current < 0) {
+        if (this.data.autoplay) {
+          current = this.data.__length - 1;
+        } else {
+          return;
+        }
+      }
+      
       this.setData({
         current
       });

@@ -35,9 +35,13 @@ Component({
     paginationStyle: {
       type: Object,
       value: {
-        itemColor: 'rgba(255, 255, 255, 0.5)',
-        itemActiveColor: 'rgb(255, 80, 0)',
+        itemColor: 'rgba(0, 0, 0, .3)',
+        itemActiveColor: '#000000',
       },
+    },
+    interval: {
+      type: Number,
+      value: 3000
     },
     __length: {
       type: Number,
@@ -61,7 +65,7 @@ Component({
   },
   observers: {
     'initialSlide': function(nextIndex) {
-      if (this.properties.initialSlide !== nextIndex) {
+      if (this.properties.initialSlide !== nextIndex && this.data.current !== nextIndex) {
         this.setData({
           current: nextIndex
         });
@@ -90,13 +94,28 @@ Component({
       }
     },
     slideNext() {
-      const current = this.data.current + 1 >= this.data.__length ? 0 : this.data.current + 1;
+      let current = this.data.current + 1;
+      if (current >= this.data.__length) {
+        if (this.data.autoplay) {
+          current = 0;
+        } else {
+          return;
+        }
+      }
       this.setData({
         current
       });
     },
     slidePrev() {
-      const current = this.data.current - 1 >= 0 ? this.data.current - 1 : this.data.__length - 1;
+      let current = this.data.current - 1;
+      if (current < 0) {
+        if (this.data.autoplay) {
+          current = this.data.__length - 1;
+        } else {
+          return;
+        }
+      }
+      
       this.setData({
         current
       });

@@ -1,9 +1,9 @@
-import { createElement, useRef, useState, useEffect, forwardRef, useImperativeHandle, useMemo, ForwardRefExoticComponent } from 'rax';
+import { createElement, useRef, useState, forwardRef, useImperativeHandle, useMemo, Fragment } from 'rax';
 import Children from 'rax-children';
 
-import { SwiperProps } from '../types';
+import { SwiperType } from '../types';
 
-const Swiper: ForwardRefExoticComponent<SwiperProps> = forwardRef((props, ref) => {
+const Swiper: SwiperType = forwardRef((props, ref) => {
   const {
     autoplay = false,
     pagination = true,
@@ -12,7 +12,8 @@ const Swiper: ForwardRefExoticComponent<SwiperProps> = forwardRef((props, ref) =
     onSlideChange,
     direction = 'horizontal',
     children,
-    onSwiper,
+    interval,
+    paginationStyle = {},
     ...rest
   } = props;
 
@@ -52,6 +53,25 @@ const Swiper: ForwardRefExoticComponent<SwiperProps> = forwardRef((props, ref) =
     ...methods
   };
 
+  const {
+    autoplay: _autoplay,
+    pagination: _pagination,
+    vertical: _vertical,
+    interval: _interval,
+    paginationStyle: _paginationStyle
+  } = useMemo(() => {
+    return {
+      autoplay: typeof autoplay === 'boolean' ? autoplay : true,
+      pagination: typeof pagination === 'boolean' ? pagination : true,
+      vertical: direction === 'vertical',
+      interval: interval || 3000,
+      paginationStyle: {
+        itemColor: paginationStyle.itemColor || 'rgba(0, 0, 0, .3)',
+        itemActiveColor: paginationStyle.itemActiveColor || '#000000'
+      }
+    }
+  }, [autoplay, pagination, direction, interval, paginationStyle]);
+
   useImperativeHandle(ref, () => {
     return {
       activeIndex: activeIndexRef.current,
@@ -59,30 +79,26 @@ const Swiper: ForwardRefExoticComponent<SwiperProps> = forwardRef((props, ref) =
     };
   });
 
-  useEffect(() => {
-    if (onSwiper) {
-      onSwiper(swiperRef.current);
-    }
-  }, []);
-
   return (
-    <view>
-      <swiper
-        indicator-dots={pagination}
-        autoplay={autoplay}
-        current={activeIndex}
-        vertical={direction === 'vertical'}
-        onChange={slideChange}
-        circular={loop}
-        className="swiper-container"
-        {...rest}
-      >
-        {children}
-      </swiper>
-    </view>
+    <swiper
+      indicator-dots={_pagination}
+      autoplay={_autoplay}
+      current={activeIndex}
+      vertical={_vertical}
+      onChange={slideChange}
+      circular={loop}
+      className="swiper-container"
+      interval={_interval}
+      indicator-color={_paginationStyle.itemColor}
+      indicator-active-color={_paginationStyle.itemActiveColor}
+      {...rest}
+    >
+      {Children.map(children, child => child && <swiper-item key={child.key}>{child}</swiper-item>)}
+    </swiper>
   );
 });
 
 Swiper.displayName = 'Swiper';
+Swiper.Item = Fragment;
 
 export default Swiper;

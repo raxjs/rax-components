@@ -1,4 +1,4 @@
-import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent, FunctionComponent } from 'rax';
+import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent, Fragment } from 'rax';
 
 export interface SwiperRefObject {
   activeIndex: number;
@@ -13,17 +13,20 @@ export interface EventTarget {
 }
 
 export interface SwiperProps extends RefAttributes<SwiperRefObject>, HTMLAttributes<HTMLDivElement>{
-  autoplay: boolean;
-  pagination: boolean;
-  loop: boolean;
-  initialSlide: number;
-  onSlideChange: (eventTarget: EventTarget) => void;
-  direction: 'horizontal' | 'vertical';
-  paginationColor?: string;
-  paginationActiveColor?: string;
+  autoplay?: boolean | object;
+  pagination?: boolean | object;
+  loop?: boolean;
+  initialSlide?: number;
+  onSlideChange?: (eventTarget: EventTarget) => void;
+  direction?: 'horizontal' | 'vertical';
+  interval?: number;
+  paginationStyle?: {
+    itemColor?: string;
+    itemActiveColor?: string;
+  }
 }
 
-export type TSwiper = ForwardRefExoticComponent<SwiperProps>;
-
-export type TSwiperSlide = ForwardRefExoticComponent<Record<string, any>> | FunctionComponent;
+export interface SwiperType extends ForwardRefExoticComponent<SwiperProps> {
+  Item?: typeof Fragment
+};
 

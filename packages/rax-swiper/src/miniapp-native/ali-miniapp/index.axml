@@ -4,7 +4,7 @@
   autoplay="{{autoplay}}"
   indicator-dots="{{pagination}}"
   current="{{current}}"
-  interval="{{autoPlayInterval}}"
+  interval="{{interval}}"
   circular="{{loop}}"
   indicator-color="{{paginationStyle.itemColor}}"
   indicator-active-color="{{paginationStyle.itemActiveColor}}"

@@ -1,17 +1,18 @@
 import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
+import RecyclerViewWeb from './web';
+import RecyclerViewWeex from './weex';
+import RecyclerViewMiniProgram from './miniapp-runtime';
 
 let RecyclerView = null;
 
 if (isWeex) {
-  RecyclerView = require('./weex');
-} else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram)) {
-  RecyclerView = require('./miniapp-runtime');
+  RecyclerView = RecyclerViewWeex;
+} else if (isWeb) {
+  RecyclerView = RecyclerViewWeb;
+} else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) {
+  RecyclerView = RecyclerViewMiniProgram;
 } else {
-  RecyclerView = require('./web');
-}
-
-if (RecyclerView.default) {
-  RecyclerView = RecyclerView.default;
+  RecyclerView = RecyclerViewWeb;
 }
 
 export * from './VirtualizedList/types';

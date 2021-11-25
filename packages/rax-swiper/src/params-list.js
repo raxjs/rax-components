@@ -7,6 +7,10 @@ const paramsList = [
   '_speed',
   'cssMode',
   'updateOnWindowResize',
+  'resizeObserver',
+  'nested',
+  'focusableElements',
+  '_enabled',
   '_width',
   '_height',
   'preventInteractionOnTransition',
@@ -91,6 +95,9 @@ const paramsList = [
   'slideDuplicatePrevClass',
   'wrapperClass',
   'runCallbacksOnInit',
+  'observer',
+  'observeParents',
+  'observeSlideChildren',
 
   // modules
   'a11y',

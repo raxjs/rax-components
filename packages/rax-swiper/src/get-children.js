@@ -1,7 +1,18 @@
-import { Fragment } from 'rax';
 import Children from 'rax-children';
 
-function getChildren(children) {
+function processChildren(c) {
+  const slides = [];
+  Children.toArray(c).forEach((child) => {
+    if (child.type && child.type.displayName === 'SwiperSlide') {
+      slides.push(child);
+    } else if (child.props && child.props.children) {
+      processChildren(child.props.children).forEach((slide) => slides.push(slide));
+    }
+  });
+  return slides;
+}
+
+function getChildren(c) {
   const slides = [];
 
   const slots = {
@@ -10,22 +21,24 @@ function getChildren(children) {
     'wrapper-start': [],
     'wrapper-end': [],
   };
-  function processChildren(c) {
-    Children.toArray(c).forEach((child) => {
-      if (child.type === Fragment && child.props.children) {
-        processChildren(child.props.children);
-        return;
-      }
-      if (child.type && child.type.displayName === 'SwiperSlide') {
-        slides.push(child);
-      } else if (child.props && child.props.slot && slots[child.props.slot]) {
-        slots[child.props.slot].push(child);
+
+  Children.toArray(c).forEach((child) => {
+    if (child.type && child.type.displayName === 'SwiperSlide') {
+      slides.push(child);
+    } else if (child.props && child.props.slot && slots[child.props.slot]) {
+      slots[child.props.slot].push(child);
+    } else if (child.props && child.props.children) {
+      const foundSlides = processChildren(child.props.children);
+      if (foundSlides.length > 0) {
+        foundSlides.forEach((slide) => slides.push(slide));
       } else {
         slots['container-end'].push(child);
       }
-    });
-  }
-  processChildren(children);
+    } else {
+      slots['container-end'].push(child);
+    }
+  });
+
   return { slides, slots };
 }
 

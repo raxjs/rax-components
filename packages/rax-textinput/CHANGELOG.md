@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.3
+
+- In wechat-miniprogram, `previousValue` change into pureDataProperty `_previousValue` since it's irrelevant with rendering
+
 ## 1.4.2
 
 - `defaultValue` will only render at first time, in order to avoid that a controlled input can't be cleared

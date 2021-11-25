@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6
+
+- [fix] lock `build-plugin-component` to avoid generating `d.ts` file
+
 ## 0.1.5
 
 - [chore] update swiper dependency version to 6.8.4

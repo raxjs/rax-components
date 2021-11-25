@@ -38,11 +38,10 @@
     "rax": "^1.1.0"
   },
   "devDependencies": {
-    "driver-universal": "^3.1.0",
+    "rax-test-renderer": "^1.0.0",
     "csstype": "^2.6.4",
+    "driver-universal": "^3.1.0",
     "eslint": "^5.16.0",
-    "eslint-config-rax": "^0.0.3",
-    "rax": "^1.1.0",
-    "rax-test-renderer": "^1.0.0"
+    "eslint-config-rax": "^0.0.3"
   }
 }

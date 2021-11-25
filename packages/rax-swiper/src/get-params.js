@@ -7,10 +7,12 @@ function getParams(obj = {}) {
   const params = {
     on: {},
   };
+  const events = {};
   const passedParams = {};
   extend(params, Swiper.defaults);
   extend(params, Swiper.extendedDefaults);
   params._emitClasses = true;
+  params.init = false;
 
   const rest = {};
   const allowedParams = paramsList.map((key) => key.replace(/_/, ''));
@@ -26,13 +28,17 @@ function getParams(obj = {}) {
         passedParams[key] = obj[key];
       }
     } else if (key.search(/on[A-Z]/) === 0 && typeof obj[key] === 'function') {
-      params.on[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];
+      events[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];
     } else {
       rest[key] = obj[key];
     }
   });
+  ['navigation', 'pagination', 'scrollbar'].forEach((key) => {
+    if (params[key] === true) params[key] = {};
+    if (params[key] === false) delete params[key];
+  });
 
-  return { params, passedParams, rest };
+  return { params, passedParams, rest, events };
 }
 
 export { getParams };

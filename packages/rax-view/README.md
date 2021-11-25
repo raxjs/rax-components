@@ -34,6 +34,7 @@ $ npm install rax-view --save
 
 ## 注意
 
+- appear 相关事件在 Web 中需要引入并使用 [`appear-polyfill`](https://github.com/raxjs/appear-polyfill)
 - `onAppear`/`onDisappear`/`onFirstAppear` 在微信小程序端仅支持运行时方案
 
 ## 示例

@@ -31,6 +31,10 @@ Component({
       type: String,
       value: 'eager'
     },
+    webp: {
+      type: Boolean,
+      value: false
+    }
   },
   lifetimes: {
     attached: function() {

@@ -2,7 +2,7 @@
 
 ## 0.1.6
 
-- [fix] lock `build-plugin-component` version to avoid generating `d.ts` file
+- [fix] error log in editor
 
 ## 0.1.5
 

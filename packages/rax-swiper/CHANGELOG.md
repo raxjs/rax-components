@@ -2,7 +2,7 @@
 
 ## 0.1.6
 
-- [fix] error log in editor
+- [fix] update build-plugin-component version to avoid generating error d.ts file
 
 ## 0.1.5
 

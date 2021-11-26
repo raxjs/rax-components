@@ -59,6 +59,7 @@ const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
     return (
       <video
         {...common}
+        ref={refEl}
         className={cx('rax-video', className)}
         style={style}
         webkit-playsinline

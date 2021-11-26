@@ -11,8 +11,8 @@
     "lib",
     "dist"
   ],
-  "exports":{
-    ".":{
+  "exports": {
+    ".": {
       "web": "./es/web/index.js",
       "weex": "./es/weex/index.js",
       "miniapp": "./es/miniapp/index.js",
@@ -55,6 +55,7 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
+    "rax-test-renderer": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
     "@types/rax": "^1.0.0",
@@ -64,8 +65,6 @@
     "driver-universal": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "rax": "^1.0.0",
-    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.6.2"
   }
 }

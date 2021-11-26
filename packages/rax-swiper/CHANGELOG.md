@@ -1,8 +1,13 @@
 # Changelog
 
-## 0.2.0
+## 0.1.6
 
 - [feature] support swiper in miniapp
+## 0.1.5
+
+- [chore] update swiper dependency version to 6.8.4
+- [feat] keep the same with Swiper.js 6.8.4
+- [fix] event handler can't update
 
 ## 0.1.4
 

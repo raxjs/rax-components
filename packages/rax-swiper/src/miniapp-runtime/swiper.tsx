@@ -1,4 +1,4 @@
-import { createElement, useRef, useState, forwardRef, useImperativeHandle, useMemo, Fragment } from 'rax';
+import { createElement, useRef, useState, forwardRef, useImperativeHandle, useMemo } from 'rax';
 import Children from 'rax-children';
 
 import { SwiperType } from '../types';
@@ -99,6 +99,5 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
 });
 
 Swiper.displayName = 'Swiper';
-Swiper.Item = Fragment;
 
 export default Swiper;

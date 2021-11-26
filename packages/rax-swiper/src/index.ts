@@ -1,15 +1,22 @@
 import { isWeb, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
 
+import * as SwiperWeb from './web';
+import * as SwiperMiniprogram from './miniapp-runtime';
+
 let Swiper = null;
+let SwiperSlide = null;
 
 if (isWeb) {
-  Swiper = require('./web').default;
+  Swiper = SwiperWeb.Swiper;
+  SwiperSlide = SwiperWeb.SwiperSlide;
 } else if (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isBaiduSmartProgram || isKuaiShouMiniProgram) {
-  Swiper = require('./miniapp-runtime').default;
+  Swiper = SwiperMiniprogram.Swiper;
+  SwiperSlide = SwiperMiniprogram.SwiperSlide;
 } else {
-  Swiper = require('./web').default;
+  Swiper = SwiperWeb.Swiper;
+  SwiperSlide = SwiperWeb.SwiperSlide;
 }
 
-export default Swiper;
+export { Swiper, SwiperSlide };
 
 export * from './types';

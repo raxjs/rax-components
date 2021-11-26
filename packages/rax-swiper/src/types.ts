@@ -1,4 +1,4 @@
-import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent, Fragment } from 'rax';
+import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent } from 'rax';
 
 export interface SwiperRefObject {
   activeIndex: number;
@@ -27,6 +27,5 @@ export interface SwiperProps extends RefAttributes<SwiperRefObject>, HTMLAttribu
 }
 
 export interface SwiperType extends ForwardRefExoticComponent<SwiperProps> {
-  Item?: typeof Fragment
 };
 

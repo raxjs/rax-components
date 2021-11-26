@@ -1,7 +1,7 @@
 {
   "name": "rax-swiper",
   "author": "rax",
-  "version": "0.2.0",
+  "version": "0.1.5-alpha.0",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -26,11 +26,13 @@
   },
   "miniprogram": ".",
   "miniappConfig": {
-    "main": "lib/miniapp-native/ali-miniapp/index",
-    "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
-    "main:bytedance": "lib/miniapp-native/bytedance-microapp/index",
-    "subComponents": {
-      "Item": {
+    "subPackages": {
+      "Swiper": {
+        "main": "lib/miniapp-native/ali-miniapp/index",
+        "main:wechat": "lib/miniapp-native/wechat-miniprogram/index",
+        "main:bytedance": "lib/miniapp-native/bytedance-microapp/index"
+      },
+      "SwiperSlide": {
         "tagNameMap": "swiper-item"
       }
     }

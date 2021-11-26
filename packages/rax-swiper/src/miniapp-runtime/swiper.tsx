@@ -2,6 +2,7 @@ import { createElement, useRef, useState, forwardRef, useImperativeHandle, useMe
 import Children from 'rax-children';
 
 import { SwiperType } from '../types';
+import './swiper.css';
 
 const Swiper: SwiperType = forwardRef((props, ref) => {
   const {
@@ -93,7 +94,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       indicator-active-color={_paginationStyle.itemActiveColor}
       {...rest}
     >
-      {Children.map(children, child => child && <swiper-item key={child.key}>{child}</swiper-item>)}
+      {children}
     </swiper>
   );
 });

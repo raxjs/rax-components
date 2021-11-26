@@ -96,7 +96,7 @@ Component({
     slideNext() {
       let current = this.data.current + 1;
       if (current >= this.data.__length) {
-        if (this.data.autoplay) {
+        if (this.properties.autoplay) {
           current = 0;
         } else {
           return;
@@ -109,7 +109,7 @@ Component({
     slidePrev() {
       let current = this.data.current - 1;
       if (current < 0) {
-        if (this.data.autoplay) {
+        if (this.properties.autoplay) {
           current = this.data.__length - 1;
         } else {
           return;

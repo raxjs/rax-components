@@ -5,7 +5,6 @@ Component({
   data: {
     current: 0,
     duration: 0,
-    __length: 0
   },
   props: {
     className: '',
@@ -21,7 +20,8 @@ Component({
       itemColor: 'rgba(0, 0, 0, .3)',
       itemActiveColor: '#000000',
     },
-    children: []
+    children: [],
+    __length: 0
   },
   onInit() {
     this.setData({
@@ -47,19 +47,12 @@ Component({
     }
   },
   didUpdate(prevProps) {
-    const newData = Object.create(null);
-    let changed = false;
     if (prevProps.initialSlide !== this.props.initialSlide && this.props.initialSlide !== this.data.current) {
-      newData.current = this.props.initialSlide;
-      changed = true;
+      this.setData({
+        current: this.props.initialSlide
+      });
     }
-    if (prevProps.children.length !== this.data.__length) {
-      newData.__length = prevProps.children.length;
-      changed = true;
-    }
-    if (changed) {
-      this.setData(newData);
-    }
+    
   },
   methods: {
     onChange(e) {
@@ -81,8 +74,8 @@ Component({
     },
     slideNext() {
       let current = this.data.current + 1;
-      if (current >= this.data.__length) {
-        if (this.data.autoplay) {
+      if (current >= this.props.__length) {
+        if (this.props.autoplay) {
           current = 0;
         } else {
           return;
@@ -95,8 +88,8 @@ Component({
     slidePrev() {
       let current = this.data.current - 1;
       if (current < 0) {
-        if (this.data.autoplay) {
-          current = this.data.__length - 1;
+        if (this.props.autoplay) {
+          current = this.props.__length - 1;
         } else {
           return;
         }

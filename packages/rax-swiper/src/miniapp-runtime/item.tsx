@@ -1,5 +1,5 @@
-import { createElement, Fragment } from 'rax';
+import { createElement } from 'rax';
 
-const Item = ({children}) => (<Fragment>{children}</Fragment>);
+const Item = ({children}) => (<swiper-item>{children}</swiper-item>);
 
 export default Item;

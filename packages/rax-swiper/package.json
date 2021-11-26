@@ -1,7 +1,7 @@
 {
   "name": "rax-swiper",
   "author": "rax",
-  "version": "0.1.6-0",
+  "version": "0.1.6-1",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

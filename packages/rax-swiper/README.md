@@ -20,7 +20,7 @@ $ npm install rax-swiper --save
 
 ## 属性
 
-> web 组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到。详细的属性列表可以直接到 [swiper/react 文档](https://swiperjs.com/react)查看。
+> Web 组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到。详细的属性列表可以直接到 [swiper/react 文档](https://swiperjs.com/react)查看。
 > 小程序组件基于小程序 swiper 原生组件开发。
 
 | **属性**      | **类型**          | **默认值** | **必填** | **描述**                             |
@@ -76,11 +76,11 @@ const App = () => {
         ref={ref}
         autoplay={true}
       >
-        <Swiper.Item key="1"><View style={{ height: 300 }}>1</View></Swiper.Item>
-        <Swiper.Item key="2"><View style={{ height: 300 }}>2</View></Swiper.Item>
-        <Swiper.Item key="3"><View style={{ height: 300 }}>3</View></Swiper.Item>
-        <Swiper.Item key="4"><View style={{ height: 300 }}>4</View></Swiper.Item>
-      </Swiper.Item>
+        <SwiperSlide key="1"><View style={{ height: 300 }}>1</View></SwiperSlide>
+        <SwiperSlide key="2"><View style={{ height: 300 }}>2</View></SwiperSlide>
+        <SwiperSlide key="3"><View style={{ height: 300 }}>3</View></SwiperSlide>
+        <SwiperSlide key="4"><View style={{ height: 300 }}>4</View></SwiperSlide>
+      </Swiper>
     </View>
   );
 }
@@ -88,7 +88,7 @@ const App = () => {
 render(<App />, document.body, { driver: DU });
 ```
 
-如果需要使用到 swiper.js 中的一些能力，可能需要配置插件：
+在 Web 中，如果需要使用到 swiper.js 中的一些能力，可能需要配置插件：
 
 ```js
 import SwiperCore, { Pagination } from 'swiper';

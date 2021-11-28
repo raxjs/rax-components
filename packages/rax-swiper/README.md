@@ -4,9 +4,9 @@
 
 ## 支持
 
-支持 Web，小程序正在支持中，暂不支持Weex 以及 Kraken。
+支持 Web，小程序正在支持中，暂不支持 Weex 以及 Kraken。
 
-> 使用 rax-swiper 必须用非内联，也就是在 build.json 里配置 inlineStyle 为 false
+> 只允许在<span style="color: red;">非内联场景</span>中使用，即 `build.json` 中配置 `inlineStyle: false`！
 
 ## 描述
 

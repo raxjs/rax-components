@@ -2,7 +2,8 @@
 
 ## 0.1.6
 
-- [feature] support swiper in miniapp
+- [feat] support swiper in miniapp
+
 ## 0.1.5
 
 - [chore] update swiper dependency version to 6.8.4

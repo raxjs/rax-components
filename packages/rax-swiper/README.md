@@ -4,7 +4,7 @@
 
 ## 支持
 
-支持 Web 和 小程序，不支持Weex 以及 Kraken。
+支持 Web 和 小程序，不支持 Weex 以及 Kraken。
 
 > 使用 rax-swiper 必须用非内联，也就是在 build.json 里配置 inlineStyle 为 false
 
@@ -43,6 +43,7 @@ $ npm install rax-swiper --save
 ### slidePrev()
 
 移动到上一张 Slide, 若当前已经处于第一张 Slide：loop 为 true 时，移动到最后一张，否则不移动
+
 ### slideTo(index)
 
 移动到位置为 index 的 Slide
@@ -52,7 +53,7 @@ $ npm install rax-swiper --save
 /* eslint-disable import/no-extraneous-dependencies */
 import { createElement, render, useRef } from 'rax';
 import View from 'rax-view';
-import { Swiper, SwiperSlide } from '../src/index';
+import { Swiper, SwiperSlide } from 'rax-swiper';
 import DU from 'driver-universal';
 import './index.css';
 

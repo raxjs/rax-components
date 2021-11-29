@@ -2,11 +2,11 @@
 
 [![npm](https://img.shields.io/npm/v/rax-swiper.svg)](https://www.npmjs.com/package/rax-swiper)
 
-## 支持
+## 注意
 
 支持 Web 和 小程序，不支持Weex 以及 Kraken。
 
-> 使用 rax-swiper 必须用非内联，也就是在 build.json 里配置 inlineStyle 为 false
+- 只允许在**非内联场景**中使用，即 `build.json` 中配置 `inlineStyle: false`！
 
 ## 描述
 

@@ -70,7 +70,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
         itemColor: paginationStyle.itemColor || 'rgba(0, 0, 0, .3)',
         itemActiveColor: paginationStyle.itemActiveColor || '#000000'
       }
-    }
+    };
   }, [autoplay, pagination, direction, interval, paginationStyle]);
 
   useImperativeHandle(ref, () => {

@@ -52,7 +52,6 @@ Component({
         current: this.props.initialSlide
       });
     }
-    
   },
   methods: {
     onChange(e) {
@@ -94,7 +93,7 @@ Component({
           return;
         }
       }
-      
+
       this.setData({
         current
       });

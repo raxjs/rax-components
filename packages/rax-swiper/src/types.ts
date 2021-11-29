@@ -23,9 +23,8 @@ export interface SwiperProps extends RefAttributes<SwiperRefObject>, HTMLAttribu
   paginationStyle?: {
     itemColor?: string;
     itemActiveColor?: string;
-  }
+  };
 }
 
-export interface SwiperType extends ForwardRefExoticComponent<SwiperProps> {
-};
+export type SwiperType = ForwardRefExoticComponent<SwiperProps>;
 

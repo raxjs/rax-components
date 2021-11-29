@@ -115,7 +115,7 @@ Component({
           return;
         }
       }
-      
+
       this.setData({
         current
       });

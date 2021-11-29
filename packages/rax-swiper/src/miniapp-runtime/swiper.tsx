@@ -13,8 +13,11 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
     onSlideChange,
     direction = 'horizontal',
     children,
-    interval,
-    paginationStyle = {},
+    interval = 3000,
+    paginationStyle = {
+      itemColor: 'rgba(0, 0, 0, .3)',
+      itemActiveColor: '#000000'
+    },
     ...rest
   } = props;
 
@@ -58,20 +61,14 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
     autoplay: _autoplay,
     pagination: _pagination,
     vertical: _vertical,
-    interval: _interval,
-    paginationStyle: _paginationStyle
   } = useMemo(() => {
     return {
+      // compat web: in swiper.js, autoplay and pagination may be boolean or object type;
       autoplay: typeof autoplay === 'boolean' ? autoplay : true,
       pagination: typeof pagination === 'boolean' ? pagination : true,
-      vertical: direction === 'vertical',
-      interval: interval || 3000,
-      paginationStyle: {
-        itemColor: paginationStyle.itemColor || 'rgba(0, 0, 0, .3)',
-        itemActiveColor: paginationStyle.itemActiveColor || '#000000'
-      }
+      vertical: direction === 'vertical'
     };
-  }, [autoplay, pagination, direction, interval, paginationStyle]);
+  }, [autoplay, pagination, direction]);
 
   useImperativeHandle(ref, () => {
     return {
@@ -89,9 +86,9 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       onChange={slideChange}
       circular={loop}
       className="swiper-container"
-      interval={_interval}
-      indicator-color={_paginationStyle.itemColor}
-      indicator-active-color={_paginationStyle.itemActiveColor}
+      interval={interval}
+      indicator-color={paginationStyle.itemColor}
+      indicator-active-color={paginationStyle.itemActiveColor}
       {...rest}
     >
       {children}

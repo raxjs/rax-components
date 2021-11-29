@@ -4,7 +4,7 @@
 
 ## 注意
 
-支持 Web 和 小程序，不支持 Weex 以及 Kraken。
+- 支持 Web 和 小程序，不支持 Weex 以及 Kraken。
 
 - 只允许在**非内联场景**中使用，即 `build.json` 中配置 `inlineStyle: false`！
 

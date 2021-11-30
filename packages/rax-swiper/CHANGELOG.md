@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6
+
+- [fix] remove space in `swiper.css` `@font-face` url
+- [fix] type of `Swiper` & `SwiperSlide`
+
 ## 0.1.5
 
 - [chore] update swiper dependency version to 6.8.4

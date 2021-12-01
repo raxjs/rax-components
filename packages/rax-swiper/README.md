@@ -4,7 +4,7 @@
 
 ## 注意
 
-- 支持 Web，小程序正在支持中，暂不支持 Weex 以及 Kraken。
+- 支持 Web 和 小程序，不支持 Weex 以及 Kraken。
 
 - 只允许在**非内联场景**中使用，即 `build.json` 中配置 `inlineStyle: false`！
 
@@ -20,77 +20,76 @@ $ npm install rax-swiper --save
 
 ## 属性
 
-> 注：只支持 Web，该组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到。
->
-> 详细的属性列表可以直接到 [swiper/react 文档](https://swiperjs.com/react)查看。
+> Web 组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到。详细的属性列表可以直接到 [swiper/react 文档](https://swiperjs.com/react)查看。
+> 小程序组件基于小程序 swiper 原生组件开发。
 
 | **属性**      | **类型**          | **默认值** | **必填** | **描述**                             |
 | ------------- | ----------------- | ---------- | -------- | ------------------------------------ |
-| autoplay      | `boolean\|object` | false      | 否       | 是否自动播放                         |
-| pagination    | `boolean\|object` | true       | 否       | 是否显示指示点                       |
+| autoplay      | `boolean\|object` | false      | 否       | 是否自动播放，小程序中传入 `object` 时，与 `true` 表现一致                         |
+| pagination    | `boolean\|object` | true       | 否       | 是否显示指示点，小程序中传入 `object` 时，与 `true` 表现一致                     |
 | loop          | `boolean`         | true       | 否       | 是否是循环播放                       |
 | initialSlide  | `number`          | 0          | 否       | 指定默认初始化第几页                 |
 | onSlideChange | `function`        | -          | 否       | `index` 改变时会触发                 |
 | direction     | `string`          | horizontal | 否       | 滚动方向 (`horizontal` / `vertical`) |
+| interval     | `number`          | 3000 | 否       | 自动播放的间隔，单位为 ms，在 web 中此值会覆盖 pagination 中 delay 字段 |
+| paginationStyle | `object`       | { itemColor: 'rgba(0, 0, 0, .3)', itemActiveColor: '#000000' } | 否 | 该属性只在小程序下有效，itemColor 为指示点的颜色， itemActiveColor 为被选中的指示点的颜色 |
 
+## 方法
+
+### slideNext
+
+移动到下一个 Slide, 若当前已经处于最后一张 Slide： loop 为 true 时，移动到第一张， 否则不移动
+
+### slidePrev()
+
+移动到上一张 Slide, 若当前已经处于第一张 Slide：loop 为 true 时，移动到最后一张，否则不移动
+
+### slideTo(index)
+
+移动到位置为 index 的 Slide
 ## 示例
 
 ```jsx
 /* eslint-disable import/no-extraneous-dependencies */
-import { createElement, Component, render, createRef } from 'rax';
+import { createElement, render, useRef } from 'rax';
 import View from 'rax-view';
-import { Swiper, SwiperSlide } from '../src/index';
+import { Swiper, SwiperSlide } from 'rax-swiper';
 import DU from 'driver-universal';
 import './index.css';
 
-let swiperEle;
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.inputRef = createRef();
-    this.state = {
-      data: [],
-    };
+const App = () => {
+  const ref = useRef(null);
+
+  function prev() {
+    ref.current.slidePrev();
   }
 
-  onClick = () => {
-    swiperEle.slideNext();
-  };
+  function next() {
+    ref.current.slideNext();
+  }
 
-  render() {
-    return (
-      <View
-        style={{
-          width: 750,
-        }}
+  return (
+    <View>
+      <View onClick={prev}>Prev</View>
+      <View onClick={next}>Next</View>
+      <Swiper
+        onSlideChange={e => console.log(e)}
+        ref={ref}
+        autoplay={true}
       >
-        <Swiper
-          autoplay={true}
-          loop={true}
-          style={{
-            height: 300,
-            width: 750,
-          }}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => (swiperEle = swiper)}
-          pagination={{ clickable: true }}
-          initialSlide={2}
-        >
-          <SwiperSlide key="1">Slide 1</SwiperSlide>
-          <SwiperSlide key="2">Slide 2</SwiperSlide>
-          <SwiperSlide key="3">Slide 3</SwiperSlide>
-          <SwiperSlide key="4">Slide 4</SwiperSlide>
-        </Swiper>
-        <View onClick={this.onClick}>Click</View>
-      </View>
-    );
-  }
+        <SwiperSlide key="1"><View style={{ height: 300 }}>1</View></SwiperSlide>
+        <SwiperSlide key="2"><View style={{ height: 300 }}>2</View></SwiperSlide>
+        <SwiperSlide key="3"><View style={{ height: 300 }}>3</View></SwiperSlide>
+        <SwiperSlide key="4"><View style={{ height: 300 }}>4</View></SwiperSlide>
+      </Swiper>
+    </View>
+  );
 }
 
 render(<App />, document.body, { driver: DU });
 ```
 
-如果需要使用到 swiper.js 中的一些能力，可能需要配置插件：
+在 Web 中，如果需要使用到 swiper.js 中的一些能力，可能需要配置插件：
 
 ```js
 import SwiperCore, { Pagination } from 'swiper';

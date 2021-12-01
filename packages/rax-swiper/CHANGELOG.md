@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.7
+
+- [feat] support swiper in miniapp
 ## 0.1.6
 
 - [fix] remove space in `swiper.css` `@font-face` url

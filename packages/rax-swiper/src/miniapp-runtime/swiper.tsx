@@ -44,7 +44,6 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       if (activeIndex - 1 >= 0) {
         setActiveIndex(activeIndex - 1);
       }
-      
     },
     slideTo(index) {
       if (index !== undefined) {

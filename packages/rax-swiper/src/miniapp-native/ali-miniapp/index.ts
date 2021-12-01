@@ -65,7 +65,7 @@ Component({
       });
     },
     slideTo(index) {
-      if (index !== undefined) {
+      if (typeof index === 'number' && index < this.props.__length && index >= 0) {
         this.setData({
           current: index,
         });
@@ -74,11 +74,7 @@ Component({
     slideNext() {
       let current = this.data.current + 1;
       if (current >= this.props.__length) {
-        if (this.props.autoplay) {
-          current = 0;
-        } else {
-          return;
-        }
+        return;
       }
       this.setData({
         current
@@ -87,11 +83,7 @@ Component({
     slidePrev() {
       let current = this.data.current - 1;
       if (current < 0) {
-        if (this.props.autoplay) {
-          current = this.props.__length - 1;
-        } else {
-          return;
-        }
+        return;
       }
 
       this.setData({

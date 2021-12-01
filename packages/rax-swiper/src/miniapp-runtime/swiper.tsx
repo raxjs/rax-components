@@ -1,4 +1,4 @@
-import { createElement, useRef, useState, forwardRef, useImperativeHandle, useMemo } from 'rax';
+import { createElement, useState, forwardRef, useImperativeHandle, useMemo } from 'rax';
 import Children from 'rax-children';
 
 import { SwiperType } from '../types';
@@ -23,8 +23,6 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
 
   const [ activeIndex, setActiveIndex ] = useState(initialSlide);
   const size = useMemo(() => Children.count(children), [children]);
-  const swiperRef = useRef(null);
-  const activeIndexRef = useRef(activeIndex);
 
   const slideChange = (event) => {
     if (onSlideChange) {
@@ -33,28 +31,26 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
         activeItemId: event.detail.currentItemId
       });
     }
+    setActiveIndex(event.detail.current);
   };
 
   const methods = {
     slideNext() {
-      activeIndexRef.current = activeIndexRef.current + 1 >= size ? 0 : activeIndexRef.current + 1;
-      setActiveIndex(activeIndexRef.current);
+      if (activeIndex + 1 < size) {
+        setActiveIndex(activeIndex + 1);
+      }
     },
     slidePrev() {
-      activeIndexRef.current = activeIndexRef.current - 1 < 0 ? size - 1 : activeIndexRef.current - 1;
-      setActiveIndex(activeIndexRef.current);
+      if (activeIndex - 1 >= 0) {
+        setActiveIndex(activeIndex - 1);
+      }
+      
     },
     slideTo(index) {
       if (index !== undefined) {
-        activeIndexRef.current = index;
-        setActiveIndex(activeIndexRef.current);
+        setActiveIndex(index);
       }
     }
-  };
-
-  swiperRef.current = {
-    activeIndex: activeIndexRef.current,
-    ...methods
   };
 
   const {
@@ -72,7 +68,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => {
     return {
-      activeIndex: activeIndexRef.current,
+      activeIndex,
       ...methods
     };
   });

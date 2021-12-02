@@ -87,33 +87,25 @@ Component({
       }
     },
     slideTo(index) {
-      if (index !== undefined) {
+      if (typeof index === 'number' && index < this.data.__length && index >= 0) {
         this.setData({
           current: index,
         });
       }
     },
     slideNext() {
-      let current = this.data.current + 1;
+      const current = this.data.current + 1;
       if (current >= this.data.__length) {
-        if (this.properties.autoplay) {
-          current = 0;
-        } else {
-          return;
-        }
+        return;
       }
       this.setData({
         current
       });
     },
     slidePrev() {
-      let current = this.data.current - 1;
+      const current = this.data.current - 1;
       if (current < 0) {
-        if (this.properties.autoplay) {
-          current = this.data.__length - 1;
-        } else {
-          return;
-        }
+        return;
       }
 
       this.setData({

@@ -36,13 +36,15 @@ $ npm install rax-swiper --save
 
 ## 方法
 
+注意：在编译时的阿里小程序中，需要启用 `component2` 模式，才能使用以下方法。
+
 ### slideNext
 
-移动到下一个 Slide, 若当前已经处于最后一张 Slide： loop 为 true 时，移动到第一张， 否则不移动
+移动到下一个 Slide, 若当前已经处于最后一张 Slide，则不移动
 
 ### slidePrev()
 
-移动到上一张 Slide, 若当前已经处于第一张 Slide：loop 为 true 时，移动到最后一张，否则不移动
+移动到上一张 Slide, 若当前已经处于第一张 Slide，则不移动
 
 ### slideTo(index)
 

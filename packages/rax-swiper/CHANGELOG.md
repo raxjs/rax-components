@@ -1,8 +1,14 @@
 # Changelog
 
+## 0.1.8
+
+- [fix] return instance ref in web
+- [fix] make slidePrev and slideNext same in web and miniapp
+
 ## 0.1.7
 
 - [feat] support swiper in miniapp
+
 ## 0.1.6
 
 - [fix] remove space in `swiper.css` `@font-face` url

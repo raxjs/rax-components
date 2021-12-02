@@ -46,7 +46,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       }
     },
     slideTo(index) {
-      if (index !== undefined) {
+      if (typeof index === 'number' && index >= 0 && index < size) {
         setActiveIndex(index);
       }
     }

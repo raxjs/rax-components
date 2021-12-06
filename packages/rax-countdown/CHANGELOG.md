@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0
+
+- Update rax-view and rax-text version to v2
+
 ## v1.1.7
 
 - Keep miniapp native code in older dir

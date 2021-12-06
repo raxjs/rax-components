@@ -34,9 +34,10 @@
     "rax": "^1.0.0"
   },
   "devDependencies": {
-    "@types/rax": "^1.0.0",
+    "rax-test-renderer": "^1.0.0",
     "@types/ali-app": "^1.0.0",
     "@types/jest": "^24.0.12",
+    "@types/rax": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "babel-eslint": "^10.0.3",
@@ -46,11 +47,9 @@
     "driver-weex": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-rax": "^0.0.0",
-    "rax": "^1.0.0",
     "rax-image": "^1.0.0",
     "rax-recyclerview": "^1.1.0-4",
     "rax-slider": "^1.1.0-3",
-    "rax-test-renderer": "^1.0.0",
     "rax-text": "^1.0.1"
   }
 }

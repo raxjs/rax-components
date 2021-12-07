@@ -10,6 +10,7 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
   style,
   resizeMode,
   loading,
+  placeholder,
   ...rest
 }: ImageProps, ref) => {
   source = source || EMPTY_SOURCE;
@@ -55,6 +56,9 @@ const Image: ForwardRefExoticComponent<ImageProps> = forwardRef(({
 
   if (loading) {
     nativeProps['lazy-load'] = loading === 'lazy';
+  }
+  if (placeholder) {
+    nativeProps['default-source'] = placeholder;
   }
 
   // for cover and contain

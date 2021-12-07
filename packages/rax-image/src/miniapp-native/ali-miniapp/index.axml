@@ -2,6 +2,7 @@
   style="{{styleSheet}}" 
   class="{{className}}"
   src="{{source.uri}}"
+  default-source="{{placeholder}}"
   onTap="onClick"
   onError="onError"
   onLoad="onLoad"

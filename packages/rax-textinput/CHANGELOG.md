@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.3
+
+- Remove unnecessary forceUpdate in alibaba miniapp
+- Remove unused className in miniapp platforms
+
 ## 1.4.2
 
 - `defaultValue` will only render at first time, in order to avoid that a controlled input can't be cleared

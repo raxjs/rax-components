@@ -18,6 +18,8 @@ class SizeAndPositionManager {
   public static clientSize;
   public static pixelRatio: number;
 
+  public static initRenderedIndex = { startIndex: -1, endIndex: -1 }
+
   public constructor({ itemSize, horizontal, length, bufferSize, totalSize }: {
     itemSize: TItemSize;
     horizontal: boolean;

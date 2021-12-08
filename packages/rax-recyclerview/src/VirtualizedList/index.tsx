@@ -1,4 +1,4 @@
-import { createElement, forwardRef, useState, useMemo, memo, Fragment } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import Children from 'rax-children';
@@ -78,17 +78,23 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
       };
     }, [children]);
 
+    const offsetRef = useRef(0);
+
     const constantKey = getConstantKey(horizontal);
-    const manager = useMemo(() => {
-      return new SizeAndPositionManager({
+    const [renderedIndex, setRenderedIndex] = useState(SizeAndPositionManager.initRenderedIndex);
+
+    const manager  = useMemo(() => {
+      const manager = new SizeAndPositionManager({
         itemSize,
         horizontal,
         bufferSize,
         length: cellLength,
         totalSize
       });
+      setRenderedIndex(manager.getRenderedIndex(offsetRef.current))
+      return manager;
     }, [itemSize, horizontal, cellLength, bufferSize]);
-    const [renderedIndex, setRenderedIndex] = useState(() => manager.getRenderedIndex(0));
+
     const {
       front,
       back
@@ -98,6 +104,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
 
     function handleScroll(e) {
       const offset = e.nativeEvent.contentOffset[constantKey.contentOffset];
+      offsetRef.current = offset;
       const newRenderedIndex = manager.getRenderedIndex(offset);
       setRenderedIndex(newRenderedIndex);
       props.onScroll && props.onScroll(e);

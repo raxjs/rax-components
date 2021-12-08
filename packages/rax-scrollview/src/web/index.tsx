@@ -102,7 +102,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onEndReached,
       onEndReachedThreshold,
       onScroll,
-      children
+      children,
+      forwardRef
     } = props;
     const lastScrollDistance = useRef(0);
     const lastScrollContentSize = useRef(0);
@@ -159,7 +160,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         lastScrollDistance.current = scrollDistance;
       }
     };
-    useImperativeHandle(ref, () => ({
+    useImperativeHandle(forwardRef ? forwardRef : ref, () => ({
       _nativeNode: scrollerRef.current,
       resetScroll() {
         lastScrollContentSize.current = 0;

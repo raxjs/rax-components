@@ -12,6 +12,7 @@ import { ScrollViewProps } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { getInfoSync } from '@uni/system-info';
 import '../index.css';
+import omit from '../utils/omit';
 
 const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
@@ -56,7 +57,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       onScroll,
       children,
       disableScroll = false,
-      onEndReachedThreshold
+      onEndReachedThreshold,
+      forwardRef
     } = props;
     const [scrollTop] = useState(0);
     const [scrollLeft] = useState(0);
@@ -83,7 +85,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         onScroll(e);
       }
     };
-    useImperativeHandle(ref, () => ({
+    useImperativeHandle(forwardRef ? forwardRef : ref, () => ({
       _nativeNode: scrollerRef.current,
       resetScroll() {
         if (horizontal) {
@@ -142,7 +144,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
     return (
       <scroll-view
-        {...props}
+        {...omit(props, ['forwardRef'])}
         ref={scrollerRef}
         className={cls}
         style={scrollerStyle}

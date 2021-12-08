@@ -1,6 +1,6 @@
 import {createElement, Component} from 'rax';
 import renderer from 'rax-test-renderer';
-import RecyclerView from '../';
+import RecyclerView from '../../lib';
 
 class RecyclerViewTest extends Component {
   renderHeader() {

@@ -33,8 +33,8 @@ const Cell = memo(({children}) => {
 });
 Cell.displayName = 'Cell';
 
-const Header = memo(({children}) => {
-  return (<>{children}</>);
+const Header = memo(({children, ...rest}) => {
+  return (<View {...rest}>{children}</View>);
 });
 Header.displayName = 'Header';
 
@@ -112,12 +112,15 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         onScroll={scrollEventThrottle ? throttle(handleScroll, scrollEventThrottle) : handleScroll}
         scroll-anchoring={true}
       >
-        {headers}
-        <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
-        {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`} />)}
-        {cells.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
-        {createArray(cellLength - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`} />)}
-        <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
+        {/* fix sticky by adding view */}
+        <View>
+          {headers}
+          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
+          {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`} />)}
+          {cells.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
+          {createArray(cellLength - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`} />)}
+          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
+        </View>
       </ScrollView>
     );
   });

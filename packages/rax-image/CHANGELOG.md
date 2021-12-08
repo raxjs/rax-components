@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1
+
+- Support placeholder in alibaba miniapp
+
 ## 2.4.0
 
 - Support weex v2

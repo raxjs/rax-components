@@ -11,6 +11,7 @@ Component({
     source: {
       uri: ''
     },
+    placeholder: '',
     mode: 'scaleToFill',
     loading: 'eager',
     lazyLoad: false,

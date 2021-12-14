@@ -5,6 +5,7 @@ import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { ViewProps } from '../types';
 import '../index.css';
 
+declare const __weex_v2__: any;
 
 interface ViewRef {
   triggeredAppear: boolean;
@@ -27,7 +28,9 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         }
       };
     }
-    return <div {...rest} onAppear={handleAppear} ref={ref} className={cx( isWeex ? '' : 'rax-view-v2', className)} style={style} />;
+    /* global __weex_v2__ */
+    const isWeexV2 = typeof __weex_v2__ === 'object';
+    return <div {...rest} onAppear={handleAppear} ref={ref} className={cx( (isWeex && !isWeexV2) ? '' : 'rax-view-v2', className)} style={style} />;
   }
 );
 

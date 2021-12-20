@@ -14,7 +14,7 @@
   "exports": {
     ".": {
       "web": "./es/common/index.js",
-      "weex": "./es/common/index.js",
+      "weex": "./es/weex/index.js",
       "wechat-miniprogram": "./es/miniapp/wechat.js",
       "bytedance-microapp": "./es/common/index.js",
       "baidu-smartprogram": "./es/common/index.js",

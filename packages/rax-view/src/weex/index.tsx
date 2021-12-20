@@ -1,8 +1,6 @@
 import { createElement, useRef, forwardRef, ForwardRefExoticComponent } from 'rax';
-import cx from 'classnames/dedupe';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { ViewProps } from '../types';
-import '../index.css';
 
 interface ViewRef {
   triggeredAppear: boolean;
@@ -25,7 +23,7 @@ const View: ForwardRefExoticComponent<ViewProps> = forwardRef(
         }
       };
     }
-    return <div {...rest} onAppear={handleAppear} ref={ref} className={cx('rax-view-v2', className)} style={style} />;
+    return <div {...rest} onAppear={handleAppear} ref={ref} className={className} style={style} />;
   }
 );
 

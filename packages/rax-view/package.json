@@ -1,6 +1,6 @@
 {
   "name": "rax-view",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "View component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
   "exports": {
     ".": {
       "web": "./es/common/index.js",
-      "weex": "./es/common/index.js",
+      "weex": "./es/weex/index.js",
       "wechat-miniprogram": "./es/miniapp/wechat.js",
       "bytedance-microapp": "./es/common/index.js",
       "baidu-smartprogram": "./es/common/index.js",

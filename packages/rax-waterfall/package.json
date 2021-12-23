@@ -1,6 +1,6 @@
 {
   "name": "rax-waterfall",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "waterfall component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -45,7 +45,7 @@
   "dependencies": {
     "rax-clone-element": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
-    "rax-scrollview": "^1.0.0",
+    "rax-scrollview": "^3.7.0",
     "rax-text": "^1.0.1",
     "rax-view": "^1.0.1",
     "universal-env": "^3.0.0"

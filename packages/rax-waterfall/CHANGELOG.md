@@ -1,5 +1,9 @@
 # Changelog
 
+
+## 1.2.3
+
+- Update rax-scrollview version to 3.x
 ## 1.2.2
 
 - Remove `sideEffects: false` in package.json

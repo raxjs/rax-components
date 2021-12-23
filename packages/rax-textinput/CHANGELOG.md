@@ -3,7 +3,7 @@
 ## 1.4.3
 
 - Remove unnecessary forceUpdate in alibaba miniapp
-- Remove unused className in miniapp platforms
+- Remove useless className in miniapp platforms
 
 ## 1.4.2
 

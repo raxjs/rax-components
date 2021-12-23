@@ -54,6 +54,7 @@
   ],
   "dependencies": {
     "@uni/system-info": "^1.0.5",
+    "build-plugin-component": "^1.9.2",
     "classnames": "^2.2.6",
     "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",

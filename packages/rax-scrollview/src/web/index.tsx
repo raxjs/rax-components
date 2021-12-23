@@ -1,3 +1,4 @@
+/* global kraken */
 import {
   createElement,
   CSSProperties,
@@ -14,6 +15,7 @@ import throttle from '../throttle';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
+const isKraken = typeof kraken !== 'undefined';
 const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
 const STYLE_NODE_ID = 'rax-scrollview-style';
@@ -109,6 +111,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     const scrollerNodeSize = useRef(0);
     const scrollerRef = useRef<HTMLDivElement>(null);
     const contentContainerRef = useRef<HTMLDivElement>(null);
+    const isDisplaySliver = isKraken && style && style.display === 'sliver';
     const handleScroll = e => {
       if (props.onScroll) {
         e.nativeEvent = {
@@ -195,6 +198,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       const childLayoutProps = ['alignItems', 'justifyContent'].filter(
         prop => style[prop] !== undefined
       );
+      if (isDisplaySliver) {
+        // Restore the container display property.
+        style.display = 'block';
+      }
 
       if (childLayoutProps.length !== 0) {
         console.warn(
@@ -212,9 +219,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           [`${baseCls}-content-container-horizontal`]: horizontal,
           [`${baseCls}-webcontainer`]: !horizontal
         })}
-        style={contentContainerStyle}
+        style={isDisplaySliver ? {...contentContainerStyle, display: 'sliver'} : contentContainerStyle}
       >
-        {children}
+        {isDisplaySliver ? packEachChildren(children, (child) => <div>{child}</div>) : children}
       </View>
     );
 
@@ -281,5 +288,15 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     }
   }
 );
+
+function packEachChildren(children, packer) {
+  if (Array.isArray(children)) {
+    return children.map(packer);
+  } else if (children != null) {
+    return packer(children);
+  } else {
+    return children;
+  }
+}
 
 export default wrapDefaultProperties(ScrollView);

@@ -1,4 +1,3 @@
-/* global kraken */
 import {
   createElement,
   CSSProperties,
@@ -15,7 +14,7 @@ import throttle from '../throttle';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
-const isKraken = typeof kraken !== 'undefined';
+const isKraken = typeof window['kraken'] !== 'undefined';
 const FULL_WIDTH = 750;
 const ANIMATION_DURATION = 400;
 const STYLE_NODE_ID = 'rax-scrollview-style';

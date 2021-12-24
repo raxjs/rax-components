@@ -218,7 +218,14 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           [`${baseCls}-content-container-horizontal`]: horizontal,
           [`${baseCls}-webcontainer`]: !horizontal
         })}
-        style={isDisplaySliver ? {...contentContainerStyle, display: 'sliver'} : contentContainerStyle}
+        style={isDisplaySliver
+          ? {
+              ...contentContainerStyle,
+              display: 'sliver',
+              width: '100%',
+              height: '100%'
+            }
+          : contentContainerStyle}
       >
         {isDisplaySliver ? packEachChildren(children, (child) => <div>{child}</div>) : children}
       </View>

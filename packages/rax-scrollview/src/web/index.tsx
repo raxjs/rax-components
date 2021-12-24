@@ -174,8 +174,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         duration?: number;
       }) {
         const { x = 0, y = 0, animated = true, duration = ANIMATION_DURATION } = options || {};
-
-        scrollTo(scrollerRef, translateToPx(x), translateToPx(y), animated, duration);
+        const scroller = isDisplaySliver ? contentContainerRef : scrollerRef;
+        scrollTo(scroller, translateToPx(x), translateToPx(y), animated, duration);
       },
       scrollIntoView(options?: {
         id?: string;
@@ -188,7 +188,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         }
         const targetElement = document.getElementById(id);
         if (targetElement) {
-          scrollTo(scrollerRef, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
+          const scroller = isDisplaySliver ? contentContainerRef : scrollerRef;
+          scrollTo(scroller, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
         }
       }
     }));

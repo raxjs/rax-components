@@ -30,17 +30,17 @@ function translateToPx(origin: string | number): number {
   if (typeof origin === 'number') {
     return origin;
   }
-  const matched = /^(\d+)(r{0,1}px){0,1}$/.exec(origin);
+  const matched = /^([\d\.]+)(r?px)?$/.exec(origin);
   if (matched) {
     if (!matched[2]) {
-      return parseInt(matched[1]);
+      return parseFloat(matched[1]);
     }
     if (matched[2] === 'rpx') {
       const pixelRatio = getPixelRatio();
-      return parseInt(matched[1]) * pixelRatio;
+      return parseFloat(matched[1]) * pixelRatio;
     }
     if (matched[2] === 'px') {
-      return parseInt(matched[1]);
+      return parseFloat(matched[1]);
     }
   }
   return 0;

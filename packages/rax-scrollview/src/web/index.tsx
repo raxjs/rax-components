@@ -131,7 +131,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       }
 
       if (onEndReached) {
-        const scrollerNode = scrollerRef.current;
+        const scrollerNode = (isDisplaySliver ? contentContainerRef : scrollerRef).current;
         scrollerNodeSize.current = horizontal
           ? scrollerNode.offsetWidth
           : scrollerNode.offsetHeight;
@@ -210,6 +210,9 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         );
       }
     }
+    const scrollHandler = scrollEventThrottle
+      ? throttle(handleScroll, scrollEventThrottle)
+      : handleScroll;
 
     const contentContainer = (
       <View
@@ -226,6 +229,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
               height: '100%'
             }
           : contentContainerStyle}
+        onScroll={isDisplaySliver ? scrollHandler : null}
       >
         {isDisplaySliver ? packEachChildren(children, (child) => <div>{child}</div>) : children}
       </View>
@@ -282,11 +286,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
           ref={scrollerRef}
           className={cls}
           style={scrollerStyle}
-          onScroll={
-            scrollEventThrottle
-              ? throttle(handleScroll, scrollEventThrottle)
-              : handleScroll
-          }
+          onScroll={isDisplaySliver ? null : scrollHandler}
         >
           {contentContainer}
         </View>

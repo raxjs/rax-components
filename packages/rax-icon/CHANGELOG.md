@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.4
+
+- Fix export field
+
 ## 1.4.3
 
 - Fix types export bug

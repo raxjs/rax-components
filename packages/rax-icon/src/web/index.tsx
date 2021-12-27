@@ -6,7 +6,8 @@ import {
 import Text from 'rax-text';
 import Image from 'rax-image';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
-import { IconProps, IconFontProps } from '../types';
+import { IconProps } from '../types';
+import { createIconSet as rawCreateIconSet } from '../createIconSet';
 
 const fontCache = new Map();
 const Icon: ForwardRefExoticComponent<IconProps> = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
@@ -61,22 +62,7 @@ export function createIconSet(
   fontFamily: string,
   fontFile: string
 ) {
-  const IconFont: ForwardRefExoticComponent<IconFontProps> = forwardRef(
-    ({ name, className, codePoint, style = {}, ...rest }, ref) => {
-      return (
-        <Icon
-          {...rest}
-          ref={ref}
-          className={className}
-          style={style}
-          source={{ uri: fontFile, codePoint: codePoint || glyphMap[name] }}
-          fontFamily={fontFamily}
-        />
-      );
-    }
-  );
-  IconFont.displayName = 'IconFont';
-  return IconFont;
+  return rawCreateIconSet(Icon, glyphMap, fontFamily, fontFile);
 }
 
 export default wrapDefaultProperties(Icon);

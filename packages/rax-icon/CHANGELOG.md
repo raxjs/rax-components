@@ -2,7 +2,7 @@
 
 ## 1.4.4
 
-- Fix export field
+- Fix `createIconSet` not export in single platform
 
 ## 1.4.3
 

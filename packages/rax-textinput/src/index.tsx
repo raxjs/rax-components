@@ -5,11 +5,11 @@ import {
   createElement,
   ForwardRefExoticComponent,
   useEffect,
-  useState,
   useMemo
 } from 'rax';
 import { isWeex, isWeb, isNode, isMiniApp } from 'universal-env';
 import setNativeProps from 'rax-set-native-props';
+import cx from 'classnames/dedupe';
 import keyboardTypeMap from './keyboardTypeMap';
 import {
   TextInputProps,
@@ -59,7 +59,6 @@ function isTruthyOrZero(val) {
 const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
   (props, ref) => {
     const refEl = useRef<TextInputElement>(null);
-    const [, forceUpdate] = useState(0);
     const styleClassName = `rax-textinput-placeholder-${inputId++}`;
 
     const {
@@ -173,6 +172,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       }
     });
 
+    const cls = cx('rax-textinput', (isWeb || isNode) ? styleClassName : '', className);
     if (multiline) {
       return (
         <Fragment>
@@ -183,7 +183,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
           <textarea
             {...propsCommon}
             ref={refEl as Rax.MutableRefObject<HTMLTextAreaElement>}
-            className={['rax-textinput', styleClassName, className || ''].join(' ')}
+            className={cls}
             style={{
               ...style,
               placeholderColor
@@ -197,9 +197,6 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             show-count={showCount}
             onInput={(e: Rax.ChangeEvent<HTMLTextAreaElement>) => {
               onInput && handleInput(e);
-              if (isMiniApp) {
-                forceUpdate(tick => tick + 1);
-              }
             }}
           >
             {/* undefined will be rendered to comment node in ssr */}
@@ -216,7 +213,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
           <input
             {...propsCommon}
             ref={refEl as Rax.MutableRefObject<HTMLInputElement>}
-            className={['rax-textinput', styleClassName, className || ''].join(' ')}
+            className={cls}
             style={{
               ...style,
               placeholderColor
@@ -230,9 +227,6 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             selection-end={selectionEnd}
             onInput={(e: Rax.ChangeEvent<HTMLInputElement>) => {
               onInput && handleInput(e);
-              if (isMiniApp) {
-                forceUpdate(tick => tick + 1);
-              }
             }}
           />
         </Fragment>

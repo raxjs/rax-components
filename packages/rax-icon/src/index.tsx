@@ -2,6 +2,7 @@ import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isB
 import IconWeb from './web';
 import IconMiniApp from './miniapp-runtime';
 import IconWeex from './weex';
+import { createIconSet as rawCreateIconSet } from './createIconSet';
 
 let Icon = null;
 
@@ -17,3 +18,11 @@ if (isWeb) {
 
 export default Icon;
 export * from './types';
+
+export function createIconSet(
+  glyphMap = {},
+  fontFamily: string,
+  fontFile: string
+) {
+  return rawCreateIconSet(Icon, glyphMap, fontFamily, fontFile);
+}

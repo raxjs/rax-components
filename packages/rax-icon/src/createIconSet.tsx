@@ -1,5 +1,4 @@
-import { createElement, forwardRef } from 'rax';
-import type { ForwardRefExoticComponent } from 'rax';
+import { createElement, forwardRef, ForwardRefExoticComponent } from 'rax';
 import type { IconProps, IconFontProps } from './types';
 
 export function createIconSet(

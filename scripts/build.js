@@ -1,55 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
-const log = require('./log');
-
-const ALL_PACKAGES = fs.readdirSync(path.join('packages'));
+const checkAndBuild = require('./check-and-build');
 
 (() => {
-  const modifiedPkgs = fs.readdirSync(path.join('packages'));
+  const allPkgs = fs.readdirSync(path.join('packages'));
 
-  // get all modified packages' package.json
-  for (let i = 0; i < modifiedPkgs.length; i++) {
-    const pkgName = modifiedPkgs[i];
-    const pkgJson = JSON.parse(
-      fs.readFileSync(path.join('packages', pkgName, 'package.json'), {
-        encoding: 'utf-8',
-      })
-    );
-
-    // get all deps
-    const allDeps = Object.keys(pkgJson.dependencies);
-
-    // filter internal deps
-    const internalDeps = allDeps.filter((dep) => ALL_PACKAGES.includes(dep));
-
-    modifiedPkgs.push(...internalDeps);
-  }
-
-  // cache built packages
-  const builtPkgs = [];
-
-  // deepest dep will at the tail of list
-  // when package is built, skip building
-  modifiedPkgs.reverse().forEach((pkgName) => {
-    if (builtPkgs.includes(pkgName)) {
-      return;
-    }
-    build(pkgName);
-    builtPkgs.push(pkgName);
-  });
-
-  // log
-  log.info('packages have been built in the following order:');
-  builtPkgs.forEach((pkgName, index) => {
-    console.log(`${index + 1}. ${pkgName}`);
-  });
+  checkAndBuild(allPkgs);
 })();
-
-function build(pkgName) {
-  execSync('npm run build', {
-    stdio: 'inherit',
-    cwd: path.join('packages', pkgName),
-  });
-  log.success(`built ${pkgName}\n`);
-}

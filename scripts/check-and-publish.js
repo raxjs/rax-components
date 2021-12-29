@@ -26,7 +26,7 @@ function checkVersion(folder, callback) {
       const packageFolderName = packages[i];
       const packageInfoPath = join(folder, packageFolderName, 'package.json');
       if (existsSync(packageInfoPath)) {
-        const packageInfo = JSON.parse(readFileSync(packageInfoPath));
+        const packageInfo = JSON.parse(readFileSync(packageInfoPath, { encoding: 'utf-8' }));
         checkVersionExists(packageInfo.name, packageInfo.version)
           .then((exists) => {
             if (!exists) {

@@ -11,6 +11,9 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.21.0
       - run: npm run setup
       - run: npm run build
       - run: npm run lint

@@ -48,7 +48,6 @@
     "jest-environment-node": "^26.0.1",
     "jest-localstorage-mock": "^2.3.0",
     "jest-transform-css": "^2.0.0",
-    "lerna": "^3.18.2",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "rax": "^1.0.0",
@@ -64,23 +63,21 @@
     "rax-test-renderer": "1.1.0-beta.1"
   },
   "scripts": {
-    "setup": "rm -rf node_modules && yarn install && npm run clean && npm run build",
-    "build": "node ./scripts/compile.js",
-    "lint:fix": "npm run lint -- --fix",
+    "preinstall": "npx only-allow pnpm",
+    "setup": "rm -rf node_modules packages/*/node_modules packages/*/lib packages/*/es packages/*/dist && pnpm install",
+    "build": "node scripts/build",
+    "build:diff": "node scripts/build-diff",
+    "lint:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./ --fix",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
-    "check-and-publish": "node ./scripts/check-and-publish",
-    "test": "build-scripts test",
-    "clean": "rm -rf packages/*/node_modules && rm -rf ./packages/*/lib ./packages/*/es ./packages/*/dist"
+    "check-and-publish": "node scripts/check-and-publish",
+    "test": "build-scripts test"
   },
   "config": {
     "ghooks": {
-      "commit-msg": "./scripts/validate-commit-msg.js"
+      "commit-msg": "scripts/validate-commit-msg.js"
     },
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "node_modules/cz-conventional-changelog"
     }
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }

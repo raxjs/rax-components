@@ -18,7 +18,6 @@ jobs:
         with:
           version: 6.21.0
       - run: npm run setup
-      - run: npm run build:diff
       - run: npm run check-and-publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

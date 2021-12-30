@@ -1,9 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const checkAndBuild = require('./check-and-build');
+const { readdirSync } = require('fs');
+const checkAndBuild = require('./check-deps-and-build');
 
 (() => {
-  const allPkgs = fs.readdirSync(path.join('packages'));
+  const allPkgs = readdirSync('packages');
 
   checkAndBuild(allPkgs);
 })();

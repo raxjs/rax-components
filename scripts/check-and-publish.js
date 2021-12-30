@@ -6,6 +6,7 @@ const { join } = require('path');
 const { spawnSync } = require('child_process');
 const axios = require('axios');
 const semver = require('semver');
+const checkDepsAndBuild = require('./check-deps-and-build');
 
 function checkVersion(folder, callback) {
   const ret = []; // { name: 'foo', workDir, latest: 'x.x.x', local: 'x.x.x' }
@@ -32,7 +33,7 @@ function checkVersion(folder, callback) {
             if (!exists) {
               ret.push({
                 name: packageInfo.name,
-                workDir: join(folder, packageFolderName),
+                workDir: packageFolderName,
                 main: packageInfo.main,
                 local: packageInfo.version,
               });
@@ -60,14 +61,6 @@ function checkBuildSuccess(workDir, main) {
 function publish(pkg, workDir, main, version, tag) {
   console.log('[PUBLISH]', `${pkg}@${version}`);
 
-  // npm install
-  spawnSync('npm', [
-    'install',
-  ], {
-    stdio: 'inherit',
-    cwd: workDir,
-  });
-
   // npm publish
   if (checkBuildSuccess(workDir, main)) {
     spawnSync('npm', [
@@ -89,12 +82,14 @@ function isPrerelease(v) {
   return semVer.prerelease.length > 0;
 }
 
-function checkVersionAndPublish() {
-  checkVersion(join(__dirname, '../packages'), (ret) => {
+(() => {
+  checkVersion('packages', (ret) => {
     console.log('');
     if (ret.length === 0) {
       console.log('[PUBLISH] No diff with all packages.');
     } else {
+      const shouldBeBuiltPkgs = ret.map((item) => item.workDir);
+      checkDepsAndBuild(shouldBeBuiltPkgs);
       console.log('[PUBLISH] Will publish following packages:');
     }
 
@@ -105,6 +100,4 @@ function checkVersionAndPublish() {
       publish(name, workDir, main, local, tag);
     }
   });
-}
-
-checkVersionAndPublish();
+})()

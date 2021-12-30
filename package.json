@@ -67,8 +67,8 @@
     "setup": "rm -rf node_modules packages/*/node_modules packages/*/lib packages/*/es packages/*/dist && pnpm install",
     "build": "node scripts/build",
     "build:diff": "node scripts/build-diff",
-    "lint:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./ --fix",
-    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx packages --fix",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx packages",
     "check-and-publish": "node scripts/check-and-publish",
     "test": "build-scripts test"
   },

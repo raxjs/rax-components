@@ -5,10 +5,10 @@ const log = require('./log');
 
 const ALL_PACKAGES = fs.readdirSync(path.join('packages'));
 
-module.exports = function checkAndBuild(modifiedPkgs) {
-  // get all modified packages' package.json
-  for (let i = 0; i < modifiedPkgs.length; i++) {
-    const pkgName = modifiedPkgs[i];
+module.exports = function checkAndBuild(shouldBeBuiltPkgs) {
+  // get all packages' package.json
+  for (let i = 0; i < shouldBeBuiltPkgs.length; i++) {
+    const pkgName = shouldBeBuiltPkgs[i];
     const pkgJson = JSON.parse(
       fs.readFileSync(path.join('packages', pkgName, 'package.json'), {
         encoding: 'utf-8',
@@ -21,15 +21,15 @@ module.exports = function checkAndBuild(modifiedPkgs) {
     // filter internal deps
     const internalDeps = allDeps.filter((dep) => ALL_PACKAGES.includes(dep));
 
-    modifiedPkgs.push(...internalDeps);
+    shouldBeBuiltPkgs.push(...internalDeps);
   }
 
   // cache built packages
   const builtPkgs = [];
 
   // deepest dep will at the tail of list
-  // when package is built, skip building
-  modifiedPkgs.reverse().forEach((pkgName) => {
+  // when package has been built, skip building
+  shouldBeBuiltPkgs.reverse().forEach((pkgName) => {
     if (builtPkgs.includes(pkgName)) {
       return;
     }
@@ -40,7 +40,7 @@ module.exports = function checkAndBuild(modifiedPkgs) {
   // log
   log.info('packages have been built in the following order:');
   builtPkgs.forEach((pkgName, index) => {
-    console.log(`${index + 1}. ${pkgName}`);
+    console.log(`     ${index + 1}. ${pkgName}`);
   });
 };
 

@@ -49,7 +49,7 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, bufferSize, totalSize, scrollEventThrottle, ...rest } = props;
+    const { itemSize, horizontal, children, bufferSize, totalSize, scrollEventThrottle = 50, ...rest } = props;
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
@@ -110,13 +110,20 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
       props.onScroll && props.onScroll(e);
     }
 
+    const scrollRef = useRef(handleScroll);
+    useMemo(() => {
+      scrollRef.current = handleScroll;
+    }, [manager, props.onScroll]);
+
+    const throttleScroll = useMemo(() => throttle((e) => scrollRef.current(e), scrollEventThrottle), [scrollEventThrottle]);
+
     return (
       <ScrollView
         className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
         forwardRef={ref}
         {...rest}
         horizontal={horizontal}
-        onScroll={scrollEventThrottle ? throttle(handleScroll, scrollEventThrottle) : handleScroll}
+        onScroll={throttleScroll}
         scroll-anchoring={true}
       >
         {/* fix sticky by adding view */}
@@ -126,7 +133,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
           {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`} />)}
           {cells.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
           {createArray(cellLength - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`} />)}
-          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
+          <View id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
         </View>
       </ScrollView>
     );

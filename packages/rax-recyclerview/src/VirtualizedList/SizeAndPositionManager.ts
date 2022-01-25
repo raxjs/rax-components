@@ -14,7 +14,7 @@ class SizeAndPositionManager {
   public getRenderedIndex: TRenderedIndexGetter;
   public getPlaceholderSize: TPlaceholderSizeGetter;
 
-  public static bufferRatio = 3;
+  public static bufferRatio = 1;
   public static clientSize;
   public static pixelRatio: number;
 
@@ -62,46 +62,71 @@ class SizeAndPositionManager {
     if (typeof itemSize === 'number') {
       return (scrollDistance: number) => {
         const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
-        let startIndex, endIndex;
-        if (distance < this.bufferSize) {
-          startIndex = 0;
-        } else {
-          startIndex = Math.floor((distance - this.bufferSize) / itemSize);
-        }
-        endIndex = Math.ceil(this.bufferSize * SizeAndPositionManager.bufferRatio / itemSize) + startIndex - 1;
-
+        const pageIndex = Math.floor(distance / this.bufferSize);
+        const startIndex = pageIndex > SizeAndPositionManager.bufferRatio ? Math.floor((pageIndex - SizeAndPositionManager.bufferRatio) * this.bufferSize / itemSize) : 0;
+        const endIndex = Math.ceil((pageIndex + SizeAndPositionManager.bufferRatio + 1) * this.bufferSize / itemSize);
+        
         return {
           startIndex,
           endIndex: Math.min(endIndex, this.length - 1)
         };
       };
     }
-    return (scrollDistance: number) => {
-      const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
-      let startIndex = -1;
-      let endIndex = this.length - 1;
-      let size = 0;
-      if (distance < this.bufferSize) {
-        startIndex = 0;
-      } else {
-        const frontSize = distance - this.bufferSize;
-        for (let i = 0; i < this.length; i++) {
+
+    // key: pageIndex
+    // value: {
+    //   start: [startIndex, startSize],
+    //   end: [endIndex, endSize]
+    // }
+    const pageMap = new Map(); 
+
+    function getPage(index) {
+      if (pageMap.has(index)) {
+        return pageMap.get(index);
+      }
+      const firstPageSize = this.bufferSize * SizeAndPositionManager.bufferRatio;
+      if (index === 0) {
+        let endIndex = this.length - 1;
+        let size = 0;
+        for (let i = 0; i < this.length; i++){
           size += this.getSize(i);
-          if (size >= frontSize) {
-            startIndex = i;
+          if (size >= firstPageSize) {
+            endIndex = i;
             break;
           }
         }
+        pageMap.set(0, {
+          start: [0, 0],
+          end: [endIndex, size]
+        });
+        return pageMap.get(0);
       }
-      const backSize = this.bufferSize * SizeAndPositionManager.bufferRatio + distance;
-      for (let i = startIndex; i < this.length; i++) {
+      const { end } = getPage(index - 1);
+
+      const [preEndIndex, preEndSize] = end;
+      let size = preEndSize;
+      let endSize = this.length - 1;
+      const pageSize = firstPageSize * (index + 1);
+      for (let i = preEndIndex + 1; i < this.length; i++) {
         size += this.getSize(i);
-        if (size >= backSize) {
-          endIndex = i;
+        if (size >= pageSize) {
+          endSize = i;
           break;
         }
       }
+      pageMap.set(index, {
+        start: [preEndSize - 1, preEndSize - this.getSize(preEndSize)],
+        end: [endSize, size]
+      });
+    }
 
+    return (scrollDistance: number) => {
+      const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
+      const pageIndex = Math.floor(distance / this.bufferSize);
+      const frontPageIndex = Math.max(0, pageIndex - SizeAndPositionManager.bufferRatio);
+      const { start: [ startIndex ] } = getPage(frontPageIndex);
+      const backPageIndex = pageIndex + SizeAndPositionManager.bufferRatio + 1;
+      const { end: [ endIndex ] } = getPage(backPageIndex);
       return {
         startIndex,
         endIndex

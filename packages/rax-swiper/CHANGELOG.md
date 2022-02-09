@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.9
+
+- [fix] fix style in wechat-miniprogram
+
 ## 0.1.8
 
 - [fix] return instance ref in web

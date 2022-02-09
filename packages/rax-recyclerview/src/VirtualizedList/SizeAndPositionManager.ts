@@ -1,166 +1,71 @@
 import { TItemSize } from './types';
 
 type TSizeGetter = (i: number) => number;
-type TRenderedIndexGetter = (distance: number) => { startIndex: number; endIndex: number };
-type TPlaceholderSizeGetter = (startIndex: number, endIndex: number) => { front: number; back: number; show?: string };
-
 class SizeAndPositionManager {
   private bufferSize: number;
   private readonly length: number;
   private getSize: TSizeGetter;
+  private pages: Array<{
+    startIndex: number;
+    endIndex: number;
+    startPos: number;
+    endPos: number;
+  }> = [];
 
   public totalSize: number;
-
-  public getRenderedIndex: TRenderedIndexGetter;
-  public getPlaceholderSize: TPlaceholderSizeGetter;
 
   public static bufferRatio = 1;
   public static clientSize;
   public static pixelRatio: number;
 
-  public static initRenderedIndex = { startIndex: -1, endIndex: -1 }
-
-  public constructor({ itemSize, horizontal, length, bufferSize, totalSize }: {
+  public constructor({ itemSize, horizontal, length, bufferSize, totalSize, estimateSize }: {
     itemSize: TItemSize;
     horizontal: boolean;
     length: number;
     bufferSize?: number;
     totalSize?: number;
+    estimateSize?: number;
   }) {
     this.length = length;
     this.bufferSize = this.getBufferSize(bufferSize, horizontal);
     this.getSize = this.initSizeGetter(itemSize);
-    this.getRenderedIndex = this.initRenderedIndexGetter(itemSize);
-    this.getPlaceholderSize = this.initPlaceholderSizeGetter(itemSize);
-    this.totalSize = totalSize ? totalSize : this.getTotalSize(itemSize, length);
+    this.initManager();
   }
 
-  private initSizeGetter(itemSize): TSizeGetter {
-    if (typeof itemSize === 'number') {
-      return () => {
-        return itemSize;
-      };
-    }
-
-    if (typeof itemSize === 'function') {
-      const sizeCache = new Map();
-      return (i: number) => {
-        if (sizeCache.has(i)) {
-          return sizeCache.get(i);
-        } else {
-          const singleSize = itemSize(i);
-          sizeCache.set(i, singleSize);
-          return singleSize;
-        }
-      };
-    }
-
-    throw new Error('itemSize is inValid');
-  }
-
-  private initRenderedIndexGetter(itemSize): TRenderedIndexGetter {
-    if (typeof itemSize === 'number') {
-      return (scrollDistance: number) => {
-        const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
-        const pageIndex = Math.floor(distance / this.bufferSize);
-        const startIndex = pageIndex > SizeAndPositionManager.bufferRatio ? Math.floor((pageIndex - SizeAndPositionManager.bufferRatio) * this.bufferSize / itemSize) : 0;
-        const endIndex = Math.ceil((pageIndex + SizeAndPositionManager.bufferRatio + 1) * this.bufferSize / itemSize);
-        
-        return {
-          startIndex,
-          endIndex: Math.min(endIndex, this.length - 1)
-        };
-      };
-    }
-
-    // key: pageIndex
-    // value: {
-    //   start: [startIndex, startSize],
-    //   end: [endIndex, endSize]
-    // }
-    const pageMap = new Map(); 
-
-    function getPage(index) {
-      if (pageMap.has(index)) {
-        return pageMap.get(index);
-      }
-      const firstPageSize = this.bufferSize * SizeAndPositionManager.bufferRatio;
-      if (index === 0) {
-        let endIndex = this.length - 1;
-        let size = 0;
-        for (let i = 0; i < this.length; i++){
-          size += this.getSize(i);
-          if (size >= firstPageSize) {
-            endIndex = i;
-            break;
-          }
-        }
-        pageMap.set(0, {
-          start: [0, 0],
-          end: [endIndex, size]
-        });
-        return pageMap.get(0);
-      }
-      const { end } = getPage(index - 1);
-
-      const [preEndIndex, preEndSize] = end;
-      let size = preEndSize;
-      let endSize = this.length - 1;
-      const pageSize = firstPageSize * (index + 1);
-      for (let i = preEndIndex + 1; i < this.length; i++) {
-        size += this.getSize(i);
-        if (size >= pageSize) {
-          endSize = i;
-          break;
-        }
-      }
-      pageMap.set(index, {
-        start: [preEndSize - 1, preEndSize - this.getSize(preEndSize)],
-        end: [endSize, size]
+  private initManager() {
+    this.pages = [];
+    // sort items in pages 
+    let size = 0;
+    let prevExtraSize = 0;
+    for (let i = 0; i < this.length;) {
+      const { endIndex, pageSize, extraSize } = this.calPageInfo(i, prevExtraSize);
+      this.pages.push({
+        startIndex: i,
+        endIndex,
+        startPos: size,
+        endPos: size + pageSize
       });
+      i = endIndex + 1;
+      size += pageSize;
+      prevExtraSize = extraSize;
     }
+    this.totalSize = size;
+  }
 
-    return (scrollDistance: number) => {
-      const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
-      const pageIndex = Math.floor(distance / this.bufferSize);
-      const frontPageIndex = Math.max(0, pageIndex - SizeAndPositionManager.bufferRatio);
-      const { start: [ startIndex ] } = getPage(frontPageIndex);
-      const backPageIndex = pageIndex + SizeAndPositionManager.bufferRatio + 1;
-      const { end: [ endIndex ] } = getPage(backPageIndex);
-      return {
-        startIndex,
-        endIndex
-      };
+  private calPageInfo(index: number,  prevExtraSize: number) {
+    let size = 0;
+    while(index < this.length && size < this.bufferSize - prevExtraSize) {
+      size += this.getSize(index);
+      index++;
+    }
+    return {
+      endIndex: index - 1,
+      pageSize: size,
+      extraSize: size - this.bufferSize + prevExtraSize
     };
   }
 
-  private initPlaceholderSizeGetter(itemSize) {
-    if (typeof itemSize === 'number') {
-      return (startIndex, endIndex) => {
-        return {
-          front: startIndex * itemSize,
-          back: (this.length - endIndex - 1) * itemSize,
-        };
-      };
-    }
-    return (startIndex, endIndex) => {
-      let front = 0;
-      let back = 0;
-      for (let i = 0; i < startIndex; i++) {
-        front += this.getSize(i);
-      }
-      for (let i = endIndex + 1; i < this.length; i++) {
-        back += this.getSize(i);
-      }
-
-      return {
-        front: front,
-        back: back,
-      };
-    };
-  }
-
-  private getBufferSize(bufferSize, horizontal) {
+  private getBufferSize(bufferSize, horizontal): number {
     if (bufferSize) {
       return bufferSize;
     }
@@ -170,15 +75,56 @@ class SizeAndPositionManager {
     return SizeAndPositionManager.clientSize.height / SizeAndPositionManager.pixelRatio;
   }
 
-  private getTotalSize(itemSize: TItemSize, length: number): number {
+  private initSizeGetter(itemSize) {
     if (typeof itemSize === 'number') {
-      return itemSize * length;
+      return () => {
+        return itemSize;
+      }
     }
-    let size;
-    for (let i = 0; i < length; i++) {
-      size += this.getSize(i);
+    return (i) => {
+      const size = itemSize(i);
+      if (typeof size !== 'number') {
+        console.error(`rax-recyclerview: ${i} 节点的 size 为 ${size}，不是 number 类型`);
+        return 0;
+      }
+      return size;
     }
-    return size;
+  }
+
+  calCurrent(scrollDistance: number) {
+    const distance = scrollDistance / SizeAndPositionManager.pixelRatio;
+    const pageIndex = distance === 0 ? 0 : Math.ceil(distance / this.bufferSize) - 1;
+    const prevPageIndex = Math.max(0, pageIndex - 1);
+    const nextPageIndex = Math.min(this.pages.length, pageIndex + 1);
+    const prevPage = this.pages[prevPageIndex];
+    const nextPage = this.pages[nextPageIndex];
+    console.log(distance)
+    if (prevPage && nextPage) {
+      return {
+        startIndex: prevPage.startIndex,
+        endIndex: nextPage.endIndex,
+        front: prevPage.startPos,
+        back: this.totalSize - nextPage.endPos
+      };
+    }
+    return {
+      startIndex: 0,
+      endIndex: this.length,
+      front: 0,
+      back: 0
+    };
+  }
+
+  setPageSize(index, size) {
+    const page = this.pages[index];
+    if (page) {
+      const errorSize = page.endPos - page.startPos - size;
+      page.endPos = page.startPos + size;
+      for (let i = index + 1; i < this.pages.length; i ++) {
+        this.pages[i].startPos = this.pages[i].startPos - errorSize;
+        this.pages[i].endPos = this.pages[i].endPos - errorSize;
+      }
+    }
   }
 }
 

@@ -1,12 +1,15 @@
-import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef, useEffect } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import Children from 'rax-children';
+import createIntersectionObserver from '@uni/intersection-observer';
 
 import NoRecycleList from './NoRecycleList';
 import throttle from './throttle';
 
 import { VirtualizedList } from './types';
+import SizeAndPositionManager from './SizeAndPositionManager';
+import { isWeb } from '@uni/env';
 
 function createArray(length) {
   if (length > 0) {
@@ -49,7 +52,7 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, bufferSize, totalSize, scrollEventThrottle = 50, ...rest } = props;
+    const { itemSize, horizontal, children, bufferSize, scrollEventThrottle = 50, ...rest } = props;
     if (!itemSize) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
@@ -81,32 +84,39 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     const offsetRef = useRef(0);
 
     const constantKey = getConstantKey(horizontal);
-    const [renderedIndex, setRenderedIndex] = useState(SizeAndPositionManager.initRenderedIndex);
+    const [renderedIndex, setRenderedIndex] = useState([0, 0]);
+    const [placeholderSize, setPlaceholderSize] = useState([0, 0]);
+    const [observer, setObserver] = useState(null);
 
-    const manager  = useMemo(() => {
-      const manager = new SizeAndPositionManager({
+    const manager: SizeAndPositionManager  = useMemo(() => {
+      const manager: SizeAndPositionManager = new SizeAndPositionManager({
         itemSize,
         horizontal,
         bufferSize,
         length: cellLength,
-        totalSize
       });
-      setRenderedIndex(manager.getRenderedIndex(offsetRef.current))
+      const {
+        startIndex,
+        endIndex,
+        front,
+        back
+      } = manager.calCurrent(offsetRef.current);
+      setRenderedIndex([startIndex, endIndex]);
+      setPlaceholderSize([front, back]);
       return manager;
     }, [itemSize, horizontal, cellLength, bufferSize]);
-
-    const {
-      front,
-      back
-    } = useMemo(() => {
-      return manager.getPlaceholderSize(renderedIndex.startIndex, renderedIndex.endIndex);
-    }, [renderedIndex.startIndex, renderedIndex.endIndex]);
 
     function handleScroll(e) {
       const offset = e.nativeEvent.contentOffset[constantKey.contentOffset];
       offsetRef.current = offset;
-      const newRenderedIndex = manager.getRenderedIndex(offset);
-      setRenderedIndex(newRenderedIndex);
+      const {
+        startIndex,
+        endIndex,
+        front,
+        back
+      } = manager.calCurrent(offsetRef.current);
+      setRenderedIndex([startIndex, endIndex]);
+      setPlaceholderSize([front, back]);
       props.onScroll && props.onScroll(e);
     }
 
@@ -117,6 +127,48 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
 
     const throttleScroll = useMemo(() => throttle((e) => scrollRef.current(e), scrollEventThrottle), [scrollEventThrottle]);
 
+    function resetObservation() {
+      observer && observer.disconnect();
+    }
+
+    function intiateScrollObserver() {
+      const intersectionObserver = createIntersectionObserver({
+        threshold: [0.1]
+      });
+      intersectionObserver.observe('#rax-recyclerview-back', () => {
+        console.log('到底了');
+      });
+      intersectionObserver.observe('#rax-recyclerview-front', () => {
+        console.log('到头了')
+      });
+      setObserver(intersectionObserver);
+    }    
+
+    useEffect(() =>  {
+      resetObservation();
+      intiateScrollObserver();
+    }, [renderedIndex[1]])
+
+    if (isWeb) {
+      return (
+        <ScrollView
+          className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
+          forwardRef={ref}
+          {...rest}
+          horizontal={horizontal}
+          onScroll={throttleScroll}
+          scroll-anchoring={true}
+        >
+          {/* fix sticky by adding view */}
+          <View>
+            {headers}
+            <div key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
+            {cells.slice(renderedIndex[0], renderedIndex[1] + 1)}
+            <div id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
+          </View>
+        </ScrollView>
+      );
+    }
     return (
       <ScrollView
         className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
@@ -129,11 +181,11 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         {/* fix sticky by adding view */}
         <View>
           {headers}
-          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: front + 'rpx' }} />
-          {createArray(renderedIndex.startIndex).map((v, index) => <Fragment key={`pl_${index}`} />)}
-          {cells.slice(renderedIndex.startIndex, renderedIndex.endIndex + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex.startIndex}`}>{child}</Fragment>)}
-          {createArray(cellLength - renderedIndex.endIndex - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex.endIndex + 1}`} />)}
-          <View id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: back + 'rpx' }} />
+          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
+          {createArray(renderedIndex[0]).map((v, index) => <Fragment key={`pl_${index}`} />)}
+          {cells.slice(renderedIndex[0], renderedIndex[1] + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex[0]}`}>{child}</Fragment>)}
+          {createArray(cellLength - renderedIndex[1] - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex[1] + 1}`} />)}
+          <View id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
         </View>
       </ScrollView>
     );

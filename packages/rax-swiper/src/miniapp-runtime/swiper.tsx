@@ -4,7 +4,7 @@ import Children from 'rax-children';
 import { SwiperType } from '../types';
 import './swiper.css';
 
-const innerClassName = 'swiper-container'
+const innerClassName = 'swiper-container';
 
 const Swiper: SwiperType = forwardRef((props, ref) => {
   const {

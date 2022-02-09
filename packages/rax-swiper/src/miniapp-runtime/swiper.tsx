@@ -4,6 +4,8 @@ import Children from 'rax-children';
 import { SwiperType } from '../types';
 import './swiper.css';
 
+const innerClassName = 'swiper-container';
+
 const Swiper: SwiperType = forwardRef((props, ref) => {
   const {
     autoplay = false,
@@ -18,11 +20,13 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       itemColor: 'rgba(0, 0, 0, .3)',
       itemActiveColor: '#000000'
     },
+    className: outerClassName,
     ...rest
   } = props;
 
   const [ activeIndex, setActiveIndex ] = useState(initialSlide);
   const size = useMemo(() => Children.count(children), [children]);
+  const className = useMemo(() => outerClassName ? `${innerClassName} ${outerClassName}` : innerClassName, [outerClassName]);
 
   const slideChange = (event) => {
     if (onSlideChange) {
@@ -80,7 +84,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
       vertical={_vertical}
       onChange={slideChange}
       circular={loop}
-      className="swiper-container"
+      className={className}
       interval={interval}
       indicator-color={paginationStyle.itemColor}
       indicator-active-color={paginationStyle.itemActiveColor}

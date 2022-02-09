@@ -8,7 +8,7 @@ Component({
   },
   props: {
     className: '',
-    style: '',
+    styleSheet: '',
     autoplay: false,
     pagination: true,
     loop: true,

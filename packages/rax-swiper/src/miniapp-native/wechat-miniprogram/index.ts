@@ -9,8 +9,9 @@ Component({
     className: {
       type: String,
     },
-    style: {
+    styleSheet: {
       type: String,
+      value: ''
     },
     autoplay: {
       type: Boolean,
@@ -56,7 +57,8 @@ Component({
     }
   },
   options: {
-    multipleSlots: true
+    multipleSlots: true,
+    styleIsolation: 'apply-shared'
   },
   attached() {
     this.setData({

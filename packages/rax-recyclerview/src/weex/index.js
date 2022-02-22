@@ -11,7 +11,10 @@ import {
 import View from 'rax-view';
 import findDOMNode from 'rax-find-dom-node';
 import RefreshControl from 'rax-refreshcontrol';
+import getElementById from 'rax-get-element-by-id';
 import Children from 'rax-children';
+
+const isWeexV2 = typeof __weex_v2__ === 'object';
 
 const Context = createContext(true);
 
@@ -74,19 +77,40 @@ const RecyclerView = forwardRef((props, ref) => {
       list.current.resetLoadmore && list.current.resetLoadmore(); // for weex 0.9+
     },
     scrollTo(options) {
-      let x = parseInt(options.x);
-      let y = parseInt(options.y);
-      let animated =
-        options && typeof options.animated !== 'undefined'
-          ? options.animated
-          : true;
-
-      let dom = __weex_require__('@weex-module/dom');
       let firstNode = findDOMNode(firstNodePlaceholder.current);
-      dom.scrollToElement(firstNode, {
-        offset: x || y || 0,
-        animated
-      });
+      if (isWeexV2) {
+        list.current.scrollTo(firstNode, options);
+      } else {
+        let x = parseInt(options.x);
+        let y = parseInt(options.y);
+        let animated =
+          options && typeof options.animated !== 'undefined'
+            ? options.animated
+            : true;
+
+        let dom = __weex_require__('@weex-module/dom');
+        dom.scrollToElement(firstNode, {
+          offset: x || y || 0,
+          animated
+        });
+      }
+    },
+    scrollIntoView(options) {
+      const { id, animated = true } = options || {};
+      if (!id) {
+        throw new Error('Params missing id.');
+      }
+      const node = getElementById(id);
+      if (node) {
+        if (isWeexV2) {
+          list.current.scrollTo(node, options);
+        } else {
+          const dom = __weex_require__('@weex-module/dom');
+          dom.scrollToElement(node, {
+            animated
+          });
+        }
+      }
     }
   }));
 

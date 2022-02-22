@@ -257,6 +257,8 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       if (disableScroll) {
         scrollerStyle.overflow = 'hidden';
+      } else {
+        scrollerStyle.overflow = 'scroll';
       }
 
       const webProps = {

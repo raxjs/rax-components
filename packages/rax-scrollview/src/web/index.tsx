@@ -247,6 +247,11 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       }
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
+
+      if (disableScroll) {
+        scrollerStyle.overflow = 'hidden';
+      } 
+
       if (horizontal) {
         scrollerStyle.overflowX = 'scroll';
         scrollerStyle.overflowY = 'hidden';
@@ -254,12 +259,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         scrollerStyle.overflowX = 'hidden';
         scrollerStyle.overflowY = 'scroll';
       }
-
-      if (disableScroll) {
-        scrollerStyle.overflow = 'hidden';
-      } else {
-        scrollerStyle.overflow = 'scroll';
-      }
+      
 
       const webProps = {
         ...props

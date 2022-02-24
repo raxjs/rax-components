@@ -98,7 +98,6 @@ class SizeAndPositionManager {
     const nextPageIndex = Math.min(this.pages.length, pageIndex + 1);
     const prevPage = this.pages[prevPageIndex];
     const nextPage = this.pages[nextPageIndex];
-    console.log(distance)
     if (prevPage && nextPage) {
       return {
         startIndex: prevPage.startIndex,

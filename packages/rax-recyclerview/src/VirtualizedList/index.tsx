@@ -1,15 +1,14 @@
-import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef, useEffect } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import Children from 'rax-children';
-import createIntersectionObserver from '@uni/intersection-observer';
 
 import NoRecycleList from './NoRecycleList';
 import throttle from './throttle';
 
 import { VirtualizedList } from './types';
 import SizeAndPositionManager from './SizeAndPositionManager';
-import { isWeb } from '@uni/env';
+import { isWeChatMiniProgram } from '@uni/env';
 
 function createArray(length) {
   if (length > 0) {
@@ -37,7 +36,7 @@ const Cell = memo(({children}) => {
 Cell.displayName = 'Cell';
 
 const Header = memo(({children, ...rest}) => {
-  return (<View {...rest}>{children}</View>);
+  return (<Fragment {...rest}>{children}</Fragment>);
 });
 Header.displayName = 'Header';
 
@@ -86,7 +85,6 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     const constantKey = getConstantKey(horizontal);
     const [renderedIndex, setRenderedIndex] = useState([0, 0]);
     const [placeholderSize, setPlaceholderSize] = useState([0, 0]);
-    const [observer, setObserver] = useState(null);
 
     const manager: SizeAndPositionManager  = useMemo(() => {
       const manager: SizeAndPositionManager = new SizeAndPositionManager({
@@ -127,29 +125,7 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
 
     const throttleScroll = useMemo(() => throttle((e) => scrollRef.current(e), scrollEventThrottle), [scrollEventThrottle]);
 
-    function resetObservation() {
-      observer && observer.disconnect();
-    }
-
-    function intiateScrollObserver() {
-      const intersectionObserver = createIntersectionObserver({
-        threshold: [0.1]
-      });
-      intersectionObserver.observe('#rax-recyclerview-back', () => {
-        console.log('到底了');
-      });
-      intersectionObserver.observe('#rax-recyclerview-front', () => {
-        console.log('到头了')
-      });
-      setObserver(intersectionObserver);
-    }    
-
-    useEffect(() =>  {
-      resetObservation();
-      intiateScrollObserver();
-    }, [renderedIndex[1]])
-
-    if (isWeb) {
+    if (isWeChatMiniProgram) {
       return (
         <ScrollView
           className={`rax-recylerview ${horizontal ? 'rax-recylerview-horizontal' : 'rax-recylerview-vertical'}`}
@@ -162,9 +138,11 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
           {/* fix sticky by adding view */}
           <View>
             {headers}
-            <div key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
-            {cells.slice(renderedIndex[0], renderedIndex[1] + 1)}
-            <div id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
+            <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
+            {createArray(renderedIndex[0]).map((v, index) => <Fragment key={`pl_${index}`} />)}
+            {cells.slice(renderedIndex[0], renderedIndex[1] + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex[0]}`}>{child}</Fragment>)}
+            {createArray(cellLength - renderedIndex[1] - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex[1] + 1}`} />)}
+            <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
           </View>
         </ScrollView>
       );
@@ -178,17 +156,13 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         onScroll={throttleScroll}
         scroll-anchoring={true}
       >
-        {/* fix sticky by adding view */}
-        <View>
           {headers}
           <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
-          {createArray(renderedIndex[0]).map((v, index) => <Fragment key={`pl_${index}`} />)}
-          {cells.slice(renderedIndex[0], renderedIndex[1] + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex[0]}`}>{child}</Fragment>)}
-          {createArray(cellLength - renderedIndex[1] - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex[1] + 1}`} />)}
-          <View id="rax-recyclerview-back" key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
-        </View>
+          {cells.slice(renderedIndex[0], renderedIndex[1] + 1)}
+          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
       </ScrollView>
     );
+    
   });
 
   VirtualizedList.Header = Header;

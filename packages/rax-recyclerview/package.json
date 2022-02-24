@@ -68,6 +68,7 @@
     "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",
+    "rax-get-element-by-id": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
     "rax-scrollview": "3.7.1-1",
     "rax-view": "^2.0.0",

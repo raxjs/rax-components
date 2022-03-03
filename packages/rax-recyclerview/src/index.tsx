@@ -1,4 +1,4 @@
-import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from 'universal-env';
+import { isWeb, isWeex, isMiniApp, isWeChatMiniProgram, isByteDanceMicroApp, isBaiduSmartProgram, isKuaiShouMiniProgram } from '@uni/env';
 import RecyclerViewWeb from './web';
 import RecyclerViewWeex from './weex';
 import RecyclerViewMiniProgram from './miniapp-runtime';

@@ -1,14 +1,15 @@
-import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef } from 'rax';
+import { createElement, forwardRef, useState, useMemo, memo, Fragment, useRef, useLayoutEffect } from 'rax';
 import ScrollView from 'rax-scrollview';
 import View from 'rax-view';
 import Children from 'rax-children';
+import findDOMNode from 'rax-find-dom-node';
 
 import NoRecycleList from './NoRecycleList';
 import throttle from './throttle';
 
 import { VirtualizedList } from './types';
 import SizeAndPositionManager from './SizeAndPositionManager';
-import { isWeChatMiniProgram } from '@uni/env';
+import { isWeChatMiniProgram, isWeb } from '@uni/env';
 
 function createArray(length) {
   if (length > 0) {
@@ -21,12 +22,12 @@ function getConstantKey(horizontal: boolean) {
   if (horizontal) {
     return {
       contentOffset: 'x',
-      placeholderStyle: 'width'
+      style: 'width'
     };
   }
   return {
     contentOffset: 'y',
-    placeholderStyle: 'height'
+    style: 'height'
   };
 }
 
@@ -36,7 +37,7 @@ const Cell = memo(({children}) => {
 Cell.displayName = 'Cell';
 
 const Header = memo(({children, ...rest}) => {
-  return (<Fragment {...rest}>{children}</Fragment>);
+  return (<View {...rest}>{children}</View>);
 });
 Header.displayName = 'Header';
 
@@ -51,8 +52,8 @@ NestedList.displayName = 'NestedList';
 
 function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
   const VirtualizedList: VirtualizedList = forwardRef((props, ref) => {
-    const { itemSize, horizontal, children, bufferSize, scrollEventThrottle = 50, ...rest } = props;
-    if (!itemSize) {
+    const { itemSize, itemEstimateSize, horizontal, children, bufferSize, scrollEventThrottle = 50, ...rest } = props;
+    if (!itemSize && (!isWeb || !itemEstimateSize)) {
       return (<NoRecycleList {...props}>{children}</NoRecycleList>);
     }
     const {
@@ -81,40 +82,56 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     }, [children]);
 
     const offsetRef = useRef(0);
+    const preNodeRef = useRef(null);
 
     const constantKey = getConstantKey(horizontal);
-    const [renderedIndex, setRenderedIndex] = useState([0, 0]);
-    const [placeholderSize, setPlaceholderSize] = useState([0, 0]);
+    const [renderInfo, setRenderInfo] = useState({
+      placeholderSizes: [0, 0],
+      renderedIndexs: [0, 0],
+      pageIndexs: [0, 0]
+    });
 
-    const manager: SizeAndPositionManager  = useMemo(() => {
+    const manager: SizeAndPositionManager = useMemo(() => {
       const manager: SizeAndPositionManager = new SizeAndPositionManager({
         itemSize,
         horizontal,
         bufferSize,
+        itemEstimateSize,
         length: cellLength,
       });
-      const {
-        startIndex,
-        endIndex,
-        front,
-        back
-      } = manager.calCurrent(offsetRef.current);
-      setRenderedIndex([startIndex, endIndex]);
-      setPlaceholderSize([front, back]);
+      const result = manager.calCurrent(offsetRef.current);
+      if (result) {
+        const {
+          renderedIndexs,
+          placeholderSizes,
+          pageIndexs
+        } = result;
+        setRenderInfo({
+          renderedIndexs,
+          placeholderSizes,
+          pageIndexs
+        });
+      }
+
       return manager;
-    }, [itemSize, horizontal, cellLength, bufferSize]);
+    }, [itemSize, horizontal, cellLength, bufferSize, itemEstimateSize]);
 
     function handleScroll(e) {
       const offset = e.nativeEvent.contentOffset[constantKey.contentOffset];
       offsetRef.current = offset;
-      const {
-        startIndex,
-        endIndex,
-        front,
-        back
-      } = manager.calCurrent(offsetRef.current);
-      setRenderedIndex([startIndex, endIndex]);
-      setPlaceholderSize([front, back]);
+      const result = manager.calCurrent(offsetRef.current);
+      if (result) {
+        const {
+          renderedIndexs,
+          placeholderSizes,
+          pageIndexs
+        } = result;
+        setRenderInfo({
+          renderedIndexs,
+          placeholderSizes,
+          pageIndexs
+        });
+      }
       props.onScroll && props.onScroll(e);
     }
 
@@ -124,6 +141,17 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
     }, [manager, props.onScroll]);
 
     const throttleScroll = useMemo(() => throttle((e) => scrollRef.current(e), scrollEventThrottle), [scrollEventThrottle]);
+
+    useLayoutEffect(() => {
+      if (isWeb) {
+        manager.correctSize({
+          targetNode: findDOMNode(preNodeRef.current),
+          headerLength: headers.length,
+          pageIndexs: renderInfo.pageIndexs as [number, number],
+          styleString: constantKey.style
+        });
+      }
+    }, [renderInfo.pageIndexs[0], renderInfo.pageIndexs[1]]);
 
     if (isWeChatMiniProgram) {
       return (
@@ -138,11 +166,11 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
           {/* fix sticky by adding view */}
           <View>
             {headers}
-            <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
-            {createArray(renderedIndex[0]).map((v, index) => <Fragment key={`pl_${index}`} />)}
-            {cells.slice(renderedIndex[0], renderedIndex[1] + 1).map((child, index) => <Fragment key={`pl_${index + renderedIndex[0]}`}>{child}</Fragment>)}
-            {createArray(cellLength - renderedIndex[1] - 1).map((v, index) => <Fragment key={`pl_${index + renderedIndex[1] + 1}`} />)}
-            <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
+            <View key="rax-recyclerview-front" style={{ [constantKey.style]: renderInfo.placeholderSizes[0] + 'rpx' }} />
+            {createArray(renderInfo.renderedIndexs[0]).map((v, index) => <Fragment key={`pl_${index}`} />)}
+            {cells.slice(renderInfo.renderedIndexs[0], renderInfo.renderedIndexs[1] + 1).map((child, index) => <Fragment key={`pl_${index + renderInfo.renderedIndexs[0]}`}>{child}</Fragment>)}
+            {createArray(cellLength - renderInfo.renderedIndexs[1] - 1).map((v, index) => <Fragment key={`pl_${index + renderInfo.renderedIndexs[1] + 1}`} />)}
+            <View key="rax-recyclerview-back" style={{ [constantKey.style]: renderInfo.placeholderSizes[1] + 'rpx' }} />
           </View>
         </ScrollView>
       );
@@ -156,13 +184,12 @@ function getVirtualizedList(SizeAndPositionManager): VirtualizedList {
         onScroll={throttleScroll}
         scroll-anchoring={true}
       >
-          {headers}
-          <View key="rax-recyclerview-front" style={{ [constantKey.placeholderStyle]: placeholderSize[0] + 'rpx' }} />
-          {cells.slice(renderedIndex[0], renderedIndex[1] + 1)}
-          <View key="rax-recyclerview-back" style={{ [constantKey.placeholderStyle]: placeholderSize[1] + 'rpx' }} />
+        {headers}
+        <View ref={preNodeRef} key="rax-recyclerview-front" style={{ [constantKey.style]: renderInfo.placeholderSizes[0] + 'rpx' }} />
+        {cells.slice(renderInfo.renderedIndexs[0], renderInfo.renderedIndexs[1] + 1)}
+        <View key="rax-recyclerview-back" style={{ [constantKey.style]: renderInfo.placeholderSizes[1] + 'rpx' }} />
       </ScrollView>
     );
-    
   });
 
   VirtualizedList.Header = Header;

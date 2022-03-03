@@ -4,12 +4,13 @@ import { RefAttributes, HTMLAttributes, ForwardRefExoticComponent } from 'rax';
 export type TItemSize = number | ((e: number) => number);
 
 export interface RecyclerViewRefObject extends ScrollViewProps {
-  itemSize: TItemSize;
+  itemSize?: TItemSize;
   totalSize?: number;
   bufferSize?: number;
   horizontal: boolean;
   bufferRatio?: number;
   scrollEventThrottle?: number;
+  itemEstimateSize?: number;
 }
 
 export interface LegacyRefObject extends RefAttributes<any>, HTMLAttributes<HTMLDivElement> {}

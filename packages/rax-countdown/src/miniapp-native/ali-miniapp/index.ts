@@ -88,11 +88,14 @@ Component({
           case 'm':
           case 's':
             if (index % 2 === 0) {
-              // insert plain text before current matched item
-              return {
-                value: tpl.slice(lastPlaintextIndex, val),
-                style: textStyle
-              };
+              const value = tpl.slice(lastPlaintextIndex, val);
+              if (value || textStyle) {
+                  // insert plain text before current matched item
+                return {
+                  value,
+                  style: textStyle
+                };
+              }
             } else {
               // replace current matched item to realtime string
               lastPlaintextIndex = val + 3;

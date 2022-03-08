@@ -1,4 +1,7 @@
 # Changelog
+## v1.2.1
+
+- Feat decrease setData data size for promote performance
 
 ## v1.2.0
 

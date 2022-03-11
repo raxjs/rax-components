@@ -30,6 +30,25 @@ const styles = {
   }
 };
 
+const ENDS_WITH_PX_EXCEPT_RPX = /^[0-9\.]+\s*([^r]px)?$/;
+
+function processDimensions(width: string | number, height: string | number) {
+  let w = width;
+  let h = height;
+  if (typeof width === 'string' && ENDS_WITH_PX_EXCEPT_RPX.test(width)){
+    w = parseFloat(width);
+  }
+
+  if (typeof height === 'string' && ENDS_WITH_PX_EXCEPT_RPX.test(height)){
+    h = parseFloat(height);
+  }
+
+  return {
+    width: w as number,
+    height: h as number
+  };
+}
+
 class QRCode extends Component<QRCodeProps, {}> {
   public width = 0;
   public height = 0;
@@ -38,7 +57,7 @@ class QRCode extends Component<QRCodeProps, {}> {
   public constructor(props) {
     super(props);
     const { style = {} } = props;
-    const { width = 300, height = 300 } = style;
+    const { width, height } = processDimensions(style.width || 300, style.height || 300);
     this.width = width;
     this.height = height;
     this.canvas = createRef();

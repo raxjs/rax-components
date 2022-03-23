@@ -13,7 +13,7 @@
     "dist"
   ],
   "exports": {
-    ".":{
+    ".": {
       "web": "./es/web/index.js",
       "miniapp": "./es/miniapp-runtime/index.js",
       "wechat-miniprogram": "./es/miniapp-runtime/index.js",

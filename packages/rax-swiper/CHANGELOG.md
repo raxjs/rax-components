@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.10
+
+- [fix] calc error in css file caused by `postcss-calc`
+
 ## 0.1.9
 
 - [fix] fix style in wechat-miniprogram

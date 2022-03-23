@@ -1,7 +1,7 @@
 {
   "name": "rax-swiper",
   "author": "rax",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Swiper component for Rax.",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
@@ -13,7 +13,7 @@
     "dist"
   ],
   "exports": {
-    ".":{
+    ".": {
       "web": "./es/web/index.js",
       "miniapp": "./es/miniapp-runtime/index.js",
       "wechat-miniprogram": "./es/miniapp-runtime/index.js",

@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 1.2.3
+## 2.0.0
 
 - Update rax-scrollview version to 3.x
 - Remove unnecessary props passed to rax-scrollview

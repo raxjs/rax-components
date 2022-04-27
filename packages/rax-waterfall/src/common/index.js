@@ -3,6 +3,7 @@ import View from 'rax-view';
 import ScrollView from 'rax-scrollview';
 import RefreshControl from 'rax-refreshcontrol';
 import cloneElement from 'rax-clone-element';
+import omit from '../utils/omit';
 
 class Header extends PureComponent {
   render() {
@@ -116,7 +117,8 @@ class Waterfall extends Component {
     }));
 
     styles.waterfallColumn.width = columnWidth;
-    return (<ScrollView {...props} ref={this.scrollview}>
+    const omittedProps = omit(props, ['dataSource', 'renderItem', 'renderHeader', 'renderFooter', 'columnWidth', 'columnCount', 'columnGap', 'cellProps', 'leftGap', 'rightGap']);
+    return (<ScrollView {...omittedProps} ref={this.scrollview}>
       {cells}
     </ScrollView>);
   }

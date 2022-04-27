@@ -7,6 +7,7 @@ import Text from 'rax-text';
 import Image from 'rax-image';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { IconProps } from '../types';
+import { createIconSet as rawCreateIconSet } from '../createIconSet';
 
 declare const tt: any;
 
@@ -61,5 +62,13 @@ const Icon = forwardRef<HTMLSpanElement | HTMLImageElement, IconProps>(
     );
   }
 );
+
+export function createIconSet(
+  glyphMap = {},
+  fontFamily: string,
+  fontFile: string
+) {
+  return rawCreateIconSet(Icon, glyphMap, fontFamily, fontFile);
+}
 
 export default wrapDefaultProperties(Icon);

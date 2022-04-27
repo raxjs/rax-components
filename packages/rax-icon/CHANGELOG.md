@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.5
+
+- Fix `createIconSet` export in `index.js`
+
+## 1.4.4
+
+- Fix `createIconSet` not export in single platform
+
 ## 1.4.3
 
 - Fix types export bug

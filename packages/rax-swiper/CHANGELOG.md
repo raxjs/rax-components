@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.10
+
+- [fix] calc error in css file caused by `postcss-calc`
+
+## 0.1.9
+
+- [fix] fix style in wechat-miniprogram
+
+## 0.1.8
+
+- [fix] return instance ref in web
+- [fix] make slidePrev and slideNext same in web and miniapp
+
+## 0.1.7
+
+- [feat] support swiper in miniapp
+
+## 0.1.6
+
+- [fix] remove space in `swiper.css` `@font-face` url
+- [fix] type of `Swiper` & `SwiperSlide`
+
 ## 0.1.5
 
 - [chore] update swiper dependency version to 6.8.4

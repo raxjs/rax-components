@@ -1,5 +1,6 @@
-import { isMiniApp, isWeb, isWeChatMiniProgram } from 'universal-env';
+import { isWeex, isMiniApp, isWeb, isWeChatMiniProgram } from 'universal-env';
 import ViewCommon from './common';
+import ViewWeex from './weex';
 import ViewAliMiniApp from './miniapp/ali';
 import ViewWechatMiniProgram from './miniapp/wechat';
 
@@ -11,6 +12,8 @@ if (isWeb) {
   View = ViewAliMiniApp;
 } else if (isWeChatMiniProgram) {
   View = ViewWechatMiniProgram;
+} else if (isWeex) {
+  View = ViewWeex;
 } else {
   View = ViewCommon;
 }

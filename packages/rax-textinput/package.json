@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "babel-runtime-jsx-plus": "^0.1.4",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "rax-set-native-props": "^1.0.0",
     "universal-env": "^3.2.0"
   },

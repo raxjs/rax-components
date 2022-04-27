@@ -18,31 +18,40 @@ var semverRegex = require('semver-regex');
 
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
-var IGNORED = new RegExp(util.format('(^WIP)|(^v)|(^%s$)', semverRegex().source));
+var IGNORED = new RegExp(
+  util.format('(^WIP)|(^v)|(^%s$)', semverRegex().source)
+);
 
 // fixup! and squash! are part of Git, commits tagged with them are not intended to be merged, cf. https://git-scm.com/docs/git-commit
 var PATTERN = /^((fixup! |squash! )?(\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
 var MERGE_COMMIT_PATTERN = /^Merge /;
-var error = function() {
+var error = function () {
   // gitx does not display it
   // http://gitx.lighthouseapp.com/projects/17830/tickets/294-feature-display-hook-error-message-when-hook-fails
   // https://groups.google.com/group/gitx/browse_thread/thread/a03bcab60844b812
-  console[config.warnOnFail ? 'warn' : 'error']('Invalid commit message: ' + util.format.apply(null, arguments));
-  console.log('See our specific at:', 'https://github.com/alibaba/rax/.github/GIT_COMMIT_SPECIFIC.md');
+  console[config.warnOnFail ? 'warn' : 'error'](
+    'Invalid commit message: ' + util.format.apply(null, arguments)
+  );
+  console.log(
+    'See our specific at:',
+    'https://github.com/alibaba/rax/.github/GIT_COMMIT_SPECIFIC.md'
+  );
 };
 
-
-var validateMessage = function(raw) {
-  var types = config.types = config.types || 'conventional-commit-types';
+var validateMessage = function (raw) {
+  var types = (config.types = config.types || 'conventional-commit-types');
 
   // resolve types from a module
   if (typeof types === 'string' && types !== '*') {
     types = Object.keys(require(types).types);
   }
 
-  var messageWithBody = (raw || '').split('\n').filter(function(str) {
-    return str.indexOf('#') !== 0;
-  }).join('\n');
+  var messageWithBody = (raw || '')
+    .split('\n')
+    .filter(function (str) {
+      return str.indexOf('#') !== 0;
+    })
+    .join('\n');
 
   var message = messageWithBody.split('\n').shift();
 
@@ -76,7 +85,9 @@ var validateMessage = function(raw) {
     var subject = match[5];
 
     var SUBJECT_PATTERN = new RegExp(config.subjectPattern || '.+');
-    var SUBJECT_PATTERN_ERROR_MSG = config.subjectPatternErrorMsg || 'subject does not match subject pattern!';
+    var SUBJECT_PATTERN_ERROR_MSG =
+      config.subjectPatternErrorMsg ||
+      'subject does not match subject pattern!';
 
     if (firstLine.length > MAX_LENGTH && !squashing) {
       error('is longer than %d characters !', MAX_LENGTH);
@@ -84,7 +95,11 @@ var validateMessage = function(raw) {
     }
 
     if (types !== '*' && types.indexOf(type) === -1) {
-      error('"%s" is not allowed type ! Valid types are: %s', type, types.join(', '));
+      error(
+        '"%s" is not allowed type ! Valid types are: %s',
+        type,
+        types.join(', ')
+      );
       isValid = false;
     }
 
@@ -106,7 +121,8 @@ var validateMessage = function(raw) {
 
   isValid = isValid || config.warnOnFail;
 
-  if (isValid) { // exit early and skip messaging logics
+  if (isValid) {
+    // exit early and skip messaging logics
     return true;
   }
 
@@ -125,7 +141,6 @@ var validateMessage = function(raw) {
   return false;
 };
 
-
 // publish for testing
 exports.validateMessage = validateMessage;
 exports.getGitFolder = getGitFolder;
@@ -135,17 +150,20 @@ exports.config = config;
 // istanbul ignore next
 if (process.argv.join('').indexOf('mocha') === -1) {
   var commitMsgFile = process.argv[2] || getGitFolder() + '/COMMIT_EDITMSG';
-  var incorrectLogFile = commitMsgFile.replace('COMMIT_EDITMSG', 'logs/incorrect-commit-msgs');
+  var incorrectLogFile = commitMsgFile.replace(
+    'COMMIT_EDITMSG',
+    'logs/incorrect-commit-msgs'
+  );
 
   var hasToString = function hasToString(x) {
     return x && typeof x.toString === 'function';
   };
 
-  fs.readFile(commitMsgFile, function(err, buffer) {
+  fs.readFile(commitMsgFile, function (err, buffer) {
     var msg = getCommitMessage(buffer);
 
     if (!validateMessage(msg)) {
-      fs.appendFile(incorrectLogFile, msg + '\n', function() {
+      fs.appendFile(incorrectLogFile, msg + '\n', function () {
         process.exit(1);
       });
     } else {
@@ -160,8 +178,10 @@ if (process.argv.join('').indexOf('mocha') === -1) {
 
 function getConfig() {
   var pkgFile = findup.sync(process.cwd(), 'package.json');
-  var pkg = JSON.parse(fs.readFileSync(resolve(pkgFile, 'package.json')));
-  return pkg && pkg.config && pkg.config['validate-commit-msg'] || {};
+  var pkg = JSON.parse(
+    fs.readFileSync(resolve(pkgFile, 'package.json'), { encoding: 'utf-8' })
+  );
+  return (pkg && pkg.config && pkg.config['validate-commit-msg']) || {};
 }
 
 function getGitFolder() {

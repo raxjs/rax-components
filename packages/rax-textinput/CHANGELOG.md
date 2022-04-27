@@ -1,8 +1,13 @@
 # Changelog
 
-## 1.4.3
+## 1.4.4
 
 - In wechat-miniprogram, `previousValue` change into pureDataProperty `_previousValue` since it's irrelevant with rendering
+
+## 1.4.3
+
+- Remove unnecessary forceUpdate in alibaba miniapp
+- Remove useless className in miniapp platforms
 
 ## 1.4.2
 

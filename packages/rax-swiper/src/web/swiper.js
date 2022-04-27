@@ -109,7 +109,7 @@ const Swiper = forwardRef(
     // mount swiper
     useIsomorphicLayoutEffect(() => {
       if (externalElRef) {
-        externalElRef.current = swiperElRef.current;
+        externalElRef.current = swiperRef.current;
       }
       if (!swiperElRef.current) return;
 

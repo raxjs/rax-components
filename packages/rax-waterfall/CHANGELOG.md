@@ -4,6 +4,8 @@
 ## 1.2.3
 
 - Update rax-scrollview version to 3.x
+- Remove unnecessary props passed to rax-scrollview
+
 ## 1.2.2
 
 - Remove `sideEffects: false` in package.json

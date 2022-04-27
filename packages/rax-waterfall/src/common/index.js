@@ -3,7 +3,7 @@ import View from 'rax-view';
 import ScrollView from 'rax-scrollview';
 import RefreshControl from 'rax-refreshcontrol';
 import cloneElement from 'rax-clone-element';
-import omit from 'omit.js';
+import omit from '../utils/omit';
 
 class Header extends PureComponent {
   render() {

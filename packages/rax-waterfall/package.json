@@ -43,7 +43,6 @@
     "react-component"
   ],
   "dependencies": {
-    "omit.js": "^2.0.2",
     "rax-clone-element": "^1.0.0",
     "rax-refreshcontrol": "^1.0.0",
     "rax-scrollview": "^3.7.0",

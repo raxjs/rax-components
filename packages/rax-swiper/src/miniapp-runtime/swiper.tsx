@@ -1,4 +1,4 @@
-import { createElement, useState, forwardRef, useImperativeHandle, useMemo } from 'rax';
+import { createElement, useState, forwardRef, useImperativeHandle, useMemo, useRef } from 'rax';
 import Children from 'rax-children';
 
 import { SwiperType } from '../types';
@@ -24,11 +24,16 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const swiperRef = useRef();
   const [ activeIndex, setActiveIndex ] = useState(initialSlide);
   const size = useMemo(() => Children.count(children), [children]);
   const className = useMemo(() => outerClassName ? `${innerClassName} ${outerClassName}` : innerClassName, [outerClassName]);
 
   const slideChange = (event) => {
+    if (swiperRef.current !== event.target) {
+      // stop bubble
+      return;
+    }
     if (onSlideChange) {
       onSlideChange({
         activeIndex: event.detail.current,
@@ -78,6 +83,7 @@ const Swiper: SwiperType = forwardRef((props, ref) => {
 
   return (
     <swiper
+      ref={swiperRef}
       indicator-dots={_pagination}
       autoplay={_autoplay}
       current={activeIndex}

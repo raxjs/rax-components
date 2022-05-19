@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.11
+
+- [fix] stop `change` event bubble in runtime miniapp
+
 ## 0.1.10
 
 - [fix] calc error in css file caused by `postcss-calc`

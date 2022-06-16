@@ -1,8 +1,8 @@
 // eslint-disable-next-line
-import Swiper, { Autoplay, Pagination } from 'swiper';
+import { Swiper, Autoplay, Pagination } from 'swiper';
 import { needsNavigation, needsPagination, needsScrollbar } from './utils';
 
-import './swiper.css';
+import 'swiper/swiper-bundle.css';
 
 Swiper.use([Autoplay, Pagination]);
 function initSwiper(swiperParams) {

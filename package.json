@@ -56,11 +56,12 @@
     "semver": "^6.3.0",
     "semver-regex": "^3.1.4",
     "shelljs": "^0.8.5",
-    "typescript": "4.6.4"
+    "typescript": "3.9.10"
   },
   "resolutions": {
     "rax": "1.2.3-beta.1",
-    "rax-test-renderer": "1.1.0-beta.1"
+    "rax-test-renderer": "1.1.0-beta.1",
+    "typescript": "3.9.10"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",

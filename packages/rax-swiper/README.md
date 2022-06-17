@@ -21,6 +21,7 @@ $ npm install rax-swiper --save
 ## 属性
 
 > Web 组件基于社区 swiper.js 封装，所有属性都可从 [swiper.js API](https://swiperjs.com/api/) 文档中找到。详细的属性列表可以直接到 [swiper/react 文档](https://swiperjs.com/react)查看。
+> rax-swiper v0.2 基于 swiper v8，rax-swiper v0.1 基于 swiper v6
 > 小程序组件基于小程序 swiper 原生组件开发。
 
 | **属性**      | **类型**          | **默认值** | **必填** | **描述**                             |
@@ -94,7 +95,7 @@ render(<App />, document.body, { driver: DU });
 在 Web 中，如果需要使用到 swiper.js 中的一些能力，可能需要配置插件：
 
 ```js
-import SwiperCore, { Pagination } from 'swiper';
+import { Swiper as SwiperCore, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'rax-swiper';
 
 SwiperCore.use(Pagination);

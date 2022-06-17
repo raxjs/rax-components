@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import Swiper from 'swiper';
+import { Swiper } from 'swiper';
 import { isObject, extend } from './utils';
 import { paramsList } from './params-list';
 
@@ -37,6 +37,18 @@ function getParams(obj = {}) {
     if (params[key] === true) params[key] = {};
     if (params[key] === false) delete params[key];
   });
+
+  // interval will not work in swiper@8, use autoplay.delay instead
+  if (rest.interval) {
+    if (params.autoplay === true) {
+      params.autoplay = {
+        delay: rest.interval
+      };
+    } else if (typeof params.autoplay === 'object') {
+      params.autoplay.delay = rest.interval;
+    }
+    delete rest.interval;
+  }
 
   return { params, passedParams, rest, events };
 }

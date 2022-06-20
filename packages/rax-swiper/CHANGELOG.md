@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- [chore] copy swiper-bundle.css to local
+
 ## 0.2.0
 
 - [feat] update swiper version to 8.x

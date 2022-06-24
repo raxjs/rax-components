@@ -16,6 +16,8 @@ import ScrollView from 'rax-scrollview';
 import Children from 'rax-children';
 import VirtualizedList from './VirtualizedList/index';
 
+const isWeexV2 = typeof __weex_v2__ === 'object';
+
 const Context = createContext(true);
 
 const Cell = memo(
@@ -99,16 +101,30 @@ const RecyclerView = forwardRef((props, ref) => {
           : true;
 
       if (isWeex) {
-        let dom = __weex_require__('@weex-module/dom');
-        let firstNode = findDOMNode(firstNodePlaceholder.current);
-        dom.scrollToElement(firstNode, {
-          offset: x || y || 0,
-          animated
-        });
+        if (isWeexV2) {
+          list.current.scrollTo(undefined, options);
+        } else {
+          let dom = __weex_require__('@weex-module/dom');
+          let firstNode = findDOMNode(firstNodePlaceholder.current);
+          dom.scrollToElement(firstNode, {
+            offset: x || y || 0,
+            animated
+          });
+        }
       } else if (needRecycler) {
         scrollview.current.scrollTo(x || y, animated);
       } else {
         scrollview.current.scrollTo(options);
+      }
+    },
+    scrollIntoView(options) {
+      if (isWeex && isWeexV2) {
+        const { id, animated = true, duration } = options || {};
+        if (!id) {
+          throw new Error('Params missing id.');
+        }
+        const node = document.getElementById(id);
+        list.current.scrollTo(node, {animated, duration});
       }
     }
   }));

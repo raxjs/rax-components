@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.2
+
+- Fix weex v2 scrollTo and scrollIntoView
+
 ## 3.7.1
 
 - Fix: can't pass float number to scrollTo

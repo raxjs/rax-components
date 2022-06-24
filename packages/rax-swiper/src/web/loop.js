@@ -1,6 +1,6 @@
 import { createElement } from 'rax';
 import cloneElement from 'rax-clone-element';
-import Swiper from 'swiper';
+import { Swiper } from 'swiper';
 
 function calcLoopedSlides(slides, swiperParams) {
   let slidesPerViewParams = swiperParams.slidesPerView;

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- [feat] update swiper version to 8.x
+
+## 0.1.11
+
+- [fix] stop `change` event bubble in runtime miniapp
+
 ## 0.1.10
 
 - [fix] calc error in css file caused by `postcss-calc`

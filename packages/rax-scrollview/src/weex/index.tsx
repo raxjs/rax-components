@@ -127,7 +127,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     let refreshContainer: any = null;
     let contentContainer;
     if (isWeexV2) {
-      contentContainer =  children;
+      contentContainer = children;
     } else {
       refreshContainer = <View />;
       let contentChild: Rax.RaxNode = null;

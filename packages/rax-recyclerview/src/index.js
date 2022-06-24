@@ -118,13 +118,17 @@ const RecyclerView = forwardRef((props, ref) => {
       }
     },
     scrollIntoView(options) {
-      if (isWeex && isWeexV2) {
-        const { id, animated = true, duration } = options || {};
-        if (!id) {
-          throw new Error('Params missing id.');
+      if (isWeex) {
+        if (isWeexV2) {
+          const { id, animated = true, duration } = options || {};
+          if (!id) {
+            throw new Error('Params missing id.');
+          }
+          const node = document.getElementById(id);
+          list.current.scrollTo(node, { animated, duration });
         }
-        const node = document.getElementById(id);
-        list.current.scrollTo(node, {animated, duration});
+      } else if (!needRecycler) {
+        scrollview.current.scrollIntoView(options);
       }
     }
   }));

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2
+
+- Support property `webp` in wechat-miniprogram
+
 ## 2.4.1
 
 - Support placeholder in alibaba miniapp

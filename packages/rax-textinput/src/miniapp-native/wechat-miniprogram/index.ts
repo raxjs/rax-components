@@ -10,7 +10,7 @@ const defaultKeyboardType = 'text';
 
 Component({
   data: {
-    previousValue: ''
+    _previousValue: ''
   },
   properties: {
     className: {
@@ -88,6 +88,7 @@ Component({
   },
   options: {
     styleIsolation: 'apply-shared',
+    pureDataPattern: /^_/
   },
   observers: {
     'keyboardType': function(value) {
@@ -106,7 +107,7 @@ Component({
     const { value, defaultValue, keyboardType } = this.properties;
     const currentKeyboardType = this.getKeyboardType(keyboardType);
     const data = {
-      previousValue: value || defaultValue,
+      _previousValue: value || defaultValue,
     };
     if (currentKeyboardType !== keyboardType) {
       Object.assign(data, {
@@ -119,11 +120,11 @@ Component({
     onBlur(e) {
       const event = fmtEvent(this.properties, e);
       this.triggerEvent('onBlur', event);
-      if (event.detail.value !== this.data.previousValue) {
+      if (event.detail.value !== this.data._previousValue) {
         this.triggerEvent('onChange', event);
         this.triggerEvent('onChangeText', event.detail.value);
         this.setData({
-          previousValue: event.detail.value
+          _previousValue: event.detail.value
         });
       }
     },

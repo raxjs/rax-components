@@ -3,6 +3,7 @@
   class="{{className}}"
   src="{{source.uri}}"
   mode="{{mode}}"
+  webp="{{webp}}"
   lazy-load="{{lazyLoad || loading == 'lazy'}}" 
   binderror="onError"
   bindload="onLoad"

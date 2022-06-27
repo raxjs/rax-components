@@ -21,10 +21,6 @@ const isWeexV2 = typeof __weex_v2__ === 'object';
 
 const baseCls = 'rax-scrollview';
 
-function scrollTo(scrollerRef, ...args) {
-  scrollerRef.current.scrollTo(...args);
-}
-
 const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
   (props, ref) => {
     let {
@@ -69,11 +65,10 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         animated?: boolean;
         duration?: number;
       }) {
-        const { x = 0, y = 0, animated = true, duration } = options || {};
-
         if (isWeexV2) {
-          scrollTo(scrollerRef, x, y, animated, duration);
+          (scrollerRef.current as any).scrollTo(undefined, options);
         } else {
+          const { x = 0, y = 0, animated = true } = options || {};
           const dom = __weex_require__('@weex-module/dom');
           const contentContainer = contentContainerRef.current;
           /**
@@ -99,7 +94,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         const node = getElementById(id);
         if (node) {
           if (isWeexV2) {
-            scrollTo(scrollerRef, node, animated, duration);
+            (scrollerRef.current as any).scrollTo(node, { animated, duration });
           } else {
             const dom = __weex_require__('@weex-module/dom');
             dom.scrollToElement(node, {
@@ -129,31 +124,31 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
       }
     }
 
-    let refreshContainer: any = <View />;
-    let contentChild: Rax.RaxNode = null;
-    if (Array.isArray(children)) {
-      contentChild = children.map(child => {
-        if (
-          typeof child === 'object' &&
-          child !== null &&
-          'type' in child &&
-          child.type == RefreshControl
-        ) {
-          refreshContainer = child;
-          return null;
-        } else {
-          return child;
-        }
-      });
-    } else {
-      contentChild = children;
-    }
-
+    let refreshContainer: any = null;
     let contentContainer;
     if (isWeexV2) {
-      refreshContainer = null;
       contentContainer = children;
     } else {
+      refreshContainer = <View />;
+      let contentChild: Rax.RaxNode = null;
+      if (Array.isArray(children)) {
+        contentChild = children.map(child => {
+          if (
+            typeof child === 'object' &&
+            child !== null &&
+            'type' in child &&
+            child.type == RefreshControl
+          ) {
+            refreshContainer = child;
+            return null;
+          } else {
+            return child;
+          }
+        });
+      } else {
+        contentChild = children;
+      }
+
       contentContainer = (
         <View
           ref={contentContainerRef}

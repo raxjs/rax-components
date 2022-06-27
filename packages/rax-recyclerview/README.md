@@ -43,6 +43,20 @@ npm install rax-recyclerview --save
 | x        | `number` | -          | ✘        | 横向的偏移量 |
 | y        | `number` | -          | ✘        | 纵向的偏移量 |
 
+### scrollIntoView({id: string, animated?: boolean, duration?: number})
+
+支持 Weex 2.0 和未指定 itemSize 时的 Web 场景。
+
+#### 参数
+
+**参数为 `object`，包含以下属性**
+
+| **属性** | **类型**  | **默认值** | **必填** | **描述** |
+| -------- | --------- | ---------- | -------- | -------- |
+| id       | `string`  | -          | 是       | 需要滚动到的元素 `id` |
+| animated | `boolean` | `true`     | 否       | 在设置滚动条位置时使用动画过渡 |
+| duration | `number`  | 400        | 否       | 当 `animated` 设置为 `true` 时，可以设置 duration 来控制动画的执行时间，单位 `ms` |
+
 ### 示例
 
 ```jsx

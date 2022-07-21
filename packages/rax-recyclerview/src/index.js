@@ -120,12 +120,12 @@ const RecyclerView = forwardRef((props, ref) => {
     scrollIntoView(options) {
       if (isWeex) {
         if (isWeexV2) {
-          const { id, animated = true, duration } = options || {};
+          const { id, animated = true, duration, offsetX, offsetY } = options || {};
           if (!id) {
             throw new Error('Params missing id.');
           }
           const node = document.getElementById(id);
-          list.current.scrollTo(node, { animated, duration });
+          list.current.scrollTo(node, { animated, duration, x: offsetX, y: offsetY });
         }
       } else if (!needRecycler) {
         scrollview.current.scrollIntoView(options);

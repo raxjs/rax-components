@@ -56,8 +56,8 @@ npm install rax-recyclerview --save
 | id       | `string`  | -          | 是       | 需要滚动到的元素 `id` |
 | animated | `boolean` | `true`     | 否       | 在设置滚动条位置时使用动画过渡 |
 | duration | `number`  | 400        | 否       | 当 `animated` 设置为 `true` 时，可以设置 duration 来控制动画的执行时间，单位 `ms` |
-| offsetX  | `number`  | -     | 否       | 滚动的额外 X 偏移（仅 Weex 2.0 场景） |
-| offsetY  | `number`  | -     | 否       | 滚动的额外 Y 偏移（仅 Weex 2.0 场景） |
+| offsetX  | `number`  | -     | 否       | 滚动的额外 X 偏移 |
+| offsetY  | `number`  | -     | 否       | 滚动的额外 Y 偏移 |
 
 ### 示例
 

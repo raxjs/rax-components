@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.3
+
+- Add offsetX and offsetY to scrollIntoView of web and weex v2
+
 ## 3.7.2
 
 - Fix weex v2 scrollTo and scrollIntoView

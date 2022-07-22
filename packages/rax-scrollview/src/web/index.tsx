@@ -179,14 +179,22 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         id?: string;
         animated?: boolean;
         duration?: number;
+        offsetX?: number;
+        offsetY?: number;
       }) {
-        const { id, animated = true, duration = ANIMATION_DURATION } = options || {};
+        const { id, animated = true, duration = ANIMATION_DURATION, offsetX, offsetY } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
         }
         const targetElement = document.getElementById(id);
-        if (targetElement) {
-          scrollTo(scrollerRef, targetElement.offsetLeft, targetElement.offsetTop, animated, duration);
+        if (targetElement && contentContainerRef.current) {
+          // @NOTE: targetElement's offsetParent is not scrollerRef.current, so do not use
+          // offsetLeft/offsetTop to calculate distance.
+          const targetRect = targetElement.getBoundingClientRect();
+          const contentContainerRect = contentContainerRef.current.getBoundingClientRect();
+          const scrollX = targetRect.x - contentContainerRect.x + translateToPx(offsetX);
+          const scrollY = targetRect.y - contentContainerRect.y + translateToPx(offsetY);
+          scrollTo(scrollerRef, scrollX, scrollY, animated, duration);
         }
       }
     }));

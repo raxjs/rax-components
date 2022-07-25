@@ -86,18 +86,21 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
         id: string;
         animated?: boolean;
         duration?: number;
+        offsetX?: number;
+        offsetY?: number;
       }) {
-        const { id, animated = true, duration } = options || {};
+        const { id, animated = true, duration, offsetX, offsetY } = options || {};
         if (!id) {
           throw new Error('Params missing id.');
         }
         const node = getElementById(id);
         if (node) {
           if (isWeexV2) {
-            (scrollerRef.current as any).scrollTo(node, { animated, duration });
+            (scrollerRef.current as any).scrollTo(node, { animated, duration, x: offsetX, y: offsetY });
           } else {
             const dom = __weex_require__('@weex-module/dom');
             dom.scrollToElement(node, {
+              offset: offsetX || offsetY || 0,
               animated
             });
           }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Add offsetX and offsetY to scrollIntoView of weex v2
+
 ## 1.4.0
 
 - Support weex v2 scrollTo and scrollIntoView

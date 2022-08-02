@@ -130,6 +130,7 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       if (onEndReached) {
         const scrollerNode = scrollerRef.current;
+        if (!scrollerNode) return;
         scrollerNodeSize.current = horizontal
           ? scrollerNode.offsetWidth
           : scrollerNode.offsetHeight;

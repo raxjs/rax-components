@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.4
+
+- Fix when scrollerNode is null
+
 ## 3.7.3
 
 - Add offsetX and offsetY to scrollIntoView of web and weex v2

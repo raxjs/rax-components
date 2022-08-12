@@ -222,7 +222,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
             disabled={disabled}
             value={value}
             confirm-type={confirmType}
-            random-Number={randomNumber}
+            random-number={randomNumber}
             selection-start={selectionStart}
             selection-end={selectionEnd}
             onInput={(e: Rax.ChangeEvent<HTMLInputElement>) => {

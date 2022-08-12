@@ -2,7 +2,7 @@
 
 ## 1.4.5
 
-- maxlength and random-Number is invlid property in dom.
+- maxlength and random-Number is invalid property in dom.
 
 ## 1.4.4
 

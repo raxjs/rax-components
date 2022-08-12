@@ -11,7 +11,7 @@
     password="{{password||secureTextEntry}}"
     value="{{value||defaultValue}}"
     confirm-type="{{confirmType}}"
-    random-Number="{{randomNumber}}"
+    random-number="{{randomNumber}}"
     selection-start="{{selectionStart}}"
     selection-end="{{selectionEnd}}"
     controlled="{{controlled}}"

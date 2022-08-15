@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.5
+
+- maxlength and random-Number is invalid property in dom.
+
 ## 1.4.4
 
 - In wechat-miniprogram, `previousValue` change into pureDataProperty `_previousValue` since it's irrelevant with rendering

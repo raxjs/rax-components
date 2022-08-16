@@ -139,7 +139,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
       ...props,
       'aria-label': accessibilityLabel,
       autoComplete: autoComplete && 'on',
-      maxLength: maxlength || maxLength,
+      maxlength: maxlength || maxLength,
       onChange: (onChange || onChangeText) && handleChange,
       onBlur: onBlur && handleBlur,
       onFocus: onFocus && handleFocus

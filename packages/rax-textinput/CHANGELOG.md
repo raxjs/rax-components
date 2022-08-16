@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.6
+
+- revert maxlength for compat set maxlength to empty string.
+
 ## 1.4.5
 
 - maxlength and random-Number is invalid property in dom.

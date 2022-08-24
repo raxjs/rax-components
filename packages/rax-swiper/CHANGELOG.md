@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2-beta.0
+
+- [fix] import css of swiper not found.
+
 ## 0.2.0
 
 - [feat] update swiper version to 8.x

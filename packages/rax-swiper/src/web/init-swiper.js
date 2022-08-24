@@ -2,7 +2,7 @@
 import { Swiper, Autoplay, Pagination } from 'swiper';
 import { needsNavigation, needsPagination, needsScrollbar } from './utils';
 
-import 'swiper/swiper-bundle.min.css';
+import 'swiper/css/bundle';
 
 Swiper.use([Autoplay, Pagination]);
 function initSwiper(swiperParams) {

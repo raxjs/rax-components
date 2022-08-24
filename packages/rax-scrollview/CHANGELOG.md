@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.5
+
+- Fix change disableScroll from `true` to `false` is not working.
+
 ## 3.7.4
 
 - Fix when scrollerNode is null

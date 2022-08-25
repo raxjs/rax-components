@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2
+
+- VirtualizedList should support touch event.
+- Exception to render when BaseList has only one child node.
+
 ## 1.4.1
 
 - Add offsetX and offsetY to scrollIntoView of weex v2

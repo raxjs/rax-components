@@ -276,9 +276,9 @@ export default class BaseList extends PureComponent {
     /**
      * solve children is not an array.
      */
-    if (typeof start !== 'undefined' && typeof stop !== 'undefined' && children.slice) {
+    if (typeof start !== 'undefined' && typeof stop !== 'undefined' && children) {
       let index = start;
-      renderChildren = children.slice(start, stop + 1);
+      renderChildren = Array.isArray(children) ? children.slice(start, stop + 1) : [ children ];
       renderChildren.forEach((child) => {
         /**
          * child.props.style = newStyle cause: Uncaught TypeError: Cannot add property style, object is not extensible

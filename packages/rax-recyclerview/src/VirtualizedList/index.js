@@ -110,6 +110,10 @@ export default class VirtualizedList extends BaseList {
       showsVerticalScrollIndicator,
       className,
       nestedList,
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+      onTouchCancel,
       ...props
     } = this.props;
     const { offset } = this.state;
@@ -138,7 +142,15 @@ export default class VirtualizedList extends BaseList {
     });
 
     return (
-      <div ref={this.getRef} style={wrapperStyle} className={className}>
+      <div
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchCancel}
+        ref={this.getRef}
+        style={wrapperStyle}
+        className={className}
+      >
         <div style={innerStyle}>{nodeItems}</div>
       </div>
     );

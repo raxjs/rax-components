@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.4.3
+- Support compiler mode in bytedance microapp
+
 ## 2.4.2
 
 - Support property `webp` in wechat-miniprogram

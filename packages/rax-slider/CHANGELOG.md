@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.6
+
+- [feat] Weex 2.0 support slideTo with animation parameter
+
 ## 3.1.5
 
 - [fix] Miss Item definition in specific target files

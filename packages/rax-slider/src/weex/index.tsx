@@ -26,10 +26,10 @@ const Slider: SliderType = forwardRef(
     // @ts-ignore
     useImperativeHandle(ref, () => ({
       slideTo: (index: number | { index: number; animated?: boolean }) => {
-        if (index === +index) {
+        if (typeof index === 'number') {
           setIndex(index);
         } else {
-          const { index: idx, animated } = index as { index: number; animated?: boolean };
+          const { index: idx, animated } = index;
           setIndex(idx);
           const slider = sliderRef.current as any;
           slider.slideTo && slider.slideTo(idx, { animated });

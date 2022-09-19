@@ -3,10 +3,6 @@ import { SliderType } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
 
-declare const __weex_v2__: any;
-/* global __weex_v2__ */
-const isWeexV2 = typeof __weex_v2__ === 'object';
-
 const Slider: SliderType = forwardRef(
   (props, ref) => {
     // This value determines the index of current shown slide in Weex. The default value is 0.
@@ -35,10 +31,8 @@ const Slider: SliderType = forwardRef(
         } else {
           const { index: idx, animated } = index as { index: number; animated?: boolean };
           setIndex(idx);
-          if (isWeexV2) {
-            const slider = sliderRef.current as any;
-            slider.slideTo && slider.slideTo(idx, { animated });
-          }
+          const slider = sliderRef.current as any;
+          slider.slideTo && slider.slideTo(idx, { animated });
         }
       },
     }));

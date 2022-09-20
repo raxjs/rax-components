@@ -1,4 +1,4 @@
-import { createElement, forwardRef, useCallback, useImperativeHandle, useState } from 'rax';
+import { createElement, forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'rax';
 import { SliderType } from '../types';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import '../index.css';
@@ -7,6 +7,7 @@ const Slider: SliderType = forwardRef(
   (props, ref) => {
     // This value determines the index of current shown slide in Weex. The default value is 0.
     const [index, setIndex] = useState(props.index || 0);
+    const sliderRef = useRef<HTMLDivElement>(null);
     const {
       autoPlay,
       showsPagination,
@@ -24,9 +25,16 @@ const Slider: SliderType = forwardRef(
     // Ignore 'HTMLElement Error', because it's a Weex Component.
     // @ts-ignore
     useImperativeHandle(ref, () => ({
-      slideTo: (newIndex: number) => {
-        setIndex(newIndex);
-      }
+      slideTo: (index: number | { index: number; animated?: boolean }) => {
+        if (typeof index === 'number') {
+          setIndex(index);
+        } else {
+          const { index: idx, animated } = index;
+          setIndex(idx);
+          const slider = sliderRef.current as any;
+          slider.slideTo && slider.slideTo(idx, { animated });
+        }
+      },
     }));
 
     const handleChange = useCallback((result: any) => {
@@ -46,7 +54,7 @@ const Slider: SliderType = forwardRef(
     return (
       <slider
         {...rest}
-        ref={ref}
+        ref={sliderRef}
         className="rax-slider"
         autoPlay={autoPlay}
         interval={autoPlayInterval}

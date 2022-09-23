@@ -57,7 +57,7 @@ const NestedList = memo(
 NestedList.displayName = 'NestedList';
 
 const RecyclerView = forwardRef((props, ref) => {
-  const { className, style, ...rest } = props;
+  const { className, style, onEndReachedThreshold, ...rest } = props;
   const [loadmoreretry, setLoadmoreretry] = useState(0);
   const scrollview = useRef(null);
   const list = useRef(null);
@@ -159,9 +159,6 @@ const RecyclerView = forwardRef((props, ref) => {
       cells.splice(addIndex, 0, <Cell ref={firstNodePlaceholder} />);
     }
 
-    // onEndReachedThreshold will addEventListener, cause JS Error
-    delete rest.onEndReachedThreshold;
-
     return (
       <Context.Provider value={true}>
         <list
@@ -172,7 +169,7 @@ const RecyclerView = forwardRef((props, ref) => {
           onLoadmore={props.onEndReached}
           onScroll={props.onScroll ? handleScroll : null}
           loadmoreretry={loadmoreretry}
-          loadmoreoffset={props.onEndReachedThreshold}
+          loadmoreoffset={onEndReachedThreshold}
         >
           {cells}
         </list>

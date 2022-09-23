@@ -159,6 +159,9 @@ const RecyclerView = forwardRef((props, ref) => {
       cells.splice(addIndex, 0, <Cell ref={firstNodePlaceholder} />);
     }
 
+    // onEndReachedThreshold will addEventListener, cause JS Error
+    delete rest.onEndReachedThreshold;
+
     return (
       <Context.Provider value={true}>
         <list

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.3
+
+- Fix onEndReachedThreshold cause error on weex.
+
 ## 1.4.2
 
 - VirtualizedList should support touch event.

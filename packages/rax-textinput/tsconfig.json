@@ -17,7 +17,8 @@
     "noImplicitThis": false,
     "outDir": "lib",
     "rootDir": "src",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "src/**/*"

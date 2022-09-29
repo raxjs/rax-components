@@ -25,7 +25,8 @@
       "rax": [
         "node_modules/@types/rax"
       ]
-    }
+    },
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "lib"]

@@ -257,13 +257,19 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
 
       scrollerStyle.WebkitOverflowScrolling = 'touch';
       if (horizontal) {
-        scrollerStyle.overflow = 'scroll hidden';
+        // Don't use scrollerStyle.overflow = 'scroll hidden';
+        // Multiple keyword syntax for overflow-x and overflow-y is not work in iOS
+        // https://caniuse.com/mdn-css_properties_overflow_multiple_keywords
+        scrollerStyle.overflowX = 'scroll';
+        scrollerStyle.overflowY = 'hidden';
       } else {
-        scrollerStyle.overflow = 'hidden scroll';
+        scrollerStyle.overflowX = 'hidden';
+        scrollerStyle.overflowY = 'scroll';
       }
 
       if (disableScroll) {
-        scrollerStyle.overflow = 'hidden';
+        scrollerStyle.overflowX = 'hidden';
+        scrollerStyle.overflowY = 'scroll';
       }
 
       const webProps = {

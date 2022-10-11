@@ -12,6 +12,16 @@ export interface ScrollViewRefObject {
     id?: string;
     animated?: boolean;
     duration?: number;
+    offsetX?: number;
+    offsetY?: number;
+  }) => void;
+}
+
+export interface MiniappScrollViewRefObject extends ScrollViewRefObject {
+  scrollIntoView: (options?: {
+    id?: string;
+    animated?: boolean;
+    duration?: number;
   }) => void;
 }
 

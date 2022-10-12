@@ -8,6 +8,21 @@ export interface ScrollViewRefObject {
     y?: number | string;
     animated?: boolean;
   }) => void;
+  scrollIntoView: (options?: {
+    id?: string;
+    animated?: boolean;
+    duration?: number;
+    offsetX?: number;
+    offsetY?: number;
+  }) => void;
+}
+
+export interface MiniappScrollViewRefObject extends ScrollViewRefObject {
+  scrollIntoView: (options?: {
+    id?: string;
+    animated?: boolean;
+    duration?: number;
+  }) => void;
 }
 
 export interface ScrollEvent extends UIEvent<HTMLDivElement> {

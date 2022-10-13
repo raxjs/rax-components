@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.6
+
+- Add `scrollIntoView` attribute in `ScrollViewRefObject` interface.
+
 ## 3.7.5
 
 - Fix change disableScroll from `true` to `false` is not working.

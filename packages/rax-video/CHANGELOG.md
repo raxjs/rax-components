@@ -2,6 +2,10 @@
 
 ## 1.6.0
 
+- Set `onPlayError` default value `noop`
+
+## 1.6.0
+
 - Support `playControl` in miniapp
 
 ## 1.5.2

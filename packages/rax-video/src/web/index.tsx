@@ -12,9 +12,11 @@ import omit from 'omit.js';
 import wrapDefaultProperties from '../utils/wrapDefaultProperties';
 import { VideoProps } from '../types';
 
+const noop = () => {};
+
 const Video: ForwardRefExoticComponent<VideoProps> = forwardRef(
   (props, ref) => {
-    const { className, style, controls, playControl, autoPlay, onPlayError } = props;
+    const { className, style, controls, playControl, autoPlay, onPlayError = noop } = props;
     const refEl = useRef(null);
     useImperativeHandle(ref, () => refEl.current);
     const common = omit(props, ['className', 'controls', 'style', 'playControl']);

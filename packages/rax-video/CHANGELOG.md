@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1
+
+- Set `onPlayError` default value `noop`
+
 ## 1.6.0
 
 - Support `playControl` in miniapp

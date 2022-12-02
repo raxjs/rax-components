@@ -85,12 +85,14 @@ class Waterfall extends Component {
       }
     }));
 
+    const { onEndReachedThreshold, ...rest } = props;
+
     return (<waterfall
       ref={this.waterfall}
       style={{width: 750}}
-      {...props}
+      {...rest}
       onLoadmore={props.onEndReached}
-      loadmoreoffset={props.onEndReachedThreshold}
+      loadmoreoffset={onEndReachedThreshold}
       loadmoreretry={this.state.loadmoreretry}
     >
       {cells}

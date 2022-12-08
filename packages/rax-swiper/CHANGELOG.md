@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.2-beta.0
+## 0.2.1
 
 - [fix] import css of swiper not found.
 

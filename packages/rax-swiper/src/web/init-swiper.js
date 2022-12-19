@@ -2,7 +2,9 @@
 import { Swiper, Autoplay, Pagination } from 'swiper';
 import { needsNavigation, needsPagination, needsScrollbar } from './utils';
 
-import 'swiper/css/bundle';
+// swiper >= 8.4.4 added ./swiper-bundle.min.css in exports field,
+// both support webpack 4 and 5 resolving rule.
+import 'swiper/swiper-bundle.min.css';
 
 Swiper.use([Autoplay, Pagination]);
 function initSwiper(swiperParams) {

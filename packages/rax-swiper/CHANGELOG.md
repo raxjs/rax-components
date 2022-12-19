@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- [feat] both support webpack 4 and webpack 5.
+
 ## 0.2.1
 
 - [fix] import css of swiper not found.

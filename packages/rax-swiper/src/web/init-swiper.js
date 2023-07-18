@@ -8,7 +8,7 @@ import 'swiper/swiper-bundle.min.css';
 
 // TODO: Support SSR in Swiper component of HyperKit
 // A temporary solution to prevent swiper.js errors under SSR
-document.documentElement.style ??= {};
+document.documentElement.style = document.documentElement.style || {};
 
 Swiper.use([Autoplay, Pagination]);
 function initSwiper(swiperParams) {

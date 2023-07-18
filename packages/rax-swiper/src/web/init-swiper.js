@@ -6,6 +6,10 @@ import { needsNavigation, needsPagination, needsScrollbar } from './utils';
 // both support webpack 4 and 5 resolving rule.
 import 'swiper/swiper-bundle.min.css';
 
+// TODO: Support SSR in Swiper component of HyperKit
+// A temporary solution to prevent swiper.js errors under SSR
+document.documentElement.style ??= {};
+
 Swiper.use([Autoplay, Pagination]);
 function initSwiper(swiperParams) {
   return new Swiper(swiperParams);

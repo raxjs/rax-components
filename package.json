@@ -62,7 +62,8 @@
     "rax": "1.2.3-beta.1",
     "rax-test-renderer": "1.1.0-beta.1",
     "typescript": "3.9.10",
-    "@types/babel__traverse": "7.17.1"
+    "@types/babel__traverse": "7.17.1",
+    "@types/node": "14"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",

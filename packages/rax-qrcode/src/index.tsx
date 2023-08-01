@@ -1,4 +1,5 @@
 import { createElement, Component, createRef, RefObject } from 'rax';
+import Canvas from 'rax-canvas';
 import qr from 'qr.js';
 
 enum ErrorCorrectLevelMap {
@@ -54,7 +55,8 @@ class QRCode extends Component<QRCodeProps, QRCodeState> {
   }
 
   public initCanvasLayoutAndDraw(data: string, options: QRCodeOptions) {
-    const canvasNode = this.canvas.current;
+    // @ts-expect-error
+    const canvasNode = this.canvas.current.canvas.current;
 
     if (!canvasNode) return;
 
@@ -133,7 +135,7 @@ class QRCode extends Component<QRCodeProps, QRCodeState> {
   public render() {
     const { style } = this.props;
     return (
-      <canvas
+      <Canvas
         width={this.state.canvasWidth}
         height={this.state.canvasHeight}
         style={{ ...styles.qrCode, ...style }}

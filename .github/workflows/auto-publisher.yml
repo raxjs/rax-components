@@ -16,7 +16,7 @@ jobs:
           registry-url: https://registry.npmjs.com/
       - uses: pnpm/action-setup@v2
         with:
-          version: ^8.7.5
+          version: latest
       - run: npm run setup
       - run: |
           npm config set //registry.npmjs.com/:_authToken=$NODE_AUTH_TOKEN

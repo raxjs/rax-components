@@ -109,7 +109,7 @@ const TextInput: ForwardRefExoticComponent<TextInputProps> = forwardRef(
     if (isMiniApp && !isWeb) {
       const basicSupportTypes = ['text', 'number', 'idcard', 'digit'];
       // Other types, like numberpad, we can check it with canIUse
-      if (basicSupportTypes.indexOf(type) > -1 && !my.canIUse(`input.type.${type}`)) {
+      if (basicSupportTypes.indexOf(type) === -1 && !my.canIUse(`input.type.${type}`)) {
         // If not support, fallback to text
         type = 'text';
       }

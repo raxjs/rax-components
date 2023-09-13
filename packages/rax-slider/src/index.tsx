@@ -1,13 +1,17 @@
 import { isWeex, isWeb, isWeChatMiniProgram, isMiniApp, isByteDanceMicroApp, isKuaiShouMiniProgram, isBaiduSmartProgram } from 'universal-env';
 
+import SliderWeex from './weex';
+import SliderMiniApp from './miniapp-runtime';
+import SliderDefault from './web';
+
 let Slider = null;
 
 if (isWeex) {
-  Slider = require('./weex');
+  Slider = SliderWeex;
 } else if (!isWeb && (isMiniApp || isWeChatMiniProgram || isByteDanceMicroApp || isKuaiShouMiniProgram || isBaiduSmartProgram)) {
-  Slider = require('./miniapp-runtime');
+  Slider = SliderMiniApp;
 } else {
-  Slider = require('./web');
+  Slider = SliderDefault;
 }
 
 if (Slider.default) {

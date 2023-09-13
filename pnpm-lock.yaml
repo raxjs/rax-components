@@ -864,6 +864,9 @@ importers:
       rax:
         specifier: 1.2.3-beta.1
         version: registry.npmjs.org/rax@1.2.3-beta.1
+      rax-recyclerview:
+        specifier: ^1.0.0
+        version: link:../rax-recyclerview
       universal-env:
         specifier: ^3.0.0
         version: registry.npmjs.org/universal-env@3.3.3
@@ -901,9 +904,6 @@ importers:
       eslint-config-rax:
         specifier: ^0.0.0
         version: registry.npmjs.org/eslint-config-rax@0.0.0
-      rax-recyclerview:
-        specifier: ^1.0.0-beta.2
-        version: link:../rax-recyclerview
       rax-test-renderer:
         specifier: 1.1.0-beta.1
         version: registry.npmjs.org/rax-test-renderer@1.1.0-beta.1(rax@1.2.3-beta.1)

@@ -111,17 +111,18 @@ const ScrollView: ForwardRefExoticComponent<ScrollViewProps> = forwardRef(
     const contentContainerRef = useRef<HTMLDivElement>(null);
     const handleScroll = e => {
       if (props.onScroll) {
+        const elm = e.target || e.srcElement || {};
         e.nativeEvent = {
           get contentOffset() {
             return {
-              x: e.target.scrollLeft,
-              y: e.target.scrollTop
+              x: elm.scrollLeft,
+              y: elm.scrollTop
             };
           },
           get contentSize() {
             return {
-              width: e.target.scrollWidth,
-              height: e.target.scrollHeight
+              width: elm.scrollWidth,
+              height: elm.scrollHeight
             };
           }
         };

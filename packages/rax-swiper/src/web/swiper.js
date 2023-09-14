@@ -195,7 +195,9 @@ const Swiper = forwardRef(
         )}
         {needsScrollbar(swiperParams) && <div ref={scrollbarElRef} className="swiper-scrollbar" />}
         {needsPagination(swiperParams) && (
-          <div ref={paginationElRef} className="swiper-pagination" />
+          <div ref={paginationElRef} className="swiper-pagination">
+            { slides && slides.map((item, index) => <span key={index}></span>) }
+          </div>
         )}
         <WrapperTag className="swiper-wrapper">
           {slots['wrapper-start']}

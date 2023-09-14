@@ -120,12 +120,16 @@ function Modal(props: ModalProps) {
       }
       setVisibleState(true);
       if (animation) {
-        maskRef.current.style.opacity = '0';
+        if (maskRef.current) {
+          maskRef.current.style.opacity = '0';
+        }
         animate(true, () => {
           onShow && onShow();
         });
       } else {
-        maskRef.current.style.opacity = '1';
+        if (maskRef.current) {
+          maskRef.current.style.opacity = '1';
+        }
         onShow && onShow();
       }
     }

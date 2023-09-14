@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.6
+
+- Check the existence before setting style of mask node
+
 ## 1.6.5
 
 - Keep wechat native code in older dir

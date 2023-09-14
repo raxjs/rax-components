@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- [fix] temporary fix for `swiper.js` in SSR.
+
 ## 0.2.2
 
 - [feat] both support webpack 4 and webpack 5.

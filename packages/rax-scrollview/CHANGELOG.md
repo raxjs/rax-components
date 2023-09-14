@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.8
+
+- Republish to fix type.
+
+## 3.7.7
+
+- Fix overflow error in iOS.
+
 ## 3.7.6
 
 - Add `scrollIntoView` attribute in `ScrollViewRefObject` interface.

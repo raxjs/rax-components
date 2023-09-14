@@ -99,7 +99,7 @@ const paramsList = [
   'observeParents',
   'observeSlideChildren',
 
-  // modules
+  'modules',
   'a11y',
   'autoplay',
   '_controller',

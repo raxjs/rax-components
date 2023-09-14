@@ -38,6 +38,7 @@ class Index extends Component {
   };
 
   timeoutId = 0;
+  startTime = 0;
 
   static propTypes = {
     formatFunc: PropTypes.func,
@@ -67,6 +68,7 @@ class Index extends Component {
     this.setState({
       timeRemaining: timeRemaining
     });
+    this.startTime = new Date().valueOf();
   }
 
   componentDidMount() {
@@ -112,11 +114,16 @@ class Index extends Component {
       onComplete();
     } else {
       this.timeoutId = !countdownComplete ? setTimeout(
-        () => this.setState(
+        () => {
+          const now = new Date().valueOf();
+          const diffTime = now - this.startTime;
+          this.startTime = now;
+          this.setState(
           {
-            timeRemaining: timeRemaining - interval
+            timeRemaining: timeRemaining - diffTime
           },
-          () => isFunction(onTick) && onTick(timeRemaining)),
+          () => isFunction(onTick) && onTick(timeRemaining))
+        },
         interval
       ) : false;
     }

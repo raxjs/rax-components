@@ -51,6 +51,7 @@
     "react-component"
   ],
   "dependencies": {
+    "language-tags": "^1.0.5",
     "prop-types": "^15.7.2",
     "rax-children": "^1.0.0",
     "rax-find-dom-node": "^1.0.0",
